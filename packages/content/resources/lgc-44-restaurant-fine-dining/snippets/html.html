@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Dorée — Fine Dining</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">Maison Dorée</div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#story">Notre Histoire</a></li>
+      <li><a href="#reservation">Réserver</a></li>
+    </ul>
+    <a href="#reservation" class="nav-cta">Book a Table</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-image" aria-hidden="true">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-pre">Est. 1987 · Paris · 2 Michelin Stars</p>
+      <h1 class="hero-title">
+        <span class="line">An evening of</span>
+        <span class="line italic">extraordinary</span>
+        <span class="line">pleasure</span>
+      </h1>
+      <p class="hero-desc">Where French culinary tradition meets the poetry of the seasons. Chef Laurent Beaumont invites you to a table unlike any other.</p>
+      <div class="hero-actions">
+        <a href="#reservation" class="btn-gold">Reserve Your Table</a>
+        <a href="#menu" class="btn-ghost-warm">Explore the Menu</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy-section">
+    <div class="philosophy-inner">
+      <div class="philosophy-deco" aria-hidden="true">
+        <div class="deco-circle"></div>
+        <div class="deco-line-h"></div>
+      </div>
+      <div class="philosophy-text">
+        <span class="section-label">Notre Philosophie</span>
+        <h2>"Cooking is the art of<br><em>adjusting</em>"</h2>
+        <p class="attr">— Auguste Escoffier</p>
+        <p class="body-text">At Maison Dorée, each dish begins with a walk through the market at dawn. The menu changes with the light — a living expression of what is freshest, most beautiful, most true to the moment. We do not follow trends. We follow nature.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Highlights -->
+  <section class="menu-section" id="menu">
+    <div class="menu-header">
+      <span class="section-label">Carte du Soir</span>
+      <h2>This Season's Menu</h2>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-img menu-img--1" aria-hidden="true"></div>
+        <div class="menu-info">
+          <div class="menu-course">Entrée</div>
+          <h3>Foie Gras de Canard</h3>
+          <p>Sauternes gelée, brioche perdue, fig compote, microgreens from our garden</p>
+          <div class="menu-price">€ 38</div>
+        </div>
+      </div>
+
+      <div class="menu-item menu-item--reverse">
+        <div class="menu-img menu-img--2" aria-hidden="true"></div>
+        <div class="menu-info">
+          <div class="menu-course">Plat Principal</div>
+          <h3>Pigeon Rôti en Croûte</h3>
+          <p>Truffle jus, celeriac purée, chanterelles, Périgord black truffle shavings</p>
+          <div class="menu-price">€ 72</div>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-img menu-img--3" aria-hidden="true"></div>
+        <div class="menu-info">
+          <div class="menu-course">Dessert</div>
+          <h3>Soufflé Grand Marnier</h3>
+          <p>Bittersweet chocolate sauce, candied orange peel, crème chantilly</p>
+          <div class="menu-price">€ 24</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-footer">
+      <p>Tasting menu available nightly — 7 courses with wine pairing</p>
+      <a href="#" class="btn-outline-warm">View Full Menu →</a>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="story-section" id="story">
+    <div class="story-grid">
+      <div class="story-images" aria-hidden="true">
+        <div class="story-img story-img--main"></div>
+        <div class="story-img story-img--accent"></div>
+        <div class="story-year">1987</div>
+      </div>
+      <div class="story-content">
+        <span class="section-label">Notre Histoire</span>
+        <h2>Three generations of passion</h2>
+        <p>Maison Dorée was born in the winter of 1987 when Jean-Pierre Beaumont opened his first restaurant on Rue Saint-Honoré. His son Laurent took the helm in 2009, earning a second Michelin star in 2014. Today, granddaughter Élise brings her training from Tokyo and Copenhagen to the pastry kitchen.</p>
+        <p>The dining room has seen heads of state, celebrated artists, quiet first dates, and last anniversary dinners. Every guest is treated as family.</p>
+        <div class="story-awards">
+          <div class="award"><span class="award-num">★★</span><span>Michelin Stars</span></div>
+          <div class="award"><span class="award-num">37</span><span>Years of service</span></div>
+          <div class="award"><span class="award-num">12</span><span>Sommelier awards</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation -->
+  <section class="reservation-section" id="reservation">
+    <div class="res-inner">
+      <span class="section-label">Réservations</span>
+      <h2>Reserve your evening</h2>
+      <p>We welcome guests Tuesday through Sunday from 19h00. The dining room seats 38. For parties of six or more, please contact us directly.</p>
+      <div class="res-info">
+        <div class="res-detail">
+          <span class="res-label">Address</span>
+          <span>14 Rue Saint-Honoré, Paris 75001</span>
+        </div>
+        <div class="res-detail">
+          <span class="res-label">Phone</span>
+          <span>+33 1 42 96 00 14</span>
+        </div>
+        <div class="res-detail">
+          <span class="res-label">Hours</span>
+          <span>Tue–Sun · 19:00–23:30</span>
+        </div>
+      </div>
+      <a href="#" class="btn-gold">Make a Reservation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">Maison Dorée</div>
+    <p>14 Rue Saint-Honoré · Paris · +33 1 42 96 00 14</p>
+    <p class="footer-copy">© 2025 Maison Dorée. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

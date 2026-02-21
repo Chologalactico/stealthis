@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply bg-surface-950 text-slate-100 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  * {
+    @apply border-white/10;
+  }
+
+  ::selection {
+    @apply bg-brand-500/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-400;
+  }
+}
+
+@layer components {
+  .container-xl {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-md {
+    @apply w-full max-w-4xl mx-auto px-4 sm:px-6;
+  }
+
+  /* Chip / tag */
+  .chip {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full
+           bg-white/6 border border-white/10 text-slate-400
+           hover:bg-white/10 hover:text-slate-200 transition-colors duration-150 cursor-default;
+  }
+
+  .chip--active {
+    @apply bg-brand-500/20 border-brand-400/40 text-brand-300;
+  }
+
+  /* Difficulty badge */
+  .badge-easy   { @apply text-emerald-400 bg-emerald-400/10 border border-emerald-400/20; }
+  .badge-med    { @apply text-amber-400   bg-amber-400/10   border border-amber-400/20; }
+  .badge-hard   { @apply text-rose-400    bg-rose-400/10    border border-rose-400/20; }
+
+  .badge {
+    @apply inline-flex items-center text-xs font-semibold px-2 py-0.5 rounded-md;
+  }
+
+  /* Code block */
+  pre.astro-code {
+    @apply rounded-xl text-sm leading-relaxed p-5 overflow-x-auto;
+  }
+}

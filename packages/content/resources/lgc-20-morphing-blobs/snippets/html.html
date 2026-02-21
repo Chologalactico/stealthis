@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morphing Blobs — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <header class="header">
+    <span class="eyebrow">Demo 20</span>
+    <h1>Morphing Blobs</h1>
+    <p class="subtitle">Three approaches to organic shape animation: CSS border-radius, SVG path morphing, and Canvas bezier curves.</p>
+  </header>
+
+  <main class="demos">
+    <!-- CSS Blobs -->
+    <section class="demo-block">
+      <h2>CSS Border-Radius</h2>
+      <p class="demo-desc">Animated 8-value border-radius creates organic blob shapes with pure CSS keyframes.</p>
+      <div class="blob-stage">
+        <div class="css-blob blob-1"></div>
+        <div class="css-blob blob-2"></div>
+        <div class="css-blob blob-3"></div>
+      </div>
+    </section>
+
+    <!-- SVG Morphing -->
+    <section class="demo-block">
+      <h2>SVG Path Morphing</h2>
+      <p class="demo-desc">Two SVG paths with matching point counts interpolated between states using coordinate lerping.</p>
+      <div class="blob-stage">
+        <svg class="svg-blob" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="svg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ae52ff"/>
+              <stop offset="100%" stop-color="#ff40d6"/>
+            </linearGradient>
+          </defs>
+          <path id="svg-morph-path" fill="url(#svg-grad)" d=""/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Canvas Blobs -->
+    <section class="demo-block">
+      <h2>Canvas Bezier Curves</h2>
+      <p class="demo-desc">Control points oscillate with sine waves at different frequencies, creating smooth organic motion.</p>
+      <div class="blob-stage">
+        <canvas id="canvas-blob" width="300" height="300" aria-hidden="true"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

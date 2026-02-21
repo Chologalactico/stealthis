@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Landing Page — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Three.js canvas (fixed behind everything) -->
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section class="section hero-section" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Aether Pro</h1>
+      <p class="hero-tagline">Sound, Reimagined.</p>
+      <div class="scroll-indicator" id="scroll-indicator">
+        <span>Discover</span>
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
+          <path d="M7 0v16M1 10l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Showcase (pinned) -->
+  <section class="feature-track" id="features">
+    <div class="feature-container">
+      <div class="feature-content">
+        <!-- Step indicators -->
+        <div class="step-dots">
+          <span class="step-dot active" data-step="0"></span>
+          <span class="step-dot" data-step="1"></span>
+          <span class="step-dot" data-step="2"></span>
+        </div>
+
+        <!-- Feature cards -->
+        <div class="feature-card" id="feature-0">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M6 24h4M10 16l3 2M10 32l3-2M38 24h4M35 16l-3 2M35 32l-3-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18 14c-3 2-5 6-5 10s2 8 5 10M30 14c3 2 5 6 5 10s-2 8-5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="feature-label">01 — Silence</span>
+          <h2 class="feature-heading">Active Noise Cancellation</h2>
+          <p class="feature-desc">Adaptive hybrid ANC with dual microphones eliminates up to 40dB of ambient noise. The world disappears, and only your music remains.</p>
+          <div class="feature-stat">
+            <span class="stat-value" id="stat-anc">0</span>
+            <span class="stat-unit">dB noise cancelled</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="feature-1">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="24" cy="24" r="3" fill="currentColor"/>
+              <path d="M24 6v4M24 38v4M6 24h4M38 24h4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="feature-label">02 — Dimension</span>
+          <h2 class="feature-heading">Spatial Audio</h2>
+          <p class="feature-desc">Dynamic head tracking places sound precisely in 3D space. Turn your head and the soundstage stays anchored to the world around you.</p>
+          <div class="feature-stat">
+            <span class="stat-value" id="stat-spatial">0</span>
+            <span class="stat-unit">degrees of immersion</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="feature-2">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <rect x="14" y="10" width="20" height="28" rx="4" stroke="currentColor" stroke-width="1.5"/>
+              <rect x="18" y="14" width="12" height="20" rx="2" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+              <path d="M20 18h8M20 22h8M20 26h5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+              <path d="M30 30l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="feature-label">03 — Endurance</span>
+          <h2 class="feature-heading">50-Hour Battery</h2>
+          <p class="feature-desc">Marathon listening sessions without interruption. Quick charge delivers 5 hours of playback from just 10 minutes of charging.</p>
+          <div class="feature-stat">
+            <span class="stat-value" id="stat-battery">0</span>
+            <span class="stat-unit">hours total playtime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs Grid -->
+  <section class="section specs-section" id="specs">
+    <h2 class="specs-heading">Built for the future.</h2>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <span class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="spec-value">IP68</span>
+        <span class="spec-label">Water Resistant</span>
+      </div>
+      <div class="spec-card">
+        <span class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 18.5a6.5 6.5 0 100-13 6.5 6.5 0 000 13zM12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="spec-value">11mm</span>
+        <span class="spec-label">Custom Driver</span>
+      </div>
+      <div class="spec-card">
+        <span class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="spec-value">BT 5.3</span>
+        <span class="spec-label">Bluetooth</span>
+      </div>
+      <div class="spec-card">
+        <span class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 1v4M12 19v4M4.22 4.22L7.05 7.05M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="spec-value">4.2g</span>
+        <span class="spec-label">Per Earbud</span>
+      </div>
+      <div class="spec-card">
+        <span class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M19 11H5a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2v-6a2 2 0 00-2-2zM7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="spec-value">LDAC</span>
+        <span class="spec-label">Hi-Res Codec</span>
+      </div>
+      <div class="spec-card">
+        <span class="spec-icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 10h4v4H6z" stroke="currentColor" stroke-width="1"/><path d="M14 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="spec-value">USB-C</span>
+        <span class="spec-label">Quick Charge</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section" id="cta">
+    <div class="cta-content">
+      <div class="cta-price" id="cta-price">$299</div>
+      <p class="cta-tagline">Silence has never sounded so good.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Buy Now</button>
+        <button class="btn btn-secondary">Learn More</button>
+      </div>
+    </div>
+    <!-- Gradient orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

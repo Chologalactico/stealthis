@@ -1,0 +1,38 @@
+---
+slug: magnetic-button
+title: Magnetic Button
+description: A button that magnetically attracts toward the cursor when nearby, creating a satisfying interactive pull effect.
+category: patterns
+type: pattern
+tags: [magnetic, button, hover, interactive, cursor]
+tech: [css, js, mousemove, transform]
+difficulty: med
+targets: [html, react]
+labRoute: /patterns/magnetic-button
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+## Magnetic Button
+
+A button that physically reacts to the cursor — it magnetically pulls toward the mouse when nearby and snaps back smoothly when the cursor leaves.
+
+### How it works
+
+1. On `mousemove`, calculate the distance between the cursor and the button center
+2. If within the magnetic radius, interpolate the button position toward the cursor
+3. Apply the offset as a CSS `translate` transform
+4. On `mouseleave`, animate back to `translate(0, 0)` with CSS transition
+
+### Tuning the effect
+
+- **`STRENGTH`**: How strong the pull is (`0.3` = subtle, `0.6` = strong)
+- **`RADIUS`**: Distance in px at which the effect activates
+- **Transition duration**: Controls snap-back speed
+
+### When to use it
+
+- Primary CTA buttons on hero sections
+- Icon buttons in navigation
+- Any interactive element you want to feel "alive"

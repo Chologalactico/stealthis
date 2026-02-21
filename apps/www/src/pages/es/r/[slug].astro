@@ -1,0 +1,201 @@
+---
+import Base from "@layouts/Base.astro";
+import CodeTabs from "@components/CodeTabs.astro";
+import ActionMenu from "@components/ActionMenu.astro";
+import RemotionPreview from "@components/RemotionPreview";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { getCollection, render } from "astro:content";
+import { useTranslations } from "@i18n/index";
+import { SITE_URLS } from "@lib/urls";
+
+export async function getStaticPaths() {
+  const resources = await getCollection("resources");
+  return resources.map((resource) => ({
+    params: { slug: resource.data.slug },
+    props: { resource },
+  }));
+}
+
+const { resource } = Astro.props;
+const locale = "es" as const;
+const t = useTranslations(locale);
+const { slug, title, description, category, difficulty, tags, tech, targets, labRoute, license, createdAt, updatedAt } = resource.data;
+const { Content } = await render(resource);
+
+const difficultyClass = { easy: "badge-easy", med: "badge-med", hard: "badge-hard" }[difficulty];
+const difficultyKey = `resource.difficulty.${difficulty}` as "resource.difficulty.easy" | "resource.difficulty.med" | "resource.difficulty.hard";
+const difficultyLabel = t(difficultyKey);
+const categoryKey = `category.${category}` as
+  | "category.web-animations" | "category.web-pages" | "category.ui-components" | "category.patterns"
+  | "category.components" | "category.pages" | "category.prompts" | "category.skills"
+  | "category.mcp-servers" | "category.architectures" | "category.boilerplates" | "category.remotion";
+const categoryLabel = t(categoryKey);
+
+const CONTENT_DIR = path.resolve(process.cwd(), "../../packages/content");
+const snippetsDir = path.join(CONTENT_DIR, `resources/${slug}/snippets`);
+const hasJS = existsSync(path.join(snippetsDir, "script.js"));
+const hasTS =
+  existsSync(path.join(snippetsDir, "react.tsx")) ||
+  existsSync(path.join(snippetsDir, "next.tsx")) ||
+  existsSync(path.join(snippetsDir, "typescript.ts")) ||
+  existsSync(path.join(snippetsDir, "typescript.tsx"));
+
+const languageBadges = [
+  ...(hasTS ? ["TS"] : []),
+  ...(hasJS ? ["JS"] : []),
+];
+
+const TARGET_LABELS: Record<string, string> = {
+  html: "HTML",
+  react: "React",
+  next: "Next.js",
+  vue: "Vue",
+  svelte: "Svelte",
+  astro: "Astro",
+  markdown: "Markdown",
+  yaml: "YAML",
+  json: "JSON",
+  python: "Python",
+};
+
+const targetLabels = targets.map((target) => TARGET_LABELS[target] ?? target);
+const allBadges = [...languageBadges, ...targetLabels];
+const canonicalPath = `/es/r/${slug}`;
+const resourceUrl = `https://stealthis.dev${canonicalPath}`;
+const alternateLinks = [
+  { hreflang: "en", href: `https://stealthis.dev/r/${slug}` },
+  { hreflang: "es", href: resourceUrl },
+  { hreflang: "x-default", href: `https://stealthis.dev/r/${slug}` },
+];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: title,
+  name: title,
+  description,
+  inLanguage: "es",
+  url: resourceUrl,
+  datePublished: new Date(createdAt).toISOString(),
+  dateModified: new Date(updatedAt).toISOString(),
+  license,
+  keywords: [...new Set([...tags, ...tech])],
+  about: { "@type": "Thing", name: category },
+  author: {
+    "@type": "Organization",
+    name: "StealThis.dev",
+    url: "https://stealthis.dev/",
+  },
+  isPartOf: {
+    "@type": "WebSite",
+    name: "StealThis.dev",
+    url: "https://stealthis.dev/",
+  },
+};
+---
+
+<Base
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  alternateLinks={alternateLinks}
+  structuredData={structuredData}
+>
+  <article class="container-md py-12">
+    <nav class="text-sm text-slate-500 mb-8 flex items-center gap-2">
+      <a href="/es" class="hover:text-slate-300 transition-colors">Inicio</a>
+      <span>/</span>
+      <a href="/es/library" class="hover:text-slate-300 transition-colors">{t("library.title")}</a>
+      <span>/</span>
+      <span class="text-slate-300">{title}</span>
+    </nav>
+
+    <header class="mb-10">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div class="flex-1 min-w-0">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="chip">{categoryLabel}</span>
+            <span class={`badge ${difficultyClass}`}>{difficultyLabel}</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">{title}</h1>
+          <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">{description}</p>
+        </div>
+        <div class="flex items-center gap-2">
+          {category === "remotion" && (
+            <a
+              href={SITE_URLS.remotion}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/15 border border-cyan-400/30 text-sm font-medium text-cyan-300 hover:bg-cyan-500/25 hover:text-cyan-100 transition-colors"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              {t("resource.openRemotion")}
+            </a>
+          )}
+          {labRoute && (
+            <a
+              href={`${SITE_URLS.lab}${labRoute}`}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/15 border border-cyan-400/30 text-sm font-medium text-cyan-300 hover:bg-cyan-500/25 hover:text-cyan-100 transition-colors"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              {t("resource.openLab")}
+            </a>
+          )}
+          <ActionMenu resource={resource} locale={locale} resourceUrl={resourceUrl} />
+        </div>
+      </div>
+
+      {tech.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-5">
+          {tech.map((item) => <span class="chip">{item}</span>)}
+        </div>
+      )}
+
+      {targets.length > 0 && (
+        <div class="flex flex-wrap items-center gap-2 mt-3">
+          <span class="text-xs text-slate-600">Targets:</span>
+          {allBadges.map((label) => (
+            <span class="text-xs font-mono px-2 py-0.5 rounded-md bg-white/4 border border-white/8 text-slate-400">
+              {label}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    {category === "remotion" && (
+      <section class="mb-12">
+        <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Preview</h2>
+        <div class="rounded-2xl border border-white/8 bg-surface-900/60 p-4">
+          <RemotionPreview client:only="react" />
+        </div>
+      </section>
+    )}
+
+    <section class="mb-12">
+      <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">Código</h2>
+      <CodeTabs slug={slug} targets={targets} />
+    </section>
+
+    <section class="mb-12">
+      <div class="prose max-w-none">
+        <Content />
+      </div>
+    </section>
+
+    <footer class="border-t border-white/8 pt-8 flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+      <div class="flex items-center gap-4">
+        <span>Licencia: <span class="text-slate-300">{license}</span></span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => <span class="chip text-xs">{tag}</span>)}
+      </div>
+    </footer>
+  </article>
+</Base>

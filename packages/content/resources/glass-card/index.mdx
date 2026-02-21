@@ -1,0 +1,37 @@
+---
+slug: glass-card
+title: Glassmorphism Card
+description: A frosted-glass card effect using CSS backdrop-filter, subtle borders, and layered transparency.
+category: ui-components
+type: component
+tags: [glassmorphism, card, backdrop-filter, blur, css]
+tech: [css, backdrop-filter]
+difficulty: easy
+targets: [html, react]
+labRoute: /ui-components/glass-card
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+## Glassmorphism Card
+
+A modern **glassmorphism** card component using `backdrop-filter: blur()` for a frosted-glass appearance, combined with semi-transparent backgrounds and soft borders.
+
+### How it works
+
+The effect relies on three CSS properties working together:
+
+1. `backdrop-filter: blur(12px)` — blurs content behind the card
+2. `background: rgba(255,255,255,0.08)` — semi-transparent background
+3. `border: 1px solid rgba(255,255,255,0.12)` — subtle light border
+
+### Browser support
+
+`backdrop-filter` is supported in all modern browsers. For Firefox, prefix with `-webkit-backdrop-filter` for older versions.
+
+### When to use it
+
+- Feature cards on dark/gradient backgrounds
+- Modal dialogs over blurred content
+- Navigation panels with transparent feel

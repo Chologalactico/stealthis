@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Résidence — Paris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Grand Résidence</a>
+    <ul class="nav-links">
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#dining">Dining</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-gold">Reserve a Room</a>
+  </nav>
+
+  <!-- Scroll-snap container -->
+  <div class="snap-container" id="snap-container">
+
+    <!-- Panel 1: Hero -->
+    <section class="snap-panel panel-hero" id="hero">
+      <div class="ph-bg" aria-hidden="true"></div>
+      <div class="ph-content">
+        <div class="ph-top">
+          <span class="ph-season">Est. 1887 · Paris, France</span>
+        </div>
+        <div class="ph-center">
+          <h1>Where Luxury<br><em>Becomes Home.</em></h1>
+          <p>A sanctuary in the heart of Paris. Forty-eight rooms and suites, each a world apart.</p>
+          <a href="#rooms" class="btn-gold btn-gold--lg" id="hero-btn">Explore the Hotel</a>
+        </div>
+        <div class="ph-bottom">
+          <div class="ph-scroll">Scroll to discover</div>
+          <div class="ph-scroll-line"></div>
+        </div>
+      </div>
+      <div class="panel-counter">01 / 05</div>
+    </section>
+
+    <!-- Panel 2: Room showcase -->
+    <section class="snap-panel panel-room" id="rooms">
+      <div class="pr-image pr-image--1" aria-hidden="true"></div>
+      <div class="pr-content">
+        <span class="panel-eyebrow">Accommodations</span>
+        <h2>The Prestige<br>Suite</h2>
+        <p class="pr-desc">85 square metres of refined French craftsmanship. Original Haussmann cornices, hand-selected antiques, and a private terrace overlooking the Seine.</p>
+        <div class="pr-details">
+          <div class="prd-item"><span>Floor</span><span>6th</span></div>
+          <div class="prd-item"><span>Size</span><span>85 m²</span></div>
+          <div class="prd-item"><span>View</span><span>Seine &amp; Eiffel</span></div>
+          <div class="prd-item"><span>From</span><span>€1,200 / night</span></div>
+        </div>
+        <a href="#contact" class="btn-gold">Book this Suite</a>
+      </div>
+      <div class="panel-counter">02 / 05</div>
+    </section>
+
+    <!-- Panel 3: Amenities -->
+    <section class="snap-panel panel-amenities" id="amenities">
+      <div class="pa-content">
+        <span class="panel-eyebrow">Amenities</span>
+        <h2>Every Detail,<br><em>Considered.</em></h2>
+        <div class="amen-grid">
+          <div class="amen-item"><div class="ai-icon">⬙</div><div class="ai-name">Private Spa</div><div class="ai-desc">Thermal pools, hammam, and signature treatments</div></div>
+          <div class="amen-item"><div class="ai-icon">⬙</div><div class="ai-name">Rooftop Bar</div><div class="ai-desc">360° views from the 8th floor</div></div>
+          <div class="amen-item"><div class="ai-icon">⬙</div><div class="ai-name">Michelin Dining</div><div class="ai-desc">Two starred restaurants, one brasserie</div></div>
+          <div class="amen-item"><div class="ai-icon">⬙</div><div class="ai-name">Concierge</div><div class="ai-desc">24-hour personal service, every request</div></div>
+          <div class="amen-item"><div class="ai-icon">⬙</div><div class="ai-name">Private Cinema</div><div class="ai-desc">Curated screenings for hotel guests</div></div>
+          <div class="amen-item"><div class="ai-icon">⬙</div><div class="ai-name">Art Collection</div><div class="ai-desc">180 works, including three Picassos</div></div>
+        </div>
+      </div>
+      <div class="panel-counter">03 / 05</div>
+    </section>
+
+    <!-- Panel 4: Dining -->
+    <section class="snap-panel panel-dining" id="dining">
+      <div class="pd-image pd-image--1" aria-hidden="true"></div>
+      <div class="pd-content">
+        <span class="panel-eyebrow">Dining</span>
+        <h2>L'Atmosphère</h2>
+        <div class="pd-stars">★★</div>
+        <p>Chef Antoine Mercier's two-starred restaurant reimagines classical French cuisine through a contemporary lens. Seasonal, sustainable, sublime.</p>
+        <div class="pd-hours">
+          <span>Lunch: 12h–14h30</span>
+          <span>Dinner: 19h–22h30</span>
+        </div>
+        <a href="#contact" class="btn-gold">Reserve a Table</a>
+      </div>
+      <div class="panel-counter">04 / 05</div>
+    </section>
+
+    <!-- Panel 5: Contact / Reservation -->
+    <section class="snap-panel panel-contact" id="contact">
+      <div class="pc2-content">
+        <span class="panel-eyebrow">Reserve</span>
+        <h2>Begin Your<br><em>Stay.</em></h2>
+        <div class="reservation-form">
+          <div class="rf-row">
+            <div class="rf-field"><label>Arrival</label><div class="rf-input-mock"></div></div>
+            <div class="rf-field"><label>Departure</label><div class="rf-input-mock"></div></div>
+          </div>
+          <div class="rf-row">
+            <div class="rf-field"><label>Guests</label><div class="rf-input-mock"></div></div>
+            <div class="rf-field"><label>Room Type</label><div class="rf-input-mock"></div></div>
+          </div>
+          <div class="rf-field"><label>Special requests</label><div class="rf-input-mock rf-input-mock--tall"></div></div>
+          <button class="btn-gold btn-submit">Request Reservation</button>
+        </div>
+        <div class="pc2-contact">
+          <span>+33 1 42 00 00 00</span>
+          <span>reservations@grandresidence.fr</span>
+          <span>12 Rue de la Paix, Paris 75002</span>
+        </div>
+      </div>
+      <div class="panel-counter">05 / 05</div>
+    </section>
+
+  </div><!-- /snap-container -->
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

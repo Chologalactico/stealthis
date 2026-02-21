@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terra Incognita — Documentary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Grain overlay -->
+  <canvas id="grain-canvas" aria-hidden="true"></canvas>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <span class="nav-logo">TERRA INCOGNITA</span>
+    <ul class="nav-links">
+      <li><a href="#synopsis">Story</a></li>
+      <li><a href="#chapters">Chapters</a></li>
+      <li><a href="#stills">Stills</a></li>
+      <li><a href="#team">Credits</a></li>
+    </ul>
+    <a href="#watch" class="nav-watch">Watch Film</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-meta">
+        <span class="hero-label">A Film by</span>
+        <span class="hero-director">Mara Solano</span>
+      </div>
+      <h1 class="hero-h1">
+        <span class="h1-word">TERRA</span>
+        <span class="h1-word h1-word--accent">INCOGNITA</span>
+      </h1>
+      <div class="hero-details">
+        <span class="hd-item">2024</span>
+        <span class="hd-sep">—</span>
+        <span class="hd-item">128 min</span>
+        <span class="hd-sep">—</span>
+        <span class="hd-item">4K / Dolby Atmos</span>
+      </div>
+      <p class="hero-tagline">Into the unmapped. Beyond the known.</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Synopsis -->
+  <section class="synopsis-section" id="synopsis">
+    <div class="synopsis-inner">
+      <div class="synopsis-label">
+        <span class="section-num">01</span>
+        <span class="section-title">The Story</span>
+      </div>
+      <blockquote class="synopsis-quote">
+        "There are still places on Earth no human has ever stood."
+      </blockquote>
+      <div class="synopsis-text">
+        <p>Over four years, filmmaker Mara Solano and her crew of seven ventured into three of Earth's least-documented territories — the interior highlands of Papua New Guinea, the deep cave systems of the Movile Plateau, and a previously unmapped archipelago in the far North Atlantic.</p>
+        <p>Terra Incognita is not an adventure film. It is a meditation on what it means to witness something that has never been witnessed before — and the weight of being the first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chapters -->
+  <section class="chapters-section" id="chapters">
+    <div class="chapters-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Chapters</span>
+    </div>
+    <div class="chapters-list">
+      <div class="chapter-item" data-num="I">
+        <span class="ch-num">I</span>
+        <div class="ch-content">
+          <h3 class="ch-title">The Approach</h3>
+          <span class="ch-runtime">00:00 — 22:14</span>
+          <p class="ch-desc">The logistics of reaching nowhere. Three teams, three continents, six months of preparation for a combined 47 days in the field.</p>
+        </div>
+        <div class="ch-rule"></div>
+      </div>
+      <div class="chapter-item" data-num="II">
+        <span class="ch-num">II</span>
+        <div class="ch-content">
+          <h3 class="ch-title">Papua Highlands</h3>
+          <span class="ch-runtime">22:14 — 48:37</span>
+          <p class="ch-desc">A week above the clouds in a valley that cartographers have labeled simply "interior — unknown." The first long-form documentation of a ritual fire-walk ceremony.</p>
+        </div>
+        <div class="ch-rule"></div>
+      </div>
+      <div class="chapter-item" data-num="III">
+        <span class="ch-num">III</span>
+        <div class="ch-content">
+          <h3 class="ch-title">Below the Plateau</h3>
+          <span class="ch-runtime">48:37 — 78:00</span>
+          <p class="ch-desc">The Movile Cave system supports 48 species found nowhere else on Earth, all evolved in complete darkness. A 72-hour descent into a world without light.</p>
+        </div>
+        <div class="ch-rule"></div>
+      </div>
+      <div class="chapter-item" data-num="IV">
+        <span class="ch-num">IV</span>
+        <div class="ch-content">
+          <h3 class="ch-title">The Unnamed Archipelago</h3>
+          <span class="ch-runtime">78:00 — 108:22</span>
+          <p class="ch-desc">Seven islands in the North Atlantic, last visited by a fishing vessel in 1934. Arriving by research vessel in January. Sub-zero temperatures. Extraordinary bird colonies.</p>
+        </div>
+        <div class="ch-rule"></div>
+      </div>
+      <div class="chapter-item" data-num="V">
+        <span class="ch-num">V</span>
+        <div class="ch-content">
+          <h3 class="ch-title">The Return</h3>
+          <span class="ch-runtime">108:22 — 128:00</span>
+          <p class="ch-desc">What does it mean to document a place and then leave it? An essay on the ethics of witnessing — and whether showing the world the unknown makes it less unknown.</p>
+        </div>
+        <div class="ch-rule"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Film Stills -->
+  <section class="stills-section" id="stills">
+    <div class="stills-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Cinematography</span>
+    </div>
+    <div class="stills-grid">
+      <figure class="still-item still-item--tall" data-location="Papua Highlands, PNG">
+        <div class="si-frame si-frame--1"></div>
+        <figcaption>Papua Highlands, PNG</figcaption>
+      </figure>
+      <figure class="still-item" data-location="Movile Cave, Romania">
+        <div class="si-frame si-frame--2"></div>
+        <figcaption>Movile Cave, Romania</figcaption>
+      </figure>
+      <figure class="still-item" data-location="North Atlantic, 71°N">
+        <div class="si-frame si-frame--3"></div>
+        <figcaption>North Atlantic, 71°N</figcaption>
+      </figure>
+      <figure class="still-item still-item--wide" data-location="Interior Valley — unnamed">
+        <div class="si-frame si-frame--4"></div>
+        <figcaption>Interior Valley — unnamed</figcaption>
+      </figure>
+      <figure class="still-item" data-location="Cave Entrance, Day 1">
+        <div class="si-frame si-frame--5"></div>
+        <figcaption>Cave Entrance, Day 1</figcaption>
+      </figure>
+      <figure class="still-item" data-location="Archipelago, January 2024">
+        <div class="si-frame si-frame--6"></div>
+        <figcaption>Archipelago, January 2024</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Credits -->
+  <section class="credits-section" id="team">
+    <div class="credits-inner">
+      <div class="credits-label">
+        <span class="section-num">04</span>
+        <span class="section-title">Credits</span>
+      </div>
+      <div class="credits-list">
+        <div class="credit-row">
+          <span class="cr-role">Directed by</span>
+          <span class="cr-name">Mara Solano</span>
+        </div>
+        <div class="credit-row">
+          <span class="cr-role">Cinematography</span>
+          <span class="cr-name">Jesper Lindqvist</span>
+        </div>
+        <div class="credit-row">
+          <span class="cr-role">Edited by</span>
+          <span class="cr-name">Nadia Okonkwo</span>
+        </div>
+        <div class="credit-row">
+          <span class="cr-role">Original Score</span>
+          <span class="cr-name">Ólafur Sigurðsson</span>
+        </div>
+        <div class="credit-row">
+          <span class="cr-role">Sound Design</span>
+          <span class="cr-name">Tomás Ferreira</span>
+        </div>
+        <div class="credit-row">
+          <span class="cr-role">Executive Producers</span>
+          <span class="cr-name">Annika Björk · Daniel Levi · Ruth Achebe</span>
+        </div>
+        <div class="credit-row">
+          <span class="cr-role">Production</span>
+          <span class="cr-name">Deep Field Films · Arte Documentary</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Festivals -->
+  <section class="festivals-section" id="festivals">
+    <div class="festivals-inner">
+      <div class="festivals-label">
+        <span class="section-num">05</span>
+        <span class="section-title">Film Festivals</span>
+      </div>
+      <div class="festivals-row">
+        <div class="festival-badge">
+          <span class="fb-name">Sundance</span>
+          <span class="fb-award">World Premiere</span>
+          <span class="fb-year">2024</span>
+        </div>
+        <div class="festival-badge festival-badge--winner">
+          <span class="fb-name">TIFF</span>
+          <span class="fb-award">Best Documentary</span>
+          <span class="fb-year">2024</span>
+        </div>
+        <div class="festival-badge">
+          <span class="fb-name">Cannes</span>
+          <span class="fb-award">Official Selection</span>
+          <span class="fb-year">2024</span>
+        </div>
+        <div class="festival-badge festival-badge--winner">
+          <span class="fb-name">Hot Docs</span>
+          <span class="fb-award">Grand Jury Prize</span>
+          <span class="fb-year">2024</span>
+        </div>
+        <div class="festival-badge">
+          <span class="fb-name">IDFA</span>
+          <span class="fb-award">Official Selection</span>
+          <span class="fb-year">2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch / CTA -->
+  <section class="watch-section" id="watch">
+    <div class="watch-inner">
+      <div class="watch-text">
+        <h2 class="watch-h2">
+          See it<br>
+          <em>in the dark.</em>
+        </h2>
+        <p>Available in cinemas and streaming globally.</p>
+        <div class="watch-btns">
+          <a href="#" class="btn-film">Stream Now</a>
+          <a href="#" class="btn-film btn-film--outline">Find Screenings</a>
+        </div>
+      </div>
+      <div class="watch-terminal">
+        <div class="wt-bar">
+          <span class="wt-dot"></span><span class="wt-dot"></span><span class="wt-dot"></span>
+          <span class="wt-title">screenings.log</span>
+        </div>
+        <div class="wt-body">
+          <p><span class="wt-loc">NEW YORK</span> IFC Center · Jan 15–Feb 28</p>
+          <p><span class="wt-loc">LONDON</span> Curzon Soho · Jan 19–Mar 15</p>
+          <p><span class="wt-loc">BERLIN</span> Babylon · Jan 22–Feb 20</p>
+          <p><span class="wt-loc">TOKYO</span> Human Trust Cinema · Feb 1–Mar 1</p>
+          <p><span class="wt-loc">SYDNEY</span> Dendy Newtown · Feb 8–Mar 8</p>
+          <p class="wt-stream"><span class="wt-live">●</span> Streaming — MUBI · DocPlay</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>Terra Incognita © 2024 Deep Field Films</span>
+    <span>All rights reserved · Distributed by Arte Documentary</span>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

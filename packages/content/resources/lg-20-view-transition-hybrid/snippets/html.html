@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo 20 - Hybrid Transition Coordination</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <p id="support" class="support"></p>
+    </header>
+
+    <main id="app"></main>
+
+    <template id="gridTemplate">
+      <section class="grid-wrap">
+        <p class="eyebrow">Demo 20</p>
+        <h1>Hybrid Transition: CSS + JS</h1>
+        <p class="muted">Shared-element swap plus JavaScript timeline for detail panel choreography.</p>
+        <div id="tileGrid" class="grid"></div>
+      </section>
+    </template>
+
+    <template id="detailTemplate">
+      <section class="detail-wrap" id="detailRoot"></section>
+    </template>
+
+    <script src="script.js"></script>
+      </body>
+</html>

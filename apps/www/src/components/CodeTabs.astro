@@ -1,0 +1,280 @@
+---
+import { readFileSync, existsSync } from "node:fs";
+import path from "node:path";
+import { Code } from "astro:components";
+import { marked } from "marked";
+
+interface Props {
+  slug: string;
+  targets: string[];
+}
+
+const { slug, targets } = Astro.props;
+const normalizedTargets = targets.map((target) => target.toLowerCase());
+
+const CONTENT_DIR = path.resolve(process.cwd(), "../../packages/content");
+
+const LANG_MAP: Record<string, string> = {
+  html: "html",
+  style: "css",
+  script: "js",
+  react: "tsx",
+  next: "tsx",
+  vue: "vue",
+  svelte: "svelte",
+  astro: "astro",
+  typescript: "ts",
+  python: "python",
+  markdown: "markdown",
+  yaml: "yaml",
+  json: "json",
+};
+
+const EXT_MAP: Record<string, string> = {
+  react: "tsx",
+  next: "tsx",
+  vue: "vue",
+  svelte: "svelte",
+  astro: "astro",
+  typescript: "ts",
+  python: "py",
+  markdown: "md",
+  yaml: "yaml",
+  json: "json",
+};
+
+const LABEL_MAP: Record<string, string> = {
+  react: "React",
+  next: "Next.js",
+  vue: "Vue",
+  svelte: "Svelte",
+  astro: "Astro",
+  typescript: "TypeScript",
+  python: "Python",
+  markdown: "Markdown",
+  yaml: "YAML",
+  json: "JSON",
+};
+
+interface Tab {
+  id: string;
+  label: string;
+  code: string;
+  lang: string;
+  isMermaidPreview?: boolean;
+  mermaidSources?: string[];
+  isMarkdownPreview?: boolean;
+  markdownHtml?: string;
+}
+
+const tabs: Tab[] = [];
+
+// HTML target: combine css + js + html as separate tabs
+if (normalizedTargets.includes("html")) {
+  const snippetsDir = path.join(CONTENT_DIR, `resources/${slug}/snippets`);
+  const htmlPath = path.join(snippetsDir, "html.html");
+  const cssPath  = path.join(snippetsDir, "style.css");
+  const jsPath   = path.join(snippetsDir, "script.js");
+
+  if (existsSync(cssPath)) {
+    tabs.push({ id: "css",  label: "CSS",  code: readFileSync(cssPath,  "utf-8").trim(), lang: "css"        });
+  }
+  if (existsSync(jsPath)) {
+    tabs.push({ id: "js",   label: "JS",   code: readFileSync(jsPath,   "utf-8").trim(), lang: "javascript" });
+  }
+  if (existsSync(htmlPath)) {
+    tabs.push({ id: "html", label: "HTML", code: readFileSync(htmlPath, "utf-8").trim(), lang: "html"       });
+  }
+}
+
+// All other targets
+for (const target of normalizedTargets.filter((t) => t !== "html")) {
+  const ext      = EXT_MAP[target] ?? target;
+  const filePath = path.join(CONTENT_DIR, `resources/${slug}/snippets/${target}.${ext}`);
+  if (!existsSync(filePath)) continue;
+
+  const code = readFileSync(filePath, "utf-8").trim();
+
+  // Markdown → Preview + Raw tabs (plus Mermaid preview when present)
+  if (target === "markdown") {
+    const markdownHtml = marked.parse(code) as string;
+    const mermaidMatches = [...code.matchAll(/```mermaid\s*[\r\n]+([\s\S]*?)```/gm)];
+    if (mermaidMatches.length > 0) {
+      const mermaidSources = mermaidMatches.map((m) => m[1].trim());
+      tabs.push({
+        id: "preview",
+        label: "Preview",
+        code,
+        lang: "text",
+        isMarkdownPreview: true,
+        markdownHtml,
+      });
+      tabs.push({
+        id: "mermaid-preview",
+        label: "Mermaid Preview",
+        code,
+        lang: "text",
+        isMermaidPreview: true,
+        mermaidSources,
+      });
+      tabs.push({ id: "markdown", label: "Markdown", code, lang: "markdown" });
+      continue;
+    }
+
+    tabs.push({
+      id: "preview",
+      label: "Preview",
+      code,
+      lang: "text",
+      isMarkdownPreview: true,
+      markdownHtml,
+    });
+    tabs.push({ id: "markdown", label: "Markdown", code, lang: "markdown" });
+    continue;
+  }
+
+  const label = LABEL_MAP[target] ?? (target.charAt(0).toUpperCase() + target.slice(1));
+  tabs.push({ id: target, label, code, lang: LANG_MAP[target] ?? "text" });
+}
+---
+
+{tabs.length > 0 && (
+  <div class="code-tabs" data-code-tabs>
+    <!-- Tab bar -->
+    <div class="flex items-center gap-1 px-4 pt-3 pb-0 bg-surface-900 rounded-t-xl border border-white/8 border-b-0">
+      {tabs.map((tab, i) => (
+        <button
+          class:list={["tab-btn text-xs font-medium px-3 py-2 rounded-t-lg border-b-2 transition-colors", i === 0 ? "tab-btn--active" : ""]}
+          data-tab={tab.id}
+          aria-selected={i === 0}
+        >
+          {tab.label}
+        </button>
+      ))}
+
+      <button
+        class="copy-btn ml-auto text-xs font-medium text-slate-500 hover:text-slate-300 px-3 py-1.5 rounded-lg hover:bg-white/6 transition-colors flex items-center gap-1.5"
+        aria-label="Copy code"
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span class="copy-label">Copy</span>
+      </button>
+    </div>
+
+    <!-- Panels -->
+    {tabs.map((tab, i) => (
+      tab.isMermaidPreview ? (
+        <div
+          class:list={["tab-panel", i !== 0 ? "hidden" : ""]}
+          data-panel={tab.id}
+          data-code={tab.code}
+        >
+          <div class="mermaid-preview-panel rounded-b-xl border border-white/8 border-t-0 bg-surface-900 p-8 flex flex-col items-center gap-8 overflow-auto min-h-48">
+            {tab.mermaidSources!.map((src, j) => (
+              <div
+                class="mermaid-diagram w-full max-w-3xl"
+                data-mermaid-src={src}
+                id={`mermaid-${slug}-${j}`}
+              >
+                <p class="text-xs text-slate-600 text-center">Loading diagram…</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : tab.isMarkdownPreview ? (
+        <div
+          class:list={["tab-panel", i !== 0 ? "hidden" : ""]}
+          data-panel={tab.id}
+          data-code={tab.code}
+        >
+          <div class="markdown-preview rounded-b-xl border border-white/8 border-t-0 bg-surface-900 p-6">
+            <div class="prose prose-invert max-w-none" set:html={tab.markdownHtml} />
+          </div>
+        </div>
+      ) : (
+        <div
+          class:list={["tab-panel", i !== 0 ? "hidden" : ""]}
+          data-panel={tab.id}
+          data-code={tab.code}
+        >
+          <Code
+            code={tab.code}
+            lang={tab.lang as any}
+            theme="github-dark-dimmed"
+            class="rounded-b-xl rounded-t-none border border-white/8 border-t-0 text-sm"
+          />
+        </div>
+      )
+    ))}
+  </div>
+)}
+
+<style>
+  .tab-btn           { @apply text-slate-500 border-transparent hover:text-slate-300; }
+  .tab-btn--active   { @apply text-brand-400 border-brand-400; }
+  .mermaid-diagram svg { max-width: 100%; height: auto; }
+</style>
+
+<script>
+  // Tab switching + copy
+  document.querySelectorAll<HTMLElement>("[data-code-tabs]").forEach((container) => {
+    const tabBtns  = container.querySelectorAll<HTMLButtonElement>(".tab-btn");
+    const panels   = container.querySelectorAll<HTMLElement>(".tab-panel");
+    const copyBtn  = container.querySelector<HTMLButtonElement>(".copy-btn");
+    const copyLabel = copyBtn?.querySelector<HTMLElement>(".copy-label");
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.tab;
+        tabBtns.forEach((b) => {
+          b.classList.toggle("tab-btn--active", b.dataset.tab === id);
+          b.setAttribute("aria-selected", String(b.dataset.tab === id));
+        });
+        panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== id));
+      });
+    });
+
+    copyBtn?.addEventListener("click", () => {
+      const code = container.querySelector<HTMLElement>(".tab-panel:not(.hidden)")?.dataset.code ?? "";
+      navigator.clipboard.writeText(code).then(() => {
+        if (copyLabel) copyLabel.textContent = "Copied!";
+        setTimeout(() => { if (copyLabel) copyLabel.textContent = "Copy"; }, 2000);
+      });
+    });
+  });
+
+  // Mermaid rendering (only loaded when diagrams are present)
+  (async () => {
+    // Convert markdown mermaid code blocks into render targets
+    let inlineIndex = 0;
+    document.querySelectorAll<HTMLElement>(".markdown-preview code.language-mermaid").forEach((code) => {
+      const src = code.textContent ?? "";
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid-diagram w-full max-w-3xl";
+      wrapper.dataset.mermaidSrc = src;
+      wrapper.id = `mermaid-inline-${inlineIndex++}`;
+      const pre = code.parentElement;
+      pre?.replaceWith(wrapper);
+    });
+
+    const diagrams = document.querySelectorAll<HTMLElement>("[data-mermaid-src]");
+    if (!diagrams.length) return;
+
+    const { default: mermaid } = await import("mermaid");
+    mermaid.initialize({ startOnLoad: false, theme: "dark" });
+
+    for (const el of diagrams) {
+      const src = el.dataset.mermaidSrc ?? "";
+      const id  = el.id;
+      try {
+        const { svg } = await mermaid.render(id + "-r", src);
+        el.innerHTML = svg;
+      } catch {
+        el.textContent = src; // fallback to raw source
+      }
+    }
+  })();
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Routing Transitions — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <!-- Shared nav (persists across transitions) -->
+  <nav class="nav" style="view-transition-name: main-nav;">
+    <a href="#home" class="nav-link active" data-page="home">Home</a>
+    <a href="#about" class="nav-link" data-page="about">About</a>
+    <a href="#work" class="nav-link" data-page="work">Work</a>
+    <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+  </nav>
+
+  <!-- Page container -->
+  <main id="page-container">
+    <!-- Home -->
+    <div class="page active" id="page-home">
+      <div class="page-content">
+        <span class="eyebrow">Demo 12</span>
+        <h1 style="view-transition-name: page-title;">Page Routing<br>Transitions</h1>
+        <p class="page-body">Click the navigation links above to see smooth View Transitions between pages. The nav bar and page title animate as shared elements.</p>
+        <p class="page-body muted">Each page slides in while the previous slides out. The nav highlight transitions smoothly between active items.</p>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="page" id="page-about">
+      <div class="page-content">
+        <h1 style="view-transition-name: page-title;">About</h1>
+        <p class="page-body">This demo simulates multi-page routing using SPA-style DOM swaps wrapped in <code>document.startViewTransition()</code>.</p>
+        <p class="page-body muted">In a real application, you could use the cross-document View Transitions API with <code>@view-transition { navigation: auto; }</code> for actual multi-page apps.</p>
+        <div class="feature-list">
+          <div class="feature"><span class="f-icon">01</span><span>Shared element navigation bar</span></div>
+          <div class="feature"><span class="f-icon">02</span><span>Page title morphing</span></div>
+          <div class="feature"><span class="f-icon">03</span><span>Slide direction based on nav position</span></div>
+          <div class="feature"><span class="f-icon">04</span><span>Fallback for unsupported browsers</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work -->
+    <div class="page" id="page-work">
+      <div class="page-content">
+        <h1 style="view-transition-name: page-title;">Work</h1>
+        <p class="page-body">A portfolio-style page demonstrating how content transitions can maintain context during navigation.</p>
+        <div class="work-grid">
+          <div class="work-item" style="--hue: 200;">Scroll Animations</div>
+          <div class="work-item" style="--hue: 270;">WebGL Scenes</div>
+          <div class="work-item" style="--hue: 330;">View Transitions</div>
+          <div class="work-item" style="--hue: 45;">Canvas Effects</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="page" id="page-contact">
+      <div class="page-content">
+        <h1 style="view-transition-name: page-title;">Contact</h1>
+        <p class="page-body">The final page in the routing demo. Navigate back to any other page to see the reverse transition direction.</p>
+        <a href="/" class="btn-gallery">Back to Showcase</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

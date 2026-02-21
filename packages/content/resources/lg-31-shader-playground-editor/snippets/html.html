@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shader Playground Editor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <p>Backlog 31</p>
+    </header>
+
+    <main>
+      <h1>Shader Playground (UI Editor)</h1>
+      <p>Control gradient frequency and palette parameters to simulate shader tuning.</p>
+
+      <section class="layout">
+        <div class="controls">
+          <label>Frequency <input id="freq" type="range" min="1" max="12" step="0.1" value="5" /></label>
+          <label>Intensity <input id="intensity" type="range" min="0" max="1" step="0.01" value="0.55" /></label>
+          <label>Hue Shift <input id="hue" type="range" min="0" max="360" step="1" value="190" /></label>
+        </div>
+        <canvas id="canvas" width="920" height="480"></canvas>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

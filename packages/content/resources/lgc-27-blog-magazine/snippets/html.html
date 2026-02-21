@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Magazine — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1: MASTHEAD / HEADER                                   -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <header class="masthead" id="masthead">
+    <div class="masthead-inner">
+      <h1 class="masthead-title" id="masthead-title">The Digital Atelier</h1>
+      <p class="masthead-subtitle" id="masthead-subtitle">Thoughts on design, code, and craft</p>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: FEATURED ARTICLE                                    -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="featured" id="featured">
+    <article class="featured-card">
+      <div class="featured-image" aria-hidden="true">
+        <div class="featured-gradient"></div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-meta">
+          <span class="category-tag">Design</span>
+          <span class="reading-time">5 min read</span>
+        </div>
+        <h2 class="featured-title" id="featured-title">The Art of Digital Minimalism</h2>
+        <p class="featured-excerpt">In an era of information overload, the most powerful design choice is often what you leave out. Minimalism in digital design is not about austerity — it is about intentionality, clarity, and respect for the viewer's attention.</p>
+        <a href="#" class="btn-read" onclick="return false;">Read article</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3: ARTICLE GRID                                        -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="articles-section" id="articles">
+    <div class="articles-grid" id="articles-grid">
+
+      <!-- Card 1 -->
+      <article class="article-card" data-card="0" id="card-0">
+        <div class="card-gradient card-gradient--indigo" aria-hidden="true"></div>
+        <div class="card-body">
+          <span class="category-tag">Code</span>
+          <h3 class="card-title">Composability Over Complexity</h3>
+          <p class="card-excerpt">The best codebases are not the ones with the cleverest abstractions. They are the ones where every piece does one thing well and combines naturally with the rest.</p>
+          <div class="card-footer">
+            <span class="card-author">Maya Chen</span>
+            <span class="card-date">Feb 8, 2026</span>
+          </div>
+        </div>
+        <div class="card-full-content">
+          <p>There is a moment in every growing codebase when complexity begins to feel inevitable. Features pile onto features, edge cases multiply, and the once-clean architecture starts to buckle under the weight of pragmatic decisions. This is the inflection point where most teams reach for heavyweight frameworks, elaborate design patterns, or multi-layered abstractions to restore order.</p>
+          <p>But there is another path. Composability — the practice of building software from small, self-contained units that combine predictably — offers a more sustainable answer. The Unix philosophy captured this decades ago: write programs that do one thing well and work together through simple interfaces. The same principle translates directly to modern frontend components, backend services, and even infrastructure.</p>
+          <p>Consider a function that formats a date, another that fetches user data, and a third that renders a profile card. Each is trivially testable in isolation. Composed together, they produce a complete feature. When requirements change — and they always do — you replace or modify a single piece without destabilizing the whole. This is not elegance for its own sake; it is a practical strategy for teams that need to move quickly without accumulating technical debt.</p>
+        </div>
+        <button class="card-close-btn" aria-label="Close reading view">&times;</button>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="article-card" data-card="1" id="card-1">
+        <div class="card-gradient card-gradient--emerald" aria-hidden="true"></div>
+        <div class="card-body">
+          <span class="category-tag">Craft</span>
+          <h3 class="card-title">The Quiet Power of Typography</h3>
+          <p class="card-excerpt">Typography is the invisible architecture of every interface. When it works, nobody notices. When it fails, everything feels wrong.</p>
+          <div class="card-footer">
+            <span class="card-author">Liam Hartwell</span>
+            <span class="card-date">Jan 24, 2026</span>
+          </div>
+        </div>
+        <div class="card-full-content">
+          <p>We spend our days immersed in type without thinking about it. The size of a heading, the spacing between lines, the weight of a label — these micro-decisions accumulate into something larger: the feeling of using a product. A cramped paragraph signals carelessness. Generous whitespace between sections creates breathing room that lets ideas land. The typeface you choose for body copy communicates more than the words themselves — it sets a tone before a single sentence is read.</p>
+          <p>The best typographic systems are invisible precisely because they have been obsessively considered. They establish hierarchy without shouting, guide the eye without arrows, and create rhythm without decoration. A well-set page is like a well-conducted orchestra: the individual instruments disappear into the coherence of the whole.</p>
+          <p>For digital products, this means treating typography as a first-class design decision rather than an afterthought. Define a type scale early. Set line heights that give text room to breathe — typically 1.5 to 1.7 for body text. Limit yourself to two typefaces at most. And test your typography at every viewport: what feels spacious on a desktop can become suffocating on a phone. The goal is not beauty for its own sake, but communication made effortless.</p>
+        </div>
+        <button class="card-close-btn" aria-label="Close reading view">&times;</button>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="article-card" data-card="2" id="card-2">
+        <div class="card-gradient card-gradient--amber" aria-hidden="true"></div>
+        <div class="card-body">
+          <span class="category-tag">Design</span>
+          <h3 class="card-title">Designing for Slow Attention</h3>
+          <p class="card-excerpt">Not every interaction needs to be instant. Sometimes the most respectful design is one that gives people space to think before they act.</p>
+          <div class="card-footer">
+            <span class="card-author">Sofia Reyes</span>
+            <span class="card-date">Jan 11, 2026</span>
+          </div>
+        </div>
+        <div class="card-full-content">
+          <p>Speed has become the default metric of digital quality. Faster load times, quicker interactions, shorter paths to conversion — the industry optimizes relentlessly for velocity. But speed is not always a virtue. In contexts that involve reflection, commitment, or emotional weight, designing for speed can actually undermine the experience.</p>
+          <p>Consider the difference between deleting a file and deleting an account. Both are destructive actions, but one is trivially reversible and the other carries genuine consequence. A confirmation dialog that appears and vanishes in milliseconds does not give someone space to truly consider what they are about to do. A brief pause, a clear explanation of what will happen, a moment of intentional friction — these are not obstacles. They are acts of care.</p>
+          <p>Designing for slow attention means recognizing that some moments deserve more weight than others. It means using animation not to dazzle but to orient. It means writing interface copy that acknowledges the gravity of a decision rather than burying it in corporate euphemism. The goal is not to slow everything down, but to be thoughtful about where speed helps and where it harms. In a world that demands constant acceleration, deliberately slowing down at the right moments is a radical design choice.</p>
+        </div>
+        <button class="card-close-btn" aria-label="Close reading view">&times;</button>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4: NEWSLETTER CTA                                      -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="newsletter" id="newsletter">
+    <div class="newsletter-orb newsletter-orb--1" aria-hidden="true"></div>
+    <div class="newsletter-orb newsletter-orb--2" aria-hidden="true"></div>
+    <div class="newsletter-inner">
+      <h2 class="newsletter-heading" id="newsletter-heading">Stay in the loop</h2>
+      <p class="newsletter-subtitle">Essays on design, engineering, and the craft of building for the web. No spam, unsubscribe anytime.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="you@example.com" aria-label="Email address" disabled>
+        <button class="newsletter-btn" disabled>Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 The Digital Atelier. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

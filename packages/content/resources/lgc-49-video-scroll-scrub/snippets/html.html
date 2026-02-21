@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Scroll Scrub</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <section class="intro">
+    <div class="intro-inner">
+      <span class="label">Technique Demo</span>
+      <h1>Video<br><em>Scroll Scrub</em></h1>
+      <p>The video's <code>currentTime</code> is driven directly by scroll position — no play/pause, just frame-perfect control via GSAP ScrollTrigger.</p>
+      <div class="scroll-hint">
+        <span>Scroll to control</span>
+        <div class="sh-arrow">↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pinned video scrub section -->
+  <section class="scrub-section" id="scrub-section">
+    <div class="scrub-sticky">
+      <div class="video-wrap">
+        <canvas id="video-canvas" aria-label="Scroll-controlled video playback"></canvas>
+        <!-- Fallback gradient for browsers without video support -->
+        <div class="video-fallback" id="video-fallback" aria-hidden="true">
+          <div class="vf-frame" id="vf-frame"></div>
+        </div>
+      </div>
+
+      <!-- Overlay info -->
+      <div class="scrub-overlay">
+        <div class="so-progress">
+          <div class="so-bar">
+            <div class="so-fill" id="so-fill"></div>
+          </div>
+          <span class="so-time" id="so-time">00:00</span>
+        </div>
+        <div class="so-caption" id="so-caption">
+          <span class="sc-label">Scene</span>
+          <span class="sc-text" id="sc-text">Opening</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll space that drives the scrub -->
+    <div class="scrub-spacer"></div>
+  </section>
+
+  <!-- Chapter markers -->
+  <section class="chapters-section">
+    <div class="chapters-inner">
+      <span class="label">How It Works</span>
+      <h2>One technique,<br>total control.</h2>
+      <div class="chapters">
+        <div class="chapter">
+          <div class="ch-num">01</div>
+          <div class="ch-content">
+            <h3>Pin the section</h3>
+            <p>ScrollTrigger pins the video container for the full scroll distance, keeping it fixed while the page scrolls beneath it.</p>
+            <code>pin: true, scrub: true</code>
+          </div>
+        </div>
+        <div class="chapter">
+          <div class="ch-num">02</div>
+          <div class="ch-content">
+            <h3>Map scroll → time</h3>
+            <p>On each ScrollTrigger tick, multiply <code>self.progress</code> by the video duration to get the exact frame.</p>
+            <code>video.currentTime = progress × duration</code>
+          </div>
+        </div>
+        <div class="chapter">
+          <div class="ch-num">03</div>
+          <div class="ch-content">
+            <h3>Draw frames to Canvas</h3>
+            <p>Render each frame to a Canvas element for crisp output and the ability to add overlays or effects.</p>
+            <code>ctx.drawImage(video, 0, 0, w, h)</code>
+          </div>
+        </div>
+        <div class="chapter">
+          <div class="ch-num">04</div>
+          <div class="ch-content">
+            <h3>Layer captions + UI</h3>
+            <p>Overlay text, progress bars, and chapter markers that sync to the same scroll position.</p>
+            <code>ScrollTrigger.create({ onUpdate })</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

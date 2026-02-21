@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Shop — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- STORE HEADER -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <header class="store-header" id="store-header">
+    <div class="header-inner">
+      <a class="brand" href="#">Forma</a>
+      <button class="cart-trigger" id="cart-trigger" aria-label="Open cart">
+        <svg class="cart-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        <span class="cart-badge" id="cart-badge" aria-live="polite">0</span>
+      </button>
+    </div>
+    <nav class="filter-nav" id="filter-nav">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="apparel">Apparel</button>
+      <button class="filter-pill" data-filter="accessories">Accessories</button>
+      <button class="filter-pill" data-filter="homeware">Homeware</button>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- HERO HEADLINE -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="hero-section" id="hero">
+    <h1 class="hero-headline" id="hero-headline">Curated Essentials</h1>
+    <p class="hero-sub">Thoughtfully designed goods for everyday living.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- PRODUCT GRID -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="grid-section" id="grid-section">
+    <div class="product-grid" id="product-grid">
+
+      <article class="product-card" data-id="1" data-category="apparel">
+        <div class="card-image shape-circle grad-merino" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Merino Crew Neck</h3>
+          <span class="card-price">$89</span>
+        </div>
+        <button class="btn-add" data-id="1">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="2" data-category="accessories">
+        <div class="card-image shape-rounded-sq grad-canvas" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Canvas Weekender</h3>
+          <span class="card-price">$145</span>
+        </div>
+        <button class="btn-add" data-id="2">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="3" data-category="homeware">
+        <div class="card-image shape-abstract-a grad-ceramic" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Ceramic Pour-Over</h3>
+          <span class="card-price">$42</span>
+        </div>
+        <button class="btn-add" data-id="3">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="4" data-category="apparel">
+        <div class="card-image shape-rounded-sq grad-linen" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Linen Overshirt</h3>
+          <span class="card-price">$128</span>
+        </div>
+        <button class="btn-add" data-id="4">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="5" data-category="accessories">
+        <div class="card-image shape-abstract-b grad-leather" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Leather Card Wallet</h3>
+          <span class="card-price">$55</span>
+        </div>
+        <button class="btn-add" data-id="5">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="6" data-category="homeware">
+        <div class="card-image shape-circle grad-stoneware" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Stoneware Mug Set</h3>
+          <span class="card-price">$38</span>
+        </div>
+        <button class="btn-add" data-id="6">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="7" data-category="apparel">
+        <div class="card-image shape-abstract-a grad-organic" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Organic Cotton Tee</h3>
+          <span class="card-price">$48</span>
+        </div>
+        <button class="btn-add" data-id="7">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="8" data-category="accessories">
+        <div class="card-image shape-circle grad-brass" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Brass Key Ring</h3>
+          <span class="card-price">$28</span>
+        </div>
+        <button class="btn-add" data-id="8">Add to Cart</button>
+      </article>
+
+      <article class="product-card" data-id="9" data-category="homeware">
+        <div class="card-image shape-rounded-sq grad-runner" aria-hidden="true">
+          <div class="shape-inner"></div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Linen Table Runner</h3>
+          <span class="card-price">$65</span>
+        </div>
+        <button class="btn-add" data-id="9">Add to Cart</button>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- PRODUCT DETAIL OVERLAY -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div class="detail-overlay" id="detail-overlay" aria-hidden="true">
+    <div class="detail-backdrop" id="detail-backdrop"></div>
+    <div class="detail-panel" id="detail-panel">
+      <button class="detail-close" id="detail-close" aria-label="Close detail view">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="detail-image" id="detail-image" aria-hidden="true">
+        <div class="shape-inner"></div>
+      </div>
+      <div class="detail-info">
+        <h2 class="detail-title" id="detail-title"></h2>
+        <p class="detail-category" id="detail-category"></p>
+        <p class="detail-desc" id="detail-desc"></p>
+        <span class="detail-price" id="detail-price"></span>
+        <div class="qty-selector">
+          <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">-</button>
+          <span class="qty-value" id="qty-value">1</span>
+          <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="btn-add-large" id="detail-add">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- CART SIDEBAR -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <aside class="cart-sidebar" id="cart-sidebar" aria-hidden="true">
+    <div class="cart-sidebar-backdrop" id="cart-sidebar-backdrop"></div>
+    <div class="cart-panel" id="cart-panel">
+      <div class="cart-header">
+        <h2 class="cart-heading">Your Cart</h2>
+        <button class="cart-close" id="cart-close" aria-label="Close cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <p class="cart-empty" id="cart-empty">Your cart is empty.</p>
+      </div>
+      <div class="cart-footer" id="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <span id="cart-total-value">$0</span>
+        </div>
+        <button class="btn-checkout">Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

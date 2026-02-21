@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Transition — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <main class="page">
+    <header class="header">
+      <span class="eyebrow">Demo 13</span>
+      <h1>Theme Transition</h1>
+      <p class="subtitle">Click the toggle below to switch themes with a circular clip-path wipe powered by the View Transitions API.</p>
+    </header>
+
+    <div class="toggle-area">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="toggle-icon" id="toggle-icon">
+          <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </span>
+        <span class="toggle-label" id="toggle-label">Switch to Light</span>
+      </button>
+    </div>
+
+    <section class="demo-content">
+      <div class="card-grid">
+        <div class="demo-card">
+          <div class="card-header">
+            <span class="card-dot" style="--dot-color: var(--accent);"></span>
+            <span class="card-dot" style="--dot-color: var(--secondary);"></span>
+            <span class="card-dot" style="--dot-color: var(--tertiary);"></span>
+          </div>
+          <h3>View Transitions API</h3>
+          <p>The <code>document.startViewTransition()</code> method captures before/after snapshots and animates between them using CSS pseudo-elements.</p>
+        </div>
+        <div class="demo-card">
+          <div class="card-header">
+            <span class="card-dot" style="--dot-color: var(--accent);"></span>
+            <span class="card-dot" style="--dot-color: var(--secondary);"></span>
+            <span class="card-dot" style="--dot-color: var(--tertiary);"></span>
+          </div>
+          <h3>Circular Wipe</h3>
+          <p>A custom <code>::view-transition-new(root)</code> animation uses <code>clip-path: circle()</code> expanding from the toggle button position.</p>
+        </div>
+        <div class="demo-card">
+          <div class="card-header">
+            <span class="card-dot" style="--dot-color: var(--accent);"></span>
+            <span class="card-dot" style="--dot-color: var(--secondary);"></span>
+            <span class="card-dot" style="--dot-color: var(--tertiary);"></span>
+          </div>
+          <h3>CSS Custom Properties</h3>
+          <p>Theme colors are defined as CSS variables on <code>[data-theme]</code>. The transition swaps theme by toggling this attribute.</p>
+        </div>
+      </div>
+
+      <div class="sample-text">
+        <h2>The Art of Transitions</h2>
+        <p>A well-crafted theme transition doesn't just swap colors — it tells a story. The circular wipe radiates from the point of interaction, creating a clear cause-and-effect relationship that feels natural and intentional.</p>
+        <p>Without the View Transitions API, achieving this effect would require complex overlay management, clipping containers, and careful z-index choreography. With it, the browser handles the heavy lifting.</p>
+      </div>
+    </section>
+
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

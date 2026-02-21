@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Engineer Portfolio — Dr. Yuki Tanaka</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <section id="hero">
+    <canvas id="neural-canvas"></canvas>
+    <div id="hero-overlay">
+      <div id="hero-meta">PORTFOLIO // AI RESEARCH // 2025</div>
+      <h1 id="hero-name">DR. YUKI TANAKA</h1>
+      <p id="hero-title">AI Research Engineer</p>
+      <div id="hero-spec-wrapper">
+        <span id="spec-label">&gt;&nbsp;</span>
+        <span id="spec-text"></span>
+        <span id="spec-cursor">▋</span>
+      </div>
+      <div id="hero-stats">
+        <div class="stat-item">
+          <span class="stat-val">47</span>
+          <span class="stat-label">PUBLICATIONS</span>
+        </div>
+        <div class="stat-sep">|</div>
+        <div class="stat-item">
+          <span class="stat-val">12.4K</span>
+          <span class="stat-label">CITATIONS</span>
+        </div>
+        <div class="stat-sep">|</div>
+        <div class="stat-item">
+          <span class="stat-val">3.2B</span>
+          <span class="stat-label">PARAMS TRAINED</span>
+        </div>
+        <div class="stat-sep">|</div>
+        <div class="stat-item">
+          <span class="stat-val">9</span>
+          <span class="stat-label">YEARS EXP.</span>
+        </div>
+      </div>
+    </div>
+    <div id="hero-scroll-hint">SCROLL TO EXPLORE ↓</div>
+  </section>
+
+  <!-- ── RESEARCH ──────────────────────────────────────────────────────── -->
+  <section id="research" class="section">
+    <div class="section-header">
+      <span class="section-tag">// 01</span>
+      <h2 class="section-title">RESEARCH OUTPUT</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="papers-grid">
+
+      <article class="paper-card" data-stagger="0">
+        <div class="paper-venue-row">
+          <span class="paper-venue venue-neurips">NeurIPS 2024</span>
+          <span class="paper-status">ACCEPTED</span>
+        </div>
+        <h3 class="paper-title">Efficient LoRA Merging for Multi-Domain LLM Adaptation Without Catastrophic Forgetting</h3>
+        <p class="paper-abstract">We present AdaptiveMerge, a novel framework for composing multiple low-rank adapters while preserving base model fidelity. Our method achieves 94.3% multi-task retention with 40% reduced memory overhead compared to prior art...</p>
+        <div class="paper-metrics">
+          <div class="metric-chip">
+            <span class="metric-label">ACCURACY</span>
+            <span class="metric-val green">94.3%</span>
+          </div>
+          <div class="metric-chip">
+            <span class="metric-label">PARAMS</span>
+            <span class="metric-val blue">7B</span>
+          </div>
+          <div class="metric-chip">
+            <span class="metric-label">MEM REDUCTION</span>
+            <span class="metric-val purple">40%</span>
+          </div>
+        </div>
+        <div class="paper-footer">
+          <span class="paper-authors">Tanaka Y., Liu R., Park S. et al.</span>
+          <a href="#" class="paper-link">arXiv:2411.08741 →</a>
+        </div>
+      </article>
+
+      <article class="paper-card" data-stagger="1">
+        <div class="paper-venue-row">
+          <span class="paper-venue venue-icml">ICML 2024</span>
+          <span class="paper-status">ORAL</span>
+        </div>
+        <h3 class="paper-title">FLUX-Turbo: Rectified Flow Distillation for Sub-Second High-Fidelity Image Synthesis</h3>
+        <p class="paper-abstract">We distill a 12B parameter diffusion transformer into a 4-step inference model achieving near-identical FID scores. Latency reduced from 14s to 0.8s on consumer GPUs with no perceptual quality loss on benchmark evals...</p>
+        <div class="paper-metrics">
+          <div class="metric-chip">
+            <span class="metric-label">FID SCORE</span>
+            <span class="metric-val green">4.1</span>
+          </div>
+          <div class="metric-chip">
+            <span class="metric-label">PARAMS</span>
+            <span class="metric-val blue">12B</span>
+          </div>
+          <div class="metric-chip">
+            <span class="metric-label">LATENCY</span>
+            <span class="metric-val purple">0.8s</span>
+          </div>
+        </div>
+        <div class="paper-footer">
+          <span class="paper-authors">Tanaka Y., Müller A., Chen W.</span>
+          <a href="#" class="paper-link">arXiv:2406.13290 →</a>
+        </div>
+      </article>
+
+      <article class="paper-card" data-stagger="2">
+        <div class="paper-venue-row">
+          <span class="paper-venue venue-iclr">ICLR 2024</span>
+          <span class="paper-status">SPOTLIGHT</span>
+        </div>
+        <h3 class="paper-title">Reward Hacking Mitigation via Constitutional RL with Adversarial Probing</h3>
+        <p class="paper-abstract">Adversarially probed constitutional reward models reduce reward hacking incidents by 78% in RLHF pipelines. We introduce a red-teaming loop embedded in the training cycle, automatically discovering and patching exploit modes...</p>
+        <div class="paper-metrics">
+          <div class="metric-chip">
+            <span class="metric-label">HACK REDUCTION</span>
+            <span class="metric-val green">78%</span>
+          </div>
+          <div class="metric-chip">
+            <span class="metric-label">BENCHMARK</span>
+            <span class="metric-val blue">HHRLHF</span>
+          </div>
+          <div class="metric-chip">
+            <span class="metric-label">WIN RATE</span>
+            <span class="metric-val purple">91.2%</span>
+          </div>
+        </div>
+        <div class="paper-footer">
+          <span class="paper-authors">Tanaka Y., Okonkwo B., Reyes M.</span>
+          <a href="#" class="paper-link">arXiv:2402.07219 →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── MODEL VISUALIZATION ───────────────────────────────────────────── -->
+  <section id="model-viz" class="section">
+    <div class="section-header">
+      <span class="section-tag">// 02</span>
+      <h2 class="section-title">MODEL DIAGNOSTICS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="viz-grid">
+      <div class="viz-panel" id="loss-panel">
+        <div class="viz-panel-header">
+          <span class="viz-panel-title">TRAINING LOSS CURVE</span>
+          <span class="viz-panel-sub">AdaptiveMerge-7B // Run #0047 // LR=1e-4</span>
+        </div>
+        <canvas id="loss-canvas"></canvas>
+        <div class="canvas-axes">
+          <span class="axis-y-label">LOSS</span>
+          <span class="axis-x-label">TRAINING STEPS (×1000)</span>
+        </div>
+      </div>
+
+      <div class="viz-panel" id="confusion-panel">
+        <div class="viz-panel-header">
+          <span class="viz-panel-title">CONFUSION MATRIX</span>
+          <span class="viz-panel-sub">8-class Intent Classifier // Val Set // F1=0.943</span>
+        </div>
+        <div id="confusion-matrix"></div>
+        <div class="confusion-labels">
+          <div class="confusion-classes">
+            <span>NLI</span><span>QA</span><span>SUM</span><span>CLS</span>
+            <span>GEN</span><span>COD</span><span>MAT</span><span>RLX</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STACK ────────────────────────────────────────────────────────── -->
+  <section id="stack" class="section">
+    <div class="section-header">
+      <span class="section-tag">// 03</span>
+      <h2 class="section-title">TECH STACK</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="terminal-wrapper">
+      <div class="terminal-bar">
+        <span class="t-dot t-red"></span>
+        <span class="t-dot t-yellow"></span>
+        <span class="t-dot t-green"></span>
+        <span class="t-title">yuki@research — zsh</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div class="term-line" data-index="0">
+          <span class="term-prompt">$</span>
+          <span class="term-cmd"> pip show torch jax triton vllm</span>
+        </div>
+        <div class="term-output" data-index="1">
+          <span class="term-key">Python</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:95%"></span></span>
+          <span class="term-pct green">3.12 // EXPERT</span>
+        </div>
+        <div class="term-output" data-index="2">
+          <span class="term-key">PyTorch</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:92%"></span></span>
+          <span class="term-pct green">2.5 // EXPERT</span>
+        </div>
+        <div class="term-output" data-index="3">
+          <span class="term-key">CUDA / Triton</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:80%"></span></span>
+          <span class="term-pct blue">ADVANCED</span>
+        </div>
+        <div class="term-output" data-index="4">
+          <span class="term-key">JAX / XLA</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:78%"></span></span>
+          <span class="term-pct blue">ADVANCED</span>
+        </div>
+        <div class="term-output" data-index="5">
+          <span class="term-key">Rust (inference)</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:65%"></span></span>
+          <span class="term-pct purple">PROFICIENT</span>
+        </div>
+        <div class="term-output" data-index="6">
+          <span class="term-key">HuggingFace</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:97%"></span></span>
+          <span class="term-pct green">EXPERT</span>
+        </div>
+        <div class="term-output" data-index="7">
+          <span class="term-key">vLLM / TensorRT</span>
+          <span class="term-bar-wrap"><span class="term-bar-fill" style="--pct:85%"></span></span>
+          <span class="term-pct blue">ADVANCED</span>
+        </div>
+        <div class="term-line" data-index="8">
+          <span class="term-prompt">$</span>
+          <span class="term-cmd"> nvidia-smi --query-gpu=name</span>
+        </div>
+        <div class="term-output" data-index="9">
+          <span class="term-key-plain green">&gt; H100 SXM5 × 8 // 640 GB HBM3 // NVLink 4.0</span>
+        </div>
+        <div class="term-output" data-index="10">
+          <span class="term-key-plain green">&gt; A100 80GB × 32 // Cluster Node Access</span>
+        </div>
+        <div class="term-line" data-index="11">
+          <span class="term-prompt blink-cursor">$</span>
+          <span class="term-cmd"> _</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────────────────────────── -->
+  <section id="contact" class="section">
+    <div class="section-header">
+      <span class="section-tag">// 04</span>
+      <h2 class="section-title">CONTACT</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-terminal">
+      <div class="contact-prompt-line">
+        <span class="contact-user">yuki@research</span>
+        <span class="contact-colon">:</span>
+        <span class="contact-path">~</span>
+        <span class="contact-dollar">$</span>
+        <span class="contact-cmd"> contact --me</span>
+      </div>
+      <div class="contact-output">
+        <div class="contact-row">
+          <span class="co-key">EMAIL</span>
+          <span class="co-sep">::</span>
+          <a href="mailto:yuki@deepresearch.ai" class="co-val">yuki@deepresearch.ai</a>
+        </div>
+        <div class="contact-row">
+          <span class="co-key">SCHOLAR</span>
+          <span class="co-sep">::</span>
+          <a href="#" class="co-val">scholar.google.com/~ytanaka</a>
+        </div>
+        <div class="contact-row">
+          <span class="co-key">GITHUB</span>
+          <span class="co-sep">::</span>
+          <a href="#" class="co-val">github.com/ytanaka-ai</a>
+        </div>
+        <div class="contact-row">
+          <span class="co-key">ARXIV</span>
+          <span class="co-sep">::</span>
+          <a href="#" class="co-val">arxiv.org/a/tanaka_y_1</a>
+        </div>
+        <div class="contact-row">
+          <span class="co-key">LAB</span>
+          <span class="co-sep">::</span>
+          <span class="co-val">Deep Systems Lab // Tokyo Institute of Technology</span>
+        </div>
+      </div>
+      <div class="contact-cursor-line">
+        <span class="contact-user">yuki@research</span>
+        <span class="contact-colon">:</span>
+        <span class="contact-path">~</span>
+        <span class="contact-dollar">$</span>
+        <span class="contact-blink">▋</span>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

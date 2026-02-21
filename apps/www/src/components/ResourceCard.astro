@@ -1,0 +1,173 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { useTranslations, type Locale } from "@i18n/index";
+import { SITE_URLS } from "@lib/urls";
+
+interface Props {
+  resource: CollectionEntry<"resources">;
+  locale?: Locale;
+}
+
+const { resource, locale = "en" } = Astro.props;
+const t = useTranslations(locale);
+const { slug, title, description, category, difficulty, tags, tech, targets, labRoute } = resource.data;
+
+const prefix = locale === "es" ? "/es" : "";
+const difficultyClass = { easy: "badge-easy", med: "badge-med", hard: "badge-hard" }[difficulty];
+const difficultyKey = `resource.difficulty.${difficulty}` as "resource.difficulty.easy" | "resource.difficulty.med" | "resource.difficulty.hard";
+const difficultyLabel = t(difficultyKey);
+const categoryKey = `category.${category}` as
+  | "category.web-animations" | "category.web-pages" | "category.ui-components" | "category.patterns"
+  | "category.components" | "category.pages" | "category.prompts" | "category.skills"
+  | "category.mcp-servers" | "category.architectures" | "category.boilerplates" | "category.remotion";
+const categoryLabel = t(categoryKey);
+
+const CONTENT_DIR = path.resolve(process.cwd(), "../../packages/content");
+const snippetsDir = path.join(CONTENT_DIR, `resources/${slug}/snippets`);
+const hasJS = existsSync(path.join(snippetsDir, "script.js"));
+const hasTS =
+  existsSync(path.join(snippetsDir, "react.tsx")) ||
+  existsSync(path.join(snippetsDir, "next.tsx")) ||
+  existsSync(path.join(snippetsDir, "typescript.ts")) ||
+  existsSync(path.join(snippetsDir, "typescript.tsx"));
+
+const languageBadges = [
+  ...(hasTS ? ["TS"] : []),
+  ...(hasJS ? ["JS"] : []),
+];
+
+const TARGET_LABELS: Record<string, string> = {
+  html: "HTML",
+  react: "React",
+  next: "Next.js",
+  vue: "Vue",
+  svelte: "Svelte",
+  astro: "Astro",
+  markdown: "Markdown",
+  yaml: "YAML",
+  json: "JSON",
+  python: "Python",
+};
+
+const targetLabels = targets.map((target) => TARGET_LABELS[target] ?? target);
+const allBadges = [...languageBadges, ...targetLabels];
+---
+
+<article
+  class="group relative flex flex-col gap-4 p-5 rounded-2xl border border-white/8 bg-surface-900/50 hover:bg-surface-800/60 hover:border-white/14 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card-hover"
+  data-slug={slug}
+  data-category={category}
+  data-difficulty={difficulty}
+  data-tech={tech.join(",")}
+  data-tags={tags.join(",")}
+>
+  <!-- Header -->
+  <div class="flex items-start justify-between gap-3">
+    <div class="flex-1 min-w-0">
+      <p class="text-xs font-medium text-slate-500 mb-1">{categoryLabel}</p>
+      <h2 class="font-semibold text-slate-100 leading-snug group-hover:text-white transition-colors">
+        <a href={`${prefix}/r/${slug}`} class="after:absolute after:inset-0">
+          {title}
+        </a>
+      </h2>
+    </div>
+
+    <span class={`badge ${difficultyClass} shrink-0 mt-0.5`}>{difficultyLabel}</span>
+  </div>
+
+  <!-- Description -->
+  <p class="text-sm text-slate-400 leading-relaxed line-clamp-2">{description}</p>
+
+  <!-- Tech chips -->
+  {tech.length > 0 && (
+    <div class="flex flex-wrap gap-1.5">
+      {tech.slice(0, 5).map((t) => (
+        <span class="chip text-xs">{t}</span>
+      ))}
+      {tech.length > 5 && (
+        <span class="chip text-xs">+{tech.length - 5}</span>
+      )}
+    </div>
+  )}
+
+  <!-- Actions row -->
+  <div class="flex items-center gap-2 mt-auto pt-1">
+    <!-- Targets -->
+    <div class="flex gap-1 mr-auto">
+      {allBadges.map((label) => (
+        <span class="text-xs font-mono px-1.5 py-0.5 rounded bg-white/4 border border-white/8 text-slate-500">
+          {label}
+        </span>
+      ))}
+    </div>
+
+    <!-- Quick actions -->
+    <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+      {labRoute && (
+        <a
+          href={`${SITE_URLS.lab}${labRoute}`}
+          target="_blank"
+          rel="noopener"
+          class="quick-action"
+          title={t("resource.openLab")}
+          aria-label={t("resource.openLab")}
+          onclick="event.stopPropagation()"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      )}
+
+      <button
+        class="quick-action favorite-btn"
+        data-slug={slug}
+        title={t("resource.favorite")}
+        aria-label={t("resource.favorite")}
+        onclick="event.stopPropagation()"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .quick-action {
+    @apply flex items-center justify-center w-7 h-7 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-white/8 transition-colors;
+  }
+
+  .favorite-btn.is-favorite {
+    @apply text-rose-400;
+  }
+
+  .favorite-btn.is-favorite svg {
+    fill: currentColor;
+  }
+</style>
+
+<script>
+  import { isFavorite, toggleFavorite } from "@lib/favorites";
+
+  function initFavoriteButtons() {
+    document.querySelectorAll<HTMLButtonElement>(".favorite-btn").forEach((btn) => {
+      const slug = btn.dataset.slug;
+      if (!slug) return;
+
+      if (isFavorite(slug)) btn.classList.add("is-favorite");
+
+      btn.addEventListener("click", () => {
+        const nowFav = toggleFavorite(slug);
+        btn.classList.toggle("is-favorite", nowFav);
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initFavoriteButtons);
+</script>

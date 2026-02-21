@@ -1,0 +1,35 @@
+---
+slug: dot-loader
+title: CSS Dot Loader
+description: A smooth three-dot loading animation built entirely with CSS — no JavaScript, no SVG.
+category: patterns
+type: pattern
+tags: [loader, spinner, animation, css-only, keyframes]
+tech: [css, keyframes, animation-delay]
+difficulty: easy
+targets: [html]
+labRoute: /patterns/dot-loader
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+## CSS Dot Loader
+
+A minimal three-dot bouncing loader built entirely with CSS `@keyframes` — zero JavaScript, zero SVG, zero dependencies.
+
+### How it works
+
+Three `<span>` elements share the same `bounce` keyframe animation, each with a staggered `animation-delay`. The animation scales each dot from normal to slightly enlarged and back, creating a wave effect.
+
+### Variants
+
+- Change `animation-timing-function` to `ease-in-out` for a softer bounce
+- Swap `scaleY` for `translateY` for a vertical bounce
+- Adjust `animation-duration` for faster/slower rhythm
+
+### When to use it
+
+- Button loading state (inline)
+- Full-page loading overlay
+- List item placeholder while data fetches

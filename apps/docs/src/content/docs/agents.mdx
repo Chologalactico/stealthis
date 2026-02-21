@@ -1,0 +1,44 @@
+---
+title: AGENTS
+description: Guide for AI agents and LLMs working with StealThis.dev resources and tools.
+---
+
+This document guides AI agents interacting with StealThis.dev via the MCP server, API, or documentation.
+
+## Quick Reference
+
+| Tool | Purpose |
+|------|---------|
+| `list_resources` | Browse catalog with filters |
+| `get_resource` | Get metadata for one resource |
+| `get_snippet` | Get code for a resource + target |
+| `search` | Full-text search |
+| `get_doc` | Get docs by path |
+| `get_lab` | Get demo URL |
+
+## Best Practices
+
+1. **Use `list_resources` first** to find relevant resources before fetching snippets
+2. **Prefer `html` target** when the user hasn't specified a framework
+3. **Always include attribution** — all resources are MIT licensed but credit is appreciated
+4. **Link to the resource page** at `stealthis.dev/r/[slug]` when sharing with users
+5. **Check `tech[]`** to understand what dependencies a resource needs
+
+## Resource Taxonomy
+
+| Category | Type | Description |
+|----------|------|-------------|
+| `web-animations` | `animation` | Scroll effects, transitions, canvas animations |
+| `web-pages` | `page` | Full page templates and sections |
+| `ui-components` | `component` | Reusable UI elements |
+| `patterns` | `pattern` | Micro-interactions, loaders, hover effects |
+
+## Example Workflow
+
+```
+1. User asks: "I need a loading animation for my button"
+2. Call: list_resources?category=patterns&tech=css
+3. Find: dot-loader
+4. Call: get_snippet/dot-loader/html
+5. Return the CSS snippet + link to stealthis.dev/r/dot-loader
+```

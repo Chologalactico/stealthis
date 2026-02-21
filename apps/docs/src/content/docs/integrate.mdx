@@ -1,0 +1,120 @@
+---
+title: How to Integrate
+description: Connect StealThis.dev to Claude, Cursor, and other AI tools — local or deployed.
+---
+
+This guide shows how to integrate StealThis.dev resources into your AI-assisted workflow — whether you use Claude, Cursor, or similar tools, locally or in production.
+
+## Overview
+
+StealThis.dev offers several integration paths:
+
+| Integration | Use case | Local / Deploy |
+|-------------|----------|----------------|
+| **MCP Server** | Claude, Cursor, and MCP-compatible tools | `https://mcp.stealthis.dev/mcp` |
+| **llms.txt** | LLM context files, custom crawlers | Static file at `docs.stealthis.dev/llms.txt` |
+| **Copy & paste** | Manual use in any editor | No setup |
+
+---
+
+## Claude (MCP)
+
+Add the StealThis MCP server to Claude Desktop or Claude Code.
+
+### Claude Desktop
+
+Edit your config (e.g. `~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+
+```json
+{
+  "mcpServers": {
+    "stealthis": {
+      "url": "https://mcp.stealthis.dev/mcp"
+    }
+  }
+}
+```
+
+### Claude Code (`claude_code`)
+
+Add to `~/.claude/config.json`:
+
+```json
+{
+  "mcpServers": {
+    "stealthis": {
+      "url": "https://mcp.stealthis.dev/mcp"
+    }
+  }
+}
+```
+
+Restart Claude. You can then ask:
+
+- "List StealThis resources for scroll animations"
+- "Get the React snippet for the magnetic-button resource"
+
+---
+
+## Cursor
+
+Cursor supports MCP servers. Add the StealThis server in **Settings → MCP**:
+
+```json
+{
+  "mcpServers": {
+    "stealthis": {
+      "url": "https://mcp.stealthis.dev/mcp"
+    }
+  }
+}
+```
+
+Save and restart Cursor. The agent can then search and fetch StealThis resources directly.
+
+---
+
+## Context Protocol / llms.txt
+
+For tools that consume context files (e.g. custom crawlers, RAG pipelines):
+
+- **URL:** `https://docs.stealthis.dev/llms.txt`
+- **Format:** Plain text, Markdown-like
+- **Content:** Project overview, MCP tools, resource structure
+
+Fetch this URL when building context for an LLM. No authentication required.
+
+---
+
+## Local vs Deploy
+
+### Using the hosted MCP server (no setup)
+
+The MCP server runs at `https://mcp.stealthis.dev/mcp`. Point your tool to this URL — no local install needed. Works for:
+
+- Claude Desktop
+- Cursor
+- Any MCP client
+
+### Self-hosted / air-gapped
+
+If you need to run StealThis locally or in a restricted environment:
+
+1. **Clone the repo:** `git clone https://github.com/Foodhy/stealthis`
+2. **Start the MCP app:** From the monorepo root, run `bun run dev:mcp`
+3. **Use localhost:** Point your MCP client to `http://localhost:8787` (or the port shown when you run `bun run dev:mcp`)
+
+See the [MCP Server](/mcp-server/) docs for endpoint details.
+
+---
+
+## Quick reference
+
+| Action | URL / Config |
+|--------|--------------|
+| MCP server | `https://mcp.stealthis.dev/mcp` |
+| llms.txt | `https://docs.stealthis.dev/llms.txt` |
+| Browse library | `https://stealthis.dev/library` |
+| Full docs | `https://docs.stealthis.dev` |
+
+All resources are MIT licensed — copy and use freely.

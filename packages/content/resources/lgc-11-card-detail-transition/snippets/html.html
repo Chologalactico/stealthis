@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Grid Transition — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <!-- Grid View -->
+  <div id="grid-view" class="view active">
+    <header class="page-header">
+      <span class="eyebrow">Demo 11</span>
+      <h1>Card Grid Transition</h1>
+      <p class="subtitle">Click any card to see a shared-element View Transition to the detail page.</p>
+    </header>
+
+    <div class="card-grid">
+      <article class="card" data-id="1">
+        <div class="card-visual" style="--hue: 200;">
+          <div class="card-image" style="view-transition-name: card-image-1;">
+            <span class="card-number">01</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 style="view-transition-name: card-title-1;">Kinetic Typography</h3>
+          <p>Motion-driven text that responds to scroll, time, and user interaction.</p>
+        </div>
+      </article>
+
+      <article class="card" data-id="2">
+        <div class="card-visual" style="--hue: 270;">
+          <div class="card-image" style="view-transition-name: card-image-2;">
+            <span class="card-number">02</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 style="view-transition-name: card-title-2;">Particle Systems</h3>
+          <p>Thousands of elements choreographed into flowing, organic formations.</p>
+        </div>
+      </article>
+
+      <article class="card" data-id="3">
+        <div class="card-visual" style="--hue: 330;">
+          <div class="card-image" style="view-transition-name: card-image-3;">
+            <span class="card-number">03</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 style="view-transition-name: card-title-3;">Scroll Choreography</h3>
+          <p>Precisely timed sequences that unfold as the user scrolls through content.</p>
+        </div>
+      </article>
+
+      <article class="card" data-id="4">
+        <div class="card-visual" style="--hue: 45;">
+          <div class="card-image" style="view-transition-name: card-image-4;">
+            <span class="card-number">04</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 style="view-transition-name: card-title-4;">Shader Art</h3>
+          <p>GPU-powered visuals that create mesmerizing patterns in real-time.</p>
+        </div>
+      </article>
+
+      <article class="card" data-id="5">
+        <div class="card-visual" style="--hue: 160;">
+          <div class="card-image" style="view-transition-name: card-image-5;">
+            <span class="card-number">05</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 style="view-transition-name: card-title-5;">3D Environments</h3>
+          <p>Immersive three-dimensional spaces built with WebGL and Three.js.</p>
+        </div>
+      </article>
+
+      <article class="card" data-id="6">
+        <div class="card-visual" style="--hue: 15;">
+          <div class="card-image" style="view-transition-name: card-image-6;">
+            <span class="card-number">06</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 style="view-transition-name: card-title-6;">Magnetic Interactions</h3>
+          <p>Elements that attract, repel, and respond to cursor proximity with spring physics.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Detail View (hidden, populated by JS) -->
+  <div id="detail-view" class="view">
+    <div class="detail-layout">
+      <div class="detail-image-area">
+        <div id="detail-image" class="detail-image">
+          <span id="detail-number" class="detail-number"></span>
+        </div>
+      </div>
+      <div class="detail-content">
+        <button id="back-btn" class="back-btn">&larr; Back to grid</button>
+        <h2 id="detail-title" class="detail-title"></h2>
+        <p id="detail-desc" class="detail-desc"></p>
+        <div class="detail-meta">
+          <span class="meta-tag">View Transitions API</span>
+          <span class="meta-tag">CSS</span>
+          <span class="meta-tag">Shared Elements</span>
+        </div>
+        <p class="detail-body">This demo uses the View Transitions API to animate between a card grid and a detail page. The card image and title have matching <code>view-transition-name</code> properties, allowing the browser to smoothly interpolate their position and size during the transition.</p>
+        <p class="detail-body">In browsers that don't support View Transitions, the content swaps instantly with a simple CSS crossfade fallback.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Lead Portfolio — Marcus Chen</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <div class="hero__eyebrow">
+        <span class="eyebrow-tag">Engineering Lead</span>
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span class="eyebrow-avail">Available for new roles</span>
+      </div>
+      <h1 class="hero__name" id="heroName">Marcus<br>Chen</h1>
+      <div class="hero__foot">
+        <p class="hero__tagline" id="heroTagline">Building teams and systems<br>that compound in value.</p>
+        <nav class="hero__ctas" aria-label="Hero navigation">
+          <a class="btn btn--primary" href="#work">View work</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </nav>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator" aria-hidden="true">
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      <span class="scroll-label">scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── EXPERTISE ─────────────────────────────────────────────────────── -->
+  <section class="section expertise" id="expertise">
+    <div class="section__header">
+      <div class="section__label-group">
+        <span class="section-index">01</span>
+        <span class="section-label">Core Expertise</span>
+      </div>
+      <p class="section__summary">Eight years leading engineering teams at scale.</p>
+    </div>
+    <div class="expertise__grid">
+
+      <article class="expertise-card">
+        <div class="expertise-card__icon" aria-hidden="true">
+          <div class="icon-backend"></div>
+        </div>
+        <h3 class="expertise-card__title">Backend Systems</h3>
+        <ul class="expertise-card__list">
+          <li>Distributed systems design</li>
+          <li>High-throughput service mesh</li>
+          <li>PostgreSQL, Redis, Kafka</li>
+          <li>Go, Rust, TypeScript</li>
+          <li>gRPC + REST API design</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-card__icon" aria-hidden="true">
+          <div class="icon-platform"></div>
+        </div>
+        <h3 class="expertise-card__title">Platform Engineering</h3>
+        <ul class="expertise-card__list">
+          <li>Kubernetes & cloud-native infra</li>
+          <li>CI/CD pipeline architecture</li>
+          <li>Developer experience tooling</li>
+          <li>AWS, GCP multi-region setups</li>
+          <li>Observability & SLO design</li>
+        </ul>
+      </article>
+
+      <article class="expertise-card">
+        <div class="expertise-card__icon" aria-hidden="true">
+          <div class="icon-leadership"></div>
+        </div>
+        <h3 class="expertise-card__title">Team Leadership</h3>
+        <ul class="expertise-card__list">
+          <li>Hiring & growing eng teams</li>
+          <li>Technical roadmap planning</li>
+          <li>Cross-functional collaboration</li>
+          <li>Eng culture & process design</li>
+          <li>Performance management</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ─── TIMELINE ──────────────────────────────────────────────────────── -->
+  <section class="section timeline" id="work">
+    <div class="section__header">
+      <div class="section__label-group">
+        <span class="section-index">02</span>
+        <span class="section-label">Career Timeline</span>
+      </div>
+      <p class="section__summary">A track record of increasing ownership and impact.</p>
+    </div>
+    <div class="timeline__track" aria-label="Career history">
+      <div class="timeline__line" aria-hidden="true"></div>
+
+      <div class="timeline-item timeline-item--left">
+        <div class="timeline-item__year">2024</div>
+        <div class="timeline-item__card">
+          <div class="timeline-item__meta">
+            <span class="timeline-item__role">VP Engineering</span>
+            <span class="timeline-item__sep" aria-hidden="true">—</span>
+            <span class="timeline-item__company">Stratum AI</span>
+          </div>
+          <p class="timeline-item__desc">Led a 40-person engineering org through Series B. Rebuilt the core ML inference pipeline, reducing p99 latency from 800ms to 65ms. Grew team from 18 to 40 engineers in 14 months while maintaining culture health scores above 4.6/5.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item timeline-item--right">
+        <div class="timeline-item__year">2021</div>
+        <div class="timeline-item__card">
+          <div class="timeline-item__meta">
+            <span class="timeline-item__role">Staff Engineer → Tech Lead</span>
+            <span class="timeline-item__sep" aria-hidden="true">—</span>
+            <span class="timeline-item__company">Meridian Finance</span>
+          </div>
+          <p class="timeline-item__desc">Designed and delivered a real-time transaction processing platform handling 50k TPS. Mentored six engineers to senior level. Defined the technical strategy that led to the company's $200M acquisition.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item timeline-item--left">
+        <div class="timeline-item__year">2019</div>
+        <div class="timeline-item__card">
+          <div class="timeline-item__meta">
+            <span class="timeline-item__role">Senior Engineer</span>
+            <span class="timeline-item__sep" aria-hidden="true">—</span>
+            <span class="timeline-item__company">Cloudvault</span>
+          </div>
+          <p class="timeline-item__desc">Built the multi-tenant storage abstraction layer now serving 3M+ enterprise customers. Pioneered the company's Rust adoption with an internal migration guide that became an industry reference.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item timeline-item--right">
+        <div class="timeline-item__year">2016</div>
+        <div class="timeline-item__card">
+          <div class="timeline-item__meta">
+            <span class="timeline-item__role">Software Engineer</span>
+            <span class="timeline-item__sep" aria-hidden="true">—</span>
+            <span class="timeline-item__company">Nexus Labs</span>
+          </div>
+          <p class="timeline-item__desc">First engineering hire. Shipped the core API platform from scratch. Established the testing culture and deployment process that scaled the team from 2 to 25 engineers without a single P0 production incident.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── OPEN SOURCE ────────────────────────────────────────────────────── -->
+  <section class="section open-source" id="open-source">
+    <div class="section__header">
+      <div class="section__label-group">
+        <span class="section-index">03</span>
+        <span class="section-label">Open Source</span>
+      </div>
+      <p class="section__summary">Giving back to the communities that shaped my craft.</p>
+    </div>
+    <div class="repos__grid">
+
+      <a class="repo-card" href="#" aria-label="riftdb repository">
+        <div class="repo-card__top">
+          <span class="repo-card__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </span>
+          <span class="repo-card__name">riftdb</span>
+          <span class="repo-card__stars">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            2.4k
+          </span>
+        </div>
+        <p class="repo-card__desc">A zero-dependency embedded key-value store for Go with MVCC transactions, range scans, and sub-millisecond write latency.</p>
+        <div class="repo-card__foot">
+          <span class="lang-pill lang-pill--go">Go</span>
+          <span class="repo-card__updated">Updated 2 days ago</span>
+        </div>
+      </a>
+
+      <a class="repo-card" href="#" aria-label="envi repository">
+        <div class="repo-card__top">
+          <span class="repo-card__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </span>
+          <span class="repo-card__name">envi</span>
+          <span class="repo-card__stars">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            1.1k
+          </span>
+        </div>
+        <p class="repo-card__desc">Typed environment variable validation for TypeScript with schema inference, dot-env loading, and strict mode for CI environments.</p>
+        <div class="repo-card__foot">
+          <span class="lang-pill lang-pill--ts">TypeScript</span>
+          <span class="repo-card__updated">Updated 1 week ago</span>
+        </div>
+      </a>
+
+      <a class="repo-card" href="#" aria-label="sieve repository">
+        <div class="repo-card__top">
+          <span class="repo-card__icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </span>
+          <span class="repo-card__name">sieve</span>
+          <span class="repo-card__stars">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            890
+          </span>
+        </div>
+        <p class="repo-card__desc">A Rust crate for compile-time rate limiting with leaky-bucket and token-bucket implementations. Zero allocations on the hot path.</p>
+        <div class="repo-card__foot">
+          <span class="lang-pill lang-pill--rust">Rust</span>
+          <span class="repo-card__updated">Updated 3 weeks ago</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────────────── -->
+  <section class="section contact" id="contact">
+    <div class="contact__inner">
+      <p class="contact__kicker">Currently open to senior leadership roles</p>
+      <h2 class="contact__cta" id="contactCta">Let's Build<br>Something.</h2>
+      <div class="contact__links">
+        <a class="contact__email" href="mailto:marcus@chen.dev">marcus@chen.dev</a>
+        <div class="contact__social">
+          <a class="social-link" href="#" aria-label="GitHub profile">GitHub</a>
+          <a class="social-link" href="#" aria-label="LinkedIn profile">LinkedIn</a>
+          <a class="social-link" href="#" aria-label="Download Resume">Resume ↓</a>
+        </div>
+      </div>
+    </div>
+    <div class="contact__foot">
+      <span>Marcus Chen — Engineering Lead</span>
+      <span>2025</span>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

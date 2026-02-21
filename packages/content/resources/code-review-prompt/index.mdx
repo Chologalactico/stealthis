@@ -1,0 +1,31 @@
+---
+slug: code-review-prompt
+title: Code Review System Prompt
+description: A thorough system prompt that turns Claude or ChatGPT into a senior engineer code reviewer focused on correctness, security, and maintainability.
+category: prompts
+type: prompt
+tags: [code-review, system-prompt, best-practices, engineering]
+tech: [claude, chatgpt, prompting]
+difficulty: easy
+targets: [markdown]
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+A system prompt designed to get deep, actionable code reviews from Claude or ChatGPT. Copy it into the system prompt field of your AI tool of choice, then paste your code for review.
+
+## What it reviews
+
+- **Correctness** — bugs, edge cases, off-by-one errors
+- **Security** — injection, XSS, auth bypass, secrets in code
+- **Performance** — unnecessary re-renders, N+1 queries, missing indexes
+- **Maintainability** — naming, duplication, separation of concerns
+- **TypeScript / types** — missing types, unsafe casts, `any` abuse
+
+## How to use
+
+1. Copy the prompt using the button above
+2. Open Claude or ChatGPT
+3. Paste it as the **system prompt** (or first message)
+4. Paste your code and ask: _"Please review this"_

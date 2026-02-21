@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Experience — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Three.js canvas (fixed behind everything) -->
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section class="section hero-section" id="hero">
+    <div class="hero-clouds" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Explore the World</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Scroll to take flight</p>
+      <div class="scroll-indicator" id="scroll-indicator">
+        <svg width="20" height="32" viewBox="0 0 20 32" fill="none">
+          <path d="M10 0v28M2 20l8 8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flight Path (scroll spacer) -->
+  <div class="flight-track">
+    <div class="flight-section" data-dest="0"></div>
+    <div class="flight-section" data-dest="1"></div>
+    <div class="flight-section" data-dest="2"></div>
+    <div class="flight-section" data-dest="3"></div>
+  </div>
+
+  <!-- Fixed overlay destination cards -->
+  <div class="dest-card" id="dest-0">
+    <div class="dest-thumb thumb-tokyo" aria-hidden="true"></div>
+    <h3 class="dest-name">Tokyo</h3>
+    <span class="dest-country">Japan</span>
+    <p class="dest-tagline">Where tradition meets tomorrow</p>
+  </div>
+
+  <div class="dest-card" id="dest-1">
+    <div class="dest-thumb thumb-santorini" aria-hidden="true"></div>
+    <h3 class="dest-name">Santorini</h3>
+    <span class="dest-country">Greece</span>
+    <p class="dest-tagline">White walls against endless blue</p>
+  </div>
+
+  <div class="dest-card" id="dest-2">
+    <div class="dest-thumb thumb-machu" aria-hidden="true"></div>
+    <h3 class="dest-name">Machu Picchu</h3>
+    <span class="dest-country">Peru</span>
+    <p class="dest-tagline">Ancient ruins above the clouds</p>
+  </div>
+
+  <div class="dest-card" id="dest-3">
+    <div class="dest-thumb thumb-reykjavik" aria-hidden="true"></div>
+    <h3 class="dest-name">Reykjavik</h3>
+    <span class="dest-country">Iceland</span>
+    <p class="dest-tagline">Fire and ice at the edge of the world</p>
+  </div>
+
+  <!-- Destinations Grid -->
+  <section class="section grid-section" id="destinations">
+    <h2 class="grid-heading">Your Next Adventure</h2>
+    <div class="destinations-grid">
+      <div class="grid-card">
+        <div class="grid-thumb grid-tokyo" aria-hidden="true"></div>
+        <div class="grid-card-body">
+          <h3 class="grid-card-title">Tokyo, Japan</h3>
+          <p class="grid-card-desc">Neon-lit streets, ancient temples, and culinary mastery converge in this metropolis where every corner tells a different story.</p>
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="grid-thumb grid-santorini" aria-hidden="true"></div>
+        <div class="grid-card-body">
+          <h3 class="grid-card-title">Santorini, Greece</h3>
+          <p class="grid-card-desc">Volcanic cliffs draped in whitewashed villages, where sunsets paint the Aegean in impossible shades of gold and crimson.</p>
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="grid-thumb grid-machu" aria-hidden="true"></div>
+        <div class="grid-card-body">
+          <h3 class="grid-card-title">Machu Picchu, Peru</h3>
+          <p class="grid-card-desc">An Incan citadel perched among misty Andean peaks, revealing the engineering brilliance of a lost civilization.</p>
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="grid-thumb grid-reykjavik" aria-hidden="true"></div>
+        <div class="grid-card-body">
+          <h3 class="grid-card-title">Reykjavik, Iceland</h3>
+          <p class="grid-card-desc">Gateway to glaciers, geysers, and the northern lights, where raw natural forces shape an otherworldly landscape.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section" id="cta">
+    <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
+    <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
+    <div class="cta-content">
+      <h2 class="cta-heading">Start Your Journey</h2>
+      <p class="cta-subtitle">Book your next adventure today</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Book Now</button>
+        <button class="btn btn-secondary">View Routes</button>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

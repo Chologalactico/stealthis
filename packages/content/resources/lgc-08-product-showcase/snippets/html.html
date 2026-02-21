@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Product Showcase — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <div class="overlay">
+    <div class="info-panel">
+      <span class="eyebrow">Demo 08</span>
+      <h1>3D Product Showcase</h1>
+      <p class="subtitle">A procedural torus knot with MeshPhysicalMaterial — metalness, clearcoat, and three-point lighting. Click to pause/resume orbit.</p>
+
+      <div class="specs">
+        <div class="spec"><span class="spec-label">Material</span><span class="spec-value">Physical (PBR)</span></div>
+        <div class="spec"><span class="spec-label">Metalness</span><span class="spec-value">0.9</span></div>
+        <div class="spec"><span class="spec-label">Clearcoat</span><span class="spec-value">1.0</span></div>
+        <div class="spec"><span class="spec-label">Roughness</span><span class="spec-value">0.12</span></div>
+      </div>
+
+      <div class="controls">
+        <button id="btn-pause" class="ctrl-btn">Pause Orbit</button>
+        <button id="btn-color" class="ctrl-btn">Cycle Color</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="/" class="btn-back">Back to Showcase</a>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

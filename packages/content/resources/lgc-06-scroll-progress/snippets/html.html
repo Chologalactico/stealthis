@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Progress Indicators — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Fixed indicators -->
+  <div class="progress-top" id="progress-top"><div class="progress-top-fill"></div></div>
+
+  <div class="progress-circle" id="progress-circle">
+    <svg viewBox="0 0 48 48"><circle class="track" cx="24" cy="24" r="20"/><circle class="fill" cx="24" cy="24" r="20"/></svg>
+    <span class="progress-pct" id="progress-pct">0%</span>
+  </div>
+
+  <nav class="section-dots" id="section-dots">
+    <button class="dot active" data-section="0"></button>
+    <button class="dot" data-section="1"></button>
+    <button class="dot" data-section="2"></button>
+    <button class="dot" data-section="3"></button>
+    <button class="dot" data-section="4"></button>
+  </nav>
+
+  <!-- Content sections -->
+  <section class="section" data-index="0">
+    <div class="content">
+      <span class="eyebrow">Demo 06</span>
+      <h1>Scroll Progress Indicators</h1>
+      <p class="body-text">Three indicator styles running simultaneously: top bar, circular SVG, and section dots. All driven by ScrollTrigger progress values.</p>
+    </div>
+  </section>
+
+  <section class="section" data-index="1">
+    <div class="content">
+      <h2>Linear Bar</h2>
+      <p class="body-text">The top progress bar uses <code>scaleX</code> driven by overall page scroll progress. It's the simplest indicator — a single CSS transform.</p>
+    </div>
+  </section>
+
+  <section class="section" data-index="2">
+    <div class="content">
+      <h2>Circular SVG</h2>
+      <p class="body-text">The circle uses SVG <code>stroke-dashoffset</code> to draw the ring progressively. The percentage text updates in real-time with scroll position.</p>
+    </div>
+  </section>
+
+  <section class="section" data-index="3">
+    <div class="content">
+      <h2>Section Dots</h2>
+      <p class="body-text">Each dot represents a content section. The active dot highlights based on which section's ScrollTrigger is currently in view. Click a dot to jump to that section.</p>
+    </div>
+  </section>
+
+  <section class="section" data-index="4">
+    <div class="content">
+      <h2>Combined Power</h2>
+      <p class="body-text">When used together, these indicators give users multiple spatial cues about their position in the content. Each serves a different cognitive need: linear for absolute progress, circular for at-a-glance percentage, dots for structural navigation.</p>
+      <a href="/" class="btn-back">Back to Showcase</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

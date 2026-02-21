@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Camera Narrative — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Three.js canvas (fixed behind everything) -->
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Scrollable chapter sections overlaid on the 3D scene -->
+  <div class="scroll-container">
+
+    <section class="chapter" data-chapter="0">
+      <div class="chapter-panel">
+        <span class="chapter-num">01</span>
+        <h2>Origin</h2>
+        <p>A luminous knot pulses at the heart of the void — the seed from which all geometry grows.</p>
+      </div>
+    </section>
+
+    <section class="chapter" data-chapter="1">
+      <div class="chapter-panel">
+        <span class="chapter-num">02</span>
+        <h2>Nebula</h2>
+        <p>Hundreds of particles coalesce into a shimmering cloud, drifting through the cosmic dark.</p>
+      </div>
+    </section>
+
+    <section class="chapter" data-chapter="2">
+      <div class="chapter-panel">
+        <span class="chapter-num">03</span>
+        <h2>Monolith</h2>
+        <p>A towering reflective slab rises from nothing — stark, enigmatic, impossibly smooth.</p>
+      </div>
+    </section>
+
+    <section class="chapter" data-chapter="3">
+      <div class="chapter-panel">
+        <span class="chapter-num">04</span>
+        <h2>Orbit</h2>
+        <p>Crystal shapes trace an eternal ring, each facet catching light from an unseen star.</p>
+      </div>
+    </section>
+
+    <section class="chapter" data-chapter="4">
+      <div class="chapter-panel">
+        <span class="chapter-num">05</span>
+        <h2>Ascent</h2>
+        <p>The camera pulls back to reveal the full scene — geometry, light, and motion unified.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

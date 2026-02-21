@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Scroll Story — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Section 1: Hero -->
+  <section class="section section-hero" data-bg="#070a12">
+    <div class="layer layer-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+    </div>
+    <div class="layer layer-mid">
+      <div class="floating-ring ring-1"></div>
+      <div class="floating-ring ring-2"></div>
+    </div>
+    <div class="layer layer-fg content">
+      <span class="eyebrow">Demo 01</span>
+      <h1 class="hero-title">Smooth<br>Scroll Story</h1>
+      <p class="hero-sub">Parallax layers driven by Lenis + GSAP ScrollTrigger</p>
+      <div class="scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Reveal -->
+  <section class="section section-reveal" data-bg="#0a0e1a">
+    <div class="layer layer-bg">
+      <div class="gradient-orb orb-3"></div>
+    </div>
+    <div class="layer layer-fg content">
+      <span class="eyebrow">Chapter One</span>
+      <h2 class="reveal-text">Motion tells<br>a story.</h2>
+      <p class="reveal-body">Every scroll triggers a new layer of depth. Parallax creates the illusion of space, guiding the viewer through a cinematic narrative.</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Depth -->
+  <section class="section section-depth" data-bg="#0e0818">
+    <div class="layer layer-bg">
+      <div class="depth-grid"></div>
+    </div>
+    <div class="layer layer-mid">
+      <div class="depth-card card-1">
+        <div class="card-inner">Performance</div>
+      </div>
+      <div class="depth-card card-2">
+        <div class="card-inner">Elegance</div>
+      </div>
+      <div class="depth-card card-3">
+        <div class="card-inner">Precision</div>
+      </div>
+    </div>
+    <div class="layer layer-fg content">
+      <span class="eyebrow">Chapter Two</span>
+      <h2 class="reveal-text">Layers of<br>meaning.</h2>
+    </div>
+  </section>
+
+  <!-- Section 4: Color -->
+  <section class="section section-color" data-bg="#12061a">
+    <div class="layer layer-bg">
+      <div class="gradient-orb orb-4"></div>
+      <div class="gradient-orb orb-5"></div>
+    </div>
+    <div class="layer layer-fg content">
+      <span class="eyebrow">Chapter Three</span>
+      <h2 class="reveal-text">Color shifts<br>with rhythm.</h2>
+      <p class="reveal-body">Ambient gradients flow as you scroll, responding to the narrative pace. Each section carries its own atmosphere.</p>
+    </div>
+  </section>
+
+  <!-- Section 5: Finale -->
+  <section class="section section-finale" data-bg="#070a12">
+    <div class="layer layer-bg">
+      <div class="gradient-orb orb-6"></div>
+    </div>
+    <div class="layer layer-fg content">
+      <span class="eyebrow">Finale</span>
+      <h2 class="reveal-text">The scroll<br>is the story.</h2>
+      <a href="/" class="btn-back">Back to Gallery</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

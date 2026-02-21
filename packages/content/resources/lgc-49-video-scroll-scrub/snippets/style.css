@@ -1,0 +1,297 @@
+/* ── Demo 49: Video Scroll Scrub ── */
+/* Dark cinematic palette + clean system font */
+
+:root {
+  --bg: #060608;
+  --panel: #0e0e14;
+  --border: #1c1c28;
+  --text: #f0eee8;
+  --muted: #7a7888;
+  --accent: #e8c060;   /* warm amber for progress/labels */
+  --accent2: #60b8e8;  /* cyan for code */
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: auto; } /* GSAP handles scroll, not native */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Labels ── */
+.label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--accent2);
+  background: rgba(96, 184, 232, 0.08);
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 0.6rem;
+}
+
+/* ── Intro ── */
+.intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: radial-gradient(ellipse at 50% 60%, rgba(232, 192, 96, 0.06) 0%, transparent 65%);
+}
+
+.intro-inner {
+  max-width: 600px;
+}
+
+.intro h1 {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.intro h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.intro p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scroll-hint span {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sh-arrow {
+  font-size: 1.2rem;
+  color: var(--accent);
+  animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ── Scrub section ── */
+.scrub-section {
+  position: relative;
+}
+
+.scrub-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scrub-spacer {
+  height: 400vh;  /* scroll distance = scrub range */
+}
+
+/* ── Video / Canvas ── */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 16/9;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+#video-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Fallback gradient animation (simulates video) */
+.video-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.vf-frame {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    hsl(220, 30%, 8%) 0%,
+    hsl(240, 25%, 12%) 25%,
+    hsl(200, 20%, 10%) 50%,
+    hsl(260, 30%, 8%) 75%,
+    hsl(220, 30%, 8%) 100%
+  );
+  /* Hue will be animated via CSS variable */
+  --hue: 220;
+}
+
+/* ── Overlay UI ── */
+.scrub-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.so-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.so-bar {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.so-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  border-radius: 1px;
+  transition: width 0.05s linear;
+}
+
+.so-time {
+  font-family: 'SF Mono', monospace;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+  min-width: 36px;
+}
+
+.so-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.sc-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sc-text {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+/* ── Chapters / How it works ── */
+.chapters-section {
+  padding: 6rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.chapters-section h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 3.5rem;
+}
+
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.chapter {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.ch-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  padding-top: 3px;
+}
+
+.ch-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ch-content p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .scrub-overlay { padding: 1rem; }
+  .so-caption { display: none; }
+  .chapters-section { padding: 4rem 1.5rem; }
+  .chapter { grid-template-columns: 40px 1fr; }
+}
+
+/* ── Reduced motion ── */
+html.reduced-motion .sh-arrow {
+  animation: none;
+}
+html.reduced-motion .so-fill {
+  transition: none;
+}

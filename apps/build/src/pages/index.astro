@@ -1,0 +1,222 @@
+---
+import "../styles/global.css";
+// biome-ignore lint/correctness/noUnusedImports: Used in Astro component markup.
+import ProjectGraph from "../components/ProjectGraph";
+// biome-ignore lint/correctness/noUnusedVariables: Used in Astro template href.
+const wwwUrl = import.meta.env.DEV ? "http://localhost:4321" : "https://stealthis.dev";
+// biome-ignore lint/correctness/noUnusedVariables: Used in Astro template href.
+const docsUrl = import.meta.env.DEV ? "http://localhost:4322" : "https://docs.stealthis.dev";
+const description = "Visual builder graph for planning StealThis.dev projects and integrations.";
+const canonicalURL = new URL("/", Astro.site ?? "https://build.stealthis.dev").toString();
+// biome-ignore lint/correctness/noUnusedVariables: Used in Astro JSON-LD script.
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "StealThis.dev Builder",
+  description,
+  url: canonicalURL,
+  applicationCategory: "DeveloperApplication",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "StealThis.dev",
+    url: "https://stealthis.dev/",
+  },
+});
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#030712" />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content="Project Builder — StealThis.dev" />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content="https://stealthis.dev/social-card.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Project Builder — StealThis.dev" />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://stealthis.dev/social-card.webp" />
+  <script type="application/ld+json" set:html={structuredData} />
+  <title>Project Builder — StealThis.dev</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="min-h-screen bg-gray-950 text-slate-100 p-6">
+  <!-- Header -->
+  <header class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <a href={wwwUrl} class="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-200 transition-colors">
+        <span class="text-brand-400 text-lg">✦</span>
+        StealThis.dev
+      </a>
+      <span class="text-slate-700">/</span>
+      <span class="text-slate-300 font-semibold">Builder</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        id="builder-help-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="builder-help-panel"
+        class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-slate-900 text-slate-300 hover:text-slate-100 hover:border-white/30 transition-colors"
+        title="Show help examples"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-4a2.5 2.5 0 00-2.45 1.99.75.75 0 001.47.32A1 1 0 0110 7.5a1 1 0 01.67 1.74l-.57.5a2.75 2.75 0 00-.85 2.01.75.75 0 001.5 0 1.25 1.25 0 01.39-.92l.57-.5A2.5 2.5 0 0010 6zm0 8a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <a
+        href={docsUrl}
+        target="_blank"
+        rel="noopener"
+        class="text-xs text-slate-500 hover:text-slate-300 transition-colors"
+      >
+        Docs →
+      </a>
+    </div>
+  </header>
+
+  <section class="mb-6 rounded-xl border border-amber-400/35 bg-amber-950/25 px-3 py-2.5">
+    <p class="text-xs text-amber-200/90">
+      Builder beta: estamos haciendo cambios frecuentes en UX, flujo y exportaciones.
+    </p>
+  </section>
+
+  <!-- Project form -->
+  <section class="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+    <div>
+      <label for="project-title" class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+        Project Title
+      </label>
+      <input
+        id="project-title"
+        type="text"
+        placeholder="My Awesome Project"
+        class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-white/8 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/30 transition-colors"
+      />
+    </div>
+    <div>
+      <label for="project-desc" class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+        Description
+      </label>
+      <input
+        id="project-desc"
+        type="text"
+        placeholder="A short description of your project"
+        class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-white/8 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-brand-500/50 transition-colors"
+      />
+    </div>
+  </section>
+
+  <!-- Builder guide (hidden by default) -->
+  <section id="builder-help-panel" class="mb-6 hidden rounded-2xl border border-white/10 bg-slate-900/70 p-4 sm:p-5">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Help Examples</p>
+        <h2 class="mt-1 text-base font-semibold text-slate-100">Escoge un ejemplo de ayuda</h2>
+        <p class="mt-1 text-sm text-slate-400">
+          Todo está oculto por defecto. Abre este panel cuando necesites guía y elige un ejemplo.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-300 sm:grid-cols-3">
+        <span class="rounded-lg border border-slate-700/80 bg-slate-950/60 px-2 py-1">Cmd/Ctrl + D</span>
+        <span class="rounded-lg border border-slate-700/80 bg-slate-950/60 px-2 py-1">Delete</span>
+        <span class="rounded-lg border border-slate-700/80 bg-slate-950/60 px-2 py-1">Escape</span>
+      </div>
+    </div>
+
+    <div class="mt-4 grid gap-2 sm:grid-cols-3">
+      <button type="button" data-help-example="example-add" class="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-left text-xs text-slate-200 transition-colors hover:border-brand-500/70">
+        Ejemplo: Agregar y organizar nodos
+      </button>
+      <button type="button" data-help-example="example-edit" class="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-left text-xs text-slate-200 transition-colors hover:border-brand-500/70">
+        Ejemplo: Modificar rápido
+      </button>
+      <button type="button" data-help-example="example-export" class="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-left text-xs text-slate-200 transition-colors hover:border-brand-500/70">
+        Ejemplo: Exportar para implementación
+      </button>
+    </div>
+
+    <div class="mt-4">
+      <article id="example-add" class="hidden rounded-xl border border-slate-800 bg-slate-950/50 p-3 text-sm text-slate-300">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Agregar y organizar</p>
+        <p class="mt-1">1. Arrastra <strong class="font-semibold text-slate-100">Stack</strong> y <strong class="font-semibold text-slate-100">Deploy</strong> al canvas.</p>
+        <p class="mt-1">2. Conecta ambos nodos desde cualquier handle para definir dependencia.</p>
+        <p class="mt-1">3. Usa <strong class="font-semibold text-slate-100">Reset view</strong> si te pierdes en el canvas.</p>
+      </article>
+      <article id="example-edit" class="hidden rounded-xl border border-slate-800 bg-slate-950/50 p-3 text-sm text-slate-300">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Modificar rápido</p>
+        <p class="mt-1">1. Selecciona un nodo para cambiar nombre desde <strong class="font-semibold text-slate-100">Selection</strong>.</p>
+        <p class="mt-1">2. Duplica con <strong class="font-semibold text-slate-100">Cmd/Ctrl + D</strong>.</p>
+        <p class="mt-1">3. Borra selección con <strong class="font-semibold text-slate-100">Delete</strong>.</p>
+      </article>
+      <article id="example-export" class="hidden rounded-xl border border-slate-800 bg-slate-950/50 p-3 text-sm text-slate-300">
+        <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Exportar plan</p>
+        <p class="mt-1">1. Completa título y descripción arriba.</p>
+        <p class="mt-1">2. Exporta <code class="text-slate-100">project.json</code> para automatizar flujos.</p>
+        <p class="mt-1">3. Exporta <code class="text-slate-100">IMPLEMENTATION.md</code> y <code class="text-slate-100">MCP.md</code> para ejecución y agentes.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- React Flow graph island -->
+  <div id="graph-container">
+    <ProjectGraph client:only="react" />
+  </div>
+
+  <script>
+    // Wire form values to the graph component via custom events
+    const titleInput = document.getElementById("project-title") as HTMLInputElement;
+    const descInput = document.getElementById("project-desc") as HTMLInputElement;
+    const helpToggle = document.getElementById("builder-help-toggle") as HTMLButtonElement;
+    const helpPanel = document.getElementById("builder-help-panel") as HTMLElement;
+    const helpExampleButtons = document.querySelectorAll("[data-help-example]");
+    const helpExamples = document.querySelectorAll("#example-add, #example-edit, #example-export");
+
+    function emitProjectUpdate() {
+      window.dispatchEvent(new CustomEvent("stealthis:project-update", {
+        detail: {
+          title: titleInput?.value || "My Project",
+          description: descInput?.value || "",
+        },
+      }));
+    }
+
+    titleInput?.addEventListener("input", emitProjectUpdate);
+    descInput?.addEventListener("input", emitProjectUpdate);
+
+    function hideAllExamples() {
+      helpExamples.forEach((node) => node.classList.add("hidden"));
+    }
+
+    helpToggle?.addEventListener("click", () => {
+      const isOpen = !helpPanel.classList.contains("hidden");
+      helpPanel.classList.toggle("hidden");
+      helpToggle.setAttribute("aria-expanded", String(!isOpen));
+
+      if (isOpen) {
+        hideAllExamples();
+      }
+    });
+
+    helpExampleButtons.forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const target = event.currentTarget as HTMLElement;
+        const targetId = target.getAttribute("data-help-example");
+        if (!targetId) return;
+
+        hideAllExamples();
+        const selected = document.getElementById(targetId);
+        selected?.classList.remove("hidden");
+      });
+    });
+
+    emitProjectUpdate();
+  </script>
+</body>
+</html>

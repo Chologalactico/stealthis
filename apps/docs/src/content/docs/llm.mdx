@@ -1,0 +1,31 @@
+---
+title: LLM Context
+description: Context file for LLMs working with StealThis.dev.
+---
+
+This page provides context for LLMs accessing StealThis resources.
+
+See also: [`/llms.txt`](https://docs.stealthis.dev/llms.txt) for the raw plaintext version.
+
+## What StealThis.dev Is
+
+StealThis.dev is an open-source collection of reusable web resources:
+
+- **Web Animations** — scroll-triggered effects, parallax, canvas, WebGL
+- **Web Pages** — landing pages, hero sections, pricing pages, portfolios
+- **UI Components** — buttons, cards, navigation, forms, modals
+- **Patterns** — loaders, hover effects, transitions, menus
+
+All resources are MIT licensed and free to copy.
+
+## Resource Structure
+
+Each resource has:
+- A unique `slug` (e.g., `scroll-fade`)
+- Metadata: title, description, category, type, tags, tech, difficulty, targets
+- Code snippets per target: `html`, `react`, `next`, `vue`, etc.
+- A full-screen demo at `lab.stealthis.dev/[category]/[slug]`
+
+## MCP Server
+
+Connect to `https://mcp.stealthis.dev/mcp` for programmatic access. See the [MCP Server docs](/mcp-server) for endpoint reference.

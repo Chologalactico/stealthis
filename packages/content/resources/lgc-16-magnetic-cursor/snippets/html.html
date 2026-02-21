@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnetic Cursor — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <!-- Custom cursor elements -->
+  <div id="cursor-ring" class="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+
+  <main class="page">
+    <header class="header">
+      <span class="eyebrow">Demo 16</span>
+      <h1>Magnetic Cursor</h1>
+      <p class="subtitle">Hover over the interactive elements below. The cursor ring and target elements are drawn toward each other with spring physics.</p>
+    </header>
+
+    <section class="demo-area">
+      <div class="button-grid">
+        <button class="mag-btn" data-magnetic data-magnetic-strength="0.4">
+          <span>Explore</span>
+        </button>
+        <button class="mag-btn accent" data-magnetic data-magnetic-strength="0.4">
+          <span>Create</span>
+        </button>
+        <button class="mag-btn outline" data-magnetic data-magnetic-strength="0.3">
+          <span>Discover</span>
+        </button>
+        <button class="mag-btn" data-magnetic data-magnetic-strength="0.4">
+          <span>Build</span>
+        </button>
+      </div>
+
+      <div class="card-row">
+        <div class="mag-card" data-magnetic data-magnetic-strength="0.15">
+          <div class="card-icon">01</div>
+          <h3>Spring Physics</h3>
+          <p>Lerp-based interpolation creates a natural, organic following motion.</p>
+        </div>
+        <div class="mag-card" data-magnetic data-magnetic-strength="0.15">
+          <div class="card-icon">02</div>
+          <h3>Magnetic Zones</h3>
+          <p>Elements detect cursor proximity and shift toward it within a configurable radius.</p>
+        </div>
+        <div class="mag-card" data-magnetic data-magnetic-strength="0.15">
+          <div class="card-icon">03</div>
+          <h3>Visual Feedback</h3>
+          <p>The cursor ring scales and changes color when hovering interactive targets.</p>
+        </div>
+      </div>
+
+      <div class="link-row">
+        <a href="/" class="mag-link" data-magnetic data-magnetic-strength="0.3">Back to Gallery</a>
+        <a href="#" class="mag-link" data-magnetic data-magnetic-strength="0.3">View Source</a>
+        <a href="#" class="mag-link" data-magnetic data-magnetic-strength="0.3">Next Demo</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

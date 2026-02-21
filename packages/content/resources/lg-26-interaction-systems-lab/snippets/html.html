@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interaction Systems Lab</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="fx-glow" aria-hidden="true"></div>
+    <div class="fx-noise" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <div class="controls">
+        <button id="motionToggle">Disable motion</button>
+        <button id="soundBtn">Enable audio hook</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel" data-section>
+        <p class="kicker">Phase 6</p>
+        <h1>Interaction Systems Lab</h1>
+        <p>Reusable cursor, spotlight, noise stack, section orchestration, timeline debugger, and sound-reactive scaffold.</p>
+        <p id="perfState">Performance monitor booting...</p>
+      </section>
+
+      <section class="panel" data-section>
+        <h2>Section Orchestrator</h2>
+        <p>Each section reports enter/exit to the debugger panel and updates active state.</p>
+        <div class="chips">
+          <span>Intersection-based</span>
+          <span>Reusable callbacks</span>
+          <span>Low overhead</span>
+        </div>
+      </section>
+
+      <section class="panel" data-section>
+        <h2>Sound Hook Preview</h2>
+        <p id="audioState">Audio reactive hook is idle. Click "Enable audio hook" to request microphone input.</p>
+        <div class="meter"><span id="meterFill"></span></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

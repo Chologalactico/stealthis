@@ -1,0 +1,137 @@
+:root {
+  --bg: #0a0f18;
+  --panel: #121b2d;
+  --line: #2a3852;
+  --text: #edf4ff;
+  --muted: #bfd0e8;
+  --accent: #90e7ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(95, 145, 255, 0.22), transparent 42%),
+    radial-gradient(circle at 86% 84%, rgba(178, 89, 255, 0.2), transparent 42%),
+    var(--bg);
+}
+
+.topbar {
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.support { margin: 0; color: var(--muted); font-size: 0.86rem; }
+.support.ok { color: #aff0cc; }
+.support.warn { color: #ffd6ad; }
+
+main {
+  width: min(1120px, 94%);
+  margin: 0 auto 2rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+}
+
+h1, h2, p { margin: 0; }
+.muted { color: var(--muted); }
+
+.grid-wrap {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.grid {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.tile {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.8rem;
+  background: linear-gradient(155deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02));
+  display: grid;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.tile-media {
+  min-height: 130px;
+  border-radius: 12px;
+}
+
+.tile p { color: var(--muted); font-size: 0.9rem; }
+
+.detail-wrap {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  padding: 1rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.hero-media {
+  min-height: 300px;
+  border-radius: 14px;
+}
+
+.detail-head {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid rgba(255,255,255,0.23);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  padding: 0.42rem 0.75rem;
+  cursor: pointer;
+}
+
+.btn.primary {
+  border: 0;
+  color: #051b28;
+  background: linear-gradient(130deg, #85e5ff, #8db6ff);
+  font-weight: 700;
+}
+
+.list {
+  color: var(--muted);
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sofia Reyes — UX/UI Designer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__eyebrow">
+        <span class="year-badge">© 2024</span>
+        <span class="hero__location">Based in Barcelona</span>
+      </div>
+
+      <h1 class="hero__name" aria-label="Sofia Reyes">
+        Sofia<br/>Reyes
+      </h1>
+
+      <div class="hero__role">
+        <span class="role__prefix">UX/UI &amp;</span>
+        <span class="role__word" id="rotating-word" aria-live="polite">product</span>
+        <span class="role__suffix">designer</span>
+      </div>
+
+      <p class="hero__tagline">
+        Crafting interfaces that feel inevitable —<br/>
+        where clarity meets craft.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#work" class="btn btn--primary">View Selected Work</a>
+        <a href="#about" class="btn btn--ghost">About Me</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span class="scroll-label">Scroll</span>
+    </div>
+
+    <div class="hero__bg-deco" aria-hidden="true">
+      <div class="deco-circle deco-circle--1"></div>
+      <div class="deco-circle deco-circle--2"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SELECTED WORK
+  ═══════════════════════════════════════════ -->
+  <section class="section section--work" id="work">
+    <div class="section__inner">
+      <header class="section__header">
+        <span class="section__label">Selected Work</span>
+        <h2 class="section__title reveal-heading">Case Studies</h2>
+      </header>
+
+      <div class="work-grid">
+
+        <!-- Card 1 — large -->
+        <article class="case-card case-card--large" data-project="finvault" data-color="#c17b3c">
+          <div class="case-card__image" style="--card-color: #d4956a;">
+            <div class="case-card__image-inner">
+              <div class="mockup mockup--dashboard">
+                <div class="mockup__bar"></div>
+                <div class="mockup__row"></div>
+                <div class="mockup__row mockup__row--short"></div>
+                <div class="mockup__chart"></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__meta">
+              <span class="badge">Fintech</span>
+              <span class="case-card__year">2024</span>
+            </div>
+            <h3 class="case-card__title">FinVault</h3>
+            <p class="case-card__desc">A personal finance dashboard redesign focused on reducing cognitive load and building financial confidence.</p>
+            <span class="case-card__cta">View Case Study →</span>
+          </div>
+        </article>
+
+        <!-- Card 2 — small -->
+        <article class="case-card case-card--small" data-project="luma" data-color="#7a6b9e">
+          <div class="case-card__image" style="--card-color: #9b8fbe;">
+            <div class="case-card__image-inner">
+              <div class="mockup mockup--mobile">
+                <div class="mockup__screen">
+                  <div class="mockup__app-row"></div>
+                  <div class="mockup__app-grid">
+                    <div class="mockup__app-tile"></div>
+                    <div class="mockup__app-tile"></div>
+                    <div class="mockup__app-tile"></div>
+                    <div class="mockup__app-tile"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__meta">
+              <span class="badge">Mobile App</span>
+              <span class="case-card__year">2024</span>
+            </div>
+            <h3 class="case-card__title">Luma</h3>
+            <p class="case-card__desc">AI-powered mood journaling app that adapts its interface to the user's emotional state.</p>
+            <span class="case-card__cta">View Case Study →</span>
+          </div>
+        </article>
+
+        <!-- Card 3 — small -->
+        <article class="case-card case-card--small" data-project="forma" data-color="#4a7b6e">
+          <div class="case-card__image" style="--card-color: #6a9e91;">
+            <div class="case-card__image-inner">
+              <div class="mockup mockup--web">
+                <div class="mockup__nav-bar"></div>
+                <div class="mockup__hero-block"></div>
+                <div class="mockup__content-cols">
+                  <div class="mockup__col"></div>
+                  <div class="mockup__col"></div>
+                  <div class="mockup__col"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__meta">
+              <span class="badge">Design System</span>
+              <span class="case-card__year">2023</span>
+            </div>
+            <h3 class="case-card__title">Forma DS</h3>
+            <p class="case-card__desc">A comprehensive design system built for a B2B SaaS platform serving 40k+ users across 12 product areas.</p>
+            <span class="case-card__cta">View Case Study →</span>
+          </div>
+        </article>
+
+        <!-- Card 4 — large -->
+        <article class="case-card case-card--large" data-project="wayfound" data-color="#c17b3c">
+          <div class="case-card__image" style="--card-color: #b8956e;">
+            <div class="case-card__image-inner">
+              <div class="mockup mockup--map">
+                <div class="mockup__map-bg">
+                  <div class="mockup__pin mockup__pin--1"></div>
+                  <div class="mockup__pin mockup__pin--2"></div>
+                  <div class="mockup__pin mockup__pin--3"></div>
+                  <div class="mockup__route"></div>
+                </div>
+                <div class="mockup__map-card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__meta">
+              <span class="badge">Travel &amp; Navigation</span>
+              <span class="case-card__year">2023</span>
+            </div>
+            <h3 class="case-card__title">Wayfound</h3>
+            <p class="case-card__desc">Reimagining travel discovery for solo adventurers — from inspiration to itinerary in a single, fluid experience.</p>
+            <span class="case-card__cta">View Case Study →</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROCESS
+  ═══════════════════════════════════════════ -->
+  <section class="section section--process" id="process">
+    <div class="section__inner">
+      <header class="section__header">
+        <span class="section__label">How I Work</span>
+        <h2 class="section__title reveal-heading">The Process</h2>
+      </header>
+
+      <div class="process-row">
+        <div class="process-step" data-step="01">
+          <div class="process-step__number">01</div>
+          <div class="process-step__connector" aria-hidden="true"></div>
+          <h3 class="process-step__title">Research</h3>
+          <p class="process-step__desc">Interviews, competitive audits, analytics deep-dives. I build empathy before pixels.</p>
+        </div>
+
+        <div class="process-step" data-step="02">
+          <div class="process-step__number">02</div>
+          <div class="process-step__connector" aria-hidden="true"></div>
+          <h3 class="process-step__title">Define</h3>
+          <p class="process-step__desc">Synthesizing insights into problem statements, journey maps, and success metrics.</p>
+        </div>
+
+        <div class="process-step" data-step="03">
+          <div class="process-step__number">03</div>
+          <div class="process-step__connector" aria-hidden="true"></div>
+          <h3 class="process-step__title">Design</h3>
+          <p class="process-step__desc">Wireframes to high-fidelity prototypes. Iterating with users and engineering partners.</p>
+        </div>
+
+        <div class="process-step" data-step="04">
+          <div class="process-step__number">04</div>
+          <div class="process-step__connector" aria-hidden="true"></div>
+          <h3 class="process-step__title">Deliver</h3>
+          <p class="process-step__desc">Spec'd handoffs, design systems, and post-launch measurement to close the loop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+  <section class="section section--about" id="about">
+    <div class="section__inner about-layout">
+
+      <div class="about-image">
+        <div class="about-image__frame">
+          <div class="about-image__placeholder">
+            <!-- Decorative portrait placeholder -->
+            <div class="portrait-bg"></div>
+            <div class="portrait-shape portrait-shape--head"></div>
+            <div class="portrait-shape portrait-shape--body"></div>
+          </div>
+          <div class="about-image__tag">
+            <span class="tag-dot"></span>
+            Available for work
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <header class="section__header section__header--left">
+          <span class="section__label">About</span>
+          <h2 class="section__title reveal-heading">The Designer</h2>
+        </header>
+
+        <p class="about-bio">
+          I'm Sofia — a UX/UI designer with 7 years of experience turning complex systems into clear, delightful products. I've worked with early-stage startups and enterprise teams across fintech, health, and productivity.
+        </p>
+        <p class="about-bio about-bio--secondary">
+          My work lives at the intersection of research and craft. I believe the best interfaces are the ones users never have to think about — they just work.
+        </p>
+
+        <div class="about-skills">
+          <span class="skill-pill">UX Research</span>
+          <span class="skill-pill">Interaction Design</span>
+          <span class="skill-pill">Design Systems</span>
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Prototyping</span>
+          <span class="skill-pill">User Testing</span>
+          <span class="skill-pill">Accessibility</span>
+          <span class="skill-pill">Motion Design</span>
+          <span class="skill-pill">Visual Design</span>
+          <span class="skill-pill">Product Strategy</span>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat__number">7+</span>
+            <span class="stat__label">Years Experience</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number">40+</span>
+            <span class="stat__label">Projects Shipped</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number">12</span>
+            <span class="stat__label">Happy Clients</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER / CONTACT
+  ═══════════════════════════════════════════ -->
+  <footer class="footer" id="contact">
+    <div class="footer__inner">
+      <div class="footer__availability">
+        <span class="avail-dot"></span>
+        Open for projects
+      </div>
+      <h2 class="footer__headline">
+        Let's make<br/>
+        something<br/>
+        <em>remarkable.</em>
+      </h2>
+      <a href="mailto:sofia@example.com" class="footer__email">
+        sofia@example.com
+      </a>
+      <div class="footer__links">
+        <a href="#" class="footer__link">LinkedIn</a>
+        <a href="#" class="footer__link">Dribbble</a>
+        <a href="#" class="footer__link">Read.cv</a>
+      </div>
+      <div class="footer__bottom">
+        <span>Sofia Reyes</span>
+        <span>Barcelona, Spain</span>
+        <span>2024</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       CASE STUDY DETAIL OVERLAY
+  ═══════════════════════════════════════════ -->
+  <div class="detail-overlay" id="detailOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Case Study Detail">
+    <button class="detail-overlay__close" id="detailClose" aria-label="Close case study">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="detail-overlay__inner">
+      <div class="detail-hero">
+        <div class="detail-hero__image" id="detailImage">
+          <!-- Filled dynamically -->
+        </div>
+        <div class="detail-hero__content">
+          <div class="case-card__meta" id="detailMeta"></div>
+          <h2 class="detail-title" id="detailTitle"></h2>
+          <p class="detail-summary" id="detailSummary"></p>
+        </div>
+      </div>
+
+      <div class="detail-body">
+        <div class="detail-section">
+          <h3 class="detail-section__title">The Challenge</h3>
+          <p class="detail-section__text" id="detailChallenge"></p>
+        </div>
+        <div class="detail-section">
+          <h3 class="detail-section__title">My Approach</h3>
+          <p class="detail-section__text" id="detailApproach"></p>
+        </div>
+        <div class="detail-outcomes">
+          <div class="outcome" id="detailOutcome1"></div>
+          <div class="outcome" id="detailOutcome2"></div>
+          <div class="outcome" id="detailOutcome3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

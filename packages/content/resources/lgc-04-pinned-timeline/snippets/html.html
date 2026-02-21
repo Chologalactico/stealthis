@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinned Scroll Sections — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Intro -->
+  <section class="intro">
+    <span class="eyebrow">Demo 04</span>
+    <h1>Pinned Scroll Sections</h1>
+    <p class="subtitle">Each section pins in place while a multi-step timeline plays, driven entirely by scroll position.</p>
+  </section>
+
+  <!-- Pinned Section 1: Features -->
+  <section class="pinned-section" id="section-features">
+    <div class="pin-content">
+      <div class="pin-left">
+        <div class="step-indicators">
+          <div class="step-dot active" data-step="0"></div>
+          <div class="step-dot" data-step="1"></div>
+          <div class="step-dot" data-step="2"></div>
+        </div>
+        <div class="pin-text">
+          <div class="step-text active" data-step="0">
+            <span class="step-label">Step 1 of 3</span>
+            <h2>Design</h2>
+            <p>Every animation begins with intention. The design phase establishes timing, easing, and choreography before a single line of code is written.</p>
+          </div>
+          <div class="step-text" data-step="1">
+            <span class="step-label">Step 2 of 3</span>
+            <h2>Animate</h2>
+            <p>ScrollTrigger scrubs through GSAP timelines at the pace of the user's scroll, creating a sense of direct manipulation and control.</p>
+          </div>
+          <div class="step-text" data-step="2">
+            <span class="step-label">Step 3 of 3</span>
+            <h2>Polish</h2>
+            <p>The final pass adds micro-interactions, easing refinements, and reduced-motion alternatives to ensure a premium experience for everyone.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pin-right">
+        <div class="visual-stage">
+          <div class="vis-element vis-circle" id="vis-circle"></div>
+          <div class="vis-element vis-square" id="vis-square"></div>
+          <div class="vis-element vis-triangle" id="vis-triangle"></div>
+          <div class="vis-line vis-line-1"></div>
+          <div class="vis-line vis-line-2"></div>
+          <div class="vis-line vis-line-3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pinned Section 2: Metrics -->
+  <section class="pinned-section" id="section-metrics">
+    <div class="pin-content">
+      <div class="pin-left">
+        <div class="step-indicators">
+          <div class="step-dot active" data-step="0"></div>
+          <div class="step-dot" data-step="1"></div>
+          <div class="step-dot" data-step="2"></div>
+        </div>
+        <div class="pin-text">
+          <div class="step-text active" data-step="0">
+            <span class="step-label">Performance</span>
+            <h2>60fps</h2>
+            <p>Every animation targets a smooth 60 frames per second, with GPU-accelerated transforms and careful paint avoidance.</p>
+          </div>
+          <div class="step-text" data-step="1">
+            <span class="step-label">Accessibility</span>
+            <h2>100%</h2>
+            <p>All demos respect prefers-reduced-motion, include keyboard navigation, and maintain WCAG AA contrast ratios.</p>
+          </div>
+          <div class="step-text" data-step="2">
+            <span class="step-label">Bundle Size</span>
+            <h2>&lt;50kb</h2>
+            <p>Tree-shaking and careful dependency management keep animation code lean and loading times fast.</p>
+          </div>
+        </div>
+      </div>
+      <div class="pin-right">
+        <div class="metric-bars">
+          <div class="metric-bar" id="bar-1">
+            <div class="bar-fill" style="--color: #86e8ff;"></div>
+            <span class="bar-label">Performance</span>
+          </div>
+          <div class="metric-bar" id="bar-2">
+            <div class="bar-fill" style="--color: #ae52ff;"></div>
+            <span class="bar-label">Accessibility</span>
+          </div>
+          <div class="metric-bar" id="bar-3">
+            <div class="bar-fill" style="--color: #ff40d6;"></div>
+            <span class="bar-label">Efficiency</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outro -->
+  <section class="outro">
+    <h2>Scroll-driven storytelling.</h2>
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

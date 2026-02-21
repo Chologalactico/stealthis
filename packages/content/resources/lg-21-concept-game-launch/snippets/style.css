@@ -1,0 +1,227 @@
+:root {
+  --bg: #08060f;
+  --text: #f6f4ff;
+  --muted: #d0cbe3;
+  --line: #40355e;
+  --hot: #ff7058;
+  --cyan: #6de8ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Impact", "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 100, 88, 0.28), transparent 42%),
+    radial-gradient(circle at 80% 70%, rgba(109, 232, 255, 0.25), transparent 45%),
+    var(--bg);
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: rgba(8, 6, 15, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.topbar a {
+  color: var(--cyan);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+}
+
+.toggle {
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  color: var(--text);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+main { padding-top: 3.4rem; }
+
+.hero {
+  min-height: 100vh;
+  width: min(1120px, 94%);
+  margin: 0 auto;
+  display: grid;
+  align-content: center;
+  gap: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--cyan);
+  font-size: 0.86rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 14vw, 11rem);
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  color: var(--muted);
+  max-width: 52ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.cta,
+.ghost {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.62rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cta {
+  background: linear-gradient(130deg, var(--hot), #ffb170);
+  color: #28100f;
+}
+
+.ghost {
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.stats {
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.stats li {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.7rem;
+  display: grid;
+  gap: 0.2rem;
+  background: rgba(255,255,255,0.02);
+}
+
+.stats strong {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.stats span {
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.feature-row {
+  width: min(1120px, 94%);
+  margin: 0 auto 1.4rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.feature {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.8rem;
+  background: rgba(255,255,255,0.03);
+}
+
+.feature h2 { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.8rem); }
+.feature p {
+  margin: 0.35rem 0 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+.marquee {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 2rem;
+}
+
+.track {
+  white-space: nowrap;
+  padding: 0.7rem 0;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  animation: marquee 13s linear infinite;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: radial-gradient(circle at 20% 30%, #fff 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.beam {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  filter: blur(24px);
+  opacity: 0.38;
+  pointer-events: none;
+  animation: pulse 5s ease-in-out infinite;
+}
+
+.beam-a {
+  background: var(--hot);
+  top: 12%;
+  right: 4%;
+}
+
+.beam-b {
+  background: var(--cyan);
+  bottom: 8%;
+  left: 12%;
+  animation-delay: 1.5s;
+}
+
+body.no-motion .track,
+body.no-motion .beam {
+  animation: none;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.2); }
+}
+
+@media (max-width: 920px) {
+  .stats { grid-template-columns: 1fr; }
+  .feature-row { grid-template-columns: 1fr; }
+}

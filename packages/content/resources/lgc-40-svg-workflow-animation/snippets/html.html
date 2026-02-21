@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Workflow Animation — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="content">
+      <span class="eyebrow">Demo 40</span>
+      <h1>SVG Workflow Animation</h1>
+      <p class="subtitle">SVG paths draw themselves as you scroll, with nodes and labels appearing in sequence. A clean way to visualize processes, timelines, and workflows.</p>
+    </div>
+  </section>
+
+  <section class="workflow-section">
+    <div class="workflow-wrapper">
+      <svg id="workflow-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- Connection lines (drawn last) -->
+        <path class="connect-line" id="line-1-2" d="M 200 120 C 200 200 400 200 400 280" stroke="#263249" fill="none" stroke-width="2" stroke-dasharray="0" />
+        <path class="connect-line" id="line-2-3a" d="M 400 320 C 400 380 200 380 200 440" stroke="#263249" fill="none" stroke-width="2" stroke-dasharray="0" />
+        <path class="connect-line" id="line-2-3b" d="M 400 320 C 400 380 600 380 600 440" stroke="#263249" fill="none" stroke-width="2" stroke-dasharray="0" />
+        <path class="connect-line" id="line-3a-4" d="M 200 480 C 200 520 400 520 400 560" stroke="#263249" fill="none" stroke-width="2" stroke-dasharray="0" />
+        <path class="connect-line" id="line-3b-4" d="M 600 480 C 600 520 400 520 400 560" stroke="#263249" fill="none" stroke-width="2" stroke-dasharray="0" />
+
+        <!-- Node 1: Start -->
+        <g class="node" id="node-1" opacity="0">
+          <circle cx="200" cy="100" r="36" fill="#121a2b" stroke="#86e8ff" stroke-width="2"/>
+          <text x="200" y="96" text-anchor="middle" fill="#86e8ff" font-size="11" font-weight="600" dy="0">KICK</text>
+          <text x="200" y="110" text-anchor="middle" fill="#86e8ff" font-size="11" font-weight="600" dy="0">OFF</text>
+        </g>
+        <text class="node-label" id="label-1" x="260" y="105" fill="#f0f4fb" font-size="13" opacity="0">Discovery &amp; Brief</text>
+
+        <!-- Node 2: Research -->
+        <g class="node" id="node-2" opacity="0">
+          <circle cx="400" cy="300" r="36" fill="#121a2b" stroke="#ae52ff" stroke-width="2"/>
+          <text x="400" y="296" text-anchor="middle" fill="#ae52ff" font-size="11" font-weight="600" dy="0">RE</text>
+          <text x="400" y="310" text-anchor="middle" fill="#ae52ff" font-size="11" font-weight="600" dy="0">SEARCH</text>
+        </g>
+        <text class="node-label" id="label-2" x="450" y="305" fill="#f0f4fb" font-size="13" opacity="0">Strategy &amp; Analysis</text>
+
+        <!-- Node 3a: Design -->
+        <g class="node" id="node-3a" opacity="0">
+          <circle cx="200" cy="460" r="36" fill="#121a2b" stroke="#ffcc66" stroke-width="2"/>
+          <text x="200" y="456" text-anchor="middle" fill="#ffcc66" font-size="11" font-weight="600" dy="0">DE</text>
+          <text x="200" y="470" text-anchor="middle" fill="#ffcc66" font-size="11" font-weight="600" dy="0">SIGN</text>
+        </g>
+        <text class="node-label" id="label-3a" x="250" y="465" fill="#f0f4fb" font-size="13" opacity="0">UI / UX Design</text>
+
+        <!-- Node 3b: Dev -->
+        <g class="node" id="node-3b" opacity="0">
+          <circle cx="600" cy="460" r="36" fill="#121a2b" stroke="#ff40d6" stroke-width="2"/>
+          <text x="600" y="456" text-anchor="middle" fill="#ff40d6" font-size="11" font-weight="600" dy="0">DE</text>
+          <text x="600" y="470" text-anchor="middle" fill="#ff40d6" font-size="11" font-weight="600" dy="0">DEV</text>
+        </g>
+        <text class="node-label" id="label-3b" x="550" y="465" fill="#f0f4fb" font-size="13" opacity="0" text-anchor="end">Frontend Dev</text>
+
+        <!-- Node 4: Launch -->
+        <g class="node" id="node-4" opacity="0">
+          <circle cx="400" cy="570" r="36" fill="#121a2b" stroke="#86e8ff" stroke-width="2"/>
+          <text x="400" y="566" text-anchor="middle" fill="#86e8ff" font-size="11" font-weight="600" dy="0">LAUN</text>
+          <text x="400" y="580" text-anchor="middle" fill="#86e8ff" font-size="11" font-weight="600" dy="0">CH</text>
+        </g>
+        <text class="node-label" id="label-4" x="450" y="575" fill="#f0f4fb" font-size="13" opacity="0">Ship &amp; Iterate</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="details-section">
+    <div class="content">
+      <h2>How It Works</h2>
+      <p>The key CSS property is <code>stroke-dasharray</code> and <code>stroke-dashoffset</code>. By setting the dashoffset to the full path length and animating it to 0, the path appears to "draw itself."</p>
+      <p>GSAP ScrollTrigger measures the path length with <code>path.getTotalLength()</code> at initialization, then animates the offset during scroll using <code>scrub: 1</code> for direct scroll-position linking.</p>
+      <h3>Step-by-Step</h3>
+      <ol>
+        <li>Get path length: <code>const len = path.getTotalLength()</code></li>
+        <li>Set initial state: <code>path.style.strokeDasharray = len</code>, <code>path.style.strokeDashoffset = len</code></li>
+        <li>Animate: <code>gsap.to(path, { strokeDashoffset: 0, scrollTrigger: { scrub: 1 } })</code></li>
+        <li>Reveal nodes with staggered <code>ScrollTrigger</code> at appropriate scroll positions</li>
+      </ol>
+      <a href="/" class="btn-back">Back to Showcase</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

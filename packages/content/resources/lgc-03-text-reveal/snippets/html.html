@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Reveal on Scroll — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="section hero-section">
+    <div class="content">
+      <span class="label">Demo 03</span>
+      <h1 class="split-headline">Typography in Motion</h1>
+      <p class="split-sub">Scroll down to reveal text character by character, line by line.</p>
+    </div>
+  </section>
+
+  <!-- Character reveal -->
+  <section class="section">
+    <div class="content">
+      <span class="label">Character Reveal</span>
+      <h2 class="split-chars">Every letter carries weight.</h2>
+      <p class="split-lines">Characters cascade into view with rotational depth, creating a sense of dimensionality that flat fades can never achieve. The stagger timing is crucial — too fast feels frantic, too slow feels sluggish.</p>
+    </div>
+  </section>
+
+  <!-- Word reveal -->
+  <section class="section">
+    <div class="content">
+      <span class="label">Word Reveal</span>
+      <h2 class="split-words">Words emerge from silence into meaning.</h2>
+      <p class="split-lines">When words arrive as units, they carry more semantic weight. The reader processes clusters of meaning rather than individual glyphs, creating a rhythm that mirrors natural speech patterns.</p>
+    </div>
+  </section>
+
+  <!-- Line reveal -->
+  <section class="section">
+    <div class="content">
+      <span class="label">Line Reveal</span>
+      <h2 class="split-lines-heading">Lines unfold like<br>pages turning in<br>a silent film.</h2>
+    </div>
+  </section>
+
+  <!-- Mixed styles -->
+  <section class="section">
+    <div class="content">
+      <span class="label">Scrub Reveal</span>
+      <h2 class="scrub-chars">Scroll controls the narrative.</h2>
+      <p class="split-lines">This section ties character reveal directly to scroll progress — scrub back and forth to see each letter respond to your scroll position. No play/reverse, just pure scroll-linked choreography.</p>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="section section-quote">
+    <div class="content">
+      <blockquote class="split-chars quote-text">"Good animation is invisible. Great animation is unforgettable."</blockquote>
+    </div>
+  </section>
+
+  <!-- Finale -->
+  <section class="section">
+    <div class="content">
+      <h2 class="split-chars">Fin.</h2>
+      <a href="/" class="back-link">Back to Gallery</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

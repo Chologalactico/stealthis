@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="neon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo 18 - Theme Mode Transition</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <p id="support" class="support"></p>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Demo 18</p>
+        <h1>Theme/Mode Shared-Element Transition</h1>
+        <p class="desc">Switch between visual modes while preserving hero identity and CTA hierarchy.</p>
+
+        <div class="modes" id="modes"></div>
+      </section>
+
+      <section class="preview">
+        <article class="panel">
+          <p class="label">Brand Core</p>
+          <h2 class="title" style="view-transition-name:brand-title">Nova Motion</h2>
+          <p class="muted">A shared heading stays continuous while global palette and texture shift.</p>
+          <button class="cta" style="view-transition-name:brand-cta">Get Early Access</button>
+        </article>
+
+        <article class="panel side">
+          <div class="swatch a"></div>
+          <div class="swatch b"></div>
+          <div class="swatch c"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+      </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal Scroll Gallery — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Intro -->
+  <section class="intro">
+    <span class="eyebrow">Demo 02</span>
+    <h1>Horizontal Scroll Gallery</h1>
+    <p class="subtitle">Scroll down — the gallery scrolls sideways. Each panel reveals with scale and opacity transitions.</p>
+    <div class="scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Horizontal section -->
+  <section class="horizontal-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="horizontal-track" id="horizontal-track">
+
+      <div class="panel" style="--hue: 200;">
+        <div class="panel-inner">
+          <span class="panel-number">01</span>
+          <h2>Kinetic<br>Typography</h2>
+          <p>Letters and words choreographed with scroll-driven timelines.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="--hue: 270;">
+        <div class="panel-inner">
+          <span class="panel-number">02</span>
+          <h2>Particle<br>Systems</h2>
+          <p>Thousands of elements forming organic, flowing structures.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="--hue: 330;">
+        <div class="panel-inner">
+          <span class="panel-number">03</span>
+          <h2>Scroll<br>Choreography</h2>
+          <p>Precisely timed sequences that unfold with the user's scroll.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="--hue: 45;">
+        <div class="panel-inner">
+          <span class="panel-number">04</span>
+          <h2>Shader<br>Art</h2>
+          <p>GPU-powered visuals creating mesmerizing real-time patterns.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="--hue: 160;">
+        <div class="panel-inner">
+          <span class="panel-number">05</span>
+          <h2>3D<br>Environments</h2>
+          <p>Immersive spaces built with WebGL and Three.js.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="--hue: 15;">
+        <div class="panel-inner">
+          <span class="panel-number">06</span>
+          <h2>Magnetic<br>Interactions</h2>
+          <p>Elements that attract and repel based on cursor proximity.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Outro -->
+  <section class="outro">
+    <h2>Gallery complete.</h2>
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

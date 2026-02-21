@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Engineer Portfolio — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Neural network canvas background -->
+  <canvas id="neural-canvas" aria-hidden="true"></canvas>
+
+  <!-- Hero: Terminal intro -->
+  <section class="section hero-section" id="hero">
+    <div class="terminal-block">
+      <div class="terminal-header">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">kai@portfolio ~ %</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line" id="line-cmd"><span class="prompt">&gt;</span> <span class="cmd-text"></span></div>
+        <div class="terminal-line terminal-blank" id="line-blank"></div>
+        <div class="terminal-line" id="line-name"><span class="name-text"></span></div>
+        <div class="terminal-line" id="line-role"><span class="role-text"></span></div>
+        <div class="terminal-line terminal-blank" id="line-blank2"></div>
+        <div class="terminal-line" id="line-tagline1"><span class="tagline1-text"></span></div>
+        <div class="terminal-line" id="line-tagline2"><span class="tagline2-text"></span></div>
+        <span class="cursor" id="cursor">_</span>
+      </div>
+    </div>
+    <div class="scroll-hint" id="scroll-hint">
+      <span>scroll to explore</span>
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+        <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="8" cy="7" r="2" fill="currentColor" class="scroll-dot"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- About + Stats -->
+  <section class="section about-section" id="about">
+    <div class="about-grid">
+      <div class="about-bio">
+        <h2 class="section-label">// about</h2>
+        <p class="bio-text">I'm a machine learning engineer focused on building production-grade AI systems. From transformer architectures to deployment pipelines, I bridge the gap between research papers and real-world applications. Currently exploring multimodal reasoning and efficient inference at scale.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="stat-number" data-target="7" data-suffix="+">0</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="23" data-suffix="">0</span>
+          <span class="stat-label">Published Papers</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="12" data-suffix="M+">0</span>
+          <span class="stat-label">Model Parameters</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section projects-section" id="projects">
+    <h2 class="section-label">// projects</h2>
+
+    <div class="project-card" data-project="neurovox">
+      <div class="project-content">
+        <h3 class="project-title">NeuroVox</h3>
+        <p class="project-desc">Real-time speech-to-intent engine built on a custom transformer architecture. Processes audio streams at 50ms latency with 97.3% accuracy on domain-specific vocabularies.</p>
+        <div class="project-tags">
+          <span class="tech-tag">PyTorch</span>
+          <span class="tech-tag">ONNX Runtime</span>
+          <span class="tech-tag">WebSocket</span>
+          <span class="tech-tag">Rust</span>
+        </div>
+      </div>
+      <div class="project-viz">
+        <canvas class="viz-canvas" id="viz-neurovox" aria-hidden="true"></canvas>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="deepsight">
+      <div class="project-content">
+        <h3 class="project-title">DeepSight</h3>
+        <p class="project-desc">Multimodal vision system that fuses LiDAR point clouds with camera feeds for autonomous navigation. Deployed across 200+ edge devices with real-time obstacle detection.</p>
+        <div class="project-tags">
+          <span class="tech-tag">TensorRT</span>
+          <span class="tech-tag">CUDA</span>
+          <span class="tech-tag">ROS2</span>
+          <span class="tech-tag">C++</span>
+        </div>
+      </div>
+      <div class="project-viz">
+        <canvas class="viz-canvas" id="viz-deepsight" aria-hidden="true"></canvas>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="synthmind">
+      <div class="project-content">
+        <h3 class="project-title">SynthMind</h3>
+        <p class="project-desc">A neuro-symbolic reasoning framework that combines neural language understanding with symbolic logic engines. Enables complex multi-step reasoning over structured knowledge graphs.</p>
+        <div class="project-tags">
+          <span class="tech-tag">JAX</span>
+          <span class="tech-tag">Prolog</span>
+          <span class="tech-tag">GraphQL</span>
+          <span class="tech-tag">Neo4j</span>
+        </div>
+      </div>
+      <div class="project-viz">
+        <canvas class="viz-canvas" id="viz-synthmind" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact terminal -->
+  <section class="section contact-section" id="contact">
+    <div class="terminal-block contact-terminal">
+      <div class="terminal-header">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">kai@contact ~ %</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line"><span class="prompt">&gt;</span> <span class="contact-cmd"></span></div>
+        <div class="terminal-line terminal-blank"></div>
+        <div class="contact-lines">
+          <div class="terminal-line"><span class="contact-line" data-line="0"></span></div>
+          <div class="terminal-line"><span class="contact-line" data-line="1"></span></div>
+          <div class="terminal-line"><span class="contact-line" data-line="2"></span></div>
+        </div>
+        <div class="terminal-line terminal-blank"></div>
+        <div class="terminal-line"><span class="prompt">&gt;</span> <span class="cursor contact-cursor">_</span></div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

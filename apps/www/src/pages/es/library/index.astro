@@ -1,0 +1,56 @@
+---
+import Base from "@layouts/Base.astro";
+import ResourceCard from "@components/ResourceCard.astro";
+import FilterBar from "@components/FilterBar.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "@i18n/index";
+
+const locale = "es" as const;
+const t = useTranslations(locale);
+const allResources = await getCollection("resources");
+const categories = [...new Set(allResources.map((r) => r.data.category))].sort();
+const techs = [...new Set(allResources.flatMap((r) => r.data.tech))].sort();
+const libraryDescription = "Explora todos los recursos web de código abierto.";
+const alternateLinks = [
+  { hreflang: "en", href: "https://stealthis.dev/library/" },
+  { hreflang: "es", href: "https://stealthis.dev/es/library/" },
+  { hreflang: "x-default", href: "https://stealthis.dev/library/" },
+];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "StealThis.dev Librería",
+  url: "https://stealthis.dev/es/library/",
+  inLanguage: "es",
+  description: libraryDescription,
+  numberOfItems: allResources.length,
+};
+---
+
+<Base
+  title="Librería"
+  description={libraryDescription}
+  canonicalPath="/es/library/"
+  alternateLinks={alternateLinks}
+  structuredData={structuredData}
+>
+  <div class="container-xl py-12">
+    <div class="mb-10">
+      <h1 class="text-4xl font-extrabold tracking-tight text-white mb-2">{t("library.title")}</h1>
+      <p class="text-slate-400">{t("library.subtitle")} — {allResources.length} recursos</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <aside class="w-full lg:w-64 shrink-0">
+        <FilterBar locale={locale} categories={categories} techs={techs} />
+      </aside>
+      <div class="flex-1 min-w-0">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+          {allResources.map((resource) => (
+            <ResourceCard resource={resource} locale={locale} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>

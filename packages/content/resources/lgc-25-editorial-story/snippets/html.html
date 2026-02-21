@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Editorial — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <!-- Editorial Hero -->
+  <section class="section hero-section" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-overline">A Visual Journey</span>
+      <h1 class="hero-title">The Amalfi Coast</h1>
+      <hr class="hero-rule">
+      <p class="hero-subtitle">Where Sea Meets Sky</p>
+      <div class="scroll-arrow" id="scroll-arrow">
+        <svg width="20" height="32" viewBox="0 0 20 32" fill="none">
+          <path d="M10 0v28M2 20l8 8 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opening Paragraph -->
+  <section class="section prose-section" id="prose">
+    <div class="prose-column">
+      <p class="prose-text dropcap">Along the southern edge of Italy's Sorrentine Peninsula, the Amalfi Coast unfolds like a watercolor painting left out in the Mediterranean sun. Pastel villages cling to limestone cliffs that plunge dramatically into turquoise waters, while terraced lemon groves perfume the salt-tinged air with citrus sweetness.</p>
+
+      <p class="prose-text">This stretch of coastline has inspired artists, poets, and wanderers for centuries. Every turn in the winding road reveals another vista that seems too beautiful to be real — a composition of color and light that no camera can fully capture.</p>
+
+      <blockquote class="pull-quote">
+        <p class="quote-text">"The coast is a place where time moves differently — not faster or slower, but in waves."</p>
+      </blockquote>
+
+      <p class="prose-text">The ancient towns of Positano, Amalfi, and Ravello each possess their own character. Positano cascades down its cliff face in a tumble of pink, terracotta, and white. Amalfi's cathedral rises from its piazza like a jewel. Ravello floats above it all, its gardens offering views that stretch to the edge of the world.</p>
+    </div>
+  </section>
+
+  <!-- Horizontal Photo Gallery -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-track">
+      <div class="gallery-panel panel-cliffs">
+        <div class="panel-landscape" aria-hidden="true"></div>
+        <div class="panel-caption">
+          <span class="caption-number">01</span>
+          <span class="caption-text">The Cliffs of Positano</span>
+        </div>
+      </div>
+      <div class="gallery-panel panel-sea">
+        <div class="panel-landscape" aria-hidden="true"></div>
+        <div class="panel-caption">
+          <span class="caption-number">02</span>
+          <span class="caption-text">Mediterranean Waters</span>
+        </div>
+      </div>
+      <div class="gallery-panel panel-sunset">
+        <div class="panel-landscape" aria-hidden="true"></div>
+        <div class="panel-caption">
+          <span class="caption-number">03</span>
+          <span class="caption-text">Golden Hour</span>
+        </div>
+      </div>
+      <div class="gallery-panel panel-village">
+        <div class="panel-landscape" aria-hidden="true"></div>
+        <div class="panel-caption">
+          <span class="caption-number">04</span>
+          <span class="caption-text">The Village at Dusk</span>
+        </div>
+      </div>
+    </div>
+    <!-- Progress bar -->
+    <div class="gallery-progress">
+      <div class="gallery-progress-fill" id="gallery-fill"></div>
+    </div>
+  </section>
+
+  <!-- FLIP Stories Section -->
+  <section class="section stories-section" id="stories">
+    <h2 class="stories-heading">Stories from the Coast</h2>
+    <div class="stories-grid" id="stories-grid">
+      <article class="story-card" data-story="0">
+        <div class="story-header header-path"></div>
+        <h3 class="story-title">The Coastal Path</h3>
+        <p class="story-preview">The Sentiero degli Dei — the Path of the Gods — winds along the ridgeline high above the sea, offering views that ancient Greeks believed were worthy of Olympus itself.</p>
+        <div class="story-full">
+          <p>Starting from the town of Agerola, the trail descends gradually through terraced hillsides thick with Mediterranean scrub. Wild rosemary and thyme release their fragrance underfoot. To one side, the cliff drops hundreds of meters to the sea below; to the other, the peaks of the Lattari Mountains rise into wisps of cloud.</p>
+          <p>It takes roughly four hours to complete the walk, ending with a steep descent into Nocelle and onward to Positano. But no one rushes this path. Every bend invites you to stop, to breathe, to absorb a panorama that shifts with the light.</p>
+        </div>
+        <button class="story-toggle">Read more</button>
+      </article>
+
+      <article class="story-card" data-story="1">
+        <div class="story-header header-lemon"></div>
+        <h3 class="story-title">Limoncello Sunset</h3>
+        <p class="story-preview">The lemons of the Amalfi Coast are unlike any others in the world — enormous, fragrant, and sweet enough to eat raw, their thick rinds holding centuries of tradition.</p>
+        <div class="story-full">
+          <p>In the terraced groves that climb the hillsides, the sfusato amalfitano lemons grow under canopies of chestnut poles and straw mats. These are not the small, tart lemons of commerce — they are giants, sometimes the size of a grapefruit, with rinds so aromatic they perfume entire valleys.</p>
+          <p>At sunset, when the golden light catches the fruit hanging heavy on the branches, you understand why limoncello became the coast's signature drink. The recipe is simple: lemon zest, sugar, water, alcohol. The magic is in the lemons themselves.</p>
+        </div>
+        <button class="story-toggle">Read more</button>
+      </article>
+
+      <article class="story-card" data-story="2">
+        <div class="story-header header-fisher"></div>
+        <h3 class="story-title">Fisherman's Dawn</h3>
+        <p class="story-preview">Before the tourists wake, before the cafes open their shutters, the fishermen of Cetara have already been at sea for hours, continuing a tradition as old as the coast itself.</p>
+        <div class="story-full">
+          <p>Cetara is the quietest of the Amalfi Coast towns, overlooked by most visitors in favor of its more photogenic neighbors. But it is here, in this small harbor village, that you find the coast's oldest and most authentic tradition: the colatura di alici, an anchovy sauce descended directly from the Roman garum.</p>
+          <p>The fishermen set out in darkness, navigating by the stars and the feel of the current. They return with the dawn, their small boats heavy with the silver catch that will be salted, pressed, and aged into liquid gold.</p>
+        </div>
+        <button class="story-toggle">Read more</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="section closing-section" id="closing">
+    <div class="closing-content">
+      <p class="closing-quote">Every journey begins with a single step.</p>
+      <div class="closing-meta">
+        <span class="meta-author">Words by Elena Voss</span>
+        <span class="meta-divider">&mdash;</span>
+        <span class="meta-date">Summer 2025</span>
+        <span class="meta-divider">&mdash;</span>
+        <span class="meta-time">8 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

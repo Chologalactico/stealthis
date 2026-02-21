@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concept E - Futuristic Dashboard Intro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <button id="motionToggle" class="toggle"></button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="kicker">Concept E</p>
+        <h1>Atlas Control</h1>
+        <p class="subtitle">Intro dashboard concept for mission-critical interfaces with layered telemetry modules.</p>
+      </section>
+
+      <section class="grid">
+        <article class="panel metric">
+          <h2>System Uptime</h2>
+          <p class="value" data-target="99.97">0</p>
+          <p class="hint">rolling 30-day</p>
+        </article>
+        <article class="panel metric">
+          <h2>Throughput</h2>
+          <p class="value" data-target="18340">0</p>
+          <p class="hint">events / min</p>
+        </article>
+        <article class="panel metric">
+          <h2>Active Nodes</h2>
+          <p class="value" data-target="128">0</p>
+          <p class="hint">region cluster</p>
+        </article>
+        <article class="panel timeline">
+          <h2>Signal Timeline</h2>
+          <div class="line" id="line"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+      </body>
+</html>

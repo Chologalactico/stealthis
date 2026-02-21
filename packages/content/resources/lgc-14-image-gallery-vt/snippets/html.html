@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery Transitions — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <header class="header">
+    <span class="eyebrow">Demo 14</span>
+    <h1>Image Gallery</h1>
+    <p class="subtitle">Click a thumbnail to see a smooth crossfade with scale using View Transitions. The hero image morphs between selections.</p>
+  </header>
+
+  <main class="gallery">
+    <div class="hero-area">
+      <div class="hero-image" id="hero-image" style="view-transition-name: hero-img; --hue: 200;">
+        <span class="hero-number" id="hero-number">01</span>
+        <span class="hero-label" id="hero-label">Aurora Borealis</span>
+      </div>
+    </div>
+
+    <div class="thumb-strip" id="thumb-strip">
+      <button class="thumb active" data-index="0" data-hue="200" data-label="Aurora Borealis" style="--hue: 200;"><span>01</span></button>
+      <button class="thumb" data-index="1" data-hue="270" data-label="Nebula Cloud" style="--hue: 270;"><span>02</span></button>
+      <button class="thumb" data-index="2" data-hue="330" data-label="Sunset Gradient" style="--hue: 330;"><span>03</span></button>
+      <button class="thumb" data-index="3" data-hue="45" data-label="Golden Hour" style="--hue: 45;"><span>04</span></button>
+      <button class="thumb" data-index="4" data-hue="160" data-label="Deep Forest" style="--hue: 160;"><span>05</span></button>
+      <button class="thumb" data-index="5" data-hue="15" data-label="Ember Glow" style="--hue: 15;"><span>06</span></button>
+      <button class="thumb" data-index="6" data-hue="240" data-label="Midnight Sky" style="--hue: 240;"><span>07</span></button>
+      <button class="thumb" data-index="7" data-hue="90" data-label="Spring Meadow" style="--hue: 90;"><span>08</span></button>
+    </div>
+  </main>
+
+  <div class="footer">
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

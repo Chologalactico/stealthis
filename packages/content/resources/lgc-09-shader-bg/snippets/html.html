@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shader Background — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <main class="content">
+    <span class="eyebrow">Demo 09</span>
+    <h1>Shader Background</h1>
+    <p class="subtitle">A full-screen GLSL fragment shader creating flowing aurora bands with layered simplex noise. Move your mouse to influence the flow.</p>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <h3>Simplex Noise</h3>
+        <p>Multiple octaves of noise sampled at different scales create organic, flowing movement without repetition.</p>
+      </div>
+      <div class="info-card">
+        <h3>Mouse Reactive</h3>
+        <p>Cursor position is passed as a uniform, subtly bending the noise field toward the mouse.</p>
+      </div>
+      <div class="info-card">
+        <h3>Full-Screen Quad</h3>
+        <p>A single plane fills the viewport. All visual complexity lives in the fragment shader — zero geometry.</p>
+      </div>
+    </div>
+
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </main>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

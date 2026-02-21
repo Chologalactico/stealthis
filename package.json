@@ -1,0 +1,33 @@
+{
+  "name": "stealthis",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "sync:vendor": "bun scripts/sync-lab-vendor-modules.mjs",
+    "sync:lab-vendor": "bun scripts/sync-lab-vendor-modules.mjs",
+    "import:examples": "bun scripts/import-showcase-examples.mjs",
+    "dev:www": "bun run --filter @stealthis/www dev",
+    "dev:docs": "bun run --filter @stealthis/docs dev",
+    "dev:lab": "bun run --filter @stealthis/lab dev",
+    "dev:build": "bun run --filter @stealthis/build dev",
+    "dev:mcp": "bun run --filter @stealthis/mcp dev",
+    "dev:remotion": "bun run --filter @stealthis/remotion dev",
+    "build:www": "bun run --filter @stealthis/www build",
+    "build:docs": "bun run --filter @stealthis/docs build",
+    "build:lab": "bun run --filter @stealthis/lab build",
+    "build:build": "bun run --filter @stealthis/build build",
+    "build:mcp": "bun run --filter @stealthis/mcp build",
+    "build:remotion": "bun run --filter @stealthis/remotion build",
+    "build": "bun run build:www && bun run build:docs && bun run build:lab && bun run build:build && bun run build:mcp",
+    "deploy:mcp": "bun run --filter @stealthis/mcp catalog && bun run --filter @stealthis/mcp build && bun run --filter @stealthis/mcp deploy",
+    "lint": "biome check .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
+}

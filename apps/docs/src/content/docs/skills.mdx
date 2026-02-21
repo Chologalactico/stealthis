@@ -1,0 +1,36 @@
+---
+title: Skills
+description: Claude Skills and Cursor Agent Skills for StealThis.dev — reusable AI workflows.
+---
+
+StealThis.dev includes **Skills** — reusable AI workflows that extend Claude and Cursor with project-specific knowledge and patterns.
+
+## What are Skills?
+
+Skills are YAML or Markdown files that define:
+
+- **Instructions** — step-by-step guidance for the AI
+- **Context** — project conventions, file patterns, naming
+- **Examples** — sample inputs and expected outputs
+
+They work with **Claude Code** (`.claude/skills/`), **Cursor** (`.cursor/skills/`), and similar agent frameworks.
+
+## StealThis Skills
+
+Resources in the `skills` category (e.g., [Git Commit Skill](https://stealthis.dev/r/git-commit-skill)) provide:
+
+1. A ready-to-use skill file you can copy
+2. Installation instructions (e.g., save to `~/.claude/skills/`)
+3. Usage examples and integration tips
+
+## Using a Skill
+
+1. Open the resource page on stealthis.dev
+2. Select the **YAML** or **Markdown** target
+3. Click **Copy** to copy the snippet
+4. Save to your skills directory (e.g., `~/.claude/skills/commit.yaml`)
+5. The AI will use the skill when relevant to your request
+
+## Creating Skills
+
+To contribute a skill to StealThis, follow the [Resource Format](/resource-format/) spec and use the `skills` category. Include clear installation and usage instructions in the resource documentation.

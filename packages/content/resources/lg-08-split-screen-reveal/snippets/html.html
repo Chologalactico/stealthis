@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo 08 - Split Screen Reveal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="back" href="../">Back to Demos</a>
+
+    <main class="scroll-track" id="track">
+      <section class="sticky-shell" aria-label="Split screen reveal stage">
+        <article class="panel left-panel">
+          <p class="eyebrow">Demo 08 · Scroll + Clip Path</p>
+          <h1>Split Screen Reveal</h1>
+          <p class="lead">
+            Scroll through the timeline to expose the concept panel on the right. This version is designed as a
+            presentation-ready layout, not just a raw clip-path test.
+          </p>
+
+          <div class="progress-wrap" aria-label="Reveal progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="8"
+              aria-valuetext="Reveal progress 8 percent"
+              id="progressBar"
+            >
+              <span class="progress-fill" id="progressFill"></span>
+            </div>
+            <p class="progress-label"><span id="progressLabel">8%</span> exposed</p>
+          </div>
+
+          <ol class="story-steps">
+            <li class="story-step active" data-step="0">
+              <h2>Stage 1 · Framing</h2>
+              <p>Introduce context with a stable reading zone while the visual side stays partially hidden.</p>
+            </li>
+            <li class="story-step" data-step="1">
+              <h2>Stage 2 · Reveal</h2>
+              <p>Mid-scroll opens the composition grid and spotlight cards to build momentum.</p>
+            </li>
+            <li class="story-step" data-step="2">
+              <h2>Stage 3 · Full Composition</h2>
+              <p>End state exposes the full board and callout stack for final messaging.</p>
+            </li>
+          </ol>
+        </article>
+
+        <article class="panel right-panel">
+          <div class="right-mask" id="rightMask">
+            <div class="right-atmosphere" aria-hidden="true">
+              <span class="blob blob-a"></span>
+              <span class="blob blob-b"></span>
+              <span class="blob blob-c"></span>
+              <span class="blob blob-d"></span>
+            </div>
+
+            <div class="right-content">
+              <header class="board-head">
+                <p class="board-kicker">Concept Board</p>
+                <h2>Original Concepts Only</h2>
+                <p>Modular sections, motion-safe defaults, and clear hierarchy for showcase presentations.</p>
+              </header>
+
+              <section class="board-grid" aria-label="Concept modules">
+                <article class="tile tile-large">
+                  <p class="tile-label">Hero Module</p>
+                  <h3>Cinematic Intro Block</h3>
+                  <p>Headline rhythm, ambient backdrop, and CTA choreography tuned for fast comprehension.</p>
+                </article>
+                <article class="tile">
+                  <p class="tile-label">Feature A</p>
+                  <h3>Split Narrative</h3>
+                  <p>Copy and visuals remain legible while reveal transitions continue.</p>
+                </article>
+                <article class="tile">
+                  <p class="tile-label">Feature B</p>
+                  <h3>Motion Safe</h3>
+                  <p>Reduced-motion users receive static composition without losing content.</p>
+                </article>
+                <article class="tile">
+                  <p class="tile-label">Feature C</p>
+                  <h3>Presentation Mode</h3>
+                  <p>Large contrast-safe blocks and compact card metadata for live demos.</p>
+                </article>
+              </section>
+            </div>
+          </div>
+          <span class="reveal-line" id="revealLine" aria-hidden="true"></span>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    </body>
+</html>

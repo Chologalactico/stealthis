@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRONFORM — Train Harder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-logo">IRON<span>FORM</span></div>
+    <ul class="nav-links">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#stats">Results</a></li>
+      <li><a href="#join">Join</a></li>
+    </ul>
+    <a href="#join" class="nav-cta">START NOW</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-stripe hero-stripe--1"></div>
+      <div class="hero-stripe hero-stripe--2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">EST. 2018 · THE GYM THAT GETS RESULTS</div>
+      <h1 class="hero-title">
+        <span class="hero-line">NO</span>
+        <span class="hero-line hero-line--yellow">EXCUSES.</span>
+        <span class="hero-line">JUST</span>
+        <span class="hero-line hero-line--outline">RESULTS.</span>
+      </h1>
+      <p class="hero-sub">Elite strength and conditioning. 12-week transformation programs. Coaches who've been there.</p>
+      <div class="hero-ctas">
+        <a href="#join" class="btn-yellow">GET STARTED — FREE WEEK</a>
+        <a href="#stats" class="btn-border-white">SEE THE RESULTS</a>
+      </div>
+    </div>
+    <div class="hero-ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>STRENGTH</span><span>·</span>
+        <span>CONDITIONING</span><span>·</span>
+        <span>ENDURANCE</span><span>·</span>
+        <span>MOBILITY</span><span>·</span>
+        <span>MINDSET</span><span>·</span>
+        <span>STRENGTH</span><span>·</span>
+        <span>CONDITIONING</span><span>·</span>
+        <span>ENDURANCE</span><span>·</span>
+        <span>MOBILITY</span><span>·</span>
+        <span>MINDSET</span><span>·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar" id="stats">
+    <div class="stat-item">
+      <span class="stat-big" data-target="4200">0</span>
+      <span class="stat-sub">Members</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+      <span class="stat-big" data-target="94" data-suffix="%">0</span>
+      <span class="stat-sub">Hit Their Goal</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+      <span class="stat-big" data-target="12" data-suffix=" WKS">0</span>
+      <span class="stat-sub">Transform</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true"></div>
+    <div class="stat-item">
+      <span class="stat-big" data-target="5">0</span>
+      <span class="stat-sub">Locations</span>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="programs-section" id="programs">
+    <div class="programs-header">
+      <span class="section-tag">WHAT WE OFFER</span>
+      <h2>Pick your<br><em>weapon.</em></h2>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card program-card--dark">
+        <div class="program-num">01</div>
+        <h3>POWERLIFTING</h3>
+        <p>Squat. Bench. Deadlift. We build absolute strength from the ground up. 3x per week, 12 weeks.</p>
+        <div class="program-meta">
+          <span>3×/week</span>
+          <span>All levels</span>
+          <span>From €89/mo</span>
+        </div>
+        <a href="#join" class="btn-yellow-sm">JOIN →</a>
+      </div>
+      <div class="program-card program-card--yellow">
+        <div class="program-num">02</div>
+        <h3>HIIT BURN</h3>
+        <p>High-intensity intervals. Maximum calorie burn. Minimum time wasted. 45 min sessions.</p>
+        <div class="program-meta">
+          <span>5×/week</span>
+          <span>Intermediate</span>
+          <span>From €79/mo</span>
+        </div>
+        <a href="#join" class="btn-black-sm">JOIN →</a>
+      </div>
+      <div class="program-card program-card--dark">
+        <div class="program-num">03</div>
+        <h3>ATHLETE BUILD</h3>
+        <p>Sport-specific conditioning for competitive athletes. Periodized programming. Peak performance.</p>
+        <div class="program-meta">
+          <span>4×/week</span>
+          <span>Advanced</span>
+          <span>From €119/mo</span>
+        </div>
+        <a href="#join" class="btn-yellow-sm">JOIN →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transformation -->
+  <section class="transform-section">
+    <div class="transform-inner">
+      <div class="transform-text">
+        <span class="section-tag">12-WEEK PROGRAM</span>
+        <h2>The results <br>speak for <br><em>themselves.</em></h2>
+        <ul class="result-list">
+          <li><span class="check">✓</span> Average 8.2kg fat loss in 12 weeks</li>
+          <li><span class="check">✓</span> 20% increase in functional strength</li>
+          <li><span class="check">✓</span> Improved VO2 max by 15%</li>
+          <li><span class="check">✓</span> Personal coaching + nutrition plan</li>
+        </ul>
+        <a href="#join" class="btn-yellow">START YOUR 12 WEEKS</a>
+      </div>
+      <div class="transform-visual" aria-hidden="true">
+        <div class="tv-box tv-box--before">
+          <div class="tv-label">BEFORE</div>
+          <div class="tv-week">Week 1</div>
+        </div>
+        <div class="tv-arrow">→</div>
+        <div class="tv-box tv-box--after">
+          <div class="tv-label">AFTER</div>
+          <div class="tv-week">Week 12</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="testi-header">
+      <span class="section-tag">REAL PEOPLE · REAL RESULTS</span>
+      <h2>They did it.<br>Now it's your turn.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"Lost 14kg in 12 weeks. I've tried everything. IRONFORM is the only thing that worked."</div>
+        <div class="testi-person">
+          <div class="testi-avatar" style="--hue: 30">MK</div>
+          <div>
+            <strong>Marcus K.</strong>
+            <span>Member since 2023</span>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="testi-card testi-card--yellow">
+        <div class="testi-quote">"Hit a 180kg deadlift PR after the powerlifting program. Coaches actually know what they're doing."</div>
+        <div class="testi-person">
+          <div class="testi-avatar" style="--hue: 200">SL</div>
+          <div>
+            <strong>Sofia L.</strong>
+            <span>Member since 2022</span>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"Competed in my first triathlon after 6 months. The conditioning program is on another level."</div>
+        <div class="testi-person">
+          <div class="testi-avatar" style="--hue: 100">DV</div>
+          <div>
+            <strong>David V.</strong>
+            <span>Member since 2024</span>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Join -->
+  <section class="join-section" id="join">
+    <div class="join-inner">
+      <h2>STOP <em>WAITING.</em><br>START TODAY.</h2>
+      <p>First week free. No contracts. Cancel anytime.</p>
+      <a href="#" class="btn-yellow btn-giant">CLAIM FREE WEEK →</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

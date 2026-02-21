@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo 16 - View Transition Card Detail</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <button id="backBtn" hidden>Back to grid</button>
+    </header>
+
+    <main id="app"></main>
+
+    <template id="gridTemplate">
+      <section class="grid-wrap">
+        <h1>View Transition Cards</h1>
+        <p class="sub">Select a scenario to open its implementation detail view.</p>
+        <p id="supportLine" class="support"></p>
+        <div class="grid" id="cardGrid"></div>
+      </section>
+    </template>
+
+    <template id="detailTemplate">
+      <section class="detail-wrap" id="detailRoot"></section>
+    </template>
+
+    <script src="script.js"></script>
+      </body>
+</html>

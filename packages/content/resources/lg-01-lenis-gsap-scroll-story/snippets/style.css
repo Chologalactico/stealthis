@@ -1,0 +1,248 @@
+:root {
+  --bg: #050913;
+  --panel: #121a2b;
+  --line: #273753;
+  --text: #eef4ff;
+  --muted: #c3cfe3;
+  --accent: #83e8ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(70, 125, 236, 0.28), transparent 34%),
+    radial-gradient(circle at 82% 78%, rgba(184, 83, 255, 0.24), transparent 36%),
+    var(--bg);
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-ui, 40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  background: rgba(5, 9, 19, 0.66);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.topbar a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.toggle {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  padding: 0.42rem 0.78rem;
+  cursor: pointer;
+}
+
+.progress-wrap {
+  position: fixed;
+  top: 53px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: var(--z-ui, 40);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #72dcff, #ce7eff);
+}
+
+main {
+  padding-top: 3.4rem;
+}
+
+.panel {
+  width: min(1080px, 92%);
+  min-height: 92vh;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+}
+
+.content {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.label {
+  margin: 0;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 7.5vw, 4.8rem);
+  line-height: 0.95;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 5.3vw, 3.4rem);
+}
+
+p {
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.chips span {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.25rem 0.62rem;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.83rem;
+  color: #e4ecfa;
+}
+
+.visual {
+  height: min(540px, 60vh);
+  position: relative;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6px);
+  opacity: 0.58;
+}
+
+.orb-a { width: 46%; aspect-ratio: 1; top: 8%; left: 4%; background: rgba(103, 196, 255, 0.55); }
+.orb-b { width: 30%; aspect-ratio: 1; top: 52%; left: 22%; background: rgba(241, 219, 167, 0.52); }
+.orb-c { width: 40%; aspect-ratio: 1; top: 18%; right: 2%; background: rgba(196, 108, 255, 0.5); }
+.orb-d { width: 28%; aspect-ratio: 1; bottom: 10%; right: 18%; background: rgba(255, 82, 217, 0.44); }
+
+.metrics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.metrics li {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 0.72rem;
+  display: grid;
+  gap: 0.2rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.metrics li strong {
+  font-size: 0.95rem;
+}
+
+.metrics li span {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.stage {
+  grid-template-columns: 1fr;
+  align-content: center;
+  gap: 1.3rem;
+}
+
+.stage-cards {
+  height: 45vh;
+  position: relative;
+}
+
+.stage-card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(84vw, 700px);
+  height: min(34vh, 250px);
+  border-radius: 16px;
+  display: grid;
+  place-content: center;
+  font-size: clamp(1.4rem, 3.8vw, 2.4rem);
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-one { background: linear-gradient(140deg, #223c5e, #2d6db4); }
+.card-two { background: linear-gradient(140deg, #3f2a61, #8d45c9); }
+.card-three { background: linear-gradient(140deg, #2f3d62, #6c7fca); }
+
+.note {
+  color: #dae6f8;
+  font-weight: 600;
+}
+
+body.no-motion .stage-cards {
+  height: auto;
+  display: grid;
+  gap: 0.7rem;
+}
+
+body.no-motion .stage-card {
+  position: relative;
+  width: 100%;
+  height: 130px;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+    min-height: 86vh;
+    padding-top: 0.6rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .visual {
+    height: 32vh;
+  }
+
+  .stage-cards {
+    height: 42vh;
+  }
+}

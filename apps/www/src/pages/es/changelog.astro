@@ -1,0 +1,87 @@
+---
+import Base from "@layouts/Base.astro";
+import { useTranslations } from "@i18n/index";
+
+const locale = "es" as const;
+const t = useTranslations(locale);
+
+const releases: Array<{
+  date: string;
+  version?: string;
+  en: string[];
+  es: string[];
+}> = [
+  {
+    date: "2026-02-21",
+    version: "0.1.0",
+    en: [
+      "New Changelog page on the site.",
+      "Hero animations: count-up stats and smooth entrance for title, subtitle, and CTAs.",
+      "Integration docs updated: MCP server URL is https://mcp.stealthis.dev/mcp.",
+      "Music category added as Coming soon in Browse by Category.",
+      "Hero subtitle rephrased to «Ready-to-use snippets and demos».",
+    ],
+    es: [
+      "Nueva página Changelog en el sitio.",
+      "Animaciones en el hero: números que suben y entrada suave del título, subtítulo y CTAs.",
+      "Docs de integración actualizados: URL del servidor MCP es https://mcp.stealthis.dev/mcp.",
+      "Categoría Music añadida como Próximamente en Explorar por categoría.",
+      "Subtítulo del hero reescrito a «Snippets y demos listos para usar».",
+    ],
+  },
+];
+---
+
+<Base
+  title={t("changelog.title")}
+  description={t("changelog.description")}
+  canonicalPath="/es/changelog"
+  alternateLinks={[
+    { hreflang: "en", href: "https://stealthis.dev/changelog" },
+    { hreflang: "es", href: "https://stealthis.dev/es/changelog" },
+    { hreflang: "x-default", href: "https://stealthis.dev/changelog" },
+  ]}
+>
+  <section class="container-xl py-16 pb-20">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold text-white tracking-tight">{t("changelog.title")}</h1>
+      <p class="mt-3 text-slate-400 max-w-xl">{t("changelog.intro")}</p>
+      <a
+        href="https://github.com/Foodhy/stealthis/releases"
+        target="_blank"
+        rel="noopener"
+        class="inline-block mt-4 text-sm text-brand-400 hover:text-brand-300 font-medium"
+      >
+        {t("changelog.seeGitHub")} →
+      </a>
+    </header>
+
+    <div class="space-y-12">
+      {releases.map((release) => {
+        const items = release.es;
+        const displayDate = new Date(release.date).toLocaleDateString("es-ES", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        return (
+          <article class="border border-white/8 rounded-2xl bg-surface-900/30 p-6 sm:p-8">
+            <div class="flex flex-wrap items-baseline gap-3 mb-4">
+              <time datetime={release.date} class="text-sm text-slate-500">
+                {displayDate}
+              </time>
+              {release.version && (
+                <span class="text-sm font-medium text-brand-400">v{release.version}</span>
+              )}
+            </div>
+            <ul class="list-disc list-inside space-y-2 text-slate-300">
+              {items.map((item) => (
+                <li class="pl-1">{item}</li>
+              ))}
+            </ul>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</Base>

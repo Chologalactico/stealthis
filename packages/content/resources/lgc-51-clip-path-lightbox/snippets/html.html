@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clip-Path Lightbox Expand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="page-header">
+      <span class="label">Technique Demo</span>
+      <h1>Clip-Path<br><em>Lightbox</em></h1>
+      <p>Cards expand to fullscreen using <code>clip-path: inset()</code> animated from the card's exact position and size. No fixed positioning — pure geometric expansion.</p>
+    </header>
+
+    <!-- Gallery grid -->
+    <section class="gallery-section">
+      <div class="gallery-label">
+        <span class="label">Click any card to expand</span>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+
+        <article class="gallery-card" data-id="1" data-color-a="#1a0a2e" data-color-b="#4a1060" data-accent="#c060ff" data-title="Aurora Study" data-sub="Iceland · 2024" data-body="Shot at 2am during peak solar activity. The entire sky moved like a living thing — cyan ribbons folding into violet, then pink.">
+          <div class="gc-art gc-art--1" aria-hidden="true"></div>
+          <div class="gc-info">
+            <h3>Aurora Study</h3>
+            <span>Iceland · 2024</span>
+          </div>
+          <div class="gc-expand-hint" aria-hidden="true">→</div>
+        </article>
+
+        <article class="gallery-card" data-id="2" data-color-a="#0a1a10" data-color-b="#0a3020" data-accent="#40e080" data-title="Forest Floor" data-sub="Patagonia · 2023" data-body="Six hours lying prone in the undergrowth. Waiting for the light to move through the canopy at exactly the right angle.">
+          <div class="gc-art gc-art--2" aria-hidden="true"></div>
+          <div class="gc-info">
+            <h3>Forest Floor</h3>
+            <span>Patagonia · 2023</span>
+          </div>
+          <div class="gc-expand-hint" aria-hidden="true">→</div>
+        </article>
+
+        <article class="gallery-card" data-id="3" data-color-a="#1a1000" data-color-b="#3a2000" data-accent="#ff9020" data-title="Desert Dusk" data-sub="Atacama · 2024" data-body="The world's driest desert at the moment the sun disappears. Silence so complete you can hear your heartbeat.">
+          <div class="gc-art gc-art--3" aria-hidden="true"></div>
+          <div class="gc-info">
+            <h3>Desert Dusk</h3>
+            <span>Atacama · 2024</span>
+          </div>
+          <div class="gc-expand-hint" aria-hidden="true">→</div>
+        </article>
+
+        <article class="gallery-card gallery-card--wide" data-id="4" data-color-a="#001018" data-color-b="#001a28" data-accent="#20c0ff" data-title="Midnight Ocean" data-sub="Pacific · 2023" data-body="Three days at sea on a research vessel. Bioluminescent plankton turned every wave into a streak of blue fire.">
+          <div class="gc-art gc-art--4" aria-hidden="true"></div>
+          <div class="gc-info">
+            <h3>Midnight Ocean</h3>
+            <span>Pacific · 2023</span>
+          </div>
+          <div class="gc-expand-hint" aria-hidden="true">→</div>
+        </article>
+
+        <article class="gallery-card" data-id="5" data-color-a="#18000a" data-color-b="#300015" data-accent="#ff2060" data-title="Tokyo Neon" data-sub="Tokyo · 2024" data-body="Shinjuku at 3am. The streets belong to the signs, the rain, and whoever chooses to walk through it.">
+          <div class="gc-art gc-art--5" aria-hidden="true"></div>
+          <div class="gc-info">
+            <h3>Tokyo Neon</h3>
+            <span>Tokyo · 2024</span>
+          </div>
+          <div class="gc-expand-hint" aria-hidden="true">→</div>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox" id="lightbox" aria-modal="true" aria-label="Image lightbox" hidden>
+    <div class="lb-art" id="lb-art" aria-hidden="true"></div>
+    <div class="lb-content">
+      <div class="lb-meta">
+        <h2 class="lb-title" id="lb-title"></h2>
+        <span class="lb-sub" id="lb-sub"></span>
+      </div>
+      <p class="lb-body" id="lb-body"></p>
+      <button class="lb-close" id="lb-close" aria-label="Close lightbox">✕ Close</button>
+    </div>
+    <div class="lb-nav">
+      <button class="lb-prev" id="lb-prev" aria-label="Previous">←</button>
+      <button class="lb-next" id="lb-next" aria-label="Next">→</button>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

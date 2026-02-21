@@ -1,0 +1,38 @@
+---
+slug: scroll-fade
+title: Scroll Fade In
+description: Smooth fade-in animation triggered by Intersection Observer as elements enter the viewport on scroll.
+category: web-animations
+type: animation
+tags: [scroll, fade, intersection-observer, viewport]
+tech: [css, js, intersection-observer]
+difficulty: easy
+targets: [html, react]
+labRoute: /web-animations/scroll-fade
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+## Scroll Fade In
+
+A lightweight scroll-triggered fade-in animation using the native **Intersection Observer API** — no libraries required.
+
+### How it works
+
+Elements start invisible (`opacity: 0`, slightly translated down) and fade in once they enter the viewport. The observer disconnects after the element is visible, keeping things performant.
+
+### When to use it
+
+- Hero sections with staggered content
+- Blog post cards loading as you scroll
+- Feature grids on landing pages
+
+### Tech used
+
+- `IntersectionObserver` — native browser API, zero dependencies
+- CSS transitions — smooth, GPU-accelerated
+
+### Accessibility
+
+Respects `prefers-reduced-motion` by skipping the animation for users who prefer it.

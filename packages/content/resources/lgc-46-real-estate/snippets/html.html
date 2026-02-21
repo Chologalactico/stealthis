@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridian Property Group — Architecture & Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <div class="nav-mark" aria-hidden="true"></div>
+      <span class="nav-name">Meridian</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#listings">Properties</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">Studio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Schedule a Visit</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-label">Residential · Commercial · 2025</div>
+      <h1 class="hero-h1">
+        <span>Where<br>architecture</span>
+        <span class="h1-italic">meets living</span>
+      </h1>
+      <p class="hero-body">Meridian curates exceptional properties in London, Copenhagen, and Amsterdam — buildings that endure because they were designed to.</p>
+      <div class="hero-btns">
+        <a href="#listings" class="btn-dark">Browse Properties</a>
+        <a href="#process" class="btn-line">Our Process →</a>
+      </div>
+      <div class="hero-metric-row">
+        <div class="hero-metric"><span class="hm-num">240</span><span class="hm-label">Properties sold</span></div>
+        <div class="hero-metric-div" aria-hidden="true"></div>
+        <div class="hero-metric"><span class="hm-num">18</span><span class="hm-label">Years active</span></div>
+        <div class="hero-metric-div" aria-hidden="true"></div>
+        <div class="hero-metric"><span class="hm-num">3</span><span class="hm-label">Cities</span></div>
+      </div>
+    </div>
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-img hero-img--main"></div>
+      <div class="hero-img hero-img--sub"></div>
+    </div>
+  </section>
+
+  <!-- Featured Listings -->
+  <section class="listings-section" id="listings">
+    <div class="listings-header">
+      <span class="section-eyebrow">Available Properties</span>
+      <h2>Current Listings</h2>
+      <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Residential</button>
+        <button class="filter-btn">Commercial</button>
+        <button class="filter-btn">New Development</button>
+      </div>
+    </div>
+    <div class="listings-grid">
+      <article class="listing-card listing-card--large">
+        <div class="lc-img lc-img--1" aria-hidden="true">
+          <div class="lc-badge">New</div>
+        </div>
+        <div class="lc-info">
+          <div class="lc-type">Residential · London</div>
+          <h3>Bankside Penthouse</h3>
+          <p>A 320m² top-floor residence with sweeping Thames views, designed by Wilkinson Eyre Architects in 2023.</p>
+          <div class="lc-details">
+            <span>320 m²</span>
+            <span>4 bed · 3 bath</span>
+            <span>Floor 18</span>
+          </div>
+          <div class="lc-price">£ 4,200,000</div>
+        </div>
+      </article>
+
+      <article class="listing-card">
+        <div class="lc-img lc-img--2" aria-hidden="true"></div>
+        <div class="lc-info lc-info--sm">
+          <div class="lc-type">Commercial · Copenhagen</div>
+          <h3>Nordhavn Studio</h3>
+          <p>Open-plan creative studio in the iconic Nordhavn waterfront district.</p>
+          <div class="lc-price">DKK 8,400,000</div>
+        </div>
+      </article>
+
+      <article class="listing-card">
+        <div class="lc-img lc-img--3" aria-hidden="true"></div>
+        <div class="lc-info lc-info--sm">
+          <div class="lc-type">Residential · Amsterdam</div>
+          <h3>Jordaan Canal House</h3>
+          <p>Restored 17th-century canal house with original wooden beams and modern amenities.</p>
+          <div class="lc-price">€ 3,100,000</div>
+        </div>
+      </article>
+    </div>
+    <div class="listings-more">
+      <a href="#" class="btn-line">View all 24 listings →</a>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process-section" id="process">
+    <div class="process-inner">
+      <div class="process-left">
+        <span class="section-eyebrow">How We Work</span>
+        <h2>A considered <br><em>approach</em></h2>
+        <p>We don't list properties. We match people to places that will shape the next chapter of their lives. Our process begins with listening.</p>
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Discovery Consultation</h4>
+            <p>A conversation about how you live, work, and what a building needs to do for you.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Curated Selection</h4>
+            <p>We present only 3–5 properties that match your criteria. Quality over quantity, always.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Architectural Review</h4>
+            <p>Our in-house architects assess structural integrity, renovation potential, and long-term value.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Transaction & Beyond</h4>
+            <p>Full legal and financial coordination. We remain your point of contact after keys are handed over.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio / About -->
+  <section class="about-section" id="about">
+    <div class="about-img-block" aria-hidden="true">
+      <div class="ab-img ab-img--main"></div>
+      <div class="ab-img ab-img--secondary"></div>
+    </div>
+    <div class="about-content">
+      <span class="section-eyebrow">The Studio</span>
+      <h2>Designed<br>from the<br>inside out</h2>
+      <p>Meridian was founded by Elena Marsh and Thomas Velde — an architect and a property lawyer who saw an industry focused on volume over value. We believe every transaction should leave both buyer and city better than before.</p>
+      <p>Our studio employs 12 specialists across architecture, finance, heritage conservation, and interior strategy.</p>
+      <a href="#contact" class="btn-dark">Meet the Team →</a>
+    </div>
+  </section>
+
+  <!-- Contact / CTA -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2>Let's find<br>your property.</h2>
+        <div class="contact-details">
+          <div class="cd-item">
+            <span class="cd-label">London Office</span>
+            <span>14 Bermondsey Street, SE1</span>
+          </div>
+          <div class="cd-item">
+            <span class="cd-label">Email</span>
+            <span>hello@meridianprop.co</span>
+          </div>
+          <div class="cd-item">
+            <span class="cd-label">Hours</span>
+            <span>Mon–Fri · 09:00–18:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Full name</label>
+            <div class="form-input-mock"></div>
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <div class="form-input-mock"></div>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>What are you looking for?</label>
+          <div class="form-input-mock form-input-mock--tall"></div>
+        </div>
+        <a href="#" class="btn-dark">Send Message →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <div class="nav-mark" aria-hidden="true"></div>
+      <span>Meridian Property Group</span>
+    </div>
+    <p>© 2025 Meridian Property Group. London · Copenhagen · Amsterdam.</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

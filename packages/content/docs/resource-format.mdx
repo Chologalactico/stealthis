@@ -1,0 +1,77 @@
+---
+title: Resource Format
+description: Specification for the StealThis resource bundle format — frontmatter schema, snippet targets, and asset conventions.
+---
+
+# Resource Format
+
+Every resource in StealThis is a self-contained **bundle** — a directory with MDX frontmatter, code snippets, and assets.
+
+## Directory Structure
+
+```
+resources/
+└── my-resource/
+    ├── index.mdx          # Frontmatter metadata + prose documentation
+    ├── snippets/
+    │   ├── html.html      # Standalone HTML page
+    │   ├── style.css      # Styles (used by html.html)
+    │   ├── script.js      # Vanilla JS (used by html.html)
+    │   └── react.tsx      # React component
+    └── assets/
+        └── preview.gif    # Preview image/gif
+```
+
+## Frontmatter Schema
+
+```yaml
+---
+slug: my-resource          # Unique identifier (URL-safe)
+title: My Resource         # Display title
+description: Short description of what this does.
+category: web-animations   # web-animations | web-pages | ui-components | patterns | components | pages | prompts | skills | mcp-servers | architectures | boilerplates | remotion
+type: animation            # animation | page | component | pattern
+tags: [scroll, fade]       # Searchable tags
+tech: [css, js]            # Technologies used
+difficulty: easy           # easy | med | hard
+targets: [html, react]     # Available snippet targets
+preview: ./assets/preview.gif
+labRoute: /web-animations/my-resource   # Lab demo path
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+```
+
+## Snippet Targets
+
+| Target | File | Notes |
+|--------|------|-------|
+| `html` | `snippets/html.html` | Full standalone HTML page |
+| CSS styles | `snippets/style.css` | Referenced by html.html |
+| JS | `snippets/script.js` | Referenced by html.html |
+| `react` | `snippets/react.tsx` | React component (default export = demo) |
+| `typescript` | `snippets/typescript.ts` | Utility or data file |
+| `next` | `snippets/next.tsx` | Next.js variant |
+| `vue` | `snippets/vue.vue` | Vue SFC |
+| `markdown` | `snippets/markdown.md` | Prompts, docs, or templates |
+| `yaml` | `snippets/yaml.yaml` | YAML config |
+| `json` | `snippets/json.json` | JSON config |
+
+## Writing Guidelines
+
+### HTML Target
+- Include a full `<!DOCTYPE html>` page
+- Use pure CSS by default (no Tailwind in HTML target)
+- Add `<link rel="stylesheet" href="style.css" />` and `<script src="script.js"></script>`
+- Add `role` and `aria-label` attributes for accessibility
+
+### React Target
+- Export a default component that demonstrates the resource
+- Props should be typed with TypeScript interfaces
+- Document props with JSDoc comments
+- Tailwind CSS is allowed
+
+### Assets
+- `preview.gif` — animated preview, max 2MB, 16:9 or square
+- Use `./assets/preview.gif` relative path in frontmatter

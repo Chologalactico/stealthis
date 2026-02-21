@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero Parallax</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="hero" aria-label="Hero">
+    <div class="layer" data-speed="0.2" aria-hidden="true">
+      <!-- Far background: stars/dots -->
+      <div class="stars"></div>
+    </div>
+
+    <div class="layer" data-speed="0.5" aria-hidden="true">
+      <!-- Mid layer: gradient orbs -->
+      <div class="orb orb--1"></div>
+      <div class="orb orb--2"></div>
+    </div>
+
+    <div class="layer layer--content" data-speed="0.0">
+      <!-- Foreground: actual hero text -->
+      <div class="hero-content">
+        <p class="hero-eyebrow">Open Source</p>
+        <h1 class="hero-title">Build&nbsp;beautiful<br/>web experiences</h1>
+        <p class="hero-subtitle">
+          Reusable web resources — animations, pages, components, and patterns.
+          All open source.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn--primary">Browse Library</a>
+          <a href="#" class="btn btn--ghost">View Docs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="below-fold">
+    <p>Scroll up to see the parallax effect ↑</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

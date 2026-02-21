@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP Accordion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="page-header">
+      <span class="label">Technique Demo</span>
+      <h1>GSAP <em>Accordion</em></h1>
+      <p>Height animation from <code>0 → auto</code> using GSAP's height tweening. Each panel collapses and expands with spring easing. Multiple variants: exclusive, multi-open, and nested.</p>
+    </header>
+
+    <!-- Variant 1: Exclusive (one open at a time) -->
+    <section class="demo-section">
+      <div class="demo-label">
+        <span class="variant-tag">Variant A</span>
+        <h2>Exclusive — one open at a time</h2>
+      </div>
+      <div class="accordion" id="acc-exclusive" data-mode="exclusive">
+        <div class="acc-item" data-open="true">
+          <button class="acc-trigger" aria-expanded="true">
+            <span class="at-icon">◆</span>
+            <span class="at-title">What is GSAP accordion animation?</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>A GSAP accordion animates panel height from <code>0</code> to its natural content height using <code>gsap.to(el, { height: 'auto' })</code>. Unlike CSS transitions which can't animate from <code>height: 0</code> to <code>height: auto</code>, GSAP handles this seamlessly by calculating the target height internally.</p>
+              <p>The key is pairing <code>overflow: hidden</code> on the container with a GSAP tween that toggles <code>autoAlpha</code> and <code>height</code> together for a smooth reveal.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-icon">◆</span>
+            <span class="at-title">How do you animate height: auto?</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>GSAP's <code>gsap.to(el, { height: 'auto', duration: 0.5 })</code> works by measuring the element's scrollHeight at tween start, then animating from current to that value. Combine with <code>ease: 'expo.out'</code> for a natural deceleration.</p>
+              <p>To collapse, use <code>gsap.to(el, { height: 0 })</code> — GSAP handles the measurement automatically.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-icon">◆</span>
+            <span class="at-title">Why not use CSS max-height trick?</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>The CSS <code>max-height</code> trick requires setting a large arbitrary maximum (e.g., <code>max-height: 1000px</code>), which causes easing to feel wrong — the element accelerates until it hits the actual content height, then stops abruptly.</p>
+              <p>GSAP measures the real target height and creates a precise, spring-eased animation with no easing artifacts.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-icon">◆</span>
+            <span class="at-title">Accessibility considerations</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>Always set <code>aria-expanded</code> on the trigger button and toggle it on state change. The panel body should have a matching <code>aria-hidden</code> attribute. Screen readers need these attributes to announce the expanded/collapsed state correctly.</p>
+              <p>For <code>prefers-reduced-motion</code>, skip the tween and immediately set the final state using <code>gsap.set()</code>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant 2: Multi-open -->
+    <section class="demo-section">
+      <div class="demo-label">
+        <span class="variant-tag">Variant B</span>
+        <h2>Multi-open — independent panels</h2>
+      </div>
+      <div class="accordion accordion--open" id="acc-multi" data-mode="multi">
+        <div class="acc-item acc-item--open">
+          <button class="acc-trigger" aria-expanded="true">
+            <span class="at-num">01</span>
+            <span class="at-title">Research & Discovery</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner acc-inner--timeline">
+              <div class="tl-item">
+                <span class="tl-week">Week 1–2</span>
+                <span class="tl-task">Stakeholder interviews + competitive analysis</span>
+              </div>
+              <div class="tl-item">
+                <span class="tl-week">Week 3</span>
+                <span class="tl-task">User research sessions + affinity mapping</span>
+              </div>
+              <div class="tl-item">
+                <span class="tl-week">Week 4</span>
+                <span class="tl-task">Synthesis + problem statement</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-num">02</span>
+            <span class="at-title">Design & Prototyping</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner acc-inner--timeline">
+              <div class="tl-item">
+                <span class="tl-week">Week 5–6</span>
+                <span class="tl-task">Wireframes + IA architecture</span>
+              </div>
+              <div class="tl-item">
+                <span class="tl-week">Week 7</span>
+                <span class="tl-task">High-fidelity mockups + design system</span>
+              </div>
+              <div class="tl-item">
+                <span class="tl-week">Week 8</span>
+                <span class="tl-task">Interactive prototype</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-num">03</span>
+            <span class="at-title">Development & Launch</span>
+            <span class="at-arrow">↓</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner acc-inner--timeline">
+              <div class="tl-item">
+                <span class="tl-week">Week 9–12</span>
+                <span class="tl-task">Frontend development + integration</span>
+              </div>
+              <div class="tl-item">
+                <span class="tl-week">Week 13</span>
+                <span class="tl-task">QA + performance testing</span>
+              </div>
+              <div class="tl-item">
+                <span class="tl-week">Week 14</span>
+                <span class="tl-task">Launch + monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Variant 3: Minimal / Borderless -->
+    <section class="demo-section">
+      <div class="demo-label">
+        <span class="variant-tag">Variant C</span>
+        <h2>Minimal line style</h2>
+      </div>
+      <div class="accordion accordion--minimal" id="acc-minimal" data-mode="exclusive">
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-title">Typography</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>Variable fonts, optical sizing, fluid type scales using <code>clamp()</code>, and responsive line-height that adapts to reading distance on different devices.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-title">Color Systems</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>Semantic color tokens, dark/light mode with CSS custom properties, contrast checking with WCAG 2.1 AAA, and perceptual color spaces (oklch).</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-title">Motion Design</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>Timing functions based on physics (spring, expo, elastic), duration scaling by distance, and choreographed stagger patterns that feel natural.</p>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span class="at-title">Spacing & Layout</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <p>8-point grid systems, intrinsic web design with CSS Grid subgrid, aspect-ratio locking, and content-driven breakpoints rather than device-based.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

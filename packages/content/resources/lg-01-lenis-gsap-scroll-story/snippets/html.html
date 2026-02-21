@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo 01 - Lenis + GSAP Scroll Story</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <div class="controls">
+        <span class="hint">Scroll Story</span>
+        <button id="motionToggle" class="toggle"></button>
+      </div>
+    </header>
+
+    <div class="progress-wrap" aria-hidden="true">
+      <span id="progressBar" class="progress-bar"></span>
+    </div>
+
+    <main>
+      <section class="panel intro" data-animate>
+        <div class="content reveal-group">
+          <p class="label reveal">Demo 01</p>
+          <h1 class="reveal">Lenis + GSAP Scroll Story</h1>
+          <p class="reveal">A stronger baseline for cinematic pacing, section reveals, and scroll rhythm.</p>
+          <div class="chips reveal">
+            <span>Lenis smooth flow</span>
+            <span>GSAP timelines</span>
+            <span>Reduced-motion safe</span>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <span class="orb orb-a"></span>
+          <span class="orb orb-b"></span>
+          <span class="orb orb-c"></span>
+          <span class="orb orb-d"></span>
+        </div>
+      </section>
+
+      <section class="panel" data-animate>
+        <div class="content reveal-group">
+          <h2 class="reveal">Signal</h2>
+          <p class="reveal">Open with high contrast hierarchy, then guide users through chunks of motion and meaning.</p>
+          <ul class="metrics reveal">
+            <li><strong>60fps target</strong><span>Compositor-friendly transforms</span></li>
+            <li><strong>Readable layers</strong><span>Text remains stable under effects</span></li>
+            <li><strong>Accessible by default</strong><span>Motion can be disabled at any time</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel stage" data-animate>
+        <div class="content reveal-group">
+          <h2 class="reveal">Rhythm</h2>
+          <p class="reveal">This pinned stage demonstrates chapter transitions and layered card movement.</p>
+        </div>
+        <div class="stage-cards" aria-hidden="true">
+          <article class="stage-card card-one">Chapter A</article>
+          <article class="stage-card card-two">Chapter B</article>
+          <article class="stage-card card-three">Chapter C</article>
+        </div>
+      </section>
+
+      <section class="panel outro" data-animate>
+        <div class="content reveal-group">
+          <h2 class="reveal">Launch</h2>
+          <p class="reveal">Use this file as your production starter for narrative landing pages.</p>
+          <p class="reveal note">Next step: combine this structure with Demo 09/10 WebGL backgrounds.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+      </body>
+</html>

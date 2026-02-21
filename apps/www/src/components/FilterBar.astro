@@ -1,0 +1,262 @@
+---
+import { useTranslations, type Locale } from "@i18n/index";
+
+interface Props {
+  locale?: Locale;
+  categories: string[];
+  techs: string[];
+}
+
+const { locale = "en", categories, techs } = Astro.props;
+const t = useTranslations(locale);
+
+const difficulties = ["easy", "med", "hard"] as const;
+---
+
+<div class="filter-bar flex flex-col gap-4" id="filter-bar">
+  <!-- Search -->
+  <div class="relative">
+    <svg
+      class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"
+      width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    >
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input
+      id="search-input"
+      type="search"
+      placeholder="Search resources…"
+      class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-surface-900 border border-white/8 text-sm text-slate-300 placeholder:text-slate-600 focus:outline-none focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/30 transition-colors"
+    />
+  </div>
+
+  <!-- Category filter -->
+  <div>
+    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{t("library.filter.category")}</p>
+    <div class="flex flex-wrap gap-1.5">
+      <button class="chip chip--active" data-filter="category" data-value="all">{t("library.filter.all")}</button>
+      {categories.map((cat) => {
+        const key = `category.${cat}` as
+          | "category.web-animations" | "category.web-pages" | "category.ui-components" | "category.patterns"
+          | "category.components" | "category.pages" | "category.prompts" | "category.skills"
+          | "category.mcp-servers" | "category.architectures" | "category.boilerplates" | "category.remotion";
+        return (
+          <button class="chip" data-filter="category" data-value={cat}>{t(key)}</button>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Difficulty filter -->
+  <div>
+    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{t("library.filter.difficulty")}</p>
+    <div class="flex flex-wrap gap-1.5">
+      <button class="chip chip--active" data-filter="difficulty" data-value="all">{t("library.filter.all")}</button>
+      {difficulties.map((d) => {
+        const key = `resource.difficulty.${d}` as "resource.difficulty.easy" | "resource.difficulty.med" | "resource.difficulty.hard";
+        return (
+          <button class="chip" data-filter="difficulty" data-value={d}>{t(key)}</button>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Tech filter -->
+  <div>
+    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{t("library.filter.tech")}</p>
+    <div class="flex flex-wrap gap-1.5" id="tech-chips">
+      <button class="chip chip--active" data-filter="tech" data-value="all">{t("library.filter.all")}</button>
+      {techs.slice(0, 20).map((tech) => (
+        <button class="chip" data-filter="tech" data-value={tech}>{tech}</button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Results count -->
+  <p class="text-xs text-slate-600 mt-1" id="results-count"></p>
+</div>
+
+<script>
+  const state = {
+    category: "all",
+    difficulty: "all",
+    tech: "all",
+    search: "",
+    pagefindResults: null,
+  };
+
+  const cards = document.querySelectorAll<HTMLElement>("[data-slug]");
+  const resultsCount = document.getElementById("results-count");
+  const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
+  let searchTimer: number | undefined;
+  let pagefindModule: any = null;
+  let pagefindLoading: Promise<any> | null = null;
+
+  const extractSlug = (url: string): string | null => {
+    if (!url) return null;
+    const clean = url.split(/[?#]/)[0];
+    const parts = clean.split("/").filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : null;
+  };
+
+  async function loadPagefind() {
+    if (pagefindModule) return pagefindModule;
+    if (pagefindLoading) return pagefindLoading;
+
+    pagefindLoading = new Promise((resolve) => {
+      const existing = (window as any).pagefind;
+      if (existing?.search) {
+        pagefindModule = existing;
+        resolve(pagefindModule);
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "/pagefind/pagefind.js";
+      script.async = true;
+      script.onload = () => {
+        pagefindModule = (window as any).pagefind ?? null;
+        resolve(pagefindModule);
+      };
+      script.onerror = () => {
+        pagefindModule = null;
+        resolve(pagefindModule);
+      };
+      document.head.appendChild(script);
+    });
+
+    return pagefindLoading;
+  }
+
+  async function runPagefindSearch(query: string): Promise<Set<string> | null> {
+    const pf = await loadPagefind();
+    if (!pf?.search) return null;
+
+    const results = await pf.search(query);
+    const slugs = new Set<string>();
+
+    for (const result of results.results ?? []) {
+      const data = await result.data();
+      const slug = extractSlug(data?.url ?? result?.url ?? "");
+      if (slug) slugs.add(slug);
+    }
+
+    return slugs;
+  }
+
+  function matches(card: HTMLElement): boolean {
+    const cardCategory = card.dataset.category ?? "";
+    const cardDifficulty = card.dataset.difficulty ?? "";
+    const cardTech = (card.dataset.tech ?? "").split(",");
+    const cardSlug = card.dataset.slug ?? "";
+    const cardTitle = card.querySelector("h2")?.textContent?.toLowerCase() ?? "";
+    const cardDesc = card.querySelector("p:nth-of-type(2)")?.textContent?.toLowerCase() ?? "";
+
+    if (state.category !== "all" && cardCategory !== state.category) return false;
+    if (state.difficulty !== "all" && cardDifficulty !== state.difficulty) return false;
+    if (state.tech !== "all" && !cardTech.includes(state.tech)) return false;
+    if (state.search) {
+      if (state.pagefindResults) {
+        if (!state.pagefindResults.has(cardSlug)) return false;
+      } else if (!cardTitle.includes(state.search) && !cardDesc.includes(state.search)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function applyFilters() {
+    let visible = 0;
+    cards.forEach((card) => {
+      const show = matches(card);
+      card.style.display = show ? "" : "none";
+      if (show) visible++;
+    });
+
+    // Hide category sections with no visible cards
+    document.querySelectorAll<HTMLElement>("[data-category-section]").forEach((section) => {
+      const hasVisible = [...section.querySelectorAll<HTMLElement>("[data-slug]")]
+        .some((c) => c.style.display !== "none");
+      section.style.display = hasVisible ? "" : "none";
+    });
+
+    // Hide category groups with no visible sections
+    document.querySelectorAll<HTMLElement>("[data-category-group]").forEach((group) => {
+      const hasVisible = [...group.querySelectorAll<HTMLElement>("[data-category-section]")]
+        .some((s) => s.style.display !== "none");
+      group.style.display = hasVisible ? "" : "none";
+    });
+
+    // Show/hide empty state
+    const emptyState = document.getElementById("empty-state");
+    if (emptyState) emptyState.classList.toggle("hidden", visible > 0);
+
+    if (resultsCount) {
+      resultsCount.textContent = `${visible} resource${visible !== 1 ? "s" : ""}`;
+    }
+  }
+
+  function setFilter(filter: "category" | "difficulty" | "tech", value: string, apply = true) {
+    state[filter] = value;
+
+    document.querySelectorAll<HTMLButtonElement>(`[data-filter="${filter}"]`).forEach((b) => {
+      b.classList.toggle("chip--active", b.dataset.value === value);
+    });
+
+    if (apply) applyFilters();
+  }
+
+  // Filter buttons
+  document.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter as "category" | "difficulty" | "tech";
+      const value = btn.dataset.value ?? "all";
+
+      setFilter(filter, value);
+    });
+  });
+
+  // Search
+  async function handleSearch(value: string) {
+    state.search = value.toLowerCase().trim();
+    state.pagefindResults = null;
+    if (!state.search) {
+      applyFilters();
+      return;
+    }
+
+    applyFilters();
+
+    if (state.search.length < 2) return;
+
+    if (searchTimer) window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(async () => {
+      state.pagefindResults = await runPagefindSearch(state.search);
+      applyFilters();
+    }, 250);
+  }
+
+  searchInput?.addEventListener("input", () => {
+    handleSearch(searchInput.value);
+  });
+
+  // Init count
+  const params = new URLSearchParams(window.location.search);
+  const categoryParam = params.get("category");
+  if (categoryParam) setFilter("category", categoryParam, false);
+
+  const difficultyParam = params.get("difficulty");
+  if (difficultyParam) setFilter("difficulty", difficultyParam, false);
+
+  const techParam = params.get("tech");
+  if (techParam) setFilter("tech", techParam, false);
+
+  const searchParam = params.get("search");
+  if (searchParam && searchInput) {
+    searchInput.value = searchParam;
+    handleSearch(searchParam);
+  } else {
+    applyFilters();
+  }
+</script>

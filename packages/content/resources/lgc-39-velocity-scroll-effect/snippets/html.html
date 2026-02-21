@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velocity-Aware Scroll + Speed Lines — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <canvas id="speed-canvas"></canvas>
+
+  <section class="hero">
+    <div class="content">
+      <span class="eyebrow">Demo 39</span>
+      <h1>Velocity-Aware Scroll</h1>
+      <p class="subtitle">Scroll faster to see speed lines intensify. The canvas layer reacts to scroll velocity — the faster you scroll, the stronger the visual feedback.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Scroll Speed Detection</h2>
+      <p>Lenis provides real-time velocity data through its <code>scroll</code> event. We map that velocity to visual intensity — opacity, line count, and blur all scale with how fast you scroll.</p>
+      <p>Slow scrolling produces minimal effect. Fast scrolling creates a dramatic speed-lines tunnel on the Canvas overlay.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Canvas Speed Lines</h2>
+      <p>A Canvas 2D layer sits fixed behind the page. On each animation frame, lines radiate from the center at lengths proportional to the scroll velocity magnitude.</p>
+      <p>The visual effect is inspired by motion blur in photography and the speed lines used in action manga. Faster scroll = more lines, higher opacity, longer streaks.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Parallax Intensity</h2>
+      <p>Parallax layers in the background also react to velocity. Faster scrolling temporarily increases the parallax offset multiplier, creating a sense of dimensional acceleration through space.</p>
+      <p>This effect is commonly used in gaming landing pages, sportswear brands, and esports tournament sites.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Performance</h2>
+      <p>The effect is optimized for 60fps using:</p>
+      <ul>
+        <li>Canvas <code>clearRect</code> + redraw on each rAF tick (no DOM mutations)</li>
+        <li>Velocity decay — speed lines fade naturally when scrolling slows</li>
+        <li>Line count cap to prevent overdraw on slow devices</li>
+        <li>Disabled entirely if <code>prefers-reduced-motion</code> is active</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Implementation Details</h2>
+      <p>Access Lenis velocity via <code>lenis.on('scroll', ({ velocity }) => ...)</code>. The velocity value is a float between roughly -30 and +30 depending on scroll speed.</p>
+      <p>Map the absolute value to your visual parameters:</p>
+      <ul>
+        <li><code>lineCount</code> = <code>Math.min(maxLines, Math.abs(velocity) * 5)</code></li>
+        <li><code>lineLength</code> = <code>Math.abs(velocity) * 20</code> pixels</li>
+        <li><code>opacity</code> = <code>Math.min(0.8, Math.abs(velocity) * 0.05)</code></li>
+      </ul>
+      <a href="/" class="btn-back">Back to Showcase</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

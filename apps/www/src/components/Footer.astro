@@ -1,0 +1,34 @@
+---
+import type { Locale } from "@i18n/index";
+import { useTranslations } from "@i18n/index";
+import { SITE_URLS } from "@lib/urls";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const prefix = locale === "es" ? "/es" : "";
+---
+
+<footer class="border-t border-white/6 mt-20">
+  <div class="container-xl py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+    <div class="flex items-center gap-2">
+      <span class="text-brand-400">✦</span>
+      <span>StealThis.dev</span>
+      <span>—</span>
+      <span>Open Source</span>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <a href={`${prefix}/library`} class="hover:text-slate-300 transition-colors">Library</a>
+      <a href={SITE_URLS.docs} target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">Docs</a>
+      <a href={SITE_URLS.lab} target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">Lab</a>
+      <a href={`${prefix}/changelog`} class="hover:text-slate-300 transition-colors">{t("nav.changelog")}</a>
+      <a href="https://github.com/Foodhy/stealthis" target="_blank" rel="noopener" class="hover:text-slate-300 transition-colors">GitHub</a>
+    </div>
+
+    <span>MIT License</span>
+  </div>
+</footer>

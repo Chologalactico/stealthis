@@ -1,0 +1,136 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #070a12;
+  --text: #f0f4fb;
+  --muted: #8a95a8;
+  --accent: #86e8ff;
+  --neon-purple: #ae52ff;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+}
+
+body { overflow-x: hidden; }
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.hero-section { min-height: 80vh; }
+
+.content {
+  max-width: 800px;
+  width: 100%;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+h1, h2 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  background: linear-gradient(135deg, #fff, var(--accent), var(--neon-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.split-sub {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+p.split-lines {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* Quote section */
+.section-quote {
+  background: linear-gradient(135deg, rgba(174, 82, 255, 0.06), rgba(134, 232, 255, 0.04));
+}
+
+.quote-text {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--accent);
+  border: none;
+  max-width: 700px;
+}
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.7rem 2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(134, 232, 255, 0.3);
+  color: var(--accent);
+  text-decoration: none;
+  font: 600 0.85rem/1 'Inter', system-ui, sans-serif;
+  transition: all 0.25s ease;
+}
+
+.back-link:hover {
+  background: rgba(134, 232, 255, 0.08);
+  border-color: var(--accent);
+}
+
+/* SplitText char/word/line wrappers get these from GSAP */
+.char, .word, .line {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Clip overflow on lines for reveal effect */
+.line-wrapper {
+  overflow: hidden;
+  display: block;
+}
+
+/* Reduced motion */
+.reduced-motion .char,
+.reduced-motion .word,
+.reduced-motion .line,
+.reduced-motion h1, .reduced-motion h2,
+.reduced-motion p, .reduced-motion blockquote,
+.reduced-motion .label, .reduced-motion .split-sub {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (max-width: 640px) {
+  .section { padding: 3rem 1.5rem; }
+}

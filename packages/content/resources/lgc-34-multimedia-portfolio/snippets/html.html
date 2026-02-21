@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jordan Kim — Multimedia Engineer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Portfolio 2025</div>
+      <h1 class="hero-name" aria-label="Jordan Kim">JORDAN KIM</h1>
+      <!-- Glitch layers (aria-hidden so screen readers skip duplicates) -->
+      <span class="hero-name-glitch hero-name-glitch--1" aria-hidden="true">JORDAN KIM</span>
+      <span class="hero-name-glitch hero-name-glitch--2" aria-hidden="true">JORDAN KIM</span>
+      <p class="hero-tagline">Multimedia Engineer <span class="hero-tagline-sep">/</span> Creative Technologist</p>
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SELECTED WORK ─────────────────────────────────────────── -->
+  <section class="section work-section" id="work">
+    <div class="section-header">
+      <h2 class="section-title">SELECTED WORK</h2>
+      <button class="layout-toggle" id="layout-toggle" aria-label="Toggle gallery layout">
+        <span class="toggle-label-grid">Grid</span>
+        <span class="toggle-sep">/</span>
+        <span class="toggle-label-list">List</span>
+      </button>
+    </div>
+
+    <div class="media-gallery" id="mediaGallery">
+      <article class="media-card" data-index="0">
+        <div class="card-header card-header--1"></div>
+        <div class="card-body">
+          <div class="card-play" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/>
+              <polygon points="16,13 30,20 16,27" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Resonance Field</h3>
+            <div class="card-tags">
+              <span class="tag">Interactive</span>
+              <span class="tag">WebGL</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-index">01</div>
+      </article>
+
+      <article class="media-card" data-index="1">
+        <div class="card-header card-header--2"></div>
+        <div class="card-body">
+          <div class="card-play" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/>
+              <polygon points="16,13 30,20 16,27" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Chromatic Drift</h3>
+            <div class="card-tags">
+              <span class="tag">Film</span>
+              <span class="tag">Motion Design</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-index">02</div>
+      </article>
+
+      <article class="media-card" data-index="2">
+        <div class="card-header card-header--3"></div>
+        <div class="card-body">
+          <div class="card-play" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/>
+              <polygon points="16,13 30,20 16,27" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Spatial Echo</h3>
+            <div class="card-tags">
+              <span class="tag">Installation</span>
+              <span class="tag">Sound Design</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-index">03</div>
+      </article>
+
+      <article class="media-card" data-index="3">
+        <div class="card-header card-header--4"></div>
+        <div class="card-body">
+          <div class="card-play" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+              <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/>
+              <polygon points="16,13 30,20 16,27" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Generative Topography</h3>
+            <div class="card-tags">
+              <span class="tag">Generative</span>
+              <span class="tag">Creative Coding</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-index">04</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── DISCIPLINES ───────────────────────────────────────────── -->
+  <section class="section disciplines-section" id="disciplines">
+    <div class="disciplines-label">DISCIPLINES</div>
+    <div class="disciplines-marquee" id="disciplinesMarquee" aria-label="Disciplines list">
+      <!-- First copy -->
+      <div class="disciplines-track" aria-hidden="true">
+        <div class="discipline-pill pill--1">Real-time Graphics</div>
+        <div class="discipline-pill pill--2">Motion Design</div>
+        <div class="discipline-pill pill--3">Generative Art</div>
+        <div class="discipline-pill pill--4">Audio-Visual</div>
+        <div class="discipline-pill pill--1">WebGL</div>
+        <div class="discipline-pill pill--2">Interactive Installation</div>
+        <div class="discipline-pill pill--3">Creative Coding</div>
+        <div class="discipline-pill pill--4">Sound Design</div>
+      </div>
+      <!-- Second copy — seamless loop -->
+      <div class="disciplines-track" aria-hidden="true">
+        <div class="discipline-pill pill--1">Real-time Graphics</div>
+        <div class="discipline-pill pill--2">Motion Design</div>
+        <div class="discipline-pill pill--3">Generative Art</div>
+        <div class="discipline-pill pill--4">Audio-Visual</div>
+        <div class="discipline-pill pill--1">WebGL</div>
+        <div class="discipline-pill pill--2">Interactive Installation</div>
+        <div class="discipline-pill pill--3">Creative Coding</div>
+        <div class="discipline-pill pill--4">Sound Design</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WAVEFORM VISUALIZER ───────────────────────────────────── -->
+  <section class="section waveform-section" id="waveform">
+    <div class="waveform-header">
+      <span class="waveform-badge">Audio Engine</span>
+      <span class="waveform-sub">Simulated Waveform</span>
+    </div>
+    <canvas class="waveform-canvas" id="waveformCanvas"></canvas>
+    <div class="waveform-footer">
+      <span class="wf-label wf-label--1">440 Hz</span>
+      <span class="wf-label wf-label--2">880 Hz</span>
+      <span class="wf-label wf-label--3">1760 Hz</span>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────── -->
+  <section class="section contact-section" id="contact">
+    <div class="contact-inner">
+      <h2 class="contact-heading">COLLABORATE?</h2>
+      <p class="contact-sub">Open to commissions, residencies & full-time roles</p>
+      <div class="contact-links">
+        <a class="contact-btn contact-btn--pink" href="mailto:jordan@kimstudio.io">
+          jordan@kimstudio.io
+        </a>
+        <a class="contact-btn contact-btn--cyan" href="https://instagram.com" target="_blank" rel="noopener">
+          @jordankimstudio
+        </a>
+      </div>
+    </div>
+    <div class="contact-bg-text" aria-hidden="true">LET'S BUILD</div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

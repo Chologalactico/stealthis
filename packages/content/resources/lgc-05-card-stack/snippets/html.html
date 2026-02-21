@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Stack Cascade — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <section class="intro">
+    <span class="eyebrow">Demo 05</span>
+    <h1>Card Stack Cascade</h1>
+    <p class="subtitle">Cards start stacked and fan out with 3D transforms as you scroll. Glassmorphism panels with perspective depth.</p>
+  </section>
+
+  <section class="stack-section">
+    <div class="perspective-container">
+      <div class="card-stack" id="card-stack">
+        <div class="stack-card" data-index="0" style="--hue: 200;">
+          <div class="card-glass">
+            <span class="card-num">01</span>
+            <h3>Scroll Animations</h3>
+            <p>Choreograph complex timelines driven by scroll position with GSAP ScrollTrigger.</p>
+            <div class="card-tags"><span>gsap</span><span>scrolltrigger</span></div>
+          </div>
+        </div>
+        <div class="stack-card" data-index="1" style="--hue: 260;">
+          <div class="card-glass">
+            <span class="card-num">02</span>
+            <h3>3D WebGL Scenes</h3>
+            <p>Build immersive particle tunnels, shader backgrounds, and product showcases with Three.js.</p>
+            <div class="card-tags"><span>three.js</span><span>webgl</span></div>
+          </div>
+        </div>
+        <div class="stack-card" data-index="2" style="--hue: 320;">
+          <div class="card-glass">
+            <span class="card-num">03</span>
+            <h3>View Transitions</h3>
+            <p>Seamless page transitions with shared-element morphing using the View Transitions API.</p>
+            <div class="card-tags"><span>view-transitions</span><span>css</span></div>
+          </div>
+        </div>
+        <div class="stack-card" data-index="3" style="--hue: 40;">
+          <div class="card-glass">
+            <span class="card-num">04</span>
+            <h3>Canvas Effects</h3>
+            <p>Bokeh particles, spotlights, noise overlays, and magnetic cursors with Canvas 2D.</p>
+            <div class="card-tags"><span>canvas</span><span>vanilla-js</span></div>
+          </div>
+        </div>
+        <div class="stack-card" data-index="4" style="--hue: 160;">
+          <div class="card-glass">
+            <span class="card-num">05</span>
+            <h3>Motion Design</h3>
+            <p>Shared tokens, easing systems, and accessibility-first motion primitives.</p>
+            <div class="card-tags"><span>design-system</span><span>a11y</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="outro">
+    <h2>Stack complete.</h2>
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

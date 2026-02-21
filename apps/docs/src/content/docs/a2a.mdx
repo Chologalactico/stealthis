@@ -1,0 +1,33 @@
+---
+title: A2A (Agent-to-Agent)
+description: How StealThis.dev integrates with the Agent2Agent protocol for multi-agent workflows.
+---
+
+The **Agent2Agent (A2A) Protocol** is an open standard that enables AI agents from different vendors to communicate, collaborate, and coordinate. StealThis.dev complements A2A through its **MCP server**.
+
+## StealThis + A2A
+
+| StealThis | A2A Concept |
+|-----------|-------------|
+| MCP server (`https://mcp.stealthis.dev/mcp`) | Tool/resource provider |
+| `list_resources`, `get_snippet`, etc. | Capability discovery |
+| Resource catalog | Structured data exchange |
+
+## How It Works
+
+1. **Agents** connect to `https://mcp.stealthis.dev/mcp` via MCP or HTTP
+2. **Discovery** — agents call `list_resources` to browse animations, components, pages
+3. **Retrieval** — `get_snippet` returns code for a given target (HTML, React, etc.)
+4. **Integration** — agents use snippets in generated output (with attribution)
+
+## Use Cases
+
+- **Code-generating agents** — fetch UI components to include in user projects
+- **Multi-agent builders** — one agent picks resources, another integrates them
+- **Design-to-code pipelines** — match design intent to StealThis resources
+
+## Learn More
+
+- [MCP Server](/mcp-server/) — full endpoint reference
+- [AGENTS](/agents/) — best practices for AI agents
+- [A2A Specification](https://google.github.io/A2A/) — official protocol docs

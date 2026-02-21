@@ -1,0 +1,221 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #070a12;
+  --text: #f0f4fb;
+  --muted: #8a95a8;
+  --accent: #86e8ff;
+  --neon-purple: #ae52ff;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+}
+
+body { overflow-x: hidden; }
+
+/* ── Intro ── */
+.intro {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  background: linear-gradient(135deg, #fff, var(--accent), var(--neon-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--muted);
+  max-width: 460px;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.scroll-hint {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: arrow-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+.reduced-motion .scroll-arrow { animation: none; opacity: 0.5; }
+
+/* ── Progress bar ── */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.progress-bar.visible { opacity: 1; }
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--neon-purple));
+  transform-origin: left;
+  will-change: width;
+}
+
+/* ── Horizontal section ── */
+.horizontal-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.horizontal-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* ── Panels ── */
+.panel {
+  width: 80vw;
+  max-width: 700px;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.panel-inner {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--hue, 200) 50% 10%),
+    hsl(var(--hue, 200) 60% 16%)
+  );
+  border: 1px solid hsl(var(--hue, 200) 40% 25%);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 550px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  will-change: transform, opacity;
+  transition: box-shadow 0.4s ease;
+}
+
+.panel-inner:hover {
+  box-shadow: 0 8px 48px hsla(var(--hue, 200), 60%, 30%, 0.15);
+}
+
+.panel-number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: hsla(var(--hue, 200), 60%, 60%, 0.15);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.panel-inner h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: hsl(var(--hue, 200) 70% 80%);
+  margin-bottom: 1rem;
+}
+
+.panel-inner p {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+/* ── Outro ── */
+.outro {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.outro h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 0.7rem 2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(134, 232, 255, 0.3);
+  color: var(--accent);
+  text-decoration: none;
+  font: 600 0.85rem/1 'Inter', system-ui, sans-serif;
+  transition: all 0.25s ease;
+}
+
+.btn-back:hover {
+  background: rgba(134, 232, 255, 0.08);
+  border-color: var(--accent);
+}
+
+/* ── Reduced motion ── */
+.reduced-motion .panel-inner {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (max-width: 640px) {
+  .panel { width: 90vw; padding: 1rem; }
+  .panel-inner { padding: 2rem; min-height: 300px; }
+}

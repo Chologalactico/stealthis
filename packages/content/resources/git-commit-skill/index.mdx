@@ -1,0 +1,34 @@
+---
+slug: git-commit-skill
+title: Git Commit Skill
+description: A Claude Code skill that reads your staged changes and generates a conventional commit message following the project's commit style.
+category: skills
+type: skill
+tags: [git, commit, conventional-commits, claude-code, automation]
+tech: [claude-code, git, conventional-commits]
+difficulty: easy
+targets: [yaml]
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+A Claude Code skill (`/commit`) that analyzes your staged changes and generates a conventional commit message that matches your project's style.
+
+## What it does
+
+1. Reads `git diff --staged` output
+2. Reads recent commit history to match your project's style
+3. Generates a commit message following Conventional Commits (`feat:`, `fix:`, `refactor:`, etc.)
+4. Asks for confirmation before committing
+
+## How to install
+
+1. Copy the YAML snippet
+2. Save it to `~/.claude/skills/commit.yaml`
+3. In any repo, run `/commit` in Claude Code
+
+## Requirements
+
+- Claude Code CLI installed
+- A git repository with staged changes

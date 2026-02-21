@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kai Nishida — Game Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+</head>
+<body>
+
+  <!-- ─── LOADING OVERLAY ──────────────────────────────────────────── -->
+  <div class="loading-overlay" id="loadingOverlay" aria-hidden="true">
+    <div class="loading-inner">
+      <div class="loading-logo">◆ KN ◆</div>
+      <div class="loading-text">LOADING<span class="loading-dots"></span></div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loadingBar"></div>
+      </div>
+      <div class="loading-pct" id="loadingPct">0%</div>
+    </div>
+  </div>
+
+  <!-- ─── PIXEL NAV ─────────────────────────────────────────────────── -->
+  <nav class="pixel-nav" id="pixelNav" aria-label="Section navigation">
+    <div class="nav-inner">
+      <span class="nav-logo">KN</span>
+      <div class="nav-links">
+        <a href="#hero"    class="nav-link" data-section="hero">▶ HOME</a>
+        <a href="#stats"   class="nav-link" data-section="stats">▶ STATS</a>
+        <a href="#games"   class="nav-link" data-section="games">▶ GAMES</a>
+        <a href="#tech"    class="nav-link" data-section="tech">▶ INV</a>
+        <a href="#contact" class="nav-link" data-section="contact">▶ END</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+    <!-- HUD corner decorations -->
+    <div class="hud-corner hud-tl" aria-hidden="true">
+      <div class="hud-hp">
+        <span class="hud-label">HP</span>
+        <div class="hud-bar"><div class="hud-bar-fill hud-bar-hp"></div></div>
+        <span class="hud-val">100/100</span>
+      </div>
+      <div class="hud-mp">
+        <span class="hud-label">MP</span>
+        <div class="hud-bar"><div class="hud-bar-fill hud-bar-mp"></div></div>
+        <span class="hud-val">88/88</span>
+      </div>
+    </div>
+    <div class="hud-corner hud-tr" aria-hidden="true">
+      <div class="hud-xp-label">XP</div>
+      <div class="hud-xp-bar-wrap">
+        <div class="hud-xp-bar"></div>
+      </div>
+      <div class="hud-level">LV <span class="hud-level-num">42</span></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">[ PLAYER ONE ]</div>
+      <h1 class="hero-name">KAI NISHIDA</h1>
+      <p class="hero-subtitle">Game Developer</p>
+      <div class="hero-tags">
+        <span class="hero-tag">UNITY</span>
+        <span class="hero-tag">UNREAL</span>
+        <span class="hero-tag">GODOT</span>
+        <span class="hero-tag">OPENGL</span>
+      </div>
+      <div class="hero-scroll-cue">
+        <span class="blink">▼ PRESS ANY KEY TO CONTINUE ▼</span>
+      </div>
+    </div>
+
+    <!-- Score display -->
+    <div class="hud-score" aria-hidden="true">
+      <div class="score-label">SCORE</div>
+      <div class="score-val" id="scoreVal">000000</div>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─────────────────────────────────────────────────────── -->
+  <section class="section stats-section" id="stats">
+    <div class="section-inner">
+      <div class="section-header-pixel">
+        <span class="section-num">01.</span>
+        <h2 class="section-title">CHARACTER STATS</h2>
+        <span class="section-deco">[ SHEET ]</span>
+      </div>
+
+      <div class="stats-grid">
+        <!-- Stat card -->
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-abbr">STR</span>
+            <span class="stat-name">C++ / Systems</span>
+            <span class="stat-num" data-target="92">0</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" data-width="92"></div>
+          </div>
+          <div class="stat-desc">Low-level game engine architecture &amp; memory systems</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-abbr">INT</span>
+            <span class="stat-name">Game Design</span>
+            <span class="stat-num" data-target="88">0</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" data-width="88"></div>
+          </div>
+          <div class="stat-desc">Systems design, balancing, narrative &amp; level architecture</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-abbr">DEX</span>
+            <span class="stat-name">Perf Optim</span>
+            <span class="stat-num" data-target="95">0</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" data-width="95"></div>
+          </div>
+          <div class="stat-desc">GPU profiling, draw call batching, LOD systems</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-abbr">WIS</span>
+            <span class="stat-name">Shaders / GLSL</span>
+            <span class="stat-num" data-target="79">0</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" data-width="79"></div>
+          </div>
+          <div class="stat-desc">Custom shaders, post-processing pipelines, VFX graphs</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-abbr">CHA</span>
+            <span class="stat-name">Team Lead</span>
+            <span class="stat-num" data-target="84">0</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" data-width="84"></div>
+          </div>
+          <div class="stat-desc">Led 8-person indie teams, sprint planning, code reviews</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-abbr">LCK</span>
+            <span class="stat-name">Shipped Games</span>
+            <span class="stat-num" data-target="12">0</span>
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar" data-width="72"></div>
+          </div>
+          <div class="stat-desc">12 released titles across PC, console, and mobile</div>
+        </div>
+      </div>
+
+      <!-- XP progress -->
+      <div class="xp-progress">
+        <div class="xp-label">TOTAL XP TO NEXT LEVEL</div>
+        <div class="xp-bar-outer">
+          <div class="xp-bar-inner" data-xp="73"></div>
+        </div>
+        <div class="xp-pct"><span class="xp-pct-num" data-target="73">0</span>%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GAMES ─────────────────────────────────────────────────────── -->
+  <section class="section games-section" id="games">
+    <div class="section-inner">
+      <div class="section-header-pixel">
+        <span class="section-num">02.</span>
+        <h2 class="section-title">GAME LIBRARY</h2>
+        <span class="section-deco">[ SELECT TITLE ]</span>
+      </div>
+
+      <div class="games-grid">
+
+        <!-- Game 1 -->
+        <article class="game-card" tabindex="0">
+          <div class="cartridge-label" style="--cart-color: #ffdd57; --cart-color2: #e6c400;">
+            <div class="cart-stripe"></div>
+            <div class="cart-body">
+              <div class="cart-genre">◆ RPG ◆</div>
+              <div class="cart-title">ECHO REALM</div>
+              <div class="cart-sub">Chronicles of the Void</div>
+              <div class="cart-platforms">💻 🎮</div>
+            </div>
+            <div class="cart-bottom"></div>
+          </div>
+          <div class="game-info">
+            <div class="game-meta-row">
+              <span class="game-year">2024</span>
+              <span class="game-engine">Unity 2023</span>
+              <span class="game-rating">★★★★★</span>
+            </div>
+            <p class="game-desc">Open-world RPG with procedural dungeon generation, custom dialogue system, and HDRP visuals. 50k+ Steam wishlist.</p>
+            <div class="game-tags">
+              <span class="gtag">Procedural Gen</span>
+              <span class="gtag">HDRP</span>
+              <span class="gtag">Online Co-op</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Game 2 -->
+        <article class="game-card" tabindex="0">
+          <div class="cartridge-label" style="--cart-color: #ff6b9d; --cart-color2: #d45080;">
+            <div class="cart-stripe"></div>
+            <div class="cart-body">
+              <div class="cart-genre">◆ FPS ◆</div>
+              <div class="cart-title">NEON BREACH</div>
+              <div class="cart-sub">Tactical Cyberpunk Shooter</div>
+              <div class="cart-platforms">💻 🖱️</div>
+            </div>
+            <div class="cart-bottom"></div>
+          </div>
+          <div class="game-info">
+            <div class="game-meta-row">
+              <span class="game-year">2023</span>
+              <span class="game-engine">Unreal 5</span>
+              <span class="game-rating">★★★★☆</span>
+            </div>
+            <p class="game-desc">Competitive FPS set in a cyberpunk megacity. Nanite environments, Lumen GI, custom netcode with sub-20ms latency.</p>
+            <div class="game-tags">
+              <span class="gtag">Nanite</span>
+              <span class="gtag">Lumen</span>
+              <span class="gtag">Multiplayer</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Game 3 -->
+        <article class="game-card" tabindex="0">
+          <div class="cartridge-label" style="--cart-color: #4ecdc4; --cart-color2: #2fa89f;">
+            <div class="cart-stripe"></div>
+            <div class="cart-body">
+              <div class="cart-genre">◆ PUZZLE ◆</div>
+              <div class="cart-title">VOID LOGIC</div>
+              <div class="cart-sub">Dimension Bending Puzzles</div>
+              <div class="cart-platforms">💻 📱</div>
+            </div>
+            <div class="cart-bottom"></div>
+          </div>
+          <div class="game-info">
+            <div class="game-meta-row">
+              <span class="game-year">2022</span>
+              <span class="game-engine">Godot 4</span>
+              <span class="game-rating">★★★★★</span>
+            </div>
+            <p class="game-desc">Mind-bending puzzle game using non-Euclidean geometry. Custom GDScript spatial engine. 300k downloads on itch.io.</p>
+            <div class="game-tags">
+              <span class="gtag">Non-Euclidean</span>
+              <span class="gtag">Custom Engine</span>
+              <span class="gtag">Cross-platform</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TECH / INVENTORY ──────────────────────────────────────────── -->
+  <section class="section tech-section" id="tech">
+    <div class="section-inner">
+      <div class="section-header-pixel">
+        <span class="section-num">03.</span>
+        <h2 class="section-title">INVENTORY</h2>
+        <span class="section-deco">[ EQUIPPED ITEMS ]</span>
+      </div>
+
+      <div class="inventory-grid">
+
+        <div class="inv-item" data-rarity="legendary" tabindex="0">
+          <div class="inv-icon inv-icon--cpp"></div>
+          <div class="inv-details">
+            <div class="inv-name">C++17</div>
+            <div class="inv-rarity rarity-legendary">◆ LEGENDARY</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="legendary" tabindex="0">
+          <div class="inv-icon inv-icon--unity"></div>
+          <div class="inv-details">
+            <div class="inv-name">Unity</div>
+            <div class="inv-rarity rarity-legendary">◆ LEGENDARY</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="legendary" tabindex="0">
+          <div class="inv-icon inv-icon--unreal"></div>
+          <div class="inv-details">
+            <div class="inv-name">Unreal 5</div>
+            <div class="inv-rarity rarity-legendary">◆ LEGENDARY</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="rare" tabindex="0">
+          <div class="inv-icon inv-icon--glsl"></div>
+          <div class="inv-details">
+            <div class="inv-name">GLSL / HLSL</div>
+            <div class="inv-rarity rarity-rare">◈ RARE</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="rare" tabindex="0">
+          <div class="inv-icon inv-icon--godot"></div>
+          <div class="inv-details">
+            <div class="inv-name">Godot 4</div>
+            <div class="inv-rarity rarity-rare">◈ RARE</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="rare" tabindex="0">
+          <div class="inv-icon inv-icon--vulkan"></div>
+          <div class="inv-details">
+            <div class="inv-name">Vulkan API</div>
+            <div class="inv-rarity rarity-rare">◈ RARE</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="common" tabindex="0">
+          <div class="inv-icon inv-icon--python"></div>
+          <div class="inv-details">
+            <div class="inv-name">Python</div>
+            <div class="inv-rarity rarity-common">○ COMMON</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="common" tabindex="0">
+          <div class="inv-icon inv-icon--blender"></div>
+          <div class="inv-details">
+            <div class="inv-name">Blender</div>
+            <div class="inv-rarity rarity-common">○ COMMON</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+        <div class="inv-item" data-rarity="common" tabindex="0">
+          <div class="inv-icon inv-icon--git"></div>
+          <div class="inv-details">
+            <div class="inv-name">Git / Perforce</div>
+            <div class="inv-rarity rarity-common">○ COMMON</div>
+          </div>
+          <div class="inv-sparkle" aria-hidden="true">✦</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────────────────── -->
+  <section class="section contact-section" id="contact">
+    <div class="section-inner">
+      <div class="contact-screen">
+        <div class="contact-title">GAME OVER?</div>
+        <div class="contact-sub">OR CONTINUE?</div>
+
+        <div class="contact-prompt">
+          <div class="contact-question">WORK TOGETHER?</div>
+          <div class="contact-buttons">
+            <a href="mailto:kai@example.com" class="pixel-btn pixel-btn--yes">
+              <span class="btn-cursor">▶</span> YES / CONTINUE
+            </a>
+            <button class="pixel-btn pixel-btn--no" id="btnNo">
+              ✕ NO / QUIT
+            </button>
+          </div>
+        </div>
+
+        <div class="contact-links">
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon">◆</span>
+            <span class="contact-link-label">GitHub</span>
+            <span class="contact-link-val">@kainishida</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon">◆</span>
+            <span class="contact-link-label">Twitter/X</span>
+            <span class="contact-link-val">@kainishida_dev</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon">◆</span>
+            <span class="contact-link-label">itch.io</span>
+            <span class="contact-link-val">kainishida.itch.io</span>
+          </a>
+        </div>
+
+        <div class="contact-email">
+          <span class="contact-email-label">INSERT COIN:</span>
+          <a href="mailto:kai@example.com" class="contact-email-addr blink">kai@example.com</a>
+        </div>
+
+        <div class="credits">
+          <div class="credits-line">© 2025 KAI NISHIDA GAMES</div>
+          <div class="credits-line">ALL RIGHTS RESERVED</div>
+          <div class="credits-line muted">MADE WITH ♥ AND TOO MUCH COFFEE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION TRANSITION OVERLAY ──────────────────────────────── -->
+  <div class="vt-overlay" id="vtOverlay" aria-hidden="true">
+    <div class="vt-text">LOADING<span class="loading-dots">...</span></div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

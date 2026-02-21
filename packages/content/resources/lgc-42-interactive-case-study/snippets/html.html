@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Case Study — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Hero with parallax depth cards -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-card hc-1">Strategy</div>
+      <div class="hero-card hc-2">Design</div>
+      <div class="hero-card hc-3">Engineering</div>
+      <div class="hero-card hc-4">Launch</div>
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow">Case Study — 2025</span>
+      <h1>Redesigning a <br><em>$40M fintech</em> product</h1>
+      <p class="hero-desc">How a 6-month design sprint turned a legacy banking app into a modern platform — without losing a single user.</p>
+      <div class="hero-tags">
+        <span>UX Research</span>
+        <span>Product Design</span>
+        <span>React</span>
+        <span>Node.js</span>
+        <span>View Transitions</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Challenge Section -->
+  <section class="challenge-section">
+    <div class="content">
+      <div class="challenge-grid">
+        <div class="challenge-text">
+          <span class="section-tag">The Challenge</span>
+          <h2>A product stuck in 2015</h2>
+          <p>The client had a 40,000-user web app built in 2015 — reliable but rigid. Users complained about confusing navigation, slow load times, and a mobile experience that barely worked. Churn was climbing.</p>
+          <p>Our task: redesign the entire product over 24 weeks without disrupting existing users or the underlying infrastructure.</p>
+          <div class="quote-block">
+            <blockquote>"We need this to feel like 2025, not like a spreadsheet from 2015."</blockquote>
+            <cite>— Head of Product, Client Co.</cite>
+          </div>
+        </div>
+        <div class="challenge-stats">
+          <div class="stat-pill" data-target="62" data-suffix="%" data-label="Drop in task completion after login">
+            <span class="stat-val">0%</span>
+            <span class="stat-label">Task completion drop</span>
+          </div>
+          <div class="stat-pill" data-target="14" data-suffix="s" data-label="Average time to complete key action">
+            <span class="stat-val">0s</span>
+            <span class="stat-label">Avg. time-on-task</span>
+          </div>
+          <div class="stat-pill" data-target="3.1" data-suffix="★" data-label="App Store rating before redesign">
+            <span class="stat-val">0★</span>
+            <span class="stat-label">Store rating (before)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SVG Workflow — Process -->
+  <section class="process-section">
+    <div class="section-header">
+      <span class="section-tag">Our Process</span>
+      <h2>How we worked</h2>
+      <p>A structured 6-phase process, scroll to see each phase draw in.</p>
+    </div>
+    <div class="svg-wrapper">
+      <svg id="process-svg" viewBox="0 0 900 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- Connector lines -->
+        <path class="proc-line" d="M 80 130 L 210 130" fill="none" stroke="#263249" stroke-width="2"/>
+        <path class="proc-line" d="M 290 130 L 420 130" fill="none" stroke="#263249" stroke-width="2"/>
+        <path class="proc-line" d="M 500 130 L 630 130" fill="none" stroke="#263249" stroke-width="2"/>
+        <path class="proc-line" d="M 710 130 L 820 130" fill="none" stroke="#263249" stroke-width="2"/>
+
+        <!-- Phase nodes -->
+        <g class="proc-node" id="pn-1" opacity="0">
+          <circle cx="45" cy="130" r="32" fill="#121a2b" stroke="#86e8ff" stroke-width="2"/>
+          <text x="45" y="126" text-anchor="middle" fill="#86e8ff" font-size="9" font-weight="700">DISCO</text>
+          <text x="45" y="138" text-anchor="middle" fill="#86e8ff" font-size="9" font-weight="700">VER</text>
+          <text x="45" y="175" text-anchor="middle" fill="#8a95a8" font-size="10">Wk 1–2</text>
+        </g>
+        <g class="proc-node" id="pn-2" opacity="0">
+          <circle cx="255" cy="130" r="32" fill="#121a2b" stroke="#ae52ff" stroke-width="2"/>
+          <text x="255" y="126" text-anchor="middle" fill="#ae52ff" font-size="9" font-weight="700">DEFIN</text>
+          <text x="255" y="138" text-anchor="middle" fill="#ae52ff" font-size="9" font-weight="700">E</text>
+          <text x="255" y="175" text-anchor="middle" fill="#8a95a8" font-size="10">Wk 3–5</text>
+        </g>
+        <g class="proc-node" id="pn-3" opacity="0">
+          <circle cx="465" cy="130" r="32" fill="#121a2b" stroke="#ffcc66" stroke-width="2"/>
+          <text x="465" y="126" text-anchor="middle" fill="#ffcc66" font-size="9" font-weight="700">DESI</text>
+          <text x="465" y="138" text-anchor="middle" fill="#ffcc66" font-size="9" font-weight="700">GN</text>
+          <text x="465" y="175" text-anchor="middle" fill="#8a95a8" font-size="10">Wk 6–12</text>
+        </g>
+        <g class="proc-node" id="pn-4" opacity="0">
+          <circle cx="675" cy="130" r="32" fill="#121a2b" stroke="#ff40d6" stroke-width="2"/>
+          <text x="675" y="126" text-anchor="middle" fill="#ff40d6" font-size="9" font-weight="700">BUILD</text>
+          <text x="675" y="175" text-anchor="middle" fill="#8a95a8" font-size="10">Wk 13–22</text>
+        </g>
+        <g class="proc-node" id="pn-5" opacity="0">
+          <circle cx="855" cy="130" r="32" fill="#121a2b" stroke="#86e8ff" stroke-width="2"/>
+          <text x="855" y="126" text-anchor="middle" fill="#86e8ff" font-size="9" font-weight="700">LAUN</text>
+          <text x="855" y="138" text-anchor="middle" fill="#86e8ff" font-size="9" font-weight="700">CH</text>
+          <text x="855" y="175" text-anchor="middle" fill="#8a95a8" font-size="10">Wk 23–24</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Results / Counters Section -->
+  <section class="results-section">
+    <div class="section-header">
+      <span class="section-tag">The Results</span>
+      <h2>Numbers don't lie</h2>
+    </div>
+    <div class="results-grid">
+      <div class="result-card" data-target="4.7" data-suffix="★">
+        <div class="result-value">0★</div>
+        <div class="result-label">App Store Rating</div>
+        <div class="result-delta trend-up">↑ from 3.1</div>
+      </div>
+      <div class="result-card" data-target="89" data-suffix="%">
+        <div class="result-value">0%</div>
+        <div class="result-label">Task Completion Rate</div>
+        <div class="result-delta trend-up">↑ from 38%</div>
+      </div>
+      <div class="result-card" data-target="3.2" data-suffix="s">
+        <div class="result-value">0s</div>
+        <div class="result-label">Avg. Time-on-Task</div>
+        <div class="result-delta trend-up">↓ from 14s</div>
+      </div>
+      <div class="result-card" data-target="22" data-suffix="%">
+        <div class="result-value">0%</div>
+        <div class="result-label">Churn Reduction</div>
+        <div class="result-delta trend-up">↓ YoY</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials (FLIP grid toggle) -->
+  <section class="testimonials-section">
+    <div class="section-header">
+      <span class="section-tag">Client Voices</span>
+      <h2>What they said</h2>
+    </div>
+    <div class="testimonials-grid" id="tl-grid">
+      <div class="tl-card">
+        <blockquote>"The new app feels like a completely different product. Our team actually enjoys using it now."</blockquote>
+        <div class="tl-author">
+          <div class="tl-avatar" style="--av-hue: 195">SL</div>
+          <div><strong>Sarah Lin</strong><span>Head of Product</span></div>
+        </div>
+      </div>
+      <div class="tl-card">
+        <blockquote>"Response time concerns we had were handled immediately. The team is incredibly professional."</blockquote>
+        <div class="tl-author">
+          <div class="tl-avatar" style="--av-hue: 270">JM</div>
+          <div><strong>James Malik</strong><span>CTO</span></div>
+        </div>
+      </div>
+      <div class="tl-card">
+        <blockquote>"Finally, we can recommend the app to clients without cringing. This was career-changing work."</blockquote>
+        <div class="tl-author">
+          <div class="tl-avatar" style="--av-hue: 45">AO</div>
+          <div><strong>Amara Osei</strong><span>VP Customer Success</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="content">
+      <h2>Ready to work together?</h2>
+      <p>We take on 2–3 product design engagements per quarter.</p>
+      <a href="/" class="btn-primary">Start a Conversation</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

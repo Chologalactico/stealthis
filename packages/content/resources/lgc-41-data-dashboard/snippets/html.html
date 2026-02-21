@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Dashboard — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Startup Metrics 2025</div>
+      <h1 class="hero-title gradient-text">Growth at a Glance</h1>
+      <p class="hero-sub">Real-time analytics for product teams who ship fast. Every metric is animated as you scroll — counters, charts, and timelines come alive.</p>
+      <div class="hero-cta">
+        <a href="#metrics" class="btn-primary">View Metrics</a>
+        <a href="#charts" class="btn-ghost">See Charts</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Metrics Strip -->
+  <section class="metrics-section" id="metrics">
+    <div class="section-header">
+      <span class="section-tag">Key Metrics</span>
+      <h2 class="section-title">Numbers that matter</h2>
+      <p class="section-desc">Scroll through to watch each metric count up from zero — linked directly to your scroll position.</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card" data-target="48200" data-suffix="+" data-label="Active Users" data-sub="+12% this month">
+        <div class="metric-icon">◆</div>
+        <div class="metric-value">0</div>
+        <div class="metric-label">Active Users</div>
+        <div class="metric-sub">+12% this month</div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="--bar-w: 82%"></div></div>
+      </div>
+      <div class="metric-card" data-target="99.7" data-suffix="%" data-label="Uptime SLA" data-sub="Last 90 days">
+        <div class="metric-icon">▲</div>
+        <div class="metric-value">0</div>
+        <div class="metric-label">Uptime SLA</div>
+        <div class="metric-sub">Last 90 days</div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="--bar-w: 99%"></div></div>
+      </div>
+      <div class="metric-card" data-target="3.2" data-suffix="M" data-label="API Requests/Day" data-sub="Peak: 4.1M">
+        <div class="metric-icon">●</div>
+        <div class="metric-value">0</div>
+        <div class="metric-label">API Req/Day</div>
+        <div class="metric-sub">Peak: 4.1M</div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="--bar-w: 67%"></div></div>
+      </div>
+      <div class="metric-card" data-target="4.8" data-suffix="" data-label="App Store Rating" data-sub="23k reviews">
+        <div class="metric-icon">★</div>
+        <div class="metric-value">0</div>
+        <div class="metric-label">App Rating</div>
+        <div class="metric-sub">23k reviews</div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="--bar-w: 96%"></div></div>
+      </div>
+      <div class="metric-card" data-target="128" data-suffix=" ms" data-label="Avg Response Time" data-sub="p95: 380ms">
+        <div class="metric-icon">◈</div>
+        <div class="metric-value">0</div>
+        <div class="metric-label">Avg Response</div>
+        <div class="metric-sub">p95: 380ms</div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="--bar-w: 55%"></div></div>
+      </div>
+      <div class="metric-card" data-target="6" data-suffix="" data-label="Team Members" data-sub="Across 4 time zones">
+        <div class="metric-icon">▣</div>
+        <div class="metric-value">0</div>
+        <div class="metric-label">Team Size</div>
+        <div class="metric-sub">4 time zones</div>
+        <div class="metric-bar"><div class="metric-bar-fill" style="--bar-w: 40%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charts Section -->
+  <section class="charts-section" id="charts">
+    <div class="section-header">
+      <span class="section-tag">Analytics</span>
+      <h2 class="section-title gradient-text">Visualized Growth</h2>
+      <p class="section-desc">Canvas 2D charts animate into view on scroll. Bar charts, area charts, and donut charts — all built without a third-party chart library.</p>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>Monthly Active Users</h3>
+          <span class="chart-badge trend-up">↑ 23%</span>
+        </div>
+        <canvas id="bar-chart" width="480" height="220" aria-hidden="true"></canvas>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="dot accent"></span>2024</span>
+          <span class="legend-item"><span class="dot purple"></span>2025</span>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>Revenue Breakdown</h3>
+          <span class="chart-badge">Q4 2025</span>
+        </div>
+        <canvas id="donut-chart" width="280" height="220" aria-hidden="true"></canvas>
+        <div class="donut-legend">
+          <div class="dl-item"><span class="dl-dot" style="background: #86e8ff"></span><span>SaaS Plans</span><strong>62%</strong></div>
+          <div class="dl-item"><span class="dl-dot" style="background: #ae52ff"></span><span>Enterprise</span><strong>28%</strong></div>
+          <div class="dl-item"><span class="dl-dot" style="background: #ffcc66"></span><span>Add-ons</span><strong>10%</strong></div>
+        </div>
+      </div>
+
+      <div class="chart-card chart-wide">
+        <div class="chart-header">
+          <h3>Daily API Requests (Last 30 Days)</h3>
+          <span class="chart-badge trend-up">↑ Peak 4.1M</span>
+        </div>
+        <canvas id="area-chart" width="900" height="180" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <div class="section-header">
+      <span class="section-tag">Roadmap</span>
+      <h2 class="section-title">Milestones</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item" data-side="left">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <span class="tl-date">Q1 2024</span>
+          <h4>Private Beta</h4>
+          <p>Launched with 50 design partners. Core analytics pipeline and dashboard shipped.</p>
+        </div>
+      </div>
+      <div class="tl-item" data-side="right">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <span class="tl-date">Q2 2024</span>
+          <h4>Public Launch</h4>
+          <p>2,400 signups in first week. Featured in Product Hunt Top 5 of the day.</p>
+        </div>
+      </div>
+      <div class="tl-item" data-side="left">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <span class="tl-date">Q4 2024</span>
+          <h4>Series A — $4.2M</h4>
+          <p>Raised seed round to expand team and infrastructure. Hired VP of Engineering.</p>
+        </div>
+      </div>
+      <div class="tl-item" data-side="right">
+        <div class="tl-dot tl-dot--active"></div>
+        <div class="tl-card tl-card--active">
+          <span class="tl-date">Now</span>
+          <h4>48,200 Active Users</h4>
+          <p>Scaling infrastructure and preparing for enterprise tier launch in Q1 2026.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="section-header">
+      <span class="section-tag">The Team</span>
+      <h2 class="section-title">Built by 6</h2>
+      <p class="section-desc">A small team with a massive impact. Remote-first, async-first, quality-first.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar" style="--av-hue: 195">AK</div>
+        <h4>Alex Kim</h4>
+        <span>CEO / Product</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="--av-hue: 270">MR</div>
+        <h4>Maria Reyes</h4>
+        <span>CTO</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="--av-hue: 330">JS</div>
+        <h4>Jordan Sato</h4>
+        <span>Design Lead</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="--av-hue: 45">PE</div>
+        <h4>Priya Elara</h4>
+        <span>Full-stack Eng</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="--av-hue: 150">TN</div>
+        <h4>Tom Nkosi</h4>
+        <span>Data Engineer</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="--av-hue: 15">LV</div>
+        <h4>Lena Voss</h4>
+        <span>Growth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="gradient-text">Ready to track yours?</h2>
+    <p>Get started with a free 14-day trial. No credit card required.</p>
+    <a href="/" class="btn-primary">Start Free Trial</a>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Velocity Experience — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Velocity Canvas (fixed overlay) -->
+  <canvas id="velocity-canvas" aria-hidden="true"></canvas>
+
+  <!-- Three.js WebGL hero -->
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">High Performance</div>
+      <h1 class="gradient-text">Built for speed.<br>Designed to inspire.</h1>
+      <p class="hero-desc">Scroll fast or scroll slow — this experience reacts to your velocity. Built with Three.js, Lenis, GSAP, and Canvas 2D in perfect sync.</p>
+      <div class="speed-indicator" aria-live="polite">
+        <span class="speed-label">Scroll Velocity</span>
+        <div class="speed-bar-track">
+          <div class="speed-bar-fill" id="speed-fill"></div>
+        </div>
+        <span class="speed-value" id="speed-value">0.0</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depth Section -->
+  <section class="depth-section">
+    <div class="depth-cards">
+      <div class="depth-card" style="--depth: 0.9; --card-hue: 195">
+        <div class="dc-icon">◆</div>
+        <h3>Velocity Tracking</h3>
+        <p>Lenis exposes scroll velocity on every frame. The faster you scroll, the more dramatic the visual response.</p>
+      </div>
+      <div class="depth-card" style="--depth: 0.5; --card-hue: 270">
+        <div class="dc-icon">▲</div>
+        <h3>Canvas Speed Lines</h3>
+        <p>Radial speed lines drawn on Canvas 2D scale with velocity magnitude — count, length, and opacity all react.</p>
+      </div>
+      <div class="depth-card" style="--depth: 0.7; --card-hue: 330">
+        <div class="dc-icon">●</div>
+        <h3>Three.js Hero</h3>
+        <p>A WebGL scene runs in the hero background, rotating and reacting to scroll progress through GSAP.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Velocity Stats -->
+  <section class="stats-section">
+    <div class="section-header">
+      <span class="section-tag">Performance</span>
+      <h2 class="gradient-text">Numbers in motion</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card" data-target="60" data-suffix=" fps">
+        <div class="stat-value">0 fps</div>
+        <div class="stat-label">Target Frame Rate</div>
+      </div>
+      <div class="stat-card" data-target="16.6" data-suffix=" ms">
+        <div class="stat-value">0 ms</div>
+        <div class="stat-label">Frame Budget</div>
+      </div>
+      <div class="stat-card" data-target="3" data-suffix="">
+        <div class="stat-value">0</div>
+        <div class="stat-label">Rendering Layers</div>
+      </div>
+      <div class="stat-card" data-target="0" data-suffix=" ms">
+        <div class="stat-value">0 ms</div>
+        <div class="stat-label">Input Lag</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section">
+    <div class="section-header">
+      <span class="section-tag">Techniques</span>
+      <h2>What makes it tick</h2>
+    </div>
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-num">01</div>
+        <div class="feature-text">
+          <h3>Lenis Velocity API</h3>
+          <p>Access real-time scroll velocity through Lenis's <code>scroll</code> event. Map the absolute value to visual intensity for reactive effects.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">02</div>
+        <div class="feature-text">
+          <h3>Canvas 2D Compositing</h3>
+          <p>A fixed Canvas layer sits above the page with <code>pointer-events: none</code>. Speed lines are cleared and redrawn each rAF tick.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">03</div>
+        <div class="feature-text">
+          <h3>Three.js + ScrollTrigger</h3>
+          <p>The WebGL hero canvas uses GSAP's ticker. Camera and mesh rotation are driven by scroll progress for seamless integration.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">04</div>
+        <div class="feature-text">
+          <h3>CSS Hue Shift</h3>
+          <p>Gradient text hue is updated each frame from a ScrollTrigger <code>onUpdate</code> callback — no repaints, just CSS variable changes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="gradient-text">Scroll to believe it.</h2>
+    <p>Three rendering layers. Zero jank. One experience.</p>
+    <a href="/" class="btn-primary">Back to Gallery</a>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

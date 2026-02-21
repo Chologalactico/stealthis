@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Landing Page — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="section hero-section" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Ship faster with Catalyst</h1>
+      <p class="hero-subtitle">The all-in-one platform for modern teams</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Start Free Trial</button>
+        <button class="btn btn-outline">Watch Demo</button>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="device-laptop hero-laptop">
+        <div class="laptop-screen">
+          <div class="screen-ui">
+            <div class="screen-sidebar"></div>
+            <div class="screen-main">
+              <div class="screen-topbar"></div>
+              <div class="screen-chart"></div>
+              <div class="screen-rows">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- FEATURES (pinned 300vh) -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="feature-track" id="features">
+    <div class="feature-sticky">
+      <!-- Left: Feature cards -->
+      <div class="feature-content">
+        <div class="step-dots">
+          <span class="step-dot active" data-step="0"></span>
+          <span class="step-dot" data-step="1"></span>
+          <span class="step-dot" data-step="2"></span>
+        </div>
+
+        <div class="feature-card active" id="feature-0">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <rect x="4" y="8" width="40" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 20h8M12 24h6M12 28h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+              <path d="M28 18v14M32 22v10M36 20v12M40 16v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M4 36h40" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="feature-label">Analytics</span>
+          <h2 class="feature-heading">Analytics Dashboard</h2>
+          <p class="feature-desc">Real-time insights at your fingertips. Track performance metrics, user engagement, and conversion funnels with interactive dashboards that update in real time.</p>
+        </div>
+
+        <div class="feature-card" id="feature-1">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <rect x="14" y="4" width="20" height="40" rx="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M20 8h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="24" cy="40" r="1.5" fill="currentColor"/>
+              <path d="M18 18h12M18 22h8M18 26h10M18 30h6" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <span class="feature-label">Mobile</span>
+          <h2 class="feature-heading">Mobile First</h2>
+          <p class="feature-desc">Your entire workspace in your pocket. Native-quality experience on every device with offline support, push notifications, and seamless sync across platforms.</p>
+        </div>
+
+        <div class="feature-card" id="feature-2">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="16" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="32" cy="20" r="6" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="24" cy="34" r="6" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M20 24l4 4M28 24l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M22 20h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <span class="feature-label">Collaboration</span>
+          <h2 class="feature-heading">Team Collaboration</h2>
+          <p class="feature-desc">Work together in real time. Shared workspaces, threaded comments, task assignments, and live cursors keep your team aligned and productive.</p>
+        </div>
+      </div>
+
+      <!-- Right: Device mockups -->
+      <div class="feature-devices">
+        <div class="feature-device device-wrap active" id="device-0">
+          <div class="device-laptop">
+            <div class="laptop-screen">
+              <div class="screen-ui">
+                <div class="screen-sidebar"></div>
+                <div class="screen-main">
+                  <div class="screen-topbar"></div>
+                  <div class="screen-chart"></div>
+                  <div class="screen-rows">
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+        </div>
+
+        <div class="feature-device device-wrap" id="device-1">
+          <div class="device-phone">
+            <div class="phone-screen">
+              <div class="phone-ui">
+                <div class="phone-header"></div>
+                <div class="phone-card"></div>
+                <div class="phone-card short"></div>
+                <div class="phone-list">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-device device-wrap" id="device-2">
+          <div class="device-tablet">
+            <div class="tablet-screen">
+              <div class="tablet-ui">
+                <div class="tablet-nav"></div>
+                <div class="tablet-grid">
+                  <div class="tablet-avatar"><span>A</span></div>
+                  <div class="tablet-avatar"><span>B</span></div>
+                  <div class="tablet-avatar"><span>C</span></div>
+                </div>
+                <div class="tablet-chat">
+                  <div class="chat-bubble left"></div>
+                  <div class="chat-bubble right"></div>
+                  <div class="chat-bubble left short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- PRICING -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="section pricing-section" id="pricing">
+    <h2 class="pricing-heading">Simple, transparent pricing</h2>
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">
+          <span class="price-amount">$29</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <ul class="pricing-features">
+          <li>5 projects</li>
+          <li>10GB storage</li>
+          <li>Basic analytics</li>
+          <li>Email support</li>
+        </ul>
+        <button class="btn btn-outline btn-block">Get Started</button>
+      </div>
+
+      <!-- Professional -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-tier">Professional</div>
+        <div class="pricing-price">
+          <span class="price-amount">$79</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <ul class="pricing-features">
+          <li>Unlimited projects</li>
+          <li>100GB storage</li>
+          <li>Advanced analytics</li>
+          <li>Priority support</li>
+          <li>Team features</li>
+        </ul>
+        <button class="btn btn-primary btn-block">Get Started</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price">
+          <span class="price-amount">$199</span>
+          <span class="price-period">/mo</span>
+        </div>
+        <ul class="pricing-features">
+          <li>Everything in Pro</li>
+          <li>Custom integrations</li>
+          <li>Dedicated support</li>
+          <li>SLA guarantee</li>
+        </ul>
+        <button class="btn btn-outline btn-block">Contact Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- TESTIMONIALS -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="section testimonials-section" id="testimonials">
+    <h2 class="testimonials-heading">Loved by teams everywhere</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Catalyst transformed how our engineering team ships. We cut our deployment cycle in half and haven't looked back.</p>
+        <div class="testimonial-author">
+          <div class="avatar" style="--avatar-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);">
+            <span>SK</span>
+          </div>
+          <div class="author-info">
+            <span class="author-name">Sarah Kim</span>
+            <span class="author-role">VP of Engineering, Stackline</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">The analytics dashboard alone is worth the price. We finally have visibility into what matters without drowning in data.</p>
+        <div class="testimonial-author">
+          <div class="avatar" style="--avatar-gradient: linear-gradient(135deg, #34d399, #059669);">
+            <span>MR</span>
+          </div>
+          <div class="author-info">
+            <span class="author-name">Marcus Rivera</span>
+            <span class="author-role">Product Lead, NovaBuild</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">We evaluated a dozen tools before choosing Catalyst. The collaboration features are genuinely best-in-class.</p>
+        <div class="testimonial-author">
+          <div class="avatar" style="--avatar-gradient: linear-gradient(135deg, #f59e0b, #ef4444);">
+            <span>AT</span>
+          </div>
+          <div class="author-info">
+            <span class="author-name">Aisha Thompson</span>
+            <span class="author-role">CTO, Meridian Labs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- CTA -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <section class="section cta-section" id="cta">
+    <div class="cta-orb cta-orb-1" aria-hidden="true"></div>
+    <div class="cta-orb cta-orb-2" aria-hidden="true"></div>
+    <div class="cta-orb cta-orb-3" aria-hidden="true"></div>
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to get started?</h2>
+      <p class="cta-subtitle">Join thousands of teams already shipping faster with Catalyst. Start your free 14-day trial today.</p>
+      <button class="btn btn-primary btn-large">Start Free Trial</button>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

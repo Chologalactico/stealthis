@@ -1,0 +1,284 @@
+---
+// Spanish homepage — same structure, locale detected from URL
+import Base from "@layouts/Base.astro";
+import ResourceCard from "@components/ResourceCard.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "@i18n/index";
+import { SITE_URLS } from "@lib/urls";
+
+const locale = "es" as const;
+const t = useTranslations(locale);
+const allResources = await getCollection("resources");
+const featured = allResources.slice(0, 6);
+const categoryCount = new Set(allResources.map((resource) => resource.data.category)).size;
+const rotatingWords = (t("hero.rotatingWords") as string).split(",").map((w) => w.trim());
+const wordHues = [0, 45, 120, 200, 280, 320];
+const homeDescription = "Una librería curada de recursos web reutilizables — animaciones, páginas, componentes y patrones.";
+const alternateLinks = [
+  { hreflang: "en", href: "https://stealthis.dev/" },
+  { hreflang: "es", href: "https://stealthis.dev/es/" },
+  { hreflang: "x-default", href: "https://stealthis.dev/" },
+];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "StealThis.dev",
+  url: "https://stealthis.dev/es/",
+  inLanguage: "es",
+  description: homeDescription,
+};
+---
+
+<Base
+  title="StealThis"
+  description={homeDescription}
+  canonicalPath="/es/"
+  alternateLinks={alternateLinks}
+  structuredData={structuredData}
+>
+  <section class="relative overflow-hidden pt-20 pb-16 min-w-0">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute top-0 left-1/4 w-[600px] h-[500px] rounded-full bg-brand-500/10 blur-[120px]"></div>
+      <div class="absolute bottom-0 right-1/4 w-[500px] h-[400px] rounded-full bg-accent-500/10 blur-[120px]"></div>
+    </div>
+
+    <div class="container-xl text-center hero-container min-w-0">
+      <h1 class="hero-anim-item text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] mb-6 hero-title-gradient min-w-0">
+        <span class="block">{t("hero.titlePrefix").trim()}</span>
+        <span class="block">
+          <span
+            class="hero-rotating-wrap inline-block align-baseline overflow-hidden"
+            data-words={JSON.stringify(rotatingWords)}
+          >
+            <span class="hero-rotating-words inline-block">
+              {rotatingWords.map((word, i) => (
+                <span class="hero-rotating-word hero-rotating-word-gradient block" style={`--hue-word: ${wordHues[i % wordHues.length]}deg`}>{word}</span>
+              ))}
+              <span class="hero-rotating-word hero-rotating-word-gradient block" style={`--hue-word: ${wordHues[0]}deg`}>{rotatingWords[0]}</span>
+            </span>
+          </span>
+        </span>
+        <span class="block text-2xl sm:text-3xl lg:text-4xl font-semibold hero-suffix-line">{t("hero.titleSuffix").trim()}</span>
+      </h1>
+      <p class="hero-anim-item text-lg text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed">
+        {t("hero.subtitle.before")}
+        <a
+          href={`${SITE_URLS.docs}/integrate/`}
+          target="_blank"
+          rel="noopener"
+          class="hero-integrate-link text-brand-400 hover:text-brand-300 font-medium underline underline-offset-2 decoration-brand-500/50 hover:decoration-brand-400 transition-colors"
+        >
+          {t("hero.subtitle.mcp")}
+        </a>
+        {t("hero.subtitle.after")}
+      </p>
+      <div class="hero-anim-item flex flex-wrap gap-3 justify-center">
+        <a href="/es/library" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-brand-500 text-white font-semibold text-base hover:bg-brand-400 transition-colors shadow-[0_0_24px_rgba(14,165,233,0.3)]">
+          {t("hero.cta.browse")}
+        </a>
+        <a href="https://docs.stealthis.dev" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-white/6 border border-white/10 text-slate-300 font-semibold text-base hover:bg-white/10 hover:text-white transition-colors">
+          {t("hero.cta.docs")}
+        </a>
+      </div>
+
+      <div class="hero-anim-item hero-stats flex items-center justify-center gap-8 mt-12 text-sm flex-wrap">
+        <div class="flex flex-col items-center gap-1">
+          <span class="hero-count text-2xl font-bold text-white" data-count={allResources.length}>{allResources.length}</span>
+          <span class="text-slate-500">Recursos</span>
+        </div>
+        <div class="w-px h-8 bg-white/10"></div>
+        <div class="flex flex-col items-center gap-1">
+          <span class="hero-count text-2xl font-bold text-white" data-count={categoryCount}>{categoryCount}</span>
+          <span class="text-slate-500">Categorías</span>
+        </div>
+        <div class="w-px h-8 bg-white/10"></div>
+        <div class="flex flex-col items-center gap-1">
+          <span class="text-2xl font-bold text-white">MIT</span>
+          <span class="text-slate-500">Licencia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { gsap } from "gsap";
+
+    const prefersReducedMotion = () =>
+      typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function initHeroRotatingWords() {
+      const wrap = document.querySelector(".hero-rotating-wrap");
+      const wordsEl = document.querySelector(".hero-rotating-words");
+      if (!wrap || !wordsEl) return;
+
+      const wordsData = wrap.getAttribute("data-words");
+      if (!wordsData) return;
+
+      const words: string[] = JSON.parse(wordsData);
+      const wordHeight = 1.25;
+      const totalSlots = words.length + 1;
+
+      gsap.set(wordsEl, { y: 0 });
+      let index = 0;
+
+      function cycle() {
+        const next = index + 1;
+        const isLast = next === totalSlots - 1;
+
+        gsap.to(wordsEl, {
+          y: `-${next * wordHeight}em`,
+          duration: 0.6,
+          ease: "power2.inOut",
+          overwrite: true,
+          onComplete: () => {
+            if (isLast) {
+              gsap.set(wordsEl, { y: 0 });
+              index = 0;
+            } else {
+              index = next;
+            }
+          },
+        });
+        if (!isLast) index = next;
+      }
+
+      setInterval(cycle, 2500);
+    }
+
+    function initHeroEntrance() {
+      const items = document.querySelectorAll<HTMLElement>(".hero-anim-item");
+      const countEls = document.querySelectorAll<HTMLElement>(".hero-count");
+      const reduceMotion = prefersReducedMotion();
+
+      if (reduceMotion) {
+        items.forEach((el) => el.style.removeProperty("opacity"));
+        countEls.forEach((el) => {
+          const target = el.getAttribute("data-count");
+          if (target != null) el.textContent = target;
+        });
+        return;
+      }
+
+      gsap.set(items, { opacity: 0, y: 20 });
+      countEls.forEach((el) => (el.textContent = "0"));
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      tl.to(items, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 });
+      tl.add(
+        () => {
+          countEls.forEach((el) => {
+            const target = Number(el.getAttribute("data-count"));
+            if (Number.isNaN(target)) return;
+            const obj = { v: 0 };
+            gsap.to(obj, {
+              v: target,
+              duration: 1.2,
+              ease: "power2.out",
+              onUpdate: () => {
+                el.textContent = String(Math.round(obj.v));
+              },
+            });
+          });
+        },
+        "-=0.3"
+      );
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initHeroRotatingWords();
+      initHeroEntrance();
+    });
+  </script>
+
+  <style>
+    .hero-title-gradient > span {
+      background: linear-gradient(to bottom, white, rgb(148 163 184));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-title-gradient > span.hero-suffix-line {
+      background: linear-gradient(to bottom, rgb(148 163 184), rgb(100 116 139));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-top: 0.25em;
+    }
+    .hero-rotating-wrap {
+      --hero-word-height: 1.25em;
+      min-width: 11ch;
+      height: var(--hero-word-height);
+      vertical-align: baseline;
+      isolation: isolate;
+      text-align: center;
+    }
+    @media (max-width: 639px) {
+      .hero-rotating-wrap {
+        min-width: 0;
+        max-width: 100%;
+        width: fit-content;
+        margin-inline: auto;
+      }
+    }
+    .hero-rotating-word {
+      height: var(--hero-word-height);
+      min-height: var(--hero-word-height);
+      line-height: 1.25;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .hero-rotating-word-gradient {
+      --hue-word: 0deg;
+      --hue-saturation: 85%;
+      background: linear-gradient(
+        90deg,
+        hsl(var(--hue-word), var(--hue-saturation), 55%),
+        hsl(calc(var(--hue-word) + 60deg), var(--hue-saturation), 55%),
+        hsl(calc(var(--hue-word) + 120deg), var(--hue-saturation), 55%)
+      );
+      background-size: 200% 100%;
+      background-position: 0% 50%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      animation: hero-word-gradient-shift 6s ease-in-out infinite;
+    }
+    @keyframes hero-word-gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-rotating-word-gradient {
+        animation: none;
+        background-position: 0% 50%;
+      }
+    }
+    .hero-integrate-link {
+      display: inline-block;
+      animation: hero-link-pulse 2.5s ease-in-out infinite;
+    }
+    .hero-integrate-link:hover {
+      animation: none;
+      transform: translateY(-2px);
+    }
+    @keyframes hero-link-pulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+  </style>
+
+  <section class="container-xl pb-20">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-xl font-semibold text-white">Recursos destacados</h2>
+      <a href="/es/library" class="text-sm text-brand-400 hover:text-brand-300 font-medium">Ver todos →</a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {featured.map((resource) => (
+        <ResourceCard resource={resource} locale={locale} />
+      ))}
+    </div>
+  </section>
+</Base>

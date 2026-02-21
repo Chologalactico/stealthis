@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noise &amp; Grain Overlay — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <!-- SVG noise filter (hidden) -->
+  <svg class="hidden-svg">
+    <filter id="noise-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" id="turbulence"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+
+  <!-- Overlays -->
+  <div class="overlay noise-overlay" id="noise-overlay"></div>
+  <div class="overlay grain-canvas-overlay"><canvas id="grain-canvas" aria-hidden="true"></canvas></div>
+  <div class="overlay scanlines-overlay" id="scanlines-overlay"></div>
+  <div class="overlay vignette-overlay"></div>
+
+  <!-- Content -->
+  <main class="page">
+    <header class="header">
+      <span class="eyebrow">Demo 18</span>
+      <h1>Noise &amp; Grain</h1>
+      <p class="subtitle">Multiple overlay techniques composited on top of content: SVG noise filter, canvas grain, scanlines, and vignette.</p>
+    </header>
+
+    <div class="controls">
+      <label class="toggle"><input type="checkbox" id="tog-noise" checked><span>SVG Noise</span></label>
+      <label class="toggle"><input type="checkbox" id="tog-grain" checked><span>Canvas Grain</span></label>
+      <label class="toggle"><input type="checkbox" id="tog-scanlines"><span>Scanlines</span></label>
+      <label class="toggle"><input type="checkbox" id="tog-vignette" checked><span>Vignette</span></label>
+    </div>
+
+    <div class="sample-content">
+      <div class="sample-hero" style="--hue: 220;">
+        <h2>Cinematic Texture</h2>
+        <p>Film grain adds warmth and analog character to digital interfaces.</p>
+      </div>
+      <div class="sample-row">
+        <div class="sample-card" style="--hue: 280;">Visual Depth</div>
+        <div class="sample-card" style="--hue: 340;">Atmosphere</div>
+        <div class="sample-card" style="--hue: 50;">Nostalgia</div>
+      </div>
+    </div>
+
+    <a href="/" class="btn-back">Back to Showcase</a>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

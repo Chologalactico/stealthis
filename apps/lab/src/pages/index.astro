@@ -1,0 +1,984 @@
+---
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import fg from "fast-glob";
+import matter from "gray-matter";
+import { SITE_URLS } from "../lib/urls";
+import "../styles/tailwind.css";
+
+const CONTENT_DIR = path.resolve(process.cwd(), "../../packages/content");
+
+// Read all resource metadata
+const files = await fg(path.join(CONTENT_DIR, "resources/*/index.mdx"));
+const resources = files.map((file) => {
+  const raw = readFileSync(file, "utf-8");
+  const { data } = matter(raw);
+  return data as Record<string, unknown>;
+});
+
+type LabResource = {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  tags: string[];
+  labRoute: string;
+  updatedAt?: Date | string;
+};
+
+const titleize = (value: string) =>
+  value
+    .split("-")
+    .filter(Boolean)
+    .map((chunk) => chunk.charAt(0).toUpperCase() + chunk.slice(1))
+    .join(" ");
+
+const normalizeTags = (value: unknown) =>
+  Array.isArray(value) ? value.map((item) => String(item).trim()).filter(Boolean) : [];
+
+const toLabResource = (data: Record<string, unknown>): LabResource | null => {
+  const labRoute = String(data.labRoute ?? "").trim();
+  if (!labRoute.startsWith("/")) return null;
+
+  const slug = String(data.slug ?? "").trim();
+  const title = String(data.title ?? slug).trim();
+  const description = String(data.description ?? "Open the full-screen demo in Lab.").trim();
+  const category = String(data.category ?? "uncategorized").trim();
+  const difficulty = String(data.difficulty ?? "med").trim();
+
+  return {
+    slug,
+    title,
+    description,
+    category,
+    difficulty,
+    tags: normalizeTags(data.tags),
+    labRoute,
+    updatedAt: data.updatedAt as Date | string | undefined,
+  };
+};
+
+const difficultyLabel = (value: string) => {
+  const normalized = value.toLowerCase();
+  if (normalized === "easy") return "Easy";
+  if (normalized === "med" || normalized === "medium") return "Medium";
+  if (normalized === "hard") return "Hard";
+  return "Medium";
+};
+
+const categoryPalette = ["#67b7ff", "#7f8fff", "#9a78ff", "#5ec9ff", "#8b6dff", "#58a7ff"];
+
+const categoryAccent: Record<string, string> = {
+  "web-animations": "#63beff",
+  "web-pages": "#7f8fff",
+  "ui-components": "#8f74ff",
+  patterns: "#6caeff",
+  components: "#9a78ff",
+  pages: "#5fc8ff",
+  prompts: "#8a71ff",
+  skills: "#71b9ff",
+  "mcp-servers": "#7b85ff",
+  architectures: "#65b0ff",
+  boilerplates: "#8b6dff",
+  remotion: "#5ca8ff",
+};
+
+const labResources = resources
+  .map((resource) => toLabResource(resource))
+  .filter((resource): resource is LabResource => Boolean(resource));
+
+const sortedResources = [...labResources].sort((a, b) => {
+  const dateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+  const dateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+  return dateB - dateA || a.title.localeCompare(b.title);
+});
+
+const categoryCounts = sortedResources.reduce((map, resource) => {
+  map.set(resource.category, (map.get(resource.category) ?? 0) + 1);
+  return map;
+}, new Map<string, number>());
+
+const categoryFilters = [
+  { id: "all", label: "All demos", count: sortedResources.length },
+  ...Array.from(categoryCounts.entries())
+    .map(([id, count]) => ({ id, label: titleize(id), count }))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label)),
+];
+
+const latestTimestamp = sortedResources.reduce((latest, resource) => {
+  if (!resource.updatedAt) return latest;
+  const timestamp = new Date(resource.updatedAt).getTime();
+  if (Number.isNaN(timestamp)) return latest;
+  return Math.max(latest, timestamp);
+}, 0);
+
+const latestUpdateLabel = latestTimestamp
+  ? new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(
+      new Date(latestTimestamp)
+    )
+  : "N/A";
+
+const topCategory = categoryFilters[1]?.label ?? "N/A";
+const description = "Explore full-screen, runnable demos from StealThis.dev resources.";
+const canonicalURL = new URL("/", Astro.site ?? "https://lab.stealthis.dev").toString();
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "StealThis.dev Lab",
+  url: canonicalURL,
+  description,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "StealThis.dev",
+    url: "https://stealthis.dev/",
+  },
+});
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content="Lab — StealThis.dev" />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content="https://stealthis.dev/social-card.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lab — StealThis.dev" />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://stealthis.dev/social-card.webp" />
+  <script type="application/ld+json" set:html={structuredData} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <title>Lab — StealThis.dev</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="lab-home">
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-a" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-b" aria-hidden="true"></div>
+  <header class="shell hero">
+    <div class="hero-nav">
+      <a class="brand" href={SITE_URLS.www}>
+        <span aria-hidden="true">✦</span>
+        <span>StealThis.dev</span>
+      </a>
+      <div class="hero-links">
+        <a href={SITE_URLS.docs}>Docs</a>
+        <a href={SITE_URLS.www + "/library"}>Library</a>
+      </div>
+    </div>
+    <div class="hero-layout">
+      <div>
+        <p class="eyebrow">Lab Playground</p>
+        <h1>
+          Build Intuition
+          <span>By Inspecting Real Demos</span>
+        </h1>
+        <p class="hero-copy">
+          Open each resource in a clean full-screen canvas, inspect behavior, and jump back to code when you are ready
+          to remix it.
+        </p>
+        <div class="hero-actions">
+          <a href={SITE_URLS.www + "/library"} class="btn-primary">Browse Library</a>
+          <a href={SITE_URLS.docs} class="btn-secondary">Read Docs</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <p class="panel-title">Lab Snapshot</p>
+        <dl class="panel-stats">
+          <div>
+            <dt>Demos</dt>
+            <dd>{sortedResources.length}</dd>
+          </div>
+          <div>
+            <dt>Categories</dt>
+            <dd>{categoryFilters.length - 1}</dd>
+          </div>
+          <div>
+            <dt>Top Category</dt>
+            <dd>{topCategory}</dd>
+          </div>
+          <div>
+            <dt>Latest Update</dt>
+            <dd>{latestUpdateLabel}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <section class="shell controls">
+    <label class="search-field" for="demo-search">
+      <span>Search demos</span>
+      <input id="demo-search" type="search" placeholder="Try: gsap, dashboard, shader..." data-demo-search />
+    </label>
+    <div class="filters" role="toolbar" aria-label="Demo categories">
+      {categoryFilters.map((filter, index) => (
+        <button
+          type="button"
+          class={`filter-pill ${index === 0 ? "is-active" : ""}`}
+          data-filter-btn
+          data-filter={filter.id}
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          <span>{filter.label}</span>
+          <strong>{filter.count}</strong>
+        </button>
+      ))}
+    </div>
+    <p class="results-count" data-results-count>{sortedResources.length} demos visible</p>
+  </section>
+
+  <main class="shell demo-area">
+    {sortedResources.length > 0 ? (
+      <div class="demo-grid">
+        {sortedResources.map((resource, index) => {
+          const accent = categoryAccent[resource.category] ?? categoryPalette[index % categoryPalette.length];
+          const cardDelay = (Math.min(index, 10) * 0.016).toFixed(3);
+          return (
+            <a
+              href={resource.labRoute}
+              class="demo-card"
+              style={`--accent:${accent}; --card-delay:${cardDelay}s;`}
+              data-demo-card
+              data-category={resource.category}
+              data-title={resource.title}
+              data-description={resource.description}
+              data-tags={resource.tags.join(" ")}
+            >
+              <div class="card-head">
+                <span class="category-pill">{titleize(resource.category)}</span>
+                <span class="difficulty-pill">{difficultyLabel(resource.difficulty)}</span>
+              </div>
+              <h2>{resource.title}</h2>
+              <p>{resource.description}</p>
+              <div class="card-tags">
+                {resource.tags.slice(0, 4).map((tag) => (
+                  <span>#{tag}</span>
+                ))}
+              </div>
+              <div class="card-foot">
+                <span>Open full-screen demo</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    ) : (
+      <p class="empty-state">No lab demos available yet.</p>
+    )}
+  </main>
+
+  <div class="route-loader" data-route-loader hidden role="status" aria-live="polite" aria-label="Loading demo">
+    <div class="route-loader__inner">
+      <span class="route-loader__spinner" aria-hidden="true"></span>
+      <p>Loading demo...</p>
+    </div>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const search = document.querySelector("[data-demo-search]");
+      const cards = Array.from(document.querySelectorAll("[data-demo-card]"));
+      const buttons = Array.from(document.querySelectorAll("[data-filter-btn]"));
+      const count = document.querySelector("[data-results-count]");
+      const routeLoader = document.querySelector("[data-route-loader]");
+      if (!(search instanceof HTMLInputElement) || !(count instanceof HTMLElement) || cards.length === 0) return;
+
+      let activeFilter = "all";
+      const getCardText = (card) =>
+        `${card.dataset.title ?? ""} ${card.dataset.description ?? ""} ${card.dataset.tags ?? ""}`.toLowerCase();
+
+      const updateResults = () => {
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
+
+        for (const card of cards) {
+          const category = card.dataset.category ?? "";
+          const matchesFilter = activeFilter === "all" || category === activeFilter;
+          const matchesQuery = query.length === 0 || getCardText(card).includes(query);
+          const isVisible = matchesFilter && matchesQuery;
+
+          card.hidden = !isVisible;
+          card.classList.toggle("is-hidden", !isVisible);
+          if (isVisible) visible += 1;
+        }
+
+        count.textContent = `${visible} demo${visible === 1 ? "" : "s"} visible`;
+      };
+
+      search.addEventListener("input", updateResults);
+
+      for (const button of buttons) {
+        button.addEventListener("click", () => {
+          activeFilter = button.dataset.filter ?? "all";
+          for (const item of buttons) {
+            const isActive = item === button;
+            item.classList.toggle("is-active", isActive);
+            item.setAttribute("aria-pressed", isActive ? "true" : "false");
+          }
+          updateResults();
+        });
+      }
+
+      const showRouteLoader = () => {
+        if (!(routeLoader instanceof HTMLElement)) return;
+        routeLoader.hidden = false;
+        requestAnimationFrame(() => routeLoader.classList.add("is-visible"));
+      };
+
+      const isPlainLeftClick = (event) =>
+        event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+
+      for (const card of cards) {
+        if (!(card instanceof HTMLAnchorElement)) continue;
+        card.addEventListener("click", (event) => {
+          if (!isPlainLeftClick(event)) return;
+          if (card.target === "_blank" || card.hasAttribute("download")) return;
+          showRouteLoader();
+        });
+      }
+
+      window.addEventListener("pageshow", () => {
+        if (!(routeLoader instanceof HTMLElement)) return;
+        routeLoader.classList.remove("is-visible");
+        routeLoader.hidden = true;
+      });
+
+      updateResults();
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg: #05091b;
+      --bg-soft: #131b3d;
+      --surface: rgba(13, 24, 53, 0.76);
+      --surface-hover: rgba(18, 33, 68, 0.86);
+      --border: rgba(131, 154, 255, 0.27);
+      --text: #eef2ff;
+      --muted: #9eabd7;
+      --accent: #67b7ff;
+      --accent-strong: #9575ff;
+      --mono: "Space Mono", "IBM Plex Mono", monospace;
+      --sans: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body.lab-home {
+      background: radial-gradient(circle at 18% 20%, rgba(103, 183, 255, 0.2), transparent 44%),
+        radial-gradient(circle at 82% 12%, rgba(149, 117, 255, 0.18), transparent 38%), var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.5;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 5rem;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(129, 152, 191, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(129, 152, 191, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at 50% 22%, #000 0%, transparent 70%);
+      z-index: -3;
+    }
+
+    .bg-orb {
+      position: fixed;
+      width: min(34rem, 58vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      filter: blur(52px);
+      z-index: -2;
+      opacity: 0.38;
+      pointer-events: none;
+      animation: float 14s ease-in-out infinite alternate;
+    }
+
+    .bg-orb-a {
+      background: rgba(103, 183, 255, 0.34);
+      top: -14rem;
+      right: -10rem;
+    }
+
+    .bg-orb-b {
+      background: rgba(149, 117, 255, 0.28);
+      bottom: -16rem;
+      left: -10rem;
+      animation-delay: 1.8s;
+    }
+
+    .shell {
+      width: min(1120px, calc(100vw - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .hero {
+      padding-top: 2.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.8rem;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 0.92rem;
+    }
+
+    .brand span:first-child {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .hero-links a {
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      font-family: var(--mono);
+    }
+
+    .hero-links a:hover {
+      color: var(--text);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.75rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-size: 0.65rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 7vw, 4.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      max-width: 12ch;
+      text-wrap: balance;
+    }
+
+    h1 span {
+      display: block;
+      color: #d7e3ff;
+    }
+
+    .hero-copy {
+      margin: 1rem 0 1.4rem;
+      color: var(--muted);
+      max-width: 56ch;
+      font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.72rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      height: 2.45rem;
+      padding: 0 1.05rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      font-family: var(--mono);
+    }
+
+    .btn-primary {
+      color: #08112a;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      border: 1px solid transparent;
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: rgba(9, 17, 32, 0.68);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-panel {
+      border: 1px solid var(--border);
+      border-radius: 1.1rem;
+      background: linear-gradient(165deg, rgba(24, 40, 68, 0.78), rgba(11, 20, 35, 0.82));
+      padding: 1.1rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-title {
+      margin: 0 0 1rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-strong);
+      font-size: 0.64rem;
+    }
+
+    .panel-stats {
+      margin: 0;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .panel-stats div {
+      padding-bottom: 0.72rem;
+      border-bottom: 1px solid rgba(146, 171, 209, 0.21);
+    }
+
+    .panel-stats div:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .panel-stats dt {
+      color: var(--muted);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.6rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .panel-stats dd {
+      margin: 0;
+      color: #f4f8ff;
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .controls {
+      margin-bottom: 1.1rem;
+    }
+
+    .search-field {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .search-field span {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .search-field input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 0.92rem;
+      background: rgba(8, 16, 31, 0.8);
+      color: var(--text);
+      font: inherit;
+      padding: 0.78rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-field input:focus {
+      border-color: rgba(103, 183, 255, 0.72);
+      box-shadow: 0 0 0 3px rgba(103, 183, 255, 0.18);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-pill {
+      border: 1px solid rgba(132, 156, 192, 0.28);
+      border-radius: 999px;
+      background: rgba(9, 18, 35, 0.58);
+      color: var(--muted);
+      padding: 0.34rem 0.64rem;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    .filter-pill strong {
+      font-size: 0.64rem;
+      color: #e6eeff;
+      background: rgba(122, 145, 179, 0.2);
+      border-radius: 999px;
+      padding: 0.1rem 0.42rem;
+      min-width: 2ch;
+      text-align: center;
+    }
+
+    .filter-pill:hover {
+      color: var(--text);
+      border-color: rgba(103, 183, 255, 0.52);
+      transform: translateY(-1px);
+    }
+
+    .filter-pill.is-active {
+      color: #0a1230;
+      border-color: rgba(103, 183, 255, 0.86);
+      background: linear-gradient(130deg, rgba(103, 183, 255, 0.92), rgba(149, 117, 255, 0.9));
+    }
+
+    .filter-pill.is-active strong {
+      background: rgba(5, 19, 32, 0.2);
+      color: #07172b;
+    }
+
+    .results-count {
+      margin: 0.72rem 0 0;
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+      gap: 0.82rem;
+    }
+
+    .demo-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(141, 166, 203, 0.27);
+      border-radius: 1.05rem;
+      padding: 0.95rem;
+      background: linear-gradient(170deg, var(--surface), rgba(9, 17, 31, 0.88));
+      min-height: 210px;
+      gap: 0.62rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: card-in 0.52s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+      animation-delay: var(--card-delay, 0s);
+      transition: border-color 0.22s ease, transform 0.22s ease, background 0.22s ease;
+    }
+
+    .demo-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -2rem -5.6rem auto;
+      width: 10rem;
+      aspect-ratio: 1 / 1;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent), transparent 62%), transparent 72%);
+      pointer-events: none;
+      transition: transform 0.25s ease;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent), white 30%);
+      background: linear-gradient(170deg, var(--surface-hover), rgba(9, 17, 31, 0.92));
+    }
+
+    .demo-card:hover::before {
+      transform: translate(-8px, -8px) scale(1.06);
+    }
+
+    .demo-card[hidden] {
+      display: none;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.45rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .category-pill,
+    .difficulty-pill {
+      display: inline-flex;
+      align-items: center;
+      height: 1.4rem;
+      border-radius: 999px;
+      padding: 0 0.58rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.56rem;
+    }
+
+    .category-pill {
+      background: color-mix(in srgb, var(--accent), transparent 84%);
+      color: color-mix(in srgb, var(--accent), white 20%);
+      border: 1px solid color-mix(in srgb, var(--accent), transparent 68%);
+    }
+
+    .difficulty-pill {
+      color: #dce7ff;
+      border: 1px solid rgba(122, 143, 173, 0.42);
+      background: rgba(15, 27, 47, 0.6);
+    }
+
+    .demo-card h2 {
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .demo-card p {
+      margin: 0;
+      color: #9eb2d2;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      max-width: 52ch;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.38rem;
+      margin-top: auto;
+    }
+
+    .card-tags span {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      color: color-mix(in srgb, var(--accent), white 24%);
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(136, 158, 194, 0.32);
+      border-radius: 999px;
+      padding: 0.13rem 0.45rem;
+      background: rgba(9, 18, 33, 0.68);
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-foot {
+      margin-top: 0.24rem;
+      border-top: 1px solid rgba(135, 157, 191, 0.2);
+      padding-top: 0.58rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 0.6rem;
+      color: #dbe8ff;
+    }
+
+    .card-foot span:last-child {
+      font-size: 0.84rem;
+      color: var(--accent);
+    }
+
+    .empty-state {
+      margin: 1rem 0 0;
+      border: 1px dashed rgba(146, 171, 209, 0.34);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      color: var(--muted);
+      text-align: center;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.68rem;
+    }
+
+    .route-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      background: rgba(6, 12, 24, 0.76);
+      backdrop-filter: blur(7px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+
+    .route-loader[hidden] {
+      display: none;
+    }
+
+    .route-loader.is-visible {
+      opacity: 1;
+    }
+
+    .route-loader__inner {
+      display: grid;
+      justify-items: center;
+      gap: 0.68rem;
+      color: #d9e9ff;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .route-loader__spinner {
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 999px;
+      border: 3px solid rgba(103, 183, 255, 0.2);
+      border-top-color: var(--accent);
+      border-right-color: var(--accent-strong);
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes card-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(0, -22px, 0);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        max-width: 14ch;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(1120px, calc(100vw - 1.25rem));
+      }
+
+      .hero {
+        padding-top: 1.4rem;
+      }
+
+      .hero-nav {
+        margin-bottom: 1.55rem;
+      }
+
+      .hero-links {
+        gap: 0.74rem;
+      }
+
+      .hero-links a {
+        font-size: 0.7rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bg-orb,
+      .demo-card,
+      .route-loader__spinner {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .demo-card {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</body>
+</html>

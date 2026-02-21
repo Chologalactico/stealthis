@@ -1,0 +1,38 @@
+---
+slug: hero-parallax
+title: Hero Parallax
+description: A multi-layer parallax hero section driven by scroll position, creating depth through independent layer speeds.
+category: web-pages
+type: page
+tags: [parallax, hero, scroll, depth, layers]
+tech: [css, js, transform, scroll-event]
+difficulty: med
+targets: [html, react]
+labRoute: /web-pages/hero-parallax
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+## Hero Parallax
+
+A multi-layer parallax hero that creates a sense of depth by moving background layers at different speeds relative to scroll position.
+
+### How it works
+
+Each layer has a `data-speed` attribute controlling how fast it moves relative to the scroll:
+- `0.0` — fixed (doesn't move)
+- `0.5` — moves at half scroll speed
+- `1.0` — moves at full scroll speed (standard)
+
+On scroll, `requestAnimationFrame` reads `window.scrollY` and applies `translateY` to each layer.
+
+### Performance tips
+
+- Use `will-change: transform` to hint GPU compositing
+- Keep layers to 3–4 max to avoid overdraw
+- Use `requestAnimationFrame` (not `scroll` event directly) for smooth 60fps
+
+### Accessibility
+
+Wrap with `prefers-reduced-motion` check to disable parallax for users who prefer it.

@@ -1,0 +1,159 @@
+:root {
+  --bg: #f3efe4;
+  --text: #1f2126;
+  --muted: #5f6670;
+  --line: #cdc5b8;
+  --accent: #0e3659;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: "Palatino", "Book Antiqua", serif;
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: rgba(243, 239, 228, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.toggle {
+  border: 1px solid #a69c8d;
+  background: transparent;
+  color: #2c3139;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+main {
+  width: min(1120px, 94%);
+  margin: 0 auto 2rem;
+  padding-top: 3.6rem;
+}
+
+.hero { display: grid; gap: 0.7rem; }
+.kicker {
+  margin: 0;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 5.8rem);
+  line-height: 0.9;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.collage {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 170px;
+  gap: 0.75rem;
+}
+
+.tile {
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: var(--bg);
+  color: #fff;
+  padding: 0.8rem;
+  display: grid;
+  align-content: end;
+  gap: 0.35rem;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  z-index: -1;
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.tile:hover::before {
+  transform: scale(1.08);
+}
+
+.tile h2 {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.2vw, 1.8rem);
+}
+
+.tag {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.92;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.tall { grid-row: span 2; }
+.wide { grid-column: span 2; }
+
+.manifesto {
+  margin-top: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.52);
+  padding: 1rem;
+}
+
+.manifesto h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3.4vw, 2.3rem);
+}
+
+.manifesto p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+body.no-motion .tile::before {
+  transition: none;
+}
+
+@media (max-width: 960px) {
+  .collage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 150px;
+  }
+
+  .wide { grid-column: span 2; }
+}

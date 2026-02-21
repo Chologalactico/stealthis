@@ -1,0 +1,35 @@
+---
+slug: nextjs-saas-architecture
+title: Next.js SaaS Architecture
+description: A production-ready architecture for a multi-tenant SaaS app using Next.js 15, Postgres, Auth.js, and Cloudflare. Includes a Mermaid diagram and file structure.
+category: architectures
+type: architecture
+tags: [nextjs, saas, multi-tenant, auth, postgres, cloudflare, architecture]
+tech: [nextjs, typescript, postgres, prisma, authjs, cloudflare, stripe]
+difficulty: med
+targets: [markdown]
+license: MIT
+createdAt: 2026-02-20
+updatedAt: 2026-02-20
+---
+
+A battle-tested architecture for building a multi-tenant SaaS product on Next.js 15. Copy the markdown into Claude or ChatGPT and use it as the starting point for your implementation plan.
+
+## Stack
+
+| Layer | Choice |
+|-------|--------|
+| Framework | Next.js 15 (App Router) |
+| Auth | Auth.js v5 (GitHub + Google OAuth + magic link) |
+| Database | Postgres (Neon or Supabase) + Prisma ORM |
+| Payments | Stripe (subscriptions + webhooks) |
+| Email | Resend |
+| Deployment | Cloudflare Pages + Workers |
+| Storage | Cloudflare R2 |
+
+## Key decisions
+
+- **Multi-tenancy via subdomain or path** — each org gets `org.app.com` or `app.com/org`
+- **Row-level security** — every DB query scoped to `organizationId`
+- **Middleware-first auth** — Next.js middleware blocks unauthenticated requests before route handlers run
+- **Optimistic UI** — React Server Components for initial load, client transitions for mutations

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gradient Text with Scroll Hue Shift — stealthisdesign</title>
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Demo 37</span>
+      <h1 class="gradient-text">Gradient Text Hue Shift</h1>
+      <p class="subtitle">Text with animated gradient background that shifts hue and saturation as you scroll down the page. Pure CSS + GSAP ScrollTrigger.</p>
+    </div>
+  </section>
+
+  <section class="spacer">
+    <div class="content">
+      <h2>How It Works</h2>
+      <p>This effect uses CSS Custom Properties (CSS variables) to dynamically control the hue, saturation, and lightness of a gradient background applied to text.</p>
+      <p>As the user scrolls, GSAP ScrollTrigger updates the CSS variables in real-time, creating a smooth color shift that feels organic and modern.</p>
+    </div>
+  </section>
+
+  <section class="showcase-1">
+    <div class="content">
+      <h2 class="gradient-text">The Technique</h2>
+      <p>A heading element uses <code>background: linear-gradient(...)</code> with CSS variables for hue rotation. Each section has its own hue range.</p>
+      <p>The effect is simple but impactful: as you scroll past, the text color smoothly transitions through the color spectrum.</p>
+    </div>
+  </section>
+
+  <section class="spacer">
+    <div class="content">
+      <h2>Perfect For</h2>
+      <ul>
+        <li><strong>Hero sections:</strong> Draw attention with color-shifting headlines</li>
+        <li><strong>Section headers:</strong> Visual rhythm and engagement</li>
+        <li><strong>Feature callouts:</strong> Highlight key messages</li>
+        <li><strong>Portfolio pages:</strong> Modern, eye-catching typography</li>
+        <li><strong>Marketing sites:</strong> Brand color integration and movement</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="showcase-2">
+    <div class="content">
+      <h2 class="gradient-text">Advanced Variations</h2>
+      <p>You can layer multiple hue shifts, adjust saturation for desaturation on scroll, or synchronize the shift with other animations on the page.</p>
+      <p>The gradient direction can also be linked to scroll velocity for even more dynamism.</p>
+    </div>
+  </section>
+
+  <section class="spacer">
+    <div class="content">
+      <h2>Implementation</h2>
+      <ol>
+        <li>Define CSS variables for hue: <code>--hue: 0deg</code></li>
+        <li>Apply gradient to text: <code>background: linear-gradient(to right, hsl(var(--hue), 100%, 50%), ...)</code></li>
+        <li>Use <code>background-clip: text</code> to show only the gradient on text</li>
+        <li>Update <code>--hue</code> with ScrollTrigger's <code>onUpdate</code> callback</li>
+        <li>Wrap in <code>prefers-reduced-motion</code> check for accessibility</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="showcase-3">
+    <div class="content">
+      <h2 class="gradient-text">Responsive & Accessible</h2>
+      <p>The effect gracefully degrades on browsers without gradient text support. When <code>prefers-reduced-motion</code> is enabled, the gradient is static or removed entirely.</p>
+    </div>
+  </section>
+
+  <section class="final-section">
+    <div class="content">
+      <p style="text-align: center; color: var(--muted);">Scroll back to the top to see the hero gradient shift again.</p>
+      <a href="/" class="btn-back">Back to Showcase</a>
+    </div>
+  </section>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

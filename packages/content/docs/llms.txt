@@ -1,0 +1,34 @@
+# StealThis.dev — LLM Context
+
+StealThis.dev is an open-source collection of reusable web resources.
+
+## What it contains
+
+- **Web Animations** — scroll-triggered effects, parallax, canvas, WebGL
+- **Web Pages** — landing pages, hero sections, pricing pages, portfolios
+- **UI Components** — buttons, cards, navigation, forms, modals
+- **Patterns** — loaders, hover effects, transitions, menus
+
+## How to use the MCP server
+
+The MCP server at `mcp.stealthis.dev` exposes these tools:
+
+- `list_resources` — list all resources with optional filters
+- `get_resource` — get full metadata for a resource by slug
+- `get_snippet` — get a code snippet for a resource and target
+- `search` — full-text search across resources
+- `get_doc` — get documentation content by path
+- `get_lab` — get the lab demo URL for a resource
+
+## Resource format
+
+Each resource has:
+- A unique `slug` (e.g., `scroll-fade`)
+- Metadata: title, description, category, type, tags, tech, difficulty, targets
+- Snippet targets: `html`, `react`, `next`, `vue`, etc.
+- A full-screen lab demo at `lab.stealthis.dev/[category]/[slug]`
+- Documentation at `docs.stealthis.dev`
+
+## Copying resources
+
+All resources are MIT licensed. You can copy and use them freely in personal and commercial projects.

@@ -1,0 +1,124 @@
+:root {
+  --bg: #080f1a;
+  --text: #eef4ff;
+  --muted: #c2d0e7;
+  --line: #2a3f5d;
+  --accent: #86e8ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: var(--bg);
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(8, 15, 26, 0.68);
+  backdrop-filter: blur(8px);
+}
+
+.topbar a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+main {
+  width: min(980px, 92%);
+  margin: 0 auto;
+  padding-top: 3.5rem;
+}
+
+.panel {
+  min-height: 86vh;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  align-content: center;
+  gap: 0.65rem;
+  opacity: 0.62;
+  transform: translateY(18px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.panel[data-active="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kicker {
+  margin: 0;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+h1, h2, p { margin: 0; }
+h1 { font-size: clamp(2rem, 7vw, 4rem); }
+h2 { font-size: clamp(1.5rem, 4.8vw, 2.8rem); }
+p { color: var(--muted); max-width: 64ch; }
+
+#perfState {
+  color: #b1f0cc;
+  font-weight: 700;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.chips span {
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.82rem;
+}
+
+.meter {
+  margin-top: 0.3rem;
+  width: min(540px, 92%);
+  height: 12px;
+  border: 1px solid rgba(255,255,255,0.26);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #76e2ff, #8f89ff);
+}
+
+body.no-motion .panel {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}

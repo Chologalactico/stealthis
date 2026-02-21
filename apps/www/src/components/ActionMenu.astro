@@ -1,0 +1,244 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { useTranslations, type Locale } from "@i18n/index";
+import { SITE_URLS } from "@lib/urls";
+import { readFileSync, existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+interface Props {
+  resource: CollectionEntry<"resources">;
+  locale?: Locale;
+  /** Canonical URL of the resource page (for "Open in ChatGPT/Claude" prompts). */
+  resourceUrl?: string;
+}
+
+const { resource, locale = "en", resourceUrl: resourceUrlProp } = Astro.props;
+const t = useTranslations(locale);
+const { slug, title, description } = resource.data;
+
+const CONTENT_DIR = path.resolve(process.cwd(), "../../packages/content");
+const mdxPath = path.join(CONTENT_DIR, `resources/${slug}/index.mdx`);
+const markdownContent = existsSync(mdxPath) ? readFileSync(mdxPath, "utf-8") : "";
+
+const resourceUrl = resourceUrlProp ?? `${SITE_URLS.www}/r/${slug}`;
+const analyzePrompt = `Look at this page and analyze how to implement it, or what can you tell me about this component: ${resourceUrl}`;
+---
+
+<div class="action-menu relative" data-action-menu data-copied-msg={t("resource.copied")} data-gemini-paste-msg={t("resource.copiedPasteGemini")}>
+  <button
+    class="flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-slate-200 px-3 py-2 rounded-xl bg-white/4 border border-white/8 hover:bg-white/8 transition-colors"
+    aria-label="More actions"
+    aria-haspopup="true"
+    aria-expanded="false"
+    id="action-menu-trigger"
+  >
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="5" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="19" r="1" fill="currentColor"/>
+    </svg>
+    Actions
+  </button>
+
+  <div
+    class="action-dropdown absolute right-0 top-full mt-2 w-64 bg-surface-900 border border-white/10 rounded-xl shadow-xl overflow-hidden z-20 hidden"
+    role="menu"
+    aria-labelledby="action-menu-trigger"
+  >
+    <button class="action-item" data-action="copy-snippet">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+      {t("resource.copy")} snippet
+    </button>
+
+    <button
+      class="action-item"
+      data-action="copy-markdown"
+      data-content={markdownContent}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+      </svg>
+      {t("resource.copyMarkdown")}
+    </button>
+
+    <div class="border-t border-white/6 my-1"></div>
+
+    <button
+      class="action-item"
+      data-action="open-chatgpt"
+      data-read-prompt={analyzePrompt}
+      data-content={markdownContent}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      {t("resource.openChatGPT")}
+    </button>
+
+    <button
+      class="action-item"
+      data-action="open-claude"
+      data-read-prompt={analyzePrompt}
+      data-content={markdownContent}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      {t("resource.openClaude")}
+    </button>
+
+    <button
+      class="action-item"
+      data-action="open-gemini"
+      data-read-prompt={analyzePrompt}
+      data-content={markdownContent}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      {t("resource.openGemini")}
+    </button>
+
+    <div class="border-t border-white/6 my-1"></div>
+    <div class="px-4 py-1.5">
+      <p class="text-xs font-semibold text-slate-600 uppercase tracking-wider">MCP</p>
+    </div>
+    <button class="action-item" data-action="mcp-claudecode">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/><path d="M12 17v4"/>
+      </svg>
+      Add to Claude Code
+    </button>
+    <button class="action-item" data-action="mcp-cursor">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+      Add to Cursor / Desktop
+    </button>
+  </div>
+
+  <div
+    class="action-menu-snackbar"
+    role="status"
+    aria-live="polite"
+    aria-hidden="true"
+    hidden
+  >
+    <span class="action-menu-snackbar-text"></span>
+  </div>
+</div>
+
+<style>
+  .action-item {
+    @apply w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-slate-400 hover:text-slate-200 hover:bg-white/6 transition-colors text-left;
+  }
+
+  a.action-item {
+    @apply block;
+  }
+
+  .action-menu-snackbar {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    background: var(--color-surface-900, #1a1a1a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  }
+
+  .action-menu-snackbar[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .action-menu-snackbar-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgb(226 232 240);
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-action-menu]").forEach((menu) => {
+    let snackbarTimeout: ReturnType<typeof setTimeout> | undefined;
+    const trigger = menu.querySelector<HTMLButtonElement>("#action-menu-trigger");
+    const dropdown = menu.querySelector<HTMLElement>(".action-dropdown");
+
+    trigger?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = trigger.getAttribute("aria-expanded") === "true";
+      trigger.setAttribute("aria-expanded", String(!open));
+      dropdown?.classList.toggle("hidden", open);
+    });
+
+    document.addEventListener("click", () => {
+      trigger?.setAttribute("aria-expanded", "false");
+      dropdown?.classList.add("hidden");
+    });
+
+    menu.querySelectorAll<HTMLButtonElement>("[data-action]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const action = btn.dataset.action;
+        const content = btn.dataset.content ?? "";
+        const readPrompt = btn.dataset.readPrompt ?? "";
+
+        if (action === "copy-snippet") {
+          const activeCode = document.querySelector<HTMLElement>(".tab-panel:not(.hidden)")?.dataset.code ?? "";
+          await navigator.clipboard.writeText(activeCode);
+        } else if (action === "copy-markdown") {
+          await navigator.clipboard.writeText(content);
+        } else if (action === "open-chatgpt") {
+          const url = readPrompt
+            ? `https://chatgpt.com/?prompt=${encodeURIComponent(readPrompt)}`
+            : "https://chatgpt.com";
+          window.open(url, "_blank");
+        } else if (action === "open-claude") {
+          const url = readPrompt
+            ? `https://claude.ai/new?q=${encodeURIComponent(readPrompt)}`
+            : "https://claude.ai/new";
+          window.open(url, "_blank");
+        } else if (action === "open-gemini") {
+          if (readPrompt) {
+            await navigator.clipboard.writeText(readPrompt);
+          }
+          window.open("https://gemini.google.com/app", "_blank");
+        } else if (action === "mcp-claudecode") {
+          await navigator.clipboard.writeText("claude mcp add stealthis --transport http https://mcp.stealthis.dev/mcp");
+        } else if (action === "mcp-cursor") {
+          await navigator.clipboard.writeText(JSON.stringify({ mcpServers: { stealthis: { type: "http", url: "https://mcp.stealthis.dev/mcp" } } }, null, 2));
+        }
+
+        // Snackbar feedback for copy actions (dropdown closes so user wouldn't see button text)
+        const isCopyAction = action === "copy-snippet" || action === "copy-markdown" || action === "open-gemini" || action === "mcp-claudecode" || action === "mcp-cursor";
+        if (isCopyAction) {
+          const snackbar = menu.querySelector<HTMLElement>(".action-menu-snackbar");
+          const textEl = snackbar?.querySelector<HTMLElement>(".action-menu-snackbar-text");
+          const msg = action === "open-gemini" && readPrompt
+            ? (menu.dataset.geminiPasteMsg ?? "Copied! Paste in Gemini.")
+            : (menu.dataset.copiedMsg ?? "Copied!");
+          if (snackbar && textEl) {
+            textEl.textContent = msg;
+            snackbar.removeAttribute("hidden");
+            snackbar.setAttribute("aria-hidden", "false");
+            clearTimeout(snackbarTimeout);
+            snackbarTimeout = setTimeout(() => {
+              snackbar.setAttribute("aria-hidden", "true");
+              snackbar.setAttribute("hidden", "");
+            }, 2500);
+          }
+        }
+
+        dropdown?.classList.add("hidden");
+        trigger?.setAttribute("aria-expanded", "false");
+      });
+    });
+  });
+</script>

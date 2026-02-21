@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Dot Loader</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="demo">
+    <!-- Standard dot loader -->
+    <div class="loader" role="status" aria-label="Loading">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <!-- Inline button example -->
+    <button class="btn btn--loading" disabled>
+      <span class="loader loader--sm" aria-hidden="true">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </span>
+      Loading…
+    </button>
+
+    <!-- Color variants -->
+    <div class="variants">
+      <div class="loader loader--accent" aria-label="Loading">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="loader loader--white" aria-label="Loading">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

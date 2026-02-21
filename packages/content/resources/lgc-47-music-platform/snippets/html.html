@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FREQ — Music & Podcast Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Scan line overlay -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <span class="brand-mark">◈</span>
+      <span class="brand-name">FREQ</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#shows">Shows</a></li>
+      <li><a href="#charts">Charts</a></li>
+      <li><a href="#artists">Artists</a></li>
+      <li><a href="#contact">Studio</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-live"><span class="live-dot"></span>LIVE</span>
+      <a href="#contact" class="btn-neon">Listen Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <!-- Waveform background -->
+    <canvas id="waveform-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="tag-prefix">///</span>
+        <span>New Episodes Daily</span>
+      </div>
+      <h1 class="hero-h1">
+        <span class="h1-line">THE SOUND</span>
+        <span class="h1-line h1-line--neon">OF NOW.</span>
+      </h1>
+      <p class="hero-sub">Underground beats. Cutting-edge podcasts. Live sessions from artists who refuse to be categorized.</p>
+      <div class="hero-actions">
+        <a href="#shows" class="btn-neon btn-neon--lg">Browse Shows</a>
+        <button class="btn-ghost" id="hero-play-btn">
+          <span class="play-icon">▶</span>
+          <span>Play Latest</span>
+        </button>
+      </div>
+
+      <!-- Equalizer bars -->
+      <div class="eq-bars" id="eq-bars" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Now playing card -->
+    <div class="now-playing" id="now-playing">
+      <div class="np-label">NOW PLAYING</div>
+      <div class="np-title">Frequencies Vol. 12</div>
+      <div class="np-artist">DJ Novacore × CTRL</div>
+      <div class="np-bar">
+        <div class="np-progress"></div>
+      </div>
+      <div class="np-time"><span>27:14</span><span>54:00</span></div>
+    </div>
+  </section>
+
+  <!-- Shows Grid -->
+  <section class="shows-section" id="shows">
+    <div class="shows-header">
+      <span class="section-tag">// Featured Shows</span>
+      <h2>ON THE GRID</h2>
+    </div>
+    <div class="shows-grid">
+      <!-- Card 1 — Featured large -->
+      <article class="show-card show-card--featured" data-genre="ELECTRONIC">
+        <div class="sc-art sc-art--1"></div>
+        <div class="sc-info">
+          <span class="sc-genre">Electronic</span>
+          <h3>FREQUENCIES</h3>
+          <p>Deep techno and experimental electronics from the world's leading underground producers.</p>
+          <div class="sc-meta">
+            <span>124 episodes</span>
+            <span class="dot">·</span>
+            <span>New every Friday</span>
+          </div>
+          <div class="sc-stats">
+            <span>2.4M<em>listeners</em></span>
+            <span>★ 4.9</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="show-card" data-genre="HIP-HOP">
+        <div class="sc-art sc-art--2"></div>
+        <div class="sc-info sc-info--sm">
+          <span class="sc-genre">Hip-Hop</span>
+          <h3>CIPHERS</h3>
+          <p>Live freestyle sessions with emerging MCs.</p>
+          <div class="sc-meta"><span>88 episodes</span></div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="show-card" data-genre="AMBIENT">
+        <div class="sc-art sc-art--3"></div>
+        <div class="sc-info sc-info--sm">
+          <span class="sc-genre">Ambient</span>
+          <h3>VOID SPACE</h3>
+          <p>Drone music and sonic experiments for deep focus.</p>
+          <div class="sc-meta"><span>62 episodes</span></div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="show-card" data-genre="INTERVIEWS">
+        <div class="sc-art sc-art--4"></div>
+        <div class="sc-info sc-info--sm">
+          <span class="sc-genre">Interviews</span>
+          <h3>SIGNAL/NOISE</h3>
+          <p>Long-form conversations about music, tech, and culture.</p>
+          <div class="sc-meta"><span>47 episodes</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Charts Section -->
+  <section class="charts-section" id="charts">
+    <div class="charts-inner">
+      <div class="charts-header">
+        <span class="section-tag">// Weekly Rankings</span>
+        <h2>TRANSMISSION<br><span class="neon-text">CHARTS</span></h2>
+      </div>
+      <ol class="chart-list">
+        <li class="chart-item" data-rank="01">
+          <span class="ci-rank">01</span>
+          <div class="ci-info">
+            <strong>AETHER PROTOCOL</strong>
+            <span>Machine Girl</span>
+          </div>
+          <div class="ci-bar-wrap"><div class="ci-bar" style="--w: 94%"></div></div>
+          <span class="ci-plays">1.2M</span>
+          <span class="ci-delta up">+3</span>
+        </li>
+        <li class="chart-item" data-rank="02">
+          <span class="ci-rank">02</span>
+          <div class="ci-info">
+            <strong>GHOST PROTOCOL (feat. ERIS)</strong>
+            <span>Burial × Novacore</span>
+          </div>
+          <div class="ci-bar-wrap"><div class="ci-bar" style="--w: 88%"></div></div>
+          <span class="ci-plays">980K</span>
+          <span class="ci-delta up">+1</span>
+        </li>
+        <li class="chart-item" data-rank="03">
+          <span class="ci-rank">03</span>
+          <div class="ci-info">
+            <strong>FRACTAL DECAY</strong>
+            <span>CLOAK</span>
+          </div>
+          <div class="ci-bar-wrap"><div class="ci-bar" style="--w: 81%"></div></div>
+          <span class="ci-plays">854K</span>
+          <span class="ci-delta new">NEW</span>
+        </li>
+        <li class="chart-item" data-rank="04">
+          <span class="ci-rank">04</span>
+          <div class="ci-info">
+            <strong>SUBTERRANEAN</strong>
+            <span>Vatican Shadow</span>
+          </div>
+          <div class="ci-bar-wrap"><div class="ci-bar" style="--w: 74%"></div></div>
+          <span class="ci-plays">712K</span>
+          <span class="ci-delta down">-2</span>
+        </li>
+        <li class="chart-item" data-rank="05">
+          <span class="ci-rank">05</span>
+          <div class="ci-info">
+            <strong>TRANSMISSION LOST</strong>
+            <span>Shapednoise</span>
+          </div>
+          <div class="ci-bar-wrap"><div class="ci-bar" style="--w: 67%"></div></div>
+          <span class="ci-plays">640K</span>
+          <span class="ci-delta up">+4</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Artists Marquee -->
+  <section class="artists-section" id="artists">
+    <div class="artists-header">
+      <span class="section-tag">// Artists</span>
+      <h2>FEATURED<br><span class="neon-text">CREATORS</span></h2>
+    </div>
+    <div class="artists-marquee-wrap">
+      <div class="marquee-track" id="marquee-track">
+        <div class="artist-chip">Machine Girl</div>
+        <div class="artist-chip">Burial</div>
+        <div class="artist-chip chip--accent">DJ Novacore</div>
+        <div class="artist-chip">CLOAK</div>
+        <div class="artist-chip">Vatican Shadow</div>
+        <div class="artist-chip chip--accent">Shapednoise</div>
+        <div class="artist-chip">CTRL</div>
+        <div class="artist-chip">Arca</div>
+        <div class="artist-chip chip--accent">Eris Drew</div>
+        <div class="artist-chip">Container</div>
+        <div class="artist-chip">Actor</div>
+        <div class="artist-chip chip--accent">Paula Temple</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="artist-chip">Machine Girl</div>
+        <div class="artist-chip">Burial</div>
+        <div class="artist-chip chip--accent">DJ Novacore</div>
+        <div class="artist-chip">CLOAK</div>
+        <div class="artist-chip">Vatican Shadow</div>
+        <div class="artist-chip chip--accent">Shapednoise</div>
+        <div class="artist-chip">CTRL</div>
+        <div class="artist-chip">Arca</div>
+        <div class="artist-chip chip--accent">Eris Drew</div>
+        <div class="artist-chip">Container</div>
+        <div class="artist-chip">Actor</div>
+        <div class="artist-chip chip--accent">Paula Temple</div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="platform-stats">
+      <div class="ps-item">
+        <span class="ps-num" data-target="4200" data-suffix="+">0</span>
+        <span class="ps-label">Artists</span>
+      </div>
+      <div class="ps-div"></div>
+      <div class="ps-item">
+        <span class="ps-num" data-target="18000" data-suffix="+">0</span>
+        <span class="ps-label">Episodes</span>
+      </div>
+      <div class="ps-div"></div>
+      <div class="ps-item">
+        <span class="ps-num" data-target="9.2" data-suffix="M">0</span>
+        <span class="ps-label">Monthly Listeners</span>
+      </div>
+      <div class="ps-div"></div>
+      <div class="ps-item">
+        <span class="ps-num" data-target="140" data-suffix="">0</span>
+        <span class="ps-label">Countries</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Studio -->
+  <section class="studio-section" id="contact">
+    <div class="studio-inner">
+      <div class="studio-left">
+        <span class="section-tag">// Submit Your Show</span>
+        <h2>BROADCAST<br><span class="neon-text">YOUR SIGNAL.</span></h2>
+        <p>FREQ is open to independent creators. Apply to join our network and reach millions of listeners worldwide.</p>
+        <div class="studio-links">
+          <a href="#" class="btn-neon">Apply to Join</a>
+          <a href="#" class="btn-outline">View Criteria →</a>
+        </div>
+      </div>
+      <div class="studio-terminal">
+        <div class="terminal-bar">
+          <span class="tb-dot tb-dot--red"></span>
+          <span class="tb-dot tb-dot--yellow"></span>
+          <span class="tb-dot tb-dot--green"></span>
+          <span class="tb-title">freq_broadcast.sh</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="t-prompt">$</span> freq connect --studio</p>
+          <p class="t-output">Initializing signal uplink...</p>
+          <p class="t-output t-success">✓ Uplink established</p>
+          <p><span class="t-prompt">$</span> freq status</p>
+          <p class="t-output">Network: <span class="t-val">ONLINE</span></p>
+          <p class="t-output">Listeners: <span class="t-val">9,241,882</span></p>
+          <p class="t-output">Live now: <span class="t-val t-neon">3 shows</span></p>
+          <p class="t-cursor">█</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <span class="brand-mark">◈</span>
+      <span>FREQ // Music & Podcast Network</span>
+    </div>
+    <p>© 2025 FREQ. All transmissions reserved.</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

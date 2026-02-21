@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atelier Blanc — Contemporary Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Atelier Blanc</a>
+    <ul class="nav-links">
+      <li><a href="#works">Works</a></li>
+      <li><a href="#artists">Artists</a></li>
+      <li><a href="#exhibitions">Exhibitions</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a href="#" class="nav-tickets">Get Tickets →</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-season">Current Season — Spring 2025</span>
+        <h1 class="hero-h1">
+          <em>Form</em> follows<br>
+          feeling.
+        </h1>
+        <p>Seven international artists explore the boundary between material and memory in our most ambitious group exhibition to date.</p>
+        <a href="#works" class="btn-dark">View Exhibition</a>
+      </div>
+      <div class="hero-artwork">
+        <div class="ha-frame ha-frame--main" aria-hidden="true"></div>
+        <div class="ha-frame ha-frame--accent" aria-hidden="true"></div>
+        <div class="ha-label">
+          <span>No. 7 — Untitled (Blue Field)</span>
+          <span>Elias Vorne, 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Works gallery — masonry with lightbox -->
+  <section class="works-section" id="works">
+    <div class="works-header">
+      <span class="section-label">Selected Works</span>
+      <div class="works-count" id="works-count">01 / 08</div>
+    </div>
+    <div class="works-grid" id="works-grid">
+      <figure class="work-item work-item--tall" data-index="0" tabindex="0" role="button" aria-label="Open artwork: Luminous Void">
+        <div class="wi-art wi-art--1" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">01</span>
+          <div><strong>Luminous Void</strong><em>Elias Vorne, Oil on canvas, 200×300cm</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item" data-index="1" tabindex="0" role="button" aria-label="Open artwork: Still Point">
+        <div class="wi-art wi-art--2" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">02</span>
+          <div><strong>Still Point</strong><em>Mara Solis, Photography, 80×120cm</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item" data-index="2" tabindex="0" role="button" aria-label="Open artwork: Threshold Study">
+        <div class="wi-art wi-art--3" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">03</span>
+          <div><strong>Threshold Study</strong><em>Jun Aoki, Mixed media, 150×150cm</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item work-item--wide" data-index="3" tabindex="0" role="button" aria-label="Open artwork: Erosion Series I">
+        <div class="wi-art wi-art--4" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">04</span>
+          <div><strong>Erosion Series I–III</strong><em>Petra Novak, Sculpture (bronze), variable dimensions</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item" data-index="4" tabindex="0" role="button" aria-label="Open artwork: Frequency">
+        <div class="wi-art wi-art--5" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">05</span>
+          <div><strong>Frequency</strong><em>Yuki Tanaka, Digital print, 100×100cm</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item" data-index="5" tabindex="0" role="button" aria-label="Open artwork: Residue">
+        <div class="wi-art wi-art--6" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">06</span>
+          <div><strong>Residue</strong><em>Camille Dubois, Watercolor, 60×80cm</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item work-item--tall" data-index="6" tabindex="0" role="button" aria-label="Open artwork: Meridian">
+        <div class="wi-art wi-art--7" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">07</span>
+          <div><strong>Meridian</strong><em>Elias Vorne, Acrylic, 180×280cm</em></div>
+        </figcaption>
+      </figure>
+      <figure class="work-item work-item--wide" data-index="7" tabindex="0" role="button" aria-label="Open artwork: Archive">
+        <div class="wi-art wi-art--8" aria-hidden="true"></div>
+        <figcaption class="wi-caption">
+          <span class="wi-num">08</span>
+          <div><strong>Archive (after Borges)</strong><em>Jun Aoki, Installation, site-specific</em></div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Artists -->
+  <section class="artists-section" id="artists">
+    <span class="section-label">Featured Artists</span>
+    <div class="artists-list">
+      <div class="artist-row">
+        <span class="ar-num">01</span>
+        <div class="ar-name">Elias Vorne</div>
+        <div class="ar-origin">Oslo, Norway</div>
+        <div class="ar-medium">Oil, Acrylic</div>
+        <a href="#" class="ar-link">View works →</a>
+      </div>
+      <div class="artist-row">
+        <span class="ar-num">02</span>
+        <div class="ar-name">Mara Solis</div>
+        <div class="ar-origin">Mexico City, Mexico</div>
+        <div class="ar-medium">Photography</div>
+        <a href="#" class="ar-link">View works →</a>
+      </div>
+      <div class="artist-row">
+        <span class="ar-num">03</span>
+        <div class="ar-name">Jun Aoki</div>
+        <div class="ar-origin">Kyoto, Japan</div>
+        <div class="ar-medium">Mixed media, Installation</div>
+        <a href="#" class="ar-link">View works →</a>
+      </div>
+      <div class="artist-row">
+        <span class="ar-num">04</span>
+        <div class="ar-name">Petra Novak</div>
+        <div class="ar-origin">Prague, Czech Republic</div>
+        <div class="ar-medium">Sculpture</div>
+        <a href="#" class="ar-link">View works →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section class="visit-section" id="visit">
+    <div class="visit-inner">
+      <div class="visit-left">
+        <span class="section-label">Plan Your Visit</span>
+        <h2>Open daily<br><em>10am – 7pm</em></h2>
+        <div class="visit-details">
+          <div class="vd-item"><span>Address</span><span>12 Rue Voltaire, Paris 75011</span></div>
+          <div class="vd-item"><span>Admission</span><span>€14 / Students €8 / Under 18 free</span></div>
+          <div class="vd-item"><span>Guided tours</span><span>Sat & Sun at 3pm</span></div>
+        </div>
+        <a href="#" class="btn-dark">Book Tickets</a>
+      </div>
+      <div class="visit-map" aria-hidden="true">
+        <div class="vm-inner"></div>
+        <div class="vm-pin">◈</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden aria-modal="true" aria-label="Artwork detail">
+    <div class="lb-artwork" id="lb-artwork"></div>
+    <div class="lb-panel">
+      <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+      <div class="lb-content">
+        <span class="lb-num" id="lb-num"></span>
+        <h2 class="lb-title" id="lb-title"></h2>
+        <div class="lb-artist" id="lb-artist"></div>
+        <div class="lb-medium" id="lb-medium"></div>
+        <p class="lb-desc" id="lb-desc">A work that resists easy categorization — existing somewhere between painting and sculpture, memory and projection.</p>
+      </div>
+      <div class="lb-nav">
+        <button id="lb-prev" aria-label="Previous">← Prev</button>
+        <button id="lb-next" aria-label="Next">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

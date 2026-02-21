@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webcam Reactive Experiment</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a href="../">Back to demos</a>
+      <button id="startBtn">Enable Webcam</button>
+    </header>
+
+    <main>
+      <p class="kicker">Backlog 27</p>
+      <h1>Webcam Reactive Experiment</h1>
+      <p id="status">Waiting for permission...</p>
+      <div class="stage">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="canvas"></canvas>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

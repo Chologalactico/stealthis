@@ -1,0 +1,75 @@
+---
+title: AGENTS
+description: Guide for AI agents and LLMs working with StealThis.dev resources and tools.
+---
+
+# AGENTS
+
+This document guides AI agents interacting with StealThis.dev via the MCP server, API, or documentation.
+
+## MCP Server
+
+Connect to `https://mcp.stealthis.dev/mcp` to access the resource catalog programmatically.
+
+### Available Tools
+
+#### `list_resources`
+Returns a catalog of all resources, with optional filters.
+
+```json
+{
+  "tool": "list_resources",
+  "params": {
+    "category": "web-animations",
+    "difficulty": "easy",
+    "tech": "css"
+  }
+}
+```
+
+#### `get_resource`
+Get full metadata for a single resource.
+
+```json
+{
+  "tool": "get_resource",
+  "params": { "slug": "scroll-fade" }
+}
+```
+
+#### `get_snippet`
+Get a code snippet for a resource and target.
+
+```json
+{
+  "tool": "get_snippet",
+  "params": { "slug": "scroll-fade", "target": "react" }
+}
+```
+
+#### `search`
+Full-text search across resource titles, descriptions, and tags.
+
+```json
+{
+  "tool": "search",
+  "params": { "q": "parallax scroll effect" }
+}
+```
+
+## Best Practices for Agents
+
+1. **Use `list_resources` first** to find relevant resources before fetching snippets
+2. **Prefer `html` target** when the user hasn't specified a framework
+3. **Always include attribution** — all resources are MIT licensed but credit is appreciated
+4. **Link to the resource page** at `stealthis.dev/r/[slug]` when sharing with users
+5. **Check `tech[]`** to understand what dependencies a resource needs
+
+## Resource Taxonomy
+
+| Category | Type | Description |
+|----------|------|-------------|
+| `web-animations` | `animation` | Scroll effects, transitions, canvas animations |
+| `web-pages` | `page` | Full page templates and sections |
+| `ui-components` | `component` | Reusable UI elements |
+| `patterns` | `pattern` | Micro-interactions, loaders, hover effects |

@@ -1,0 +1,107 @@
+---
+title: MCP Server
+description: Use the StealThis MCP server to access the resource catalog programmatically from AI tools.
+---
+
+import { Code } from "@astrojs/starlight/components";
+
+The StealThis MCP server runs at `https://mcp.stealthis.dev/mcp` and exposes the resource catalog via HTTP endpoints compatible with the [Model Context Protocol](https://modelcontextprotocol.io).
+
+## Endpoints
+
+### `GET /tools/list_resources`
+
+List all resources with optional filters.
+
+**Query params:**
+- `category` — filter by category
+- `difficulty` — filter by difficulty
+- `tech` — filter by tech tag
+
+```
+GET /tools/list_resources?category=web-animations&difficulty=easy
+```
+
+**Response:**
+```json
+{
+  "resources": [
+    {
+      "slug": "scroll-fade",
+      "title": "Scroll Fade In",
+      "category": "web-animations",
+      "difficulty": "easy",
+      "targets": ["html", "react"],
+      "tech": ["css", "js", "intersection-observer"]
+    }
+  ]
+}
+```
+
+### `GET /tools/get_resource/:slug`
+
+Get full metadata for a resource.
+
+```
+GET /tools/get_resource/scroll-fade
+```
+
+### `GET /tools/get_snippet/:slug/:target`
+
+Get a code snippet for a resource and target.
+
+```
+GET /tools/get_snippet/scroll-fade/react
+```
+
+### `GET /tools/search`
+
+Full-text search across resources.
+
+```
+GET /tools/search?q=parallax+scroll+effect
+```
+
+### `GET /tools/get_doc/:path`
+
+Get documentation content by path.
+
+```
+GET /tools/get_doc/getting-started
+```
+
+### `GET /tools/get_lab/:slug`
+
+Get the lab demo URL and supported parameters for a resource.
+
+```
+GET /tools/get_lab/scroll-fade
+```
+
+**Response:**
+```json
+{
+  "slug": "scroll-fade",
+  "labUrl": "https://lab.stealthis.dev/web-animations/scroll-fade",
+  "embedUrl": "https://lab.stealthis.dev/web-animations/scroll-fade?embed=1"
+}
+```
+
+## Using with Claude
+
+Add the MCP server to your Claude configuration:
+
+```json
+{
+  "mcpServers": {
+    "stealthis": {
+      "url": "https://mcp.stealthis.dev/mcp"
+    }
+  }
+}
+```
+
+Then you can ask Claude:
+- "Find me a scroll animation from StealThis"
+- "Get the React snippet for the magnetic-button resource"
+- "Search for parallax effects in StealThis"

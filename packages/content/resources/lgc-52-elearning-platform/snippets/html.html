@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridian — Learn Without Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    <script type="importmap">{"imports":{"gsap":"/vendor/gsap/index.js","gsap/ScrollTrigger":"/vendor/gsap/ScrollTrigger.js","gsap/SplitText":"/vendor/gsap/SplitText.js","gsap/Flip":"/vendor/gsap/Flip.js","gsap/ScrambleTextPlugin":"/vendor/gsap/ScrambleTextPlugin.js","gsap/TextPlugin":"/vendor/gsap/TextPlugin.js","gsap/all":"/vendor/gsap/all.js","gsap/":"/vendor/gsap/","lenis":"/vendor/lenis/dist/lenis.mjs","three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+  <style>html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}</style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark"></div>
+      <span>Meridian</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#paths">Learning Paths</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="#" class="btn-text">Log in</a>
+      <a href="#" class="btn-primary">Start Free</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="hb-dot"></span>
+          <span>2,400+ learners enrolled this week</span>
+        </div>
+        <h1 class="hero-h1">
+          Learn skills that<br>
+          <span class="h1-highlight">actually matter.</span>
+        </h1>
+        <p class="hero-p">Structured paths from beginner to job-ready. Expert instructors, real projects, and a community that keeps you accountable.</p>
+        <div class="hero-actions">
+          <a href="#courses" class="btn-primary btn-primary--lg">Browse Courses</a>
+          <a href="#" class="btn-ghost">See how it works →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hs-item">
+            <span class="hs-num" data-target="48000" data-suffix="">0</span>
+            <span class="hs-label">Students</span>
+          </div>
+          <div class="hs-div"></div>
+          <div class="hs-item">
+            <span class="hs-num" data-target="320" data-suffix="+">0</span>
+            <span class="hs-label">Courses</span>
+          </div>
+          <div class="hs-div"></div>
+          <div class="hs-item">
+            <span class="hs-num" data-target="94" data-suffix="%">0</span>
+            <span class="hs-label">Completion rate</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- Progress card -->
+        <div class="progress-card" id="progress-card">
+          <div class="pc-header">
+            <div class="pc-avatar"></div>
+            <div class="pc-meta">
+              <strong>Design Systems</strong>
+              <span>Week 3 of 8</span>
+            </div>
+            <span class="pc-pct" id="pc-pct">0%</span>
+          </div>
+          <div class="pc-progress">
+            <div class="pc-fill" id="pc-fill"></div>
+          </div>
+          <div class="pc-lessons">
+            <div class="pc-lesson pc-lesson--done">✓ Introduction to tokens</div>
+            <div class="pc-lesson pc-lesson--done">✓ Color scales</div>
+            <div class="pc-lesson pc-lesson--active">▶ Typography system</div>
+            <div class="pc-lesson">○ Spacing & grid</div>
+            <div class="pc-lesson">○ Component variants</div>
+          </div>
+        </div>
+        <!-- Floating skill badges -->
+        <div class="skill-badge sb--1">Figma</div>
+        <div class="skill-badge sb--2">Design Systems</div>
+        <div class="skill-badge sb--3">React</div>
+        <div class="skill-badge sb--4">CSS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skill tree -->
+  <section class="skills-section" id="skills">
+    <div class="skills-inner">
+      <div class="skills-header">
+        <span class="section-tag">Learning Path</span>
+        <h2>Your skill tree,<br>visualized.</h2>
+        <p>Every course unlocks the next. See exactly where you are and where you're headed.</p>
+      </div>
+      <div class="skill-tree" id="skill-tree">
+        <canvas id="tree-canvas" aria-hidden="true"></canvas>
+        <!-- Nodes -->
+        <div class="st-node st-node--done" style="--col:2; --row:1">HTML & CSS</div>
+        <div class="st-node st-node--done" style="--col:1; --row:2">Flexbox</div>
+        <div class="st-node st-node--done" style="--col:3; --row:2">Grid</div>
+        <div class="st-node st-node--active" style="--col:2; --row:3">JavaScript</div>
+        <div class="st-node" style="--col:1; --row:4">React</div>
+        <div class="st-node" style="--col:3; --row:4">TypeScript</div>
+        <div class="st-node" style="--col:2; --row:5">Full-Stack</div>
+        <div class="st-node st-node--locked" style="--col:1; --row:6">Next.js</div>
+        <div class="st-node st-node--locked" style="--col:3; --row:6">Node.js</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses grid -->
+  <section class="courses-section" id="courses">
+    <div class="courses-header">
+      <span class="section-tag">Featured Courses</span>
+      <h2>What do you want to learn?</h2>
+      <div class="filter-tabs">
+        <button class="ft-btn active" data-filter="all">All</button>
+        <button class="ft-btn" data-filter="design">Design</button>
+        <button class="ft-btn" data-filter="dev">Development</button>
+        <button class="ft-btn" data-filter="data">Data</button>
+      </div>
+    </div>
+    <div class="courses-grid">
+      <article class="course-card" data-category="design">
+        <div class="cc-art cc-art--1"></div>
+        <div class="cc-body">
+          <div class="cc-tags"><span class="cc-tag">Design</span><span class="cc-level">Beginner</span></div>
+          <h3>UI Fundamentals</h3>
+          <p>Learn the principles that make great interfaces — contrast, hierarchy, whitespace, and motion.</p>
+          <div class="cc-footer">
+            <div class="cc-progress-bar"><div class="cc-progress-fill" style="--w: 0%"></div></div>
+            <div class="cc-meta"><span>24 lessons</span><span class="cc-dot">·</span><span>4.8 ★</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="course-card" data-category="dev">
+        <div class="cc-art cc-art--2"></div>
+        <div class="cc-body">
+          <div class="cc-tags"><span class="cc-tag cc-tag--dev">Dev</span><span class="cc-level">Intermediate</span></div>
+          <h3>React + TypeScript</h3>
+          <p>Build scalable applications with modern React patterns, TypeScript, and component architecture.</p>
+          <div class="cc-footer">
+            <div class="cc-progress-bar"><div class="cc-progress-fill" style="--w: 0%"></div></div>
+            <div class="cc-meta"><span>36 lessons</span><span class="cc-dot">·</span><span>4.9 ★</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="course-card" data-category="data">
+        <div class="cc-art cc-art--3"></div>
+        <div class="cc-body">
+          <div class="cc-tags"><span class="cc-tag cc-tag--data">Data</span><span class="cc-level">Beginner</span></div>
+          <h3>Python for Data</h3>
+          <p>From pandas to machine learning fundamentals — a practical path through data science with Python.</p>
+          <div class="cc-footer">
+            <div class="cc-progress-bar"><div class="cc-progress-fill" style="--w: 0%"></div></div>
+            <div class="cc-meta"><span>42 lessons</span><span class="cc-dot">·</span><span>4.7 ★</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="course-card" data-category="design">
+        <div class="cc-art cc-art--4"></div>
+        <div class="cc-body">
+          <div class="cc-tags"><span class="cc-tag">Design</span><span class="cc-level">Advanced</span></div>
+          <h3>Motion Design Systems</h3>
+          <p>GSAP, Framer Motion, and principled animation choreography for production interfaces.</p>
+          <div class="cc-footer">
+            <div class="cc-progress-bar"><div class="cc-progress-fill" style="--w: 0%"></div></div>
+            <div class="cc-meta"><span>28 lessons</span><span class="cc-dot">·</span><span>5.0 ★</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="course-card" data-category="dev">
+        <div class="cc-art cc-art--5"></div>
+        <div class="cc-body">
+          <div class="cc-tags"><span class="cc-tag cc-tag--dev">Dev</span><span class="cc-level">Intermediate</span></div>
+          <h3>CSS Architecture</h3>
+          <p>Design tokens, cascade layers, logical properties, and building design systems with modern CSS.</p>
+          <div class="cc-footer">
+            <div class="cc-progress-bar"><div class="cc-progress-fill" style="--w: 0%"></div></div>
+            <div class="cc-meta"><span>18 lessons</span><span class="cc-dot">·</span><span>4.8 ★</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="course-card" data-category="data">
+        <div class="cc-art cc-art--6"></div>
+        <div class="cc-body">
+          <div class="cc-tags"><span class="cc-tag cc-tag--data">Data</span><span class="cc-level">Advanced</span></div>
+          <h3>Data Visualization</h3>
+          <p>D3.js, Observable Plot, and Canvas 2D — telling stories with data that people actually understand.</p>
+          <div class="cc-footer">
+            <div class="cc-progress-bar"><div class="cc-progress-fill" style="--w: 0%"></div></div>
+            <div class="cc-meta"><span>31 lessons</span><span class="cc-dot">·</span><span>4.9 ★</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-header">
+      <span class="section-tag">Pricing</span>
+      <h2>Simple, honest pricing.</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="prce-tier">Free</div>
+        <div class="prce-price">$0<span>/mo</span></div>
+        <ul class="prce-features">
+          <li>✓ 5 courses</li>
+          <li>✓ Community access</li>
+          <li>✓ Basic projects</li>
+          <li class="prce-off">✗ Certificates</li>
+          <li class="prce-off">✗ Mentor sessions</li>
+        </ul>
+        <a href="#" class="btn-outline-dark">Get started free</a>
+      </div>
+      <div class="price-card price-card--featured">
+        <div class="prce-badge">Most Popular</div>
+        <div class="prce-tier">Pro</div>
+        <div class="prce-price">$29<span>/mo</span></div>
+        <ul class="prce-features">
+          <li>✓ All 320+ courses</li>
+          <li>✓ Learning paths</li>
+          <li>✓ Real projects + feedback</li>
+          <li>✓ Certificates</li>
+          <li>✓ 2 mentor sessions/mo</li>
+        </ul>
+        <a href="#" class="btn-primary">Start 7-day trial</a>
+      </div>
+      <div class="price-card">
+        <div class="prce-tier">Team</div>
+        <div class="prce-price">$19<span>/seat/mo</span></div>
+        <ul class="prce-features">
+          <li>✓ Everything in Pro</li>
+          <li>✓ Team analytics</li>
+          <li>✓ Custom paths</li>
+          <li>✓ Priority support</li>
+          <li>✓ Unlimited mentoring</li>
+        </ul>
+        <a href="#" class="btn-outline-dark">Contact sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ accordion -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <span class="section-tag">FAQ</span>
+      <h2>Common questions</h2>
+      <div class="accordion" id="faq-acc">
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span>Can I cancel anytime?</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner"><p>Yes — no contracts, no lock-in. Cancel with a single click from your dashboard. You'll keep access until the end of your billing period.</p></div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span>Do I get a certificate?</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner"><p>Pro and Team members receive verified completion certificates for every course. They're shareable directly to LinkedIn and as credential URLs.</p></div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span>How do learning paths work?</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner"><p>A learning path is a curated sequence of courses that takes you from zero to a specific goal (e.g., "Frontend Developer" or "UX Researcher"). The skill tree unlocks as you progress through each course.</p></div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger" aria-expanded="false">
+            <span>What if a course isn't right for me?</span>
+            <span class="at-arrow">+</span>
+          </button>
+          <div class="acc-body">
+            <div class="acc-inner"><p>Every course has a 30-minute free preview. If you're a Pro member and still find a course isn't right, contact us within 7 days for a full refund of that course.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <div class="logo-mark"></div>
+      <span>Meridian</span>
+    </div>
+    <p>© 2025 Meridian Learning Inc. · All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

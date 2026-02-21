@@ -1,0 +1,284 @@
+:root {
+  --bg: #070a12;
+  --text: #f0f4fb;
+  --panel: #121a2b;
+  --border: #263249;
+  --accent: #86e8ff;
+  --muted: #8a95a8;
+  --hue-hero: 0deg;
+  --hue: 0deg;
+  --hue-saturation: 80%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(134, 232, 255, 0.05) 0%, rgba(174, 82, 255, 0.05) 100%);
+}
+
+.hero-content {
+  max-width: 700px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.hero .gradient-text {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Gradient Text Styling */
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--hue-hero), var(--hue-saturation), 50%),
+    hsl(calc(var(--hue-hero) + 60deg), var(--hue-saturation), 50%),
+    hsl(calc(var(--hue-hero) + 120deg), var(--hue-saturation), 50%)
+  );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Fallback for browsers that don't support gradient text */
+@supports not (-webkit-background-clip: text) {
+  .gradient-text {
+    color: var(--accent);
+    background: none;
+  }
+}
+
+/* Spacer Sections */
+.spacer {
+  padding: 6rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.spacer:nth-child(even) {
+  background: rgba(18, 26, 43, 0.5);
+}
+
+.spacer h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.spacer p {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.spacer ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.spacer li {
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+.spacer li strong {
+  color: var(--accent);
+}
+
+.spacer ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.spacer ol li {
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+code {
+  background: rgba(134, 232, 255, 0.1);
+  color: var(--accent);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* Showcase Sections */
+.showcase-1,
+.showcase-2,
+.showcase-3 {
+  padding: 6rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(134, 232, 255, 0.03) 0%, rgba(174, 82, 255, 0.03) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.showcase-1 .gradient-text {
+  --hue: 0deg;
+}
+
+.showcase-2 .gradient-text {
+  --hue: 60deg;
+}
+
+.showcase-3 .gradient-text {
+  --hue: 120deg;
+}
+
+.showcase-1 h2,
+.showcase-2 h2,
+.showcase-3 h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.showcase-1 p,
+.showcase-2 p,
+.showcase-3 p {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Final Section */
+.final-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: rgba(134, 232, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero .gradient-text {
+    font-size: 2.5rem;
+  }
+
+  .spacer h2,
+  .showcase-1 h2,
+  .showcase-2 h2,
+  .showcase-3 h2 {
+    font-size: 1.5rem;
+  }
+
+  .spacer,
+  .showcase-1,
+  .showcase-2,
+  .showcase-3 {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .gradient-text {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .spacer,
+  .showcase-1,
+  .showcase-2,
+  .showcase-3 {
+    padding: 2rem 1rem;
+  }
+}
+
+html.reduced-motion .gradient-text {
+  animation: none !important;
+  background-position: 0% 50% !important;
+}
+
+html.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}

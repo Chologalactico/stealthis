@@ -1,0 +1,28 @@
+name: commit
+description: Generate a conventional commit message from staged changes and commit.
+prompt: |
+  Follow these steps carefully to create a git commit:
+
+  1. Run `git diff --staged` to see all staged changes.
+  2. Run `git log --oneline -10` to understand the project's commit style.
+  3. Analyze the staged changes and determine:
+     - The primary change type: feat | fix | refactor | docs | style | test | chore | perf | ci | build
+     - The scope (optional): the component or module affected
+     - A concise subject line (max 72 chars, imperative mood, no period)
+     - Whether a body is needed for complex changes
+  4. Draft the commit message:
+     ```
+     <type>(<scope>): <subject>
+
+     [optional body — explain WHY, not WHAT]
+
+     Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+     ```
+  5. Show me the draft and ask for confirmation before running `git commit`.
+  6. If I approve, run `git commit -m "<message>"`.
+  7. Run `git status` to confirm success.
+
+  Rules:
+  - Never use --no-verify or skip pre-commit hooks
+  - Never commit files that look like secrets (.env, *.key, credentials*)
+  - If there are no staged changes, tell me and stop
