@@ -10,7 +10,7 @@ const t = useTranslations(locale);
 
 const allResources = await getCollection("resources");
 const featured = allResources.slice(0, 6);
-const categoryCount = new Set(allResources.map((resource) => resource.data.category)).size;
+const categoryCount = new Set(allResources.map((resource: any) => resource.data.category)).size;
 
 const rotatingWords = (t("hero.rotatingWords") as string).split(",").map((w) => w.trim());
 // Hue base por palabra para gradiente (grados) — estilo lgc-37-gradient-text-scroll
@@ -308,7 +308,7 @@ const structuredData = [
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {featured.map((resource) => (
+      {featured.map((resource: any) => (
         <ResourceCard resource={resource} locale={locale} />
       ))}
     </div>
@@ -329,13 +329,16 @@ const structuredData = [
         { slug: "remotion", icon: "▶", label: t("category.remotion"), desc: "React-powered video templates", comingSoon: false },
         { slug: "prompts", icon: "✺", label: t("category.prompts"), desc: "AI prompts and workflows", comingSoon: false },
         { slug: "music", icon: "♫", label: t("category.music"), desc: "Audio, players, visualizers", comingSoon: true },
+        { slug: "skills", icon: "☀", label: t("category.skills"), desc: "AI skills and workflows", comingSoon: true },
+        { slug: "mcp-servers", icon: "⛶", label: t("category.mcp-servers"), desc: "MCP servers and tools", comingSoon: true },
+        { slug: "architectures", icon: "⚙", label: t("category.architectures"), desc: "Architectures and patterns", comingSoon: true },
       ]).map((cat) =>
         cat.comingSoon ? (
           <div
             class="flex flex-col gap-3 p-5 rounded-2xl border border-white/6 bg-surface-900/30 cursor-not-allowed opacity-70"
             aria-disabled="true"
           >
-            <span class="text-2xl text-slate-500">♫</span>
+            <span class="text-2xl text-slate-500">{cat.icon}</span>
             <div>
               <p class="font-semibold text-slate-500">{cat.label}</p>
               <p class="text-xs text-slate-600 mt-0.5">{cat.desc}</p>
