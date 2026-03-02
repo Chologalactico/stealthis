@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time-Off Request</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="tor-container">
+
+    <!-- Header -->
+    <div class="tor-header">
+      <div class="tor-header__icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div>
+        <h2 class="tor-header__title">Request Time Off</h2>
+        <p class="tor-header__subtitle">Submit a leave request for your manager's approval</p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form class="tor-form" id="tor-form" novalidate>
+
+      <!-- Leave type -->
+      <div class="tor-field">
+        <label class="tor-label" for="leave-type">Leave Type</label>
+        <div class="tor-select-wrap">
+          <select class="tor-select" id="leave-type" name="leaveType" required>
+            <option value="" disabled selected>Select leave type…</option>
+            <option value="vacation">Vacation</option>
+            <option value="sick">Sick Leave</option>
+            <option value="personal">Personal</option>
+            <option value="parental">Parental Leave</option>
+            <option value="bereavement">Bereavement</option>
+          </select>
+          <svg class="tor-select-arrow" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Date range row -->
+      <div class="tor-row">
+        <div class="tor-field">
+          <label class="tor-label" for="start-date">Start Date</label>
+          <input class="tor-input" type="date" id="start-date" name="startDate" required />
+        </div>
+        <div class="tor-field">
+          <label class="tor-label" for="end-date">End Date</label>
+          <input class="tor-input" type="date" id="end-date" name="endDate" required />
+        </div>
+      </div>
+
+      <!-- Days calculated -->
+      <div class="tor-days-display" id="days-display" aria-live="polite">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span id="days-text">Select dates to calculate duration</span>
+      </div>
+
+      <!-- Error message -->
+      <p class="tor-error" id="tor-error" role="alert" hidden></p>
+
+      <!-- Reason -->
+      <div class="tor-field">
+        <label class="tor-label" for="reason">
+          Reason <span class="tor-label__optional">(optional)</span>
+        </label>
+        <textarea class="tor-textarea" id="reason" name="reason" rows="3" placeholder="Briefly describe the reason for your leave…"></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button class="tor-submit" type="submit" id="tor-submit">Submit Request</button>
+
+    </form>
+
+    <!-- Recent requests list -->
+    <div class="tor-requests">
+      <h3 class="tor-requests__title">Recent Requests</h3>
+
+      <ul class="tor-list" id="tor-list" aria-label="Leave request history">
+
+        <li class="tor-item" data-status="pending">
+          <div class="tor-item__meta">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span class="tor-item__range">Dec 23–25, 2025</span>
+            <span class="tor-item__type">Vacation</span>
+          </div>
+          <span class="tor-badge tor-badge--pending">Pending</span>
+        </li>
+
+        <li class="tor-item" data-status="approved">
+          <div class="tor-item__meta">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span class="tor-item__range">Jan 15–19, 2026</span>
+            <span class="tor-item__type">Sick Leave</span>
+          </div>
+          <span class="tor-badge tor-badge--approved">Approved</span>
+        </li>
+
+        <li class="tor-item" data-status="denied">
+          <div class="tor-item__meta">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span class="tor-item__range">Feb 3, 2026</span>
+            <span class="tor-item__type">Personal</span>
+          </div>
+          <span class="tor-badge tor-badge--denied">Denied</span>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

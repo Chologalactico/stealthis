@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Schedule</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="es-wrapper">
+    <!-- Header -->
+    <div class="es-header">
+      <div class="es-header-left">
+        <h2 class="es-title">Employee Schedule</h2>
+        <div class="es-week-nav">
+          <button class="btn-icon" id="es-prev" aria-label="Previous week">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <span class="es-week-label" id="es-week-label">Week of Jan 27, 2026</span>
+          <button class="btn-icon" id="es-next" aria-label="Next week">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="btn-secondary" id="es-today">Today</button>
+        </div>
+      </div>
+      <div class="es-header-right">
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="week">Week</button>
+          <button class="view-btn" data-view="day">Day</button>
+        </div>
+        <button class="btn-secondary" id="es-copy-prev">Copy Prev Week</button>
+        <button class="btn-primary" id="es-publish">Publish Schedule</button>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="es-grid-wrapper">
+      <!-- Employee list (left panel) -->
+      <div class="es-employee-panel">
+        <div class="es-panel-header">
+          <span>Employee</span>
+          <span>Hours</span>
+        </div>
+        <div class="es-employee-list" id="es-employee-list"></div>
+        <div class="es-summary-label">Total</div>
+      </div>
+
+      <!-- Day columns (scrollable) -->
+      <div class="es-day-grid" id="es-day-grid">
+        <div class="es-day-headers" id="es-day-headers"></div>
+        <div class="es-schedule-rows" id="es-schedule-rows"></div>
+        <div class="es-summary-row" id="es-summary-row"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shift popup -->
+  <div class="shift-popup" id="shift-popup" aria-hidden="true">
+    <div class="shift-popup-header">
+      <span id="shift-popup-title">Add Shift</span>
+      <button class="popup-close" id="shift-popup-close">✕</button>
+    </div>
+    <div class="shift-popup-body">
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <select class="form-input" id="shift-type">
+          <option value="morning">Morning (6:00 AM – 2:00 PM)</option>
+          <option value="afternoon">Afternoon (2:00 PM – 10:00 PM)</option>
+          <option value="night">Night (10:00 PM – 6:00 AM)</option>
+          <option value="off">Off</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Start</label>
+          <select class="form-input" id="shift-start"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">End</label>
+          <select class="form-input" id="shift-end"></select>
+        </div>
+      </div>
+    </div>
+    <div class="shift-popup-footer">
+      <button class="btn-danger" id="shift-delete" style="display:none">Delete</button>
+      <div style="display:flex;gap:.375rem;margin-left:auto">
+        <button class="btn-secondary" id="shift-cancel">Cancel</button>
+        <button class="btn-primary" id="shift-save">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="popup-overlay" id="popup-overlay"></div>
+
+  <!-- Toast -->
+  <div class="es-toast" id="es-toast" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

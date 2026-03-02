@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Widget</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Restore notification -->
+  <div class="restore-bar" id="restoreBar">
+    <span class="restore-msg" id="restoreMsg"></span>
+    <button class="restore-btn" id="restoreBtn">Restore</button>
+  </div>
+
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">My Dashboard</h1>
+    <span class="dashboard-subtitle">March 2026</span>
+  </div>
+
+  <div class="widget-grid" id="widgetGrid">
+
+    <!-- Widget 1: Revenue Chart -->
+    <div class="widget" id="w-revenue" data-title="Revenue Chart">
+      <div class="widget-header">
+        <div class="widget-header-left">
+          <div class="widget-icon widget-icon--green">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+              <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+            </svg>
+          </div>
+          <span class="widget-title">Revenue Chart</span>
+        </div>
+        <div class="widget-controls">
+          <span class="widget-timestamp">Updated just now</span>
+          <button class="widget-btn" data-action="refresh" title="Refresh">
+            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+          </button>
+          <button class="widget-btn" data-action="minimize" title="Minimize">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <button class="widget-btn widget-btn--close" data-action="close" title="Close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="widget-body">
+        <div class="bar-chart">
+          <div class="bar-labels">
+            <span>$12k</span><span>$9k</span><span>$6k</span><span>$3k</span><span>$0</span>
+          </div>
+          <div class="bars">
+            <div class="bar-col"><div class="bar" style="--h:65%"><span class="bar-tip">$7.8k</span></div><span class="bar-name">Oct</span></div>
+            <div class="bar-col"><div class="bar" style="--h:82%"><span class="bar-tip">$9.8k</span></div><span class="bar-name">Nov</span></div>
+            <div class="bar-col"><div class="bar bar--accent" style="--h:100%"><span class="bar-tip">$12k</span></div><span class="bar-name">Dec</span></div>
+            <div class="bar-col"><div class="bar" style="--h:54%"><span class="bar-tip">$6.5k</span></div><span class="bar-name">Jan</span></div>
+            <div class="bar-col"><div class="bar" style="--h:71%"><span class="bar-tip">$8.5k</span></div><span class="bar-name">Feb</span></div>
+            <div class="bar-col"><div class="bar bar--live" style="--h:48%"><span class="bar-tip">$5.8k</span></div><span class="bar-name">Mar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widget 2: Recent Users -->
+    <div class="widget" id="w-users" data-title="Recent Users">
+      <div class="widget-header">
+        <div class="widget-header-left">
+          <div class="widget-icon widget-icon--blue">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <span class="widget-title">Recent Users</span>
+        </div>
+        <div class="widget-controls">
+          <span class="widget-timestamp">Updated just now</span>
+          <button class="widget-btn" data-action="refresh" title="Refresh">
+            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+          </button>
+          <button class="widget-btn" data-action="minimize" title="Minimize">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <button class="widget-btn widget-btn--close" data-action="close" title="Close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="widget-body">
+        <ul class="user-list">
+          <li class="user-row">
+            <div class="user-av" style="--c:#6366f1">SK</div>
+            <div class="user-info"><span class="user-name">Sarah Kim</span><span class="user-email">sarah@acme.io</span></div>
+            <span class="status-badge status-badge--active">Active</span>
+          </li>
+          <li class="user-row">
+            <div class="user-av" style="--c:#0ea5e9">MR</div>
+            <div class="user-info"><span class="user-name">Marcus Reed</span><span class="user-email">m.reed@corp.com</span></div>
+            <span class="status-badge status-badge--active">Active</span>
+          </li>
+          <li class="user-row">
+            <div class="user-av" style="--c:#f59e0b">JL</div>
+            <div class="user-info"><span class="user-name">Julia Lee</span><span class="user-email">julia@startup.dev</span></div>
+            <span class="status-badge status-badge--pending">Pending</span>
+          </li>
+          <li class="user-row">
+            <div class="user-av" style="--c:#10b981">TN</div>
+            <div class="user-info"><span class="user-name">Tom Nakamura</span><span class="user-email">t.nakamura@labs.ai</span></div>
+            <span class="status-badge status-badge--inactive">Inactive</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Widget 3: Quick Tasks -->
+    <div class="widget" id="w-tasks" data-title="Quick Tasks">
+      <div class="widget-header">
+        <div class="widget-header-left">
+          <div class="widget-icon widget-icon--purple">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 11 12 14 22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <span class="widget-title">Quick Tasks</span>
+        </div>
+        <div class="widget-controls">
+          <span class="widget-timestamp">Updated just now</span>
+          <button class="widget-btn" data-action="refresh" title="Refresh">
+            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+          </button>
+          <button class="widget-btn" data-action="minimize" title="Minimize">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <button class="widget-btn widget-btn--close" data-action="close" title="Close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="widget-body">
+        <ul class="task-list">
+          <li class="task-item">
+            <label class="task-label">
+              <input type="checkbox" checked />
+              <span class="task-check"></span>
+              <span class="task-text">Review Q1 analytics report</span>
+            </label>
+          </li>
+          <li class="task-item">
+            <label class="task-label">
+              <input type="checkbox" />
+              <span class="task-check"></span>
+              <span class="task-text">Onboard new team members</span>
+            </label>
+          </li>
+          <li class="task-item">
+            <label class="task-label">
+              <input type="checkbox" />
+              <span class="task-check"></span>
+              <span class="task-text">Deploy v2.4 to production</span>
+            </label>
+          </li>
+          <li class="task-item">
+            <label class="task-label">
+              <input type="checkbox" checked />
+              <span class="task-check"></span>
+              <span class="task-text">Send invoice to Acme Corp</span>
+            </label>
+          </li>
+        </ul>
+        <div class="task-progress">
+          <div class="task-progress-bar">
+            <div class="task-progress-fill" style="width: 50%"></div>
+          </div>
+          <span class="task-progress-label">2 of 4 complete</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Widget 4: System Health -->
+    <div class="widget" id="w-system" data-title="System Health">
+      <div class="widget-header">
+        <div class="widget-header-left">
+          <div class="widget-icon widget-icon--cyan">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <span class="widget-title">System Health</span>
+        </div>
+        <div class="widget-controls">
+          <span class="widget-timestamp">Updated just now</span>
+          <button class="widget-btn" data-action="refresh" title="Refresh">
+            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+            </svg>
+          </button>
+          <button class="widget-btn" data-action="minimize" title="Minimize">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <button class="widget-btn widget-btn--close" data-action="close" title="Close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="widget-body">
+        <ul class="health-list">
+          <li class="health-item">
+            <div class="health-meta">
+              <span class="health-label">CPU Usage</span>
+              <span class="health-val health-val--warn">72%</span>
+            </div>
+            <div class="health-bar"><div class="health-fill health-fill--warn" style="width:72%"></div></div>
+          </li>
+          <li class="health-item">
+            <div class="health-meta">
+              <span class="health-label">Memory</span>
+              <span class="health-val health-val--ok">48%</span>
+            </div>
+            <div class="health-bar"><div class="health-fill health-fill--ok" style="width:48%"></div></div>
+          </li>
+          <li class="health-item">
+            <div class="health-meta">
+              <span class="health-label">Disk</span>
+              <span class="health-val health-val--ok">31%</span>
+            </div>
+            <div class="health-bar"><div class="health-fill health-fill--ok" style="width:31%"></div></div>
+          </li>
+          <li class="health-item">
+            <div class="health-meta">
+              <span class="health-label">Network</span>
+              <span class="health-val health-val--crit">89%</span>
+            </div>
+            <div class="health-bar"><div class="health-fill health-fill--crit" style="width:89%"></div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

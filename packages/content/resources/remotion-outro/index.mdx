@@ -1,0 +1,40 @@
+---
+slug: remotion-outro
+title: YouTube Outro Animation (Remotion)
+description: A 20-second YouTube outro with "thanks for watching", an animated subscribe button pulse, and placeholder end-card slots — rendered with Remotion.
+category: remotion
+type: animation
+tags: [remotion, youtube, outro, subscribe, end-screen, video, react]
+tech: [remotion, react, typescript]
+difficulty: med
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## YouTube Outro Animation
+
+A 20-second end screen for YouTube videos. Shows a "Thanks for watching" headline, an animated subscribe button that pulses, and two placeholder cards for recommended video links.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 20 s (600 frames) |
+
+### Sections
+
+- **0–2 s** — "Thanks for watching" fades in
+- **2–5 s** — Subscribe button scales in with spring
+- **5–20 s** — End card placeholders slide in; subscribe button pulses
+
+### Customization
+
+Set `CHANNEL_NAME` and `BRAND_COLOR` at the top of the file.

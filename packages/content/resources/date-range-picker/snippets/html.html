@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Range Picker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="drp-demo">
+    <p class="drp-demo-label">Date Range</p>
+    <div class="drp-trigger-wrap">
+      <button class="drp-trigger" id="drp-trigger" aria-expanded="false" aria-haspopup="true">
+        <svg class="drp-trigger-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        <span id="drp-trigger-text">Select date range</span>
+        <svg class="drp-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+
+      <!-- Dropdown -->
+      <div class="drp-dropdown" id="drp-dropdown" aria-hidden="true">
+        <div class="drp-dropdown-inner">
+
+          <!-- Calendars -->
+          <div class="drp-calendars">
+            <!-- Left calendar -->
+            <div class="drp-cal" id="drp-cal-left">
+              <div class="drp-cal-header">
+                <button class="drp-nav-btn" id="drp-prev" aria-label="Previous month">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <span class="drp-cal-title" id="drp-left-title"></span>
+              </div>
+              <div class="drp-cal-dow">
+                <span>Su</span><span>Mo</span><span>Tu</span>
+                <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+              </div>
+              <div class="drp-cal-grid" id="drp-left-grid"></div>
+            </div>
+
+            <div class="drp-cal-divider"></div>
+
+            <!-- Right calendar -->
+            <div class="drp-cal" id="drp-cal-right">
+              <div class="drp-cal-header">
+                <span class="drp-cal-title" id="drp-right-title"></span>
+                <button class="drp-nav-btn" id="drp-next" aria-label="Next month">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+              </div>
+              <div class="drp-cal-dow">
+                <span>Su</span><span>Mo</span><span>Tu</span>
+                <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+              </div>
+              <div class="drp-cal-grid" id="drp-right-grid"></div>
+            </div>
+          </div>
+
+          <!-- Preset pills row -->
+          <div class="drp-presets" id="drp-presets">
+            <button class="preset-btn" data-preset="today">Today</button>
+            <button class="preset-btn" data-preset="yesterday">Yesterday</button>
+            <button class="preset-btn" data-preset="last7">Last 7 Days</button>
+            <button class="preset-btn" data-preset="last30">Last 30 Days</button>
+            <button class="preset-btn" data-preset="thisMonth">This Month</button>
+            <button class="preset-btn" data-preset="lastMonth">Last Month</button>
+            <button class="preset-btn" data-preset="thisQuarter">This Quarter</button>
+            <button class="preset-btn active" data-preset="custom">Custom</button>
+          </div>
+
+          <!-- Footer -->
+          <div class="drp-footer">
+            <span class="drp-footer-range" id="drp-footer-range">No date selected</span>
+            <div class="drp-footer-actions">
+              <button class="btn-secondary" id="drp-cancel">Cancel</button>
+              <button class="btn-primary" id="drp-apply">Apply</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

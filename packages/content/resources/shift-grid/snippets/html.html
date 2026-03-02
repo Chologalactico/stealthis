@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shift Grid</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="scheduler-wrapper">
+
+    <!-- Header -->
+    <div class="scheduler-header">
+      <h1 class="scheduler-title">Shift Scheduler</h1>
+      <div class="week-nav">
+        <button class="week-nav-btn" id="prevWeek" aria-label="Previous week">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </button>
+        <span class="week-label" id="weekLabel">Loading…</span>
+        <button class="week-nav-btn" id="nextWeek" aria-label="Next week">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="legend">
+        <span class="legend-item legend-morning">Morning</span>
+        <span class="legend-item legend-afternoon">Afternoon</span>
+        <span class="legend-item legend-night">Night</span>
+        <span class="legend-item legend-dayoff">Day Off</span>
+      </div>
+    </div>
+
+    <!-- Grid container -->
+    <div class="grid-scroll">
+      <table class="shift-table" id="shiftTable" role="grid">
+        <thead>
+          <tr id="tableHead">
+            <th class="col-employee">Employee</th>
+            <!-- Day columns injected by JS -->
+            <th class="col-total">Total</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot>
+          <tr id="tableFoot">
+            <td class="foot-label">Shifts / day</td>
+            <!-- Totals injected by JS -->
+            <td class="foot-total">—</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Popover (shared, repositioned via JS) -->
+  <div class="cell-popover" id="cellPopover" hidden role="dialog" aria-label="Shift options">
+    <div class="popover-arrow"></div>
+    <div class="popover-body">
+      <div class="shift-type-list" id="shiftTypeList">
+        <button class="shift-type-btn morning" data-type="Morning">
+          <span class="shift-dot"></span> Morning <span class="shift-sub">6 AM – 2 PM</span>
+        </button>
+        <button class="shift-type-btn afternoon" data-type="Afternoon">
+          <span class="shift-dot"></span> Afternoon <span class="shift-sub">2 PM – 10 PM</span>
+        </button>
+        <button class="shift-type-btn night" data-type="Night">
+          <span class="shift-dot"></span> Night <span class="shift-sub">10 PM – 6 AM</span>
+        </button>
+        <button class="shift-type-btn dayoff" data-type="Day Off">
+          <span class="shift-dot"></span> Day Off <span class="shift-sub">—</span>
+        </button>
+      </div>
+      <hr class="popover-divider" />
+      <button class="popover-delete-btn" id="popoverDeleteBtn" hidden>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+        </svg>
+        Remove shift
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

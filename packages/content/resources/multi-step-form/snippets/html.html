@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Step Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <div class="form-card" id="formCard">
+
+      <!-- Progress indicator -->
+      <div class="progress-bar" id="progressBar" aria-label="Form progress">
+        <div class="progress-track">
+          <div class="progress-line" id="progressLine"></div>
+        </div>
+        <div class="step-dots" id="stepDots">
+          <button class="step-dot active" data-step="0" aria-label="Step 1: Account Info">
+            <span class="dot-number">1</span>
+            <span class="dot-label">Account</span>
+          </button>
+          <button class="step-dot" data-step="1" aria-label="Step 2: Personal Details">
+            <span class="dot-number">2</span>
+            <span class="dot-label">Personal</span>
+          </button>
+          <button class="step-dot" data-step="2" aria-label="Step 3: Preferences">
+            <span class="dot-number">3</span>
+            <span class="dot-label">Prefs</span>
+          </button>
+          <button class="step-dot" data-step="3" aria-label="Step 4: Review">
+            <span class="dot-number">4</span>
+            <span class="dot-label">Review</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Steps container (overflow hidden, slides) -->
+      <div class="steps-viewport" id="stepsViewport">
+
+        <!-- Step 1: Account Info -->
+        <div class="step-panel active" id="step0" data-step="0">
+          <div class="step-header">
+            <h2 class="step-title">Create your account</h2>
+            <p class="step-subtitle">Start with your login credentials</p>
+          </div>
+          <div class="fields">
+            <div class="field-group">
+              <label class="field-label" for="email">Email address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" class="field-input" placeholder="you@company.com" autocomplete="email" />
+              <span class="field-error" id="email-error"></span>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="password">Password <span class="required">*</span></label>
+              <input type="password" id="password" name="password" class="field-input" placeholder="Min. 8 characters" autocomplete="new-password" />
+              <span class="field-error" id="password-error"></span>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="confirmPassword">Confirm password <span class="required">*</span></label>
+              <input type="password" id="confirmPassword" name="confirmPassword" class="field-input" placeholder="Repeat your password" autocomplete="new-password" />
+              <span class="field-error" id="confirmPassword-error"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Personal Details -->
+        <div class="step-panel" id="step1" data-step="1">
+          <div class="step-header">
+            <h2 class="step-title">Personal details</h2>
+            <p class="step-subtitle">Tell us a little about yourself</p>
+          </div>
+          <div class="fields">
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label" for="firstName">First name <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" class="field-input" placeholder="Alice" autocomplete="given-name" />
+                <span class="field-error" id="firstName-error"></span>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="lastName">Last name <span class="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" class="field-input" placeholder="Martin" autocomplete="family-name" />
+                <span class="field-error" id="lastName-error"></span>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" class="field-input" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="company">Company name <span class="optional">(optional)</span></label>
+              <input type="text" id="company" name="company" class="field-input" placeholder="Acme Corp." autocomplete="organization" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Preferences -->
+        <div class="step-panel" id="step2" data-step="2">
+          <div class="step-header">
+            <h2 class="step-title">Your preferences</h2>
+            <p class="step-subtitle">Personalise your experience</p>
+          </div>
+          <div class="fields">
+            <div class="field-group">
+              <label class="field-label" for="role">Your role <span class="required">*</span></label>
+              <select id="role" name="role" class="field-input field-select">
+                <option value="">Select your role…</option>
+                <option value="Developer">Developer</option>
+                <option value="Designer">Designer</option>
+                <option value="Product Manager">Product Manager</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="field-error" id="role-error"></span>
+            </div>
+
+            <div class="field-group">
+              <span class="field-label">Team size <span class="required">*</span></span>
+              <div class="radio-group" id="teamSizeGroup">
+                <label class="radio-item"><input type="radio" name="teamSize" value="Solo" /> Solo</label>
+                <label class="radio-item"><input type="radio" name="teamSize" value="2–10" /> 2–10</label>
+                <label class="radio-item"><input type="radio" name="teamSize" value="11–50" /> 11–50</label>
+                <label class="radio-item"><input type="radio" name="teamSize" value="50+" /> 50+</label>
+              </div>
+              <span class="field-error" id="teamSize-error"></span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label">Feature toggles</label>
+              <div class="toggle-list">
+                <label class="toggle-item">
+                  <div class="toggle-info">
+                    <span class="toggle-name">Dark Mode</span>
+                    <span class="toggle-desc">Use dark interface by default</span>
+                  </div>
+                  <input type="checkbox" name="darkMode" class="toggle-checkbox" checked />
+                  <div class="toggle-switch"></div>
+                </label>
+                <label class="toggle-item">
+                  <div class="toggle-info">
+                    <span class="toggle-name">Beta Features</span>
+                    <span class="toggle-desc">Access experimental functionality</span>
+                  </div>
+                  <input type="checkbox" name="betaFeatures" class="toggle-checkbox" />
+                  <div class="toggle-switch"></div>
+                </label>
+                <label class="toggle-item">
+                  <div class="toggle-info">
+                    <span class="toggle-name">Analytics</span>
+                    <span class="toggle-desc">Help improve with usage data</span>
+                  </div>
+                  <input type="checkbox" name="analytics" class="toggle-checkbox" checked />
+                  <div class="toggle-switch"></div>
+                </label>
+              </div>
+            </div>
+
+            <label class="newsletter-label">
+              <input type="checkbox" name="newsletter" id="newsletter" />
+              <span>Send me product updates and tips</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div class="step-panel" id="step3" data-step="3">
+          <div class="step-header">
+            <h2 class="step-title">Review & submit</h2>
+            <p class="step-subtitle">Check your details before creating your account</p>
+          </div>
+          <div class="review-card" id="reviewCard"></div>
+        </div>
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="form-nav" id="formNav">
+        <button class="nav-back" id="navBack" hidden>Back</button>
+        <button class="nav-continue" id="navContinue">Continue</button>
+      </div>
+
+    </div>
+
+    <!-- Success screen -->
+    <div class="success-screen" id="successScreen" hidden>
+      <div class="success-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2 class="success-title">Account created!</h2>
+      <p class="success-msg">Welcome aboard. Your account is ready to use.</p>
+      <button class="nav-continue" id="startOver">Start Over</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

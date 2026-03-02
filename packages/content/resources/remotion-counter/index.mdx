@@ -1,0 +1,40 @@
+---
+slug: remotion-counter
+title: Animated Number Counter Video (Remotion)
+description: A 4-second Remotion composition showing a large number counting up from 0 to a target value, with an eased interpolation and optional prefix/suffix labels.
+category: remotion
+type: animation
+tags: [remotion, counter, number, metric, animation, video]
+tech: [remotion, react, typescript]
+difficulty: easy
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Animated Number Counter Video
+
+A 4-second Remotion composition where a large number counts up from 0 to its target value. Uses `interpolate` with an `easeOut` curve so it slows down as it approaches the final value. Supports prefix (`$`, `+`) and suffix (`K`, `%`, `M`) labels.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 4 s (120 frames) |
+
+### Props
+
+| Prop | Default | Description |
+|---|---|---|
+| `target` | `10000` | Final number value |
+| `prefix` | `""` | Text before the number (e.g. `"$"`) |
+| `suffix` | `"+"` | Text after the number (e.g. `"K"`) |
+| `label` | `"Total Users"` | Caption below the number |
+| `color` | `"#6366f1"` | Accent color |

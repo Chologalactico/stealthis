@@ -1,0 +1,46 @@
+---
+slug: remotion-chart
+title: Animated Bar Chart Video (Remotion)
+description: A 5-second animated bar chart rendered with Remotion — bars grow up with spring physics, data labels count up, and the legend fades in.
+category: remotion
+type: animation
+tags: [remotion, chart, bar-chart, data-visualization, svg, video]
+tech: [remotion, react, typescript, svg]
+difficulty: hard
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Animated Bar Chart Video
+
+A data-driven bar chart composition for Remotion. Each bar grows up from the baseline using a staggered spring — bars animate sequentially rather than all at once. Value labels count up as the bars grow. The axis and legend fade in at the start.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 5 s (150 frames) |
+
+### Data format
+
+Pass a `data` prop array to the composition:
+
+```ts
+const data = [
+  { label: "Jan", value: 42, color: "#6366f1" },
+  { label: "Feb", value: 78, color: "#8b5cf6" },
+  { label: "Mar", value: 55, color: "#06b6d4" },
+];
+```
+
+### Stagger
+
+Each bar starts animating 8 frames after the previous one (`STAGGER = 8`).

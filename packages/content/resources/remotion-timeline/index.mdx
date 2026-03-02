@@ -1,0 +1,45 @@
+---
+slug: remotion-timeline
+title: Animated Timeline Video (Remotion)
+description: An 8-second Remotion composition where timeline nodes appear sequentially with a spring, connecting lines draw between them, and event labels fade in.
+category: remotion
+type: animation
+tags: [remotion, timeline, history, sequence, animation, video]
+tech: [remotion, react, typescript]
+difficulty: med
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Animated Timeline Video
+
+An 8-second animated timeline for product launches, company history, or roadmap videos. Timeline dots appear left-to-right with a spring animation, connecting lines draw between them with a `strokeDasharray` reveal, and event title/description labels fade in below each node.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 8 s (240 frames) |
+
+### Data format
+
+```ts
+const events = [
+  { year: "2022", title: "Founded", description: "Company started" },
+  { year: "2023", title: "Launch", description: "v1.0 released" },
+  { year: "2024", title: "Scale", description: "1M users" },
+  { year: "2025", title: "Global", description: "10 countries" },
+];
+```
+
+### Stagger
+
+Each event node appears `STAGGER_FRAMES` (= 35) frames after the previous one.

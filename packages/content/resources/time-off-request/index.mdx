@@ -1,0 +1,30 @@
+---
+slug: time-off-request
+title: Time-Off Request Widget
+description: A time-off request form widget for HR/employee management. Includes leave type selector, date range, reason field, and a running list of pending/approved requests.
+category: ui-components
+type: component
+tags: [time-off, hr, leave, form, employee, saas, request]
+tech: [css, vanilla-js]
+difficulty: easy
+targets: [html]
+labRoute: /ui-components/time-off-request
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Time-Off Request Widget
+
+A complete HR leave management widget with a request form and a live request history list. The JavaScript automatically calculates the number of days selected, validates the form on submit, and prepends the new request to the history list with a PENDING badge.
+
+### Features
+
+- Automatic day-count calculation as date inputs change
+- Client-side validation: start date must not exceed end date
+- Five leave types: Vacation, Sick Leave, Personal, Parental Leave, Bereavement
+- Live request list with color-coded PENDING, APPROVED, and DENIED status badges
+- Brief success state after submission before form reset

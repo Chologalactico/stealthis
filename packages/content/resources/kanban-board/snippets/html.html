@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="kb-header">
+    <div class="kb-header-left">
+      <h1 class="kb-title">Sprint Board</h1>
+      <span class="kb-sprint-badge">Sprint 12</span>
+    </div>
+    <div class="kb-header-right">
+      <div class="kb-search-wrap">
+        <svg class="kb-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="kb-search" type="text" id="kb-search" placeholder="Search cards…" />
+      </div>
+      <div class="kb-assignee-filter" id="kb-assignee-filter">
+        <span class="filter-label">Filter:</span>
+        <button class="av-filter-btn active" data-assignee="all" title="All">All</button>
+        <button class="av-filter-btn" data-assignee="AL" title="Alice" style="background:#38bdf8">AL</button>
+        <button class="av-filter-btn" data-assignee="BO" title="Bob" style="background:#a78bfa">BO</button>
+        <button class="av-filter-btn" data-assignee="CA" title="Carol" style="background:#fb923c">CA</button>
+        <button class="av-filter-btn" data-assignee="DA" title="David" style="background:#34d399">DA</button>
+      </div>
+      <button class="btn-secondary" id="kb-add-col">+ Add Column</button>
+    </div>
+  </div>
+
+  <!-- Board -->
+  <div class="kb-board" id="kb-board"></div>
+
+  <!-- Card detail modal -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div class="modal-header-top">
+          <span class="modal-card-col" id="modal-col-label"></span>
+          <button class="btn-icon modal-close" id="modal-close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <h2 class="modal-card-title" id="modal-card-title"></h2>
+        <div class="modal-meta" id="modal-meta"></div>
+      </div>
+      <div class="modal-body">
+        <p class="modal-section-label">Description</p>
+        <p class="modal-description" id="modal-description"></p>
+        <p class="modal-section-label">Comments</p>
+        <div class="modal-comments" id="modal-comments"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

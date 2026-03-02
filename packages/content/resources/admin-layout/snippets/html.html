@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Layout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </div>
+      <span class="sidebar-logo-text">StealthAdmin</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-label="Dashboard">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-label="Analytics">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+          </svg>
+        </span>
+        <span class="nav-label">Analytics</span>
+      </a>
+      <a href="#" class="nav-item" data-label="Users">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </span>
+        <span class="nav-label">Users</span>
+      </a>
+      <a href="#" class="nav-item" data-label="Orders">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </span>
+        <span class="nav-label">Orders</span>
+      </a>
+      <a href="#" class="nav-item" data-label="Products">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+        </span>
+        <span class="nav-label">Products</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a href="#" class="nav-item" data-label="Settings">
+        <span class="nav-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </span>
+        <span class="nav-label">Settings</span>
+      </a>
+    </nav>
+
+    <!-- Collapse button -->
+    <button class="sidebar-collapse-btn" id="collapseBtn" title="Collapse sidebar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <!-- User profile -->
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AC</div>
+      <div class="sidebar-user-info">
+        <span class="sidebar-user-name">Alex Chen</span>
+        <span class="sidebar-user-role">Admin</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── Main area ── -->
+  <div class="main-area" id="mainArea">
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="navbar-left">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle sidebar">
+          <span></span><span></span><span></span>
+        </button>
+        <h1 class="navbar-title" id="pageTitle">Dashboard</h1>
+      </div>
+      <div class="navbar-right">
+        <div class="navbar-search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" placeholder="Search…" />
+        </div>
+        <button class="navbar-icon-btn" title="Notifications">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="navbar-badge">3</span>
+        </button>
+        <div class="navbar-avatar">AC</div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- DASHBOARD -->
+      <div id="page-Dashboard" class="page-content active">
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">Good morning, Alex</h2>
+            <p class="content-subtitle">Here's what's happening with your store today.</p>
+          </div>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Users</span>
+              <span class="stat-value">24,521</span>
+              <span class="stat-change stat-change--up">+12.5% this month</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Revenue</span>
+              <span class="stat-value">$84,320</span>
+              <span class="stat-change stat-change--up">+8.2% this month</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Orders</span>
+              <span class="stat-value">1,284</span>
+              <span class="stat-change stat-change--down">-3.1% this month</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon stat-icon--cyan">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Uptime</span>
+              <span class="stat-value">99.98%</span>
+              <span class="stat-change stat-change--up">+0.02% this month</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <h3 class="activity-title">Recent Activity</h3>
+            <button class="activity-view-all">View all</button>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-dot activity-dot--green"></div>
+              <div class="activity-body">
+                <span class="activity-text">New user <strong>Sarah Kim</strong> registered</span>
+                <span class="activity-time">2 minutes ago</span>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-dot activity-dot--blue"></div>
+              <div class="activity-body">
+                <span class="activity-text">Order <strong>#ORD-4821</strong> has been shipped</span>
+                <span class="activity-time">14 minutes ago</span>
+              </div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-dot activity-dot--yellow"></div>
+              <div class="activity-body">
+                <span class="activity-text">Server load reached <strong>82%</strong> — auto-scaled</span>
+                <span class="activity-time">1 hour ago</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ANALYTICS -->
+      <div id="page-Analytics" class="page-content">
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">Analytics</h2>
+            <p class="content-subtitle">Track your performance metrics and trends.</p>
+          </div>
+          <button class="content-action-btn">Export Report</button>
+        </div>
+        <div class="analytics-grid">
+          <div class="analytics-card analytics-card--wide">
+            <div class="analytics-card-header"><h3>Revenue Over Time</h3><span class="analytics-badge up">+8.2%</span></div>
+            <div class="chart-placeholder">
+              <div class="chart-bars">
+                <div class="chart-bar" style="height:45%"><span>Jan</span></div>
+                <div class="chart-bar" style="height:62%"><span>Feb</span></div>
+                <div class="chart-bar" style="height:38%"><span>Mar</span></div>
+                <div class="chart-bar" style="height:78%"><span>Apr</span></div>
+                <div class="chart-bar" style="height:55%"><span>May</span></div>
+                <div class="chart-bar active" style="height:91%"><span>Jun</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="analytics-card">
+            <div class="analytics-card-header"><h3>Conversion Rate</h3></div>
+            <div class="big-metric">3.6%<span class="metric-delta up">+0.4%</span></div>
+            <p class="metric-desc">vs 3.2% last period</p>
+          </div>
+          <div class="analytics-card">
+            <div class="analytics-card-header"><h3>Avg. Session</h3></div>
+            <div class="big-metric">4m 32s<span class="metric-delta up">+12s</span></div>
+            <p class="metric-desc">vs 4m 20s last period</p>
+          </div>
+          <div class="analytics-card">
+            <div class="analytics-card-header"><h3>Bounce Rate</h3></div>
+            <div class="big-metric">41.2%<span class="metric-delta down">-2.1%</span></div>
+            <p class="metric-desc">vs 43.3% last period</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS -->
+      <div id="page-Users" class="page-content">
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">Users</h2>
+            <p class="content-subtitle">Manage your user accounts and permissions.</p>
+          </div>
+          <button class="content-action-btn">+ Invite User</button>
+        </div>
+        <div class="users-list-card">
+          <div class="users-search-bar">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Search users…" style="background:transparent;border:none;outline:none;color:#f1f5f9;font-size:0.875rem;flex:1" />
+          </div>
+          <div class="users-row users-row--header">
+            <span>User</span><span>Role</span><span>Status</span><span>Joined</span>
+          </div>
+          <div class="users-row">
+            <div class="users-cell-user"><div class="user-av" style="background:#6366f1">AC</div><div><div class="user-name">Alex Chen</div><div class="user-email">alex@company.io</div></div></div>
+            <span class="role-chip role-chip--admin">Admin</span>
+            <span class="status-dot status-dot--active">Active</span>
+            <span class="user-date">Jan 15, 2023</span>
+          </div>
+          <div class="users-row">
+            <div class="users-cell-user"><div class="user-av" style="background:#0ea5e9">SK</div><div><div class="user-name">Sarah Kim</div><div class="user-email">sarah@company.io</div></div></div>
+            <span class="role-chip role-chip--editor">Editor</span>
+            <span class="status-dot status-dot--active">Active</span>
+            <span class="user-date">Mar 22, 2023</span>
+          </div>
+          <div class="users-row">
+            <div class="users-cell-user"><div class="user-av" style="background:#8b5cf6">MR</div><div><div class="user-name">Marcus Reed</div><div class="user-email">m.reed@company.io</div></div></div>
+            <span class="role-chip role-chip--viewer">Viewer</span>
+            <span class="status-dot status-dot--inactive">Inactive</span>
+            <span class="user-date">May 10, 2023</span>
+          </div>
+          <div class="users-row">
+            <div class="users-cell-user"><div class="user-av" style="background:#f59e0b">JL</div><div><div class="user-name">Julia Lee</div><div class="user-email">julia@company.io</div></div></div>
+            <span class="role-chip role-chip--editor">Editor</span>
+            <span class="status-dot status-dot--pending">Pending</span>
+            <span class="user-date">Jan 8, 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div id="page-Orders" class="page-content">
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">Orders</h2>
+            <p class="content-subtitle">View and manage all customer orders.</p>
+          </div>
+          <button class="content-action-btn">Export CSV</button>
+        </div>
+        <div class="orders-card">
+          <div class="orders-row orders-row--header"><span>Order ID</span><span>Customer</span><span>Amount</span><span>Status</span><span>Date</span></div>
+          <div class="orders-row"><span class="order-id">#ORD-4821</span><span>Sarah Johnson</span><span class="order-amount">$142.50</span><span class="order-status order-status--shipped">Shipped</span><span class="order-date">Mar 1, 2026</span></div>
+          <div class="orders-row"><span class="order-id">#ORD-4820</span><span>Tom Nakamura</span><span class="order-amount">$89.00</span><span class="order-status order-status--processing">Processing</span><span class="order-date">Mar 1, 2026</span></div>
+          <div class="orders-row"><span class="order-id">#ORD-4819</span><span>Emma Walsh</span><span class="order-amount">$215.75</span><span class="order-status order-status--delivered">Delivered</span><span class="order-date">Feb 28, 2026</span></div>
+          <div class="orders-row"><span class="order-id">#ORD-4818</span><span>David Okonkwo</span><span class="order-amount">$38.00</span><span class="order-status order-status--cancelled">Cancelled</span><span class="order-date">Feb 27, 2026</span></div>
+          <div class="orders-row"><span class="order-id">#ORD-4817</span><span>Priya Patel</span><span class="order-amount">$175.25</span><span class="order-status order-status--delivered">Delivered</span><span class="order-date">Feb 26, 2026</span></div>
+        </div>
+      </div>
+
+      <!-- PRODUCTS -->
+      <div id="page-Products" class="page-content">
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">Products</h2>
+            <p class="content-subtitle">Manage your product catalog and inventory.</p>
+          </div>
+          <button class="content-action-btn">+ Add Product</button>
+        </div>
+        <div class="products-grid">
+          <div class="product-card"><div class="product-img" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">P</div><div class="product-info"><div class="product-name">Pro Subscription</div><div class="product-price">$29/mo</div><span class="product-stock in-stock">In Stock</span></div></div>
+          <div class="product-card"><div class="product-img" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)">T</div><div class="product-info"><div class="product-name">Team Plan</div><div class="product-price">$99/mo</div><span class="product-stock in-stock">In Stock</span></div></div>
+          <div class="product-card"><div class="product-img" style="background:linear-gradient(135deg,#f59e0b,#fb923c)">E</div><div class="product-info"><div class="product-name">Enterprise License</div><div class="product-price">$499/mo</div><span class="product-stock in-stock">In Stock</span></div></div>
+          <div class="product-card"><div class="product-img" style="background:linear-gradient(135deg,#34d399,#10b981)">A</div><div class="product-info"><div class="product-name">API Access</div><div class="product-price">$49/mo</div><span class="product-stock low-stock">Low Stock</span></div></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="page-Settings" class="page-content">
+        <div class="content-header">
+          <div>
+            <h2 class="content-title">Settings</h2>
+            <p class="content-subtitle">Manage your account preferences and configuration.</p>
+          </div>
+        </div>
+        <div class="settings-sections">
+          <div class="settings-section">
+            <h3 class="settings-section-title">General</h3>
+            <div class="settings-row"><div class="settings-label"><span>Site Name</span><small>The name of your application</small></div><input type="text" class="settings-input" value="StealthAdmin" /></div>
+            <div class="settings-row"><div class="settings-label"><span>Support Email</span><small>Where support requests go</small></div><input type="email" class="settings-input" value="support@company.io" /></div>
+          </div>
+          <div class="settings-section">
+            <h3 class="settings-section-title">Notifications</h3>
+            <div class="settings-toggle-row"><div class="settings-label"><span>Email Alerts</span><small>Receive important updates via email</small></div><label class="stoggle"><input type="checkbox" checked /><span class="stoggle-track"></span></label></div>
+            <div class="settings-toggle-row"><div class="settings-label"><span>Push Notifications</span><small>Browser push notifications</small></div><label class="stoggle"><input type="checkbox" /><span class="stoggle-track"></span></label></div>
+            <div class="settings-toggle-row"><div class="settings-label"><span>Weekly Digest</span><small>Summary report every Monday</small></div><label class="stoggle"><input type="checkbox" checked /><span class="stoggle-track"></span></label></div>
+          </div>
+          <div class="settings-section">
+            <h3 class="settings-section-title">Security</h3>
+            <div class="settings-toggle-row"><div class="settings-label"><span>Two-Factor Auth</span><small>Add an extra layer of security</small></div><label class="stoggle"><input type="checkbox" /><span class="stoggle-track"></span></label></div>
+          </div>
+          <button class="settings-save-btn">Save Changes</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+---
+slug: employee-schedule
+title: Employee Schedule
+description: A detailed employee scheduling view with week/day views, shift assignment, conflict detection, and total hours calculation per employee.
+category: ui-components
+type: component
+tags: [schedule, employee, shifts, hr, weekly, saas, workforce]
+tech: [css, vanilla-js]
+difficulty: hard
+targets: [html]
+labRoute: /ui-components/employee-schedule
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Employee Schedule
+
+A workforce scheduling grid for managing shift assignments across an 8-person team over a 7-day work week. Shifts are color-coded by type (Morning, Afternoon, Night, Off) and displayed as blocks within each employee-day cell. Overlap conflicts are flagged with a red border, and total hours automatically update when shifts are added or removed.
+
+### Features
+- 8-employee x 7-day grid with scrollable columns and sticky employee list
+- Add, edit, and delete individual shifts per employee per day
+- Shift types: Morning (6am-2pm), Afternoon (2pm-10pm), Night (10pm-6am), Off
+- Conflict detection highlights cells with overlapping or invalid time ranges
+- Per-employee total hours calculation updates live in the sidebar
+- Weekly summary row showing shift counts and total coverage per day
+- Publish confirmation dialog + success toast + Copy Previous Week shortcut

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Filters</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Sidebar Filters -->
+    <aside class="filter-sidebar" id="filterSidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title-row">
+          <h2 class="sidebar-title">Filters</h2>
+          <span class="filter-count-badge" id="filterCountBadge" aria-live="polite">0</span>
+        </div>
+        <button class="clear-all-btn" id="clearAllBtn">Clear all</button>
+      </div>
+
+      <!-- Search -->
+      <div class="filter-group">
+        <label class="filter-group-label" for="searchInput">Search</label>
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="searchInput" class="filter-input" placeholder="Search by name…" autocomplete="off" />
+        </div>
+      </div>
+
+      <!-- Department -->
+      <div class="filter-group">
+        <label class="filter-group-label">Department</label>
+        <div class="checkbox-list">
+          <label class="checkbox-item">
+            <input type="checkbox" value="Engineering" class="dept-check" /> Engineering
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" value="Design" class="dept-check" /> Design
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" value="Marketing" class="dept-check" /> Marketing
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" value="Sales" class="dept-check" /> Sales
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox" value="HR" class="dept-check" /> HR
+          </label>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="filter-group">
+        <label class="filter-group-label">Status</label>
+        <div class="toggle-group" id="statusGroup">
+          <button class="toggle-btn active" data-value="all">All</button>
+          <button class="toggle-btn" data-value="Active">Active</button>
+          <button class="toggle-btn" data-value="Inactive">Inactive</button>
+          <button class="toggle-btn" data-value="On Leave">On Leave</button>
+        </div>
+      </div>
+
+      <!-- Salary Range -->
+      <div class="filter-group">
+        <label class="filter-group-label">Salary Range</label>
+        <div class="range-inputs">
+          <input type="number" id="salaryMin" class="filter-input range-input" placeholder="Min ($)" min="0" step="5000" />
+          <span class="range-sep">–</span>
+          <input type="number" id="salaryMax" class="filter-input range-input" placeholder="Max ($)" min="0" step="5000" />
+        </div>
+      </div>
+
+      <!-- Start Date Range -->
+      <div class="filter-group">
+        <label class="filter-group-label">Start Date</label>
+        <div class="range-inputs">
+          <input type="date" id="dateFrom" class="filter-input date-input" />
+          <span class="range-sep">–</span>
+          <input type="date" id="dateTo" class="filter-input date-input" />
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div class="filter-group preset-group">
+        <label class="filter-group-label">Saved Presets</label>
+        <div class="preset-dropdown-row">
+          <select id="presetSelect" class="filter-input preset-select">
+            <option value="">Load a preset…</option>
+          </select>
+          <button class="save-preset-btn" id="savePresetBtn" title="Save current filters as preset">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+            </svg>
+            Save
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="results-area">
+      <div class="results-header">
+        <div class="results-count" id="resultsCount">Showing 10 of 10 employees</div>
+        <button class="toggle-sidebar-btn" id="toggleSidebarBtn" aria-label="Toggle filters">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/>
+            <line x1="4" y1="18" x2="18" y2="18"/>
+          </svg>
+          Filters
+        </button>
+      </div>
+
+      <!-- Active filter chips -->
+      <div class="active-chips" id="activeChips" aria-live="polite"></div>
+
+      <!-- Employee list -->
+      <div class="employee-list" id="employeeList"></div>
+    </main>
+
+  </div>
+
+  <!-- Save preset modal -->
+  <div class="modal-overlay" id="presetModal" aria-modal="true" role="dialog" aria-label="Save filter preset" hidden>
+    <div class="modal-card">
+      <h3 class="modal-title">Save Filter Preset</h3>
+      <input type="text" id="presetNameInput" class="filter-input" placeholder="Preset name (e.g. Q1 Report)" />
+      <div class="modal-actions">
+        <button class="modal-cancel" id="modalCancel">Cancel</button>
+        <button class="modal-save" id="modalSave">Save Preset</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

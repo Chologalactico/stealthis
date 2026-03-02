@@ -1,0 +1,269 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+  color: #f1f5f9;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+/* ── Card ── */
+.picker-wrapper {
+  width: min(620px, 100%);
+}
+
+.picker-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.picker-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.picker-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.picker-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+/* ── Timeline ── */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 0.5rem 0;
+}
+
+.timeline-track {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  margin: 1.5rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.timeline-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* ── Handles ── */
+.timeline-handle {
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  background: #f1f5f9;
+  border: 3px solid #38bdf8;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  z-index: 2;
+}
+
+.timeline-handle:hover,
+.timeline-handle:focus {
+  box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.2);
+  outline: none;
+}
+
+.timeline-handle:active,
+.timeline-handle.dragging {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.15);
+  box-shadow: 0 0 0 8px rgba(56, 189, 248, 0.25);
+  border-color: #7dd3fc;
+}
+
+.handle-end {
+  border-color: #818cf8;
+}
+
+.handle-end:hover,
+.handle-end:focus {
+  box-shadow: 0 0 0 6px rgba(129, 140, 248, 0.2);
+}
+
+.handle-end.dragging {
+  box-shadow: 0 0 0 8px rgba(129, 140, 248, 0.25);
+  border-color: #a5b4fc;
+}
+
+/* ── Tooltips ── */
+.handle-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.handle-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.timeline-handle:hover .handle-tooltip,
+.timeline-handle.dragging .handle-tooltip {
+  opacity: 1;
+}
+
+/* ── Hour Labels ── */
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #475569;
+  padding: 0 2px;
+}
+
+/* ── Range Display ── */
+.range-display {
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 0.875rem;
+  padding: 1rem 1.25rem;
+}
+
+.range-display-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.range-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #38bdf8;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.range-duration {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+/* ── Presets ── */
+.presets-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.presets-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.presets-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.625rem;
+}
+
+.preset-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.875rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  text-align: center;
+}
+
+.preset-btn:hover {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.25);
+  color: #e2e8f0;
+}
+
+.preset-btn.active {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+  color: #f1f5f9;
+}
+
+.preset-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.preset-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.preset-sub {
+  font-size: 0.6875rem;
+  color: #475569;
+}
+
+@media (max-width: 480px) {
+  .presets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .picker-card {
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-handle,
+  .preset-btn {
+    transition: none;
+  }
+}

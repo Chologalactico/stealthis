@@ -1,0 +1,52 @@
+---
+slug: remotion-intro
+title: YouTube Intro Animation (Remotion)
+description: A polished YouTube channel intro — animated title slide, subtitle reveal, and branding accent — rendered with Remotion at 1280×720 30fps.
+category: remotion
+type: animation
+tags: [remotion, youtube, intro, branding, video, react]
+tech: [remotion, react, typescript]
+difficulty: med
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## YouTube Intro Animation
+
+A 5-second YouTube channel intro built with Remotion. Animates the channel name sliding in from the left, the subtitle fading up, and a colored accent bar growing across the screen.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 5 s (150 frames) |
+
+### Customization
+
+Replace the `CHANNEL_NAME`, `TAGLINE`, and `BRAND_COLOR` constants at the top of the file to match your brand.
+
+### How to register
+
+```tsx
+import { Composition } from "remotion";
+import { YoutubeIntro } from "./remotion-intro";
+
+export const Root: React.FC = () => (
+  <Composition
+    id="YoutubeIntro"
+    component={YoutubeIntro}
+    durationInFrames={150}
+    fps={30}
+    width={1280}
+    height={720}
+  />
+);
+```

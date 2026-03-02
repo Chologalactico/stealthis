@@ -1,0 +1,45 @@
+---
+slug: remotion-sumbnail
+title: Video Thumbnail Generator (Remotion)
+description: A Remotion composition that generates YouTube-style thumbnails programmatically — big title text, tag badge, gradient background, and a face/image slot at 1280×720.
+category: remotion
+type: animation
+tags: [remotion, thumbnail, youtube, generator, still, branding]
+tech: [remotion, react, typescript]
+difficulty: med
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Video Thumbnail Generator
+
+Generate YouTube thumbnails programmatically with Remotion's `renderStill` command. The composition renders a 1280×720 frame with a bold gradient background, oversized title text, a category badge, and a placeholder slot for a face or product image.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 1 s (30 frames — effectively a still) |
+
+### Render as still
+
+```bash
+npx remotion still remotion-sumbnail thumbnail.png --props='{"title":"My Video","tag":"Tutorial"}'
+```
+
+### Props
+
+| Prop | Default | Description |
+|---|---|---|
+| `title` | `"Video Title"` | Main headline text |
+| `tag` | `"Tutorial"` | Badge label (top-left) |
+| `bg1` | `"#0f0c29"` | Gradient start color |
+| `bg2` | `"#302b63"` | Gradient end color |

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scheduler Timeline</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="tl-wrapper">
+    <!-- Header -->
+    <div class="tl-header">
+      <div class="tl-header-left">
+        <h2 class="tl-title">Project Timeline</h2>
+        <span class="tl-subtitle">Q1 2026</span>
+      </div>
+      <div class="tl-header-right">
+        <div class="view-toggle">
+          <button class="view-btn active" data-zoom="week">Week</button>
+          <button class="view-btn" data-zoom="month">Month</button>
+          <button class="view-btn" data-zoom="quarter">Quarter</button>
+        </div>
+        <button class="btn-icon" id="tl-prev" aria-label="Scroll left">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="btn-icon" id="tl-next" aria-label="Scroll right">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <button class="btn-secondary" id="tl-today">Today</button>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="tl-body">
+      <!-- Task list panel -->
+      <div class="tl-task-panel">
+        <div class="tl-task-panel-header">
+          <span>Task</span>
+          <span>Assignee</span>
+        </div>
+        <div class="tl-task-list" id="tl-task-list"></div>
+      </div>
+
+      <!-- Timeline panel -->
+      <div class="tl-timeline-panel" id="tl-timeline-panel">
+        <div class="tl-date-header" id="tl-date-header"></div>
+        <div class="tl-grid-area" id="tl-grid-area">
+          <div class="tl-today-line" id="tl-today-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div class="tl-tooltip" id="tl-tooltip" aria-hidden="true">
+    <div class="tl-tooltip-title" id="tt-title"></div>
+    <div class="tl-tooltip-row"><span class="tt-label">Assignee</span><span id="tt-assignee"></span></div>
+    <div class="tl-tooltip-row"><span class="tt-label">Start</span><span id="tt-start"></span></div>
+    <div class="tl-tooltip-row"><span class="tt-label">End</span><span id="tt-end"></span></div>
+    <div class="tl-tooltip-row"><span class="tt-label">Progress</span><span id="tt-progress"></span></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+---
+slug: availability-calendar
+title: Availability Calendar
+description: A Calendly-style availability picker for scheduling meetings. Shows available time slots across a monthly calendar with time zone support and booking confirmation flow.
+category: ui-components
+type: component
+tags: [availability, calendar, booking, scheduling, meeting, saas, calendly]
+tech: [css, vanilla-js]
+difficulty: hard
+targets: [html]
+labRoute: /ui-components/availability-calendar
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Availability Calendar
+
+A Calendly-style booking widget for scheduling 30-minute calls. The left panel shows a monthly calendar with available weekdays highlighted; clicking a date reveals the right panel with half-hour time slots from 9am to 5pm. Selecting a slot expands an inline "Confirm" button. Confirming transitions to a booking form, and submitting the form animates into a success state with meeting details and add-to-calendar prompt.
+
+### Features
+- Monthly calendar with clickable available days (weekdays only, some blocked)
+- Half-hour time slots 9am–5pm with pre-booked slots shown as unavailable
+- Slot selection expands an inline confirm button with smooth animation
+- Time zone selector that recalculates and re-labels all displayed slot times
+- Three-screen booking flow: slot selection, details form, success confirmation
+- Success screen shows meeting details and animated checkmark
+- Smooth slide transitions between booking flow screens

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar View</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="cal-wrapper">
+    <!-- Header -->
+    <div class="cal-header">
+      <div class="cal-header-left">
+        <button class="btn-icon" id="cal-prev" aria-label="Previous month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <h2 class="cal-month-label" id="cal-month-label">February 2026</h2>
+        <button class="btn-icon" id="cal-next" aria-label="Next month">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <button class="btn-secondary" id="cal-today">Today</button>
+      </div>
+      <div class="cal-header-right">
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="month">Month</button>
+          <button class="view-btn" data-view="week">Week</button>
+        </div>
+        <button class="btn-primary" id="cal-new-event">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+          New Event
+        </button>
+      </div>
+    </div>
+
+    <!-- Day of week headers -->
+    <div class="cal-dow-header">
+      <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div>
+      <div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+
+    <!-- Calendar grid -->
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <!-- Event Modal -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">New Event</h3>
+        <button class="btn-icon modal-close" id="modal-close" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="event-id" />
+        <div class="form-group">
+          <label class="form-label" for="event-title">Event Title</label>
+          <input class="form-input" type="text" id="event-title" placeholder="e.g. Team Meeting" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="event-date">Date</label>
+            <input class="form-input" type="date" id="event-date" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="event-end-date">End Date</label>
+            <input class="form-input" type="date" id="event-end-date" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="event-start-time">Start Time</label>
+            <select class="form-input" id="event-start-time"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="event-end-time">End Time</label>
+            <select class="form-input" id="event-end-time"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="event-category">Category</label>
+          <select class="form-input" id="event-category">
+            <option value="meeting">Meeting</option>
+            <option value="event">Event</option>
+            <option value="reminder">Reminder</option>
+            <option value="holiday">Holiday</option>
+            <option value="task">Task</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Color</label>
+          <div class="color-swatches" id="color-swatches">
+            <button class="swatch active" data-color="#38bdf8" style="background:#38bdf8" aria-label="Sky blue"></button>
+            <button class="swatch" data-color="#a78bfa" style="background:#a78bfa" aria-label="Purple"></button>
+            <button class="swatch" data-color="#fb923c" style="background:#fb923c" aria-label="Orange"></button>
+            <button class="swatch" data-color="#f87171" style="background:#f87171" aria-label="Red"></button>
+            <button class="swatch" data-color="#34d399" style="background:#34d399" aria-label="Teal"></button>
+            <button class="swatch" data-color="#fbbf24" style="background:#fbbf24" aria-label="Yellow"></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="event-notes">Notes</label>
+          <textarea class="form-input form-textarea" id="event-notes" placeholder="Optional notes..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-danger" id="modal-delete" style="display:none">Delete</button>
+        <div class="modal-footer-right">
+          <button class="btn-secondary" id="modal-cancel">Cancel</button>
+          <button class="btn-primary" id="modal-save">Save Event</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

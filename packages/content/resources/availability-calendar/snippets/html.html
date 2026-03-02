@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availability Calendar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="av-card">
+
+    <!-- Person info header -->
+    <div class="av-person">
+      <div class="av-avatar">JD</div>
+      <div class="av-person-info">
+        <div class="av-person-name">James Doe</div>
+        <div class="av-person-meta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          30-min call
+        </div>
+      </div>
+    </div>
+
+    <h2 class="av-title">Schedule a Meeting</h2>
+
+    <!-- Main content area -->
+    <div class="av-content" id="av-content">
+
+      <!-- ── SCREEN 1: Calendar + Slots ── -->
+      <div class="av-screen" id="screen-slots">
+        <div class="av-cols">
+
+          <!-- Left: Calendar -->
+          <div class="av-cal-col">
+            <div class="av-cal-header">
+              <button class="av-nav-btn" id="av-prev" aria-label="Previous month">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              <span class="av-cal-title" id="av-cal-title">February 2026</span>
+              <button class="av-nav-btn" id="av-next" aria-label="Next month">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+            <div class="av-dow-header">
+              <span>Mo</span><span>Tu</span><span>We</span>
+              <span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+            </div>
+            <div class="av-cal-grid" id="av-cal-grid"></div>
+          </div>
+
+          <!-- Divider -->
+          <div class="av-divider" id="av-divider" style="display:none"></div>
+
+          <!-- Right: Time slots -->
+          <div class="av-slots-col" id="av-slots-col" style="display:none">
+            <div class="av-slots-header">
+              <div class="av-slots-day" id="av-slots-day"></div>
+              <div class="av-tz-select-wrap">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20M2 12h20"/></svg>
+                <select class="av-tz-select" id="av-tz-select">
+                  <option value="-5">UTC-5 / New York</option>
+                  <option value="-6">UTC-6 / Chicago</option>
+                  <option value="-7">UTC-7 / Denver</option>
+                  <option value="-8">UTC-8 / Los Angeles</option>
+                  <option value="0">UTC+0 / London</option>
+                  <option value="1">UTC+1 / Paris</option>
+                </select>
+              </div>
+            </div>
+            <div class="av-slots-list" id="av-slots-list"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SCREEN 2: Booking form ── -->
+      <div class="av-screen" id="screen-form" style="display:none">
+        <div class="av-booking-info" id="av-booking-info"></div>
+        <h3 class="av-form-title">Your Details</h3>
+        <form class="av-form" id="av-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="av-name">Name</label>
+            <input class="form-input" type="text" id="av-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="av-email">Email</label>
+            <input class="form-input" type="email" id="av-email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="av-notes">Notes <span class="optional">(optional)</span></label>
+            <textarea class="form-input form-textarea" id="av-notes" placeholder="Anything you'd like to discuss…"></textarea>
+          </div>
+          <div class="av-form-actions">
+            <button type="button" class="btn-ghost" id="av-back">← Back</button>
+            <button type="submit" class="btn-primary">Schedule Event</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- ── SCREEN 3: Success ── -->
+      <div class="av-screen" id="screen-success" style="display:none">
+        <div class="av-success">
+          <div class="av-success-check" id="av-success-check">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+          </div>
+          <h3 class="av-success-title">Meeting Confirmed!</h3>
+          <p class="av-success-subtitle">A calendar invite has been sent to your email.</p>
+          <div class="av-success-details" id="av-success-details"></div>
+          <div class="av-success-actions">
+            <button class="btn-primary" id="av-add-cal">Add to Calendar</button>
+            <button class="btn-ghost" id="av-schedule-another">Schedule Another</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile Card</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="profile-card">
+
+    <!-- Cover image area -->
+    <div class="profile-card__cover" aria-hidden="true"></div>
+
+    <!-- Avatar with online status -->
+    <div class="profile-card__avatar-wrap">
+      <div class="profile-card__avatar" aria-label="Avatar for Sarah Johnson">SJ</div>
+      <span class="profile-card__status" aria-label="Online"></span>
+    </div>
+
+    <!-- Name / role / team -->
+    <div class="profile-card__info">
+      <h2 class="profile-card__name">Sarah Johnson</h2>
+      <p class="profile-card__role">Senior Product Designer</p>
+      <span class="profile-card__team">
+        <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Product Team
+      </span>
+    </div>
+
+    <!-- Stats row -->
+    <div class="profile-card__stats">
+      <div class="stat-item">
+        <span class="stat-item__value">128</span>
+        <span class="stat-item__label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__value">4.9k</span>
+        <span class="stat-item__label">Followers</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item__value">321</span>
+        <span class="stat-item__label">Reviews</span>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="profile-card__actions">
+      <button class="btn btn--primary" type="button">Follow</button>
+      <button class="btn btn--ghost" type="button">Message</button>
+    </div>
+
+  </div>
+
+</body>
+</html>

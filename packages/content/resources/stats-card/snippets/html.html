@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stats Card Grid</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="stats-wrapper">
+    <h2 class="stats-heading">Overview</h2>
+    <p class="stats-subheading">Performance snapshot for March 2026</p>
+
+    <div class="stats-grid">
+
+      <!-- Total Users -->
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--blue">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="stat-card__body">
+          <span class="stat-card__label">Total Users</span>
+          <span class="stat-card__value">24,521</span>
+          <span class="stat-card__trend trend--up">
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            +12.5% vs last month
+          </span>
+        </div>
+      </div>
+
+      <!-- Monthly Revenue -->
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--green">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="stat-card__body">
+          <span class="stat-card__label">Monthly Revenue</span>
+          <span class="stat-card__value">$48,392</span>
+          <span class="stat-card__trend trend--up">
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            +8.3% vs last month
+          </span>
+        </div>
+      </div>
+
+      <!-- New Orders -->
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--purple">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <div class="stat-card__body">
+          <span class="stat-card__label">New Orders</span>
+          <span class="stat-card__value">1,284</span>
+          <span class="stat-card__trend trend--down">
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+            -2.1% vs last month
+          </span>
+        </div>
+      </div>
+
+      <!-- Conversion Rate -->
+      <div class="stat-card">
+        <div class="stat-card__icon stat-card__icon--amber">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="stat-card__body">
+          <span class="stat-card__label">Conversion Rate</span>
+          <span class="stat-card__value">3.6%</span>
+          <span class="stat-card__trend trend--up">
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+            +0.4% vs last month
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+---
+slug: remotion-logo-reveal
+title: Logo Reveal Animation (Remotion)
+description: A 3-second logo reveal using spring physics — the logo scales up from zero with a radial background burst, then the tagline fades in below.
+category: remotion
+type: animation
+tags: [remotion, logo, reveal, branding, spring, video]
+tech: [remotion, react, typescript]
+difficulty: med
+targets: [react]
+collections: [remotion]
+license: MIT
+createdAt: 2026-03-02
+updatedAt: 2026-03-02
+author:
+  name: "Stealthis"
+  src: "https://github.com/Foodhy/stealthis"
+---
+
+## Logo Reveal Animation
+
+A cinematic 3-second logo reveal composition. The logo scales up from 0 using a spring with overshoot, while a radial gradient burst expands behind it. The tagline fades in with a small upward translate once the logo settles.
+
+### Composition specs
+
+| Property | Value |
+|---|---|
+| Resolution | 1280 × 720 |
+| FPS | 30 |
+| Duration | 3 s (90 frames) |
+
+### Customization
+
+Replace the `LOGO_TEXT`, `TAGLINE`, and `BRAND_COLOR` constants. To use an actual image instead of text, swap the `<div>` logo element for a Remotion `<Img>` component pointing to a `staticFile`.
