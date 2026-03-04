@@ -1,10 +1,30 @@
 ---
-import { type Locale, useTranslations } from "@i18n/index";
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_STORAGE_KEY,
+  getLocalePrefix,
+  type Locale,
+  useTranslations,
+} from "@i18n/index";
 import { SITE_URLS } from "@lib/urls";
 
 const { locale } = Astro.props as { locale: Locale };
 const t = useTranslations(locale);
-const prefix = locale === "es" ? "/es" : "";
+const prefix = getLocalePrefix(locale);
+const localeFlags: Record<Locale, string> = {
+  en: "🇺🇸",
+  es: "🇪🇸",
+  fr: "🇫🇷",
+  ja: "🇯🇵",
+};
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
+const isNavLinkActive = (href: string, external: boolean) => {
+  if (external) return false;
+  const normalizedHref = normalizePath(href);
+  return currentPath === normalizedHref || currentPath.startsWith(`${normalizedHref}/`);
+};
 
 const navLinks = [
   { key: "library", href: `${prefix}/library`, label: t("nav.library"), external: false, badge: "" },
@@ -14,9 +34,22 @@ const navLinks = [
   { key: "build", href: SITE_URLS.build, label: t("nav.build"), external: true, badge: "" },
 ];
 
-const menuOpenLabel = locale === "es" ? "Abrir menu" : "Open menu";
-const menuCloseLabel = locale === "es" ? "Cerrar menu" : "Close menu";
-const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
+const menuLabels: Record<Locale, { open: string; close: string; title: string }> = {
+  en: { open: "Open menu", close: "Close menu", title: "Navigation" },
+  es: { open: "Abrir menu", close: "Cerrar menu", title: "Navegacion" },
+  fr: { open: "Ouvrir le menu", close: "Fermer le menu", title: "Navigation" },
+  ja: { open: "メニューを開く", close: "メニューを閉じる", title: "ナビゲーション" },
+};
+
+const menuOpenLabel = menuLabels[locale].open;
+const menuCloseLabel = menuLabels[locale].close;
+const menuTitle = menuLabels[locale].title;
+const languageOptionKeys = {
+  en: "lang.option.en",
+  es: "lang.option.es",
+  fr: "lang.option.fr",
+  ja: "lang.option.ja",
+} as const;
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/6 bg-surface-950/80 backdrop-blur-xl">
@@ -31,7 +64,7 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="nav-link"
+          class={`nav-link ${isNavLinkActive(link.href, link.external) ? "is-active" : ""}`}
           target={link.external ? "_blank" : undefined}
           rel={link.external ? "noopener" : undefined}
         >
@@ -42,14 +75,18 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
     </nav>
 
     <div class="flex items-center gap-2">
-      <button
-        class="hidden sm:inline-flex text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors px-2 py-1 rounded-md hover:bg-white/6"
-        aria-label="Toggle language"
-        data-locale={locale}
-        data-lang-toggle
+      <label class="sr-only" for="desktop-language-select">{t("lang.label")}</label>
+      <select
+        id="desktop-language-select"
+        class="hidden sm:inline-block lang-select"
+        aria-label={t("lang.label")}
+        data-language-select
+        data-current-locale={locale}
       >
-        {t("lang.toggle")}
-      </button>
+        {LOCALES.map((optionLocale) => (
+          <option value={optionLocale}>{`${localeFlags[optionLocale]} ${t(languageOptionKeys[optionLocale])}`}</option>
+        ))}
+      </select>
 
       <a
         href="https://github.com/Foodhy/stealthis"
@@ -107,7 +144,7 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="mobile-drawer__link"
+          class={`mobile-drawer__link ${isNavLinkActive(link.href, link.external) ? "is-active" : ""}`}
           target={link.external ? "_blank" : undefined}
           rel={link.external ? "noopener" : undefined}
           data-mobile-close
@@ -171,16 +208,19 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
       </a>
     </nav>
 
-    <button
-      type="button"
+    <label class="sr-only" for="mobile-language-select">{t("lang.label")}</label>
+    <select
+      id="mobile-language-select"
       class="mobile-drawer__lang"
-      aria-label="Toggle language"
-      data-locale={locale}
-      data-lang-toggle
+      aria-label={t("lang.label")}
+      data-language-select
+      data-current-locale={locale}
       data-mobile-close
     >
-      {t("lang.toggle")}
-    </button>
+      {LOCALES.map((optionLocale) => (
+        <option value={optionLocale}>{`${localeFlags[optionLocale]} ${t(languageOptionKeys[optionLocale])}`}</option>
+      ))}
+    </select>
   </aside>
 </div>
 
@@ -190,6 +230,35 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
     display: inline-flex;
     align-items: center;
     gap: 4px;
+  }
+
+  .nav-link.is-active {
+    color: rgb(241 245 249);
+    border: 1px solid rgba(103, 183, 255, 0.38);
+    background: linear-gradient(90deg, rgba(74, 146, 255, 0.2), rgba(120, 110, 255, 0.16));
+    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.2);
+  }
+
+  .lang-select {
+    min-width: 9.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgb(226 232 240);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.38rem 0.6rem;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+
+  .lang-select:hover {
+    border-color: rgba(147, 197, 253, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .lang-select:focus-visible {
+    outline: 2px solid rgba(103, 183, 255, 0.55);
+    outline-offset: 1px;
   }
 
   .nav-badge {
@@ -328,6 +397,19 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
     border-color: rgba(112, 164, 255, 0.52);
   }
 
+  .mobile-drawer__link.is-active {
+    color: rgb(255 255 255);
+    border-color: rgba(120, 182, 255, 0.62);
+    background: linear-gradient(90deg, rgba(96, 155, 255, 0.3), rgba(133, 98, 255, 0.24));
+    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.25);
+  }
+
+  .mobile-drawer__link.is-active .mobile-drawer__icon {
+    color: rgb(230 243 255);
+    border-color: rgba(120, 182, 255, 0.74);
+    background: linear-gradient(135deg, rgba(99, 167, 255, 0.32), rgba(149, 117, 255, 0.3));
+  }
+
   .mobile-drawer__lang {
     margin-top: auto;
     width: 100%;
@@ -338,7 +420,8 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
     font-size: 0.84rem;
     font-weight: 600;
     padding: 0.72rem 0.9rem;
-    text-align: center;
+    text-align: left;
+    appearance: none;
   }
 
   .mobile-drawer.is-open .mobile-drawer__backdrop {
@@ -354,24 +437,48 @@ const menuTitle = locale === "es" ? "Navegacion" : "Navigation";
   }
 </style>
 
-<script>
-  const toggleLanguage = (locale) => {
-    const path = window.location.pathname;
+<script define:vars={{ locales: LOCALES, defaultLocale: DEFAULT_LOCALE, localeStorageKey: LOCALE_STORAGE_KEY }}>
+  const splitLocaleFromPath = (pathname) => {
+    const parts = pathname.split("/");
+    const maybeLocale = parts[1];
 
-    if (locale === "en") {
-      localStorage.setItem("stealthis:locale", "es");
-      window.location.href = `/es${path}`;
-      return;
+    if (locales.includes(maybeLocale) && maybeLocale !== defaultLocale) {
+      const barePath = `/${parts.slice(2).join("/")}` || "/";
+      return {
+        barePath: barePath === "/" ? "/" : barePath.replace(/\/$/, ""),
+      };
     }
 
-    localStorage.setItem("stealthis:locale", "en");
-    window.location.href = path.replace(/^\/es(?=\/|$)/, "") || "/";
+    return { barePath: pathname || "/" };
   };
 
-  document.querySelectorAll("[data-lang-toggle]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const locale = btn.dataset.locale === "en" ? "en" : "es";
-      toggleLanguage(locale);
+  const toLocalizedPath = (locale, barePath) => {
+    if (locale === defaultLocale) return barePath;
+    if (barePath === "/") return `/${locale}/`;
+    return `/${locale}${barePath}`;
+  };
+
+  const switchLocale = (targetLocale) => {
+    if (!locales.includes(targetLocale)) return;
+    localStorage.setItem(localeStorageKey, targetLocale);
+
+    const { barePath } = splitLocaleFromPath(window.location.pathname);
+    const nextPath = toLocalizedPath(targetLocale, barePath);
+
+    if (nextPath !== window.location.pathname) {
+      window.location.assign(`${nextPath}${window.location.search}${window.location.hash}`);
+    }
+  };
+
+  document.querySelectorAll("[data-language-select]").forEach((selectEl) => {
+    if (!(selectEl instanceof HTMLSelectElement)) return;
+    const currentLocale = selectEl.dataset.currentLocale;
+    if (currentLocale && locales.includes(currentLocale)) {
+      selectEl.value = currentLocale;
+    }
+
+    selectEl.addEventListener("change", () => {
+      switchLocale(selectEl.value);
     });
   });
 

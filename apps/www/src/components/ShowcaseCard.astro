@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { useTranslations, type Locale } from "@i18n/index";
+import { getLocalePrefix, useTranslations, type Locale } from "@i18n/index";
 import { SITE_URLS } from "@lib/urls";
 
 interface Props {
@@ -13,7 +13,7 @@ const { resource, srcdoc, locale = "en" } = Astro.props;
 const t = useTranslations(locale);
 const { slug, title, description, category, difficulty, labRoute } = resource.data;
 
-const prefix = locale === "es" ? "/es" : "";
+const prefix = getLocalePrefix(locale);
 const difficultyClass = { easy: "badge-easy", med: "badge-med", hard: "badge-hard" }[difficulty];
 const difficultyKey = `resource.difficulty.${difficulty}` as
   | "resource.difficulty.easy"
@@ -95,7 +95,7 @@ const isTall = ["web-pages", "patterns", "pages"].includes(category);
           href={`${prefix}/r/${slug}`}
           class="showcase-code-btn"
         >
-          View Code
+          {t("showcase.viewCode")}
         </a>
       </div>
     </div>

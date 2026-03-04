@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content";
 import type { APIRoute } from "astro";
+import { LOCALES, getLocalizedPath } from "@i18n/index";
 
 const DEFAULT_SITE = "https://stealthis.dev";
 const LAB_SITE = "https://lab.stealthis.dev";
@@ -16,8 +17,9 @@ export const GET: APIRoute = async ({ site }) => {
 
   const entries = sortedResources.map((resource) => {
     const { data } = resource;
-    const url = `${origin}/r/${data.slug}`;
-    const esUrl = `${origin}/es/r/${data.slug}`;
+    const localizedUrls = Object.fromEntries(
+      LOCALES.map((locale) => [locale, `${origin}${getLocalizedPath(`/r/${data.slug}`, locale)}`])
+    );
 
     return {
       slug: data.slug,
@@ -34,8 +36,7 @@ export const GET: APIRoute = async ({ site }) => {
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
       urls: {
-        en: url,
-        es: esUrl,
+        ...localizedUrls,
         lab: data.labRoute ? `${LAB_SITE}${data.labRoute}` : null,
         ogImage: `${origin}/og/${data.slug}.svg`,
       },
@@ -50,8 +51,11 @@ export const GET: APIRoute = async ({ site }) => {
       library: `${origin}/library/`,
       showcase: `${origin}/showcase/`,
       libraryEs: `${origin}/es/library/`,
+      libraryFr: `${origin}/fr/library/`,
+      libraryJa: `${origin}/ja/library/`,
       llms: `${origin}/llms.txt`,
       llmsFull: `${origin}/llms-full.txt`,
+      libraryIndex: `${origin}/library-index.json`,
       sitemap: `${origin}/sitemap.xml`,
     },
     resources: entries,

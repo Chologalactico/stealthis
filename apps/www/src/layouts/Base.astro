@@ -2,7 +2,15 @@
 import "../styles/global.css";
 import Nav from "@components/Nav.astro";
 import Footer from "@components/Footer.astro";
-import { getLocaleFromUrl, type Locale } from "@i18n/index";
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_OG_TAG,
+  LOCALE_STORAGE_KEY,
+  getLocaleFromUrl,
+  getLocalizedPath,
+  stripLocaleFromPath,
+} from "@i18n/index";
 
 interface Props {
   title: string;
@@ -31,8 +39,9 @@ const canonicalURL = new URL(canonicalPath, site).toString();
 const imageURL = new URL(image ?? "/social-card.webp", site).toString();
 const socialImageAlt = imageAlt ?? `${title} preview card`;
 const robots = noindex ? "noindex, nofollow" : "index, follow";
-const ogLocale: Record<Locale, string> = { en: "en_US", es: "es_ES" };
 const structuredDataJson = structuredData ? JSON.stringify(structuredData) : null;
+const resolvedCurrentPath = getLocalizedPath(Astro.url.pathname, locale);
+const { hasLocalePrefix } = stripLocaleFromPath(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -53,7 +62,7 @@ const structuredDataJson = structuredData ? JSON.stringify(structuredData) : nul
     <meta property="og:title" content={`${title} — StealThis.dev`} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="StealThis.dev" />
-    <meta property="og:locale" content={ogLocale[locale]} />
+    <meta property="og:locale" content={LOCALE_OG_TAG[locale]} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={imageURL} />
@@ -88,14 +97,74 @@ const structuredDataJson = structuredData ? JSON.stringify(structuredData) : nul
     </main>
     <Footer locale={locale} />
 
-    <!-- i18n detection -->
-    <script>
-      const stored = localStorage.getItem("stealthis:locale");
-      const preferred = stored ?? navigator.language.split("-")[0];
-      const supported = ["en", "es"];
-      if (preferred && supported.includes(preferred) && !window.location.pathname.startsWith(`/${preferred}/`)) {
-        if (preferred === "es" && !window.location.pathname.startsWith("/es")) {
-          // Don't auto-redirect — let user choose via selector
+    <script
+      define:vars={{
+        defaultLocale: DEFAULT_LOCALE,
+        locales: LOCALES,
+        localeStorageKey: LOCALE_STORAGE_KEY,
+        resolvedCurrentPath,
+        hasLocalePrefix,
+      }}
+    >
+      const REGION_TO_LOCALE = {
+        FR: "fr",
+        JP: "ja",
+        ES: "es",
+        MX: "es",
+        AR: "es",
+        CO: "es",
+        CL: "es",
+        PE: "es",
+      };
+
+      const toLocalePath = (locale, barePath) => {
+        if (locale === defaultLocale) return barePath;
+        if (barePath === "/") return `/${locale}/`;
+        return `/${locale}${barePath}`;
+      };
+
+      const splitLocaleFromPath = (pathname) => {
+        const parts = pathname.split("/");
+        const maybeLocale = parts[1];
+        if (locales.includes(maybeLocale) && maybeLocale !== defaultLocale) {
+          const barePath = `/${parts.slice(2).join("/")}` || "/";
+          return { hasPrefix: true, barePath: barePath === "/" ? "/" : barePath.replace(/\/$/, "") };
+        }
+        return { hasPrefix: false, barePath: pathname || "/" };
+      };
+
+      const detectLocale = () => {
+        const navigatorCandidates = [navigator.language, ...(navigator.languages ?? [])]
+          .filter(Boolean)
+          .map((value) => value.toLowerCase());
+
+        for (const candidate of navigatorCandidates) {
+          const [languageCode, regionCode] = candidate.split("-");
+          if (locales.includes(languageCode)) {
+            return languageCode;
+          }
+
+          if (regionCode) {
+            const mapped = REGION_TO_LOCALE[regionCode.toUpperCase()];
+            if (mapped && locales.includes(mapped)) return mapped;
+          }
+        }
+
+        return defaultLocale;
+      };
+
+      const storedLocale = localStorage.getItem(localeStorageKey);
+      const preferredLocale = locales.includes(storedLocale)
+        ? storedLocale
+        : detectLocale();
+      const current = splitLocaleFromPath(window.location.pathname);
+
+      if (!current.hasPrefix && preferredLocale !== defaultLocale) {
+        const targetPath = toLocalePath(preferredLocale, current.barePath);
+        const targetUrl = `${targetPath}${window.location.search}${window.location.hash}`;
+
+        if (targetPath !== resolvedCurrentPath || hasLocalePrefix) {
+          window.location.replace(targetUrl);
         }
       }
     </script>

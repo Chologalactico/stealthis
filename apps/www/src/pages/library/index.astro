@@ -4,11 +4,17 @@ import ResourceCard from "@components/ResourceCard.astro";
 import FilterBar from "@components/FilterBar.astro";
 import CollectionExplorer from "@components/CollectionExplorer.astro";
 import { getCollection } from "astro:content";
-import { useTranslations, getLocaleFromUrl } from "@i18n/index";
+import {
+  getAlternateLinks,
+  getLocaleFromUrl,
+  getLocalePrefix,
+  useTranslations,
+} from "@i18n/index";
 import { SHOW_SORT_BAR } from "@lib/constant";
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
+const prefix = getLocalePrefix(locale);
 
 const allResources = (await getCollection("resources")).sort(
   (a, b) => new Date(b.data.createdAt).getTime() - new Date(a.data.createdAt).getTime()
@@ -67,16 +73,13 @@ type CategoryKey =
 
 const libraryDescription =
   "Search 200+ open-source web resources by category, tech, difficulty, author, and collections. Copy snippets or open demos in Lab.";
-const alternateLinks = [
-  { hreflang: "en", href: "https://stealthis.dev/library/" },
-  { hreflang: "es", href: "https://stealthis.dev/es/library/" },
-  { hreflang: "x-default", href: "https://stealthis.dev/library/" },
-];
+const canonicalPath = `${prefix}/library/`;
+const alternateLinks = getAlternateLinks("/library/");
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "StealThis.dev Library",
-  url: "https://stealthis.dev/library/",
+  url: `https://stealthis.dev${canonicalPath}`,
   inLanguage: locale,
   description: libraryDescription,
   numberOfItems: allResources.length,
@@ -84,10 +87,10 @@ const structuredData = {
 ---
 
 <Base
-  title="Library"
+  title={t("library.title")}
   description={libraryDescription}
   image="/og/library.webp"
-  canonicalPath="/library/"
+  canonicalPath={canonicalPath}
   alternateLinks={alternateLinks}
   structuredData={structuredData}
 >
@@ -185,11 +188,13 @@ const structuredData = {
   const sortGrouped  = document.getElementById("sort-grouped") as HTMLButtonElement;
   const sortLatest   = document.getElementById("sort-latest") as HTMLButtonElement;
 
-  // Store each card's original parent grid + next sibling before any moves
-  type CardOrigin = { parent: Element; nextSibling: Element | null };
+  // Store each card's original parent grid and use a persistent anchor comment
+  type CardOrigin = { parent: Element; anchor: Comment };
   const origins = new Map<Element, CardOrigin>();
-  document.querySelectorAll<HTMLElement>("[data-slug]").forEach((card) => {
-    origins.set(card, { parent: card.parentElement!, nextSibling: card.nextElementSibling });
+  document.querySelectorAll<HTMLElement>("article[data-slug]").forEach((card) => {
+    const anchor = document.createComment("card-anchor");
+    card.parentElement!.insertBefore(anchor, card);
+    origins.set(card, { parent: card.parentElement!, anchor });
   });
 
   let sortMode: "grouped" | "latest" = "grouped";
@@ -223,13 +228,9 @@ const structuredData = {
     sortLatest.classList.remove("chip--active");
     sortGrouped.classList.add("chip--active");
 
-    // Restore in REVERSE document order so each nextSibling is already back
-    // in its parent before we insertBefore it (forward order causes HierarchyRequestError
-    // because nextSibling is still in flatGrid when we try to use it as reference).
-    const entries = [...origins.entries()];
-    for (let i = entries.length - 1; i >= 0; i--) {
-      const [card, { parent, nextSibling }] = entries[i];
-      parent.insertBefore(card, nextSibling);
+    // Restore each card right after its persistent anchor comment
+    for (const [card, { parent, anchor }] of origins.entries()) {
+      parent.insertBefore(card, anchor.nextSibling);
     }
 
     flatGrid.classList.add("hidden");
@@ -238,7 +239,7 @@ const structuredData = {
     // Re-evaluate section visibility based on each card's current display state
     // (FilterBar already applied filters while cards were in flat-grid).
     document.querySelectorAll<HTMLElement>("[data-category-section]").forEach((section) => {
-      const hasVisible = [...section.querySelectorAll<HTMLElement>("[data-slug]")]
+      const hasVisible = [...section.querySelectorAll<HTMLElement>("article[data-slug]")]
         .some((c) => c.style.display !== "none");
       section.style.display = hasVisible ? "" : "none";
     });

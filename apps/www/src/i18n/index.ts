@@ -1,199 +1,953 @@
-export const LOCALES = ["en", "es"] as const;
+export const LOCALES = ["en", "es", "fr", "ja"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "en";
+export const LOCALE_STORAGE_KEY = "stealthis:locale";
 
-export const ui = {
-  en: {
-    "nav.library": "Library",
-    "nav.docs": "Docs",
-    "nav.lab": "Lab",
-    "nav.build": "Builder",
-    "nav.showcase": "Showcase",
-    "nav.changelog": "Changelog",
-    "hero.eyebrow": "Steal This",
-    "hero.titlePrefix": "Steal this ",
-    "hero.titleSuffix": " — all free to copy.",
-    "hero.rotatingWords":
-      "design,pages,components,animations,patterns,skills,templates,prompts,MCPs",
-    "hero.subtitle.before": "Ready-to-use snippets and demos. ",
-    "hero.subtitle.mcp": "MCP",
-    "hero.subtitle.after": " server included. Browse, copy, integrate.",
-    "hero.cta.browse": "Browse Library",
-    "hero.cta.showcase": "Showcase",
-    "hero.cta.docs": "View Docs",
-    "library.title": "Library",
-    "library.subtitle": "Browse all resources",
-    "library.filter.all": "All",
-    "library.filter.category": "Category",
-    "library.filter.difficulty": "Difficulty",
-    "library.filter.tech": "Tech",
-    "library.filter.author": "Author",
-    "library.filter.favorites": "Favorites",
-    "library.sort.grouped": "By category",
-    "library.sort.latest": "Latest added",
-    "library.noResults": "No resources match your filters.",
-    "collections.title": "Global Collections",
-    "collections.subtitle": "Jump into popular paths",
-    "collections.explorerSubtitle": "Browse by theme and preview related resources",
-    "collections.all": "All",
-    "collections.cta": "View collection",
-    "collections.viewLab": "View in Lab",
-    "collections.viewResource": "View resource",
-    "collections.empty": "No resources available in this collection yet.",
-    "collections.prev": "Previous",
-    "collections.next": "Next",
-    "collection.saas.title": "SaaS Builders",
-    "collection.saas.desc": "Landing pages, dashboards, and SaaS architecture references.",
-    "collection.motion.title": "Motion Essentials",
-    "collection.motion.desc": "Scroll and reveal animations for modern UI.",
-    "collection.hero.title": "Hero Starters",
-    "collection.hero.desc": "Hero sections, CTA blocks, and landing layouts.",
-    "collection.cards.title": "Card Components",
-    "collection.cards.desc": "Glass, metric, and content cards.",
-    "collection.dashboard.title": "Dashboard UI",
-    "collection.dashboard.desc": "Data-heavy admin and analytics interface patterns.",
-    "collection.remotion.title": "Remotion Pack",
-    "collection.remotion.desc": "React compositions for video.",
-    "resource.copy": "Copy",
-    "resource.copied": "Copied!",
-    "resource.copiedPasteGemini": "Copied! Paste in Gemini.",
-    "resource.openLab": "Open in Lab",
-    "resource.openRemotion": "Open Remotion",
-    "resource.openChatGPT": "Open in ChatGPT",
-    "resource.openClaude": "Open in Claude",
-    "resource.openGemini": "Open in Gemini",
-    "resource.copyMarkdown": "Copy as Markdown",
-    "resource.viewMarkdown": "View as Markdown",
-    "resource.favorite": "Save",
-    "resource.unfavorite": "Saved",
-    "resource.author": "Author",
-    "resource.difficulty.easy": "Easy",
-    "resource.difficulty.med": "Medium",
-    "resource.difficulty.hard": "Hard",
-    // Phase 1 categories
-    "category.web-animations": "Web Animations",
-    "category.web-pages": "Web Pages",
-    "category.ui-components": "UI Components",
-    "category.patterns": "Patterns",
-    // Phase 2 categories
-    "category.components": "Components",
-    "category.pages": "Pages",
-    "category.prompts": "Prompts",
-    "category.skills": "Skills",
-    "category.mcp-servers": "MCP Servers",
-    "category.architectures": "Architectures",
-    "category.boilerplates": "Boilerplates",
-    "category.remotion": "Remotion",
-    "category.music": "Music",
-    "category.comingSoon": "Coming soon",
-    "favorites.export": "Export Favorites",
-    "favorites.import": "Import Favorites",
-    "changelog.title": "Changelog",
-    "changelog.description":
-      "Release notes for StealThis.dev: new resources, UI updates, SEO improvements, and platform changes.",
-    "changelog.intro":
-      "Notable changes, new resources, and improvements. For full release history see GitHub.",
-    "changelog.seeGitHub": "Releases on GitHub",
-    "lang.toggle": "Español",
-  },
-  es: {
-    "nav.library": "Librería",
-    "nav.docs": "Docs",
-    "nav.lab": "Lab",
-    "nav.build": "Builder",
-    "nav.showcase": "Showcase",
-    "nav.changelog": "Changelog",
-    "hero.eyebrow": "Steal This",
-    "hero.titlePrefix": "Steal this ",
-    "hero.titleSuffix": " — todos gratuitos para copiar.",
-    "hero.rotatingWords":
-      "diseño,páginas,componentes,animaciones,patrones,skills,plantillas,prompts,MCPs",
-    "hero.subtitle.before": "Snippets y demos listos para usar. Servidor ",
-    "hero.subtitle.mcp": "MCP",
-    "hero.subtitle.after": " incluido. Explora, copia, integra.",
-    "hero.cta.browse": "Ver Librería",
-    "hero.cta.showcase": "Showcase",
-    "hero.cta.docs": "Ver Docs",
-    "library.title": "Librería",
-    "library.subtitle": "Explora todos los recursos",
-    "library.filter.all": "Todos",
-    "library.filter.category": "Categoría",
-    "library.filter.difficulty": "Dificultad",
-    "library.filter.tech": "Tech",
-    "library.filter.author": "Autor",
-    "library.filter.favorites": "Favoritos",
-    "library.sort.grouped": "Por categoría",
-    "library.sort.latest": "Últimos agregados",
-    "library.noResults": "Ningún recurso coincide con los filtros.",
-    "collections.title": "Colecciones globales",
-    "collections.subtitle": "Empieza con rutas populares",
-    "collections.explorerSubtitle": "Explora por temas y revisa recursos relacionados",
-    "collections.all": "Todos",
-    "collections.cta": "Ver colección",
-    "collections.viewLab": "Ver en Lab",
-    "collections.viewResource": "Ver recurso",
-    "collections.empty": "Todavía no hay recursos en esta colección.",
-    "collections.prev": "Anterior",
-    "collections.next": "Siguiente",
-    "collection.saas.title": "SaaS Builders",
-    "collection.saas.desc": "Landings, dashboards y arquitecturas para productos SaaS.",
-    "collection.motion.title": "Esenciales de movimiento",
-    "collection.motion.desc": "Animaciones de scroll y reveal para UI moderna.",
-    "collection.hero.title": "Héroes base",
-    "collection.hero.desc": "Secciones hero, CTA y layouts.",
-    "collection.cards.title": "Componentes tipo card",
-    "collection.cards.desc": "Cards de vidrio, métricas y contenido.",
-    "collection.dashboard.title": "Dashboard UI",
-    "collection.dashboard.desc": "Patrones de interfaces admin y analíticas con datos.",
-    "collection.remotion.title": "Pack Remotion",
-    "collection.remotion.desc": "Composiciones React para video.",
-    "resource.copy": "Copiar",
-    "resource.copied": "¡Copiado!",
-    "resource.copiedPasteGemini": "¡Copiado! Pega en Gemini.",
-    "resource.openLab": "Abrir en Lab",
-    "resource.openRemotion": "Abrir Remotion",
-    "resource.openChatGPT": "Abrir en ChatGPT",
-    "resource.openClaude": "Abrir en Claude",
-    "resource.openGemini": "Abrir en Gemini",
-    "resource.copyMarkdown": "Copiar como Markdown",
-    "resource.viewMarkdown": "Ver como Markdown",
-    "resource.favorite": "Guardar",
-    "resource.unfavorite": "Guardado",
-    "resource.author": "Autor",
-    "resource.difficulty.easy": "Fácil",
-    "resource.difficulty.med": "Medio",
-    "resource.difficulty.hard": "Difícil",
-    // Phase 1 categories
-    "category.web-animations": "Animaciones Web",
-    "category.web-pages": "Páginas Web",
-    "category.ui-components": "Componentes UI",
-    "category.patterns": "Patrones",
-    // Phase 2 categories
-    "category.components": "Componentes",
-    "category.pages": "Páginas",
-    "category.prompts": "Prompts",
-    "category.skills": "Skills",
-    "category.mcp-servers": "Servidores MCP",
-    "category.architectures": "Arquitecturas",
-    "category.boilerplates": "Boilerplates",
-    "category.remotion": "Remotion",
-    "category.music": "Música",
-    "category.comingSoon": "Próximamente",
-    "favorites.export": "Exportar Favoritos",
-    "favorites.import": "Importar Favoritos",
-    "changelog.title": "Changelog",
-    "changelog.description":
-      "Notas de versión de StealThis.dev: nuevos recursos, mejoras de UI, cambios de SEO y actualizaciones de plataforma.",
-    "changelog.intro":
-      "Cambios destacados, nuevos recursos e mejoras. Para el historial completo ver GitHub.",
-    "changelog.seeGitHub": "Releases en GitHub",
-    "lang.toggle": "English",
-  },
-} satisfies Record<Locale, Record<string, string>>;
+export const LOCALE_LABELS: Record<Locale, string> = {
+  en: "English",
+  es: "Español",
+  fr: "Français",
+  ja: "日本語",
+};
+
+export const LOCALE_OG_TAG: Record<Locale, string> = {
+  en: "en_US",
+  es: "es_ES",
+  fr: "fr_FR",
+  ja: "ja_JP",
+};
+
+const en = {
+  "nav.library": "Library",
+  "nav.docs": "Docs",
+  "nav.lab": "Lab",
+  "nav.build": "Builder",
+  "nav.showcase": "Showcase",
+  "nav.changelog": "Changelog",
+  "hero.eyebrow": "Steal This",
+  "hero.titlePrefix": "Steal this ",
+  "hero.titleSuffix": " — all free to copy.",
+  "hero.rotatingWords":
+    "design,pages,components,animations,patterns,skills,templates,prompts,MCPs",
+  "hero.subtitle.before": "Ready-to-use snippets and demos. ",
+  "hero.subtitle.mcp": "MCP",
+  "hero.subtitle.after": " server included. Browse, copy, integrate.",
+  "hero.cta.browse": "Browse Library",
+  "hero.cta.showcase": "Showcase",
+  "hero.cta.docs": "View Docs",
+  "home.search.placeholder": "Press CMD+K to search...",
+  "home.search.label": "Search library",
+  "home.stats.resources": "Resources",
+  "home.stats.categories": "Categories",
+  "home.stats.license": "License",
+  "home.featured.title": "Featured Resources",
+  "home.featured.lead":
+    "Open runnable demos directly in Lab. Compare difficulty, scan stack tags, and pick the right reference before building.",
+  "home.featured.viewAll": "View all",
+  "home.featured.lab": "Lab",
+  "home.categories.title": "Browse by Category",
+  "home.categories.desc.webAnimations": "Scroll effects, parallax, canvas",
+  "home.categories.desc.webPages": "Landings, heroes, pricing pages",
+  "home.categories.desc.pages": "Full-page layouts and sections",
+  "home.categories.desc.uiComponents": "Buttons, cards, forms, modals",
+  "home.categories.desc.components": "Reusable UI blocks and snippets",
+  "home.categories.desc.patterns": "Loaders, hover effects, menus",
+  "home.categories.desc.remotion": "React-powered video templates",
+  "home.categories.desc.prompts": "AI prompts and workflows",
+  "home.categories.desc.music": "Audio, players, visualizers",
+  "home.categories.desc.skills": "AI skills and workflows",
+  "home.categories.desc.mcpServers": "MCP servers and tools",
+  "home.categories.desc.architectures": "Architectures and patterns",
+  "home.manifesto.eyebrow": "Build with control",
+  "home.manifesto.title": "Take what works. Ship what you want.",
+  "home.manifesto.lead":
+    "For humans and bots who want to build software without starting from zero.",
+  "home.manifesto.body1":
+    "StealThis is a reference-first library. Review each element, understand how it works, and reuse it in your own stack. Less fragmentation, less complexity, and more control over the style system and tooling you want to build with.",
+  "home.manifesto.body2":
+    "The goal is simple: one collaborative place where knowledge, proven practices, and production-ready references live together. You pick a base, adapt it, and move forward without rebuilding fundamentals every time.",
+  "home.manifesto.howToTitle": "How to use this place",
+  "home.manifesto.howToAria": "How to use this place",
+  "home.manifesto.step1.accent": "Find a reference",
+  "home.manifesto.step1.text": "that already solves part of your problem.",
+  "home.manifesto.step2.accent": "Study it fast:",
+  "home.manifesto.step2.text": "structure, behavior, and implementation details.",
+  "home.manifesto.step3.accent": "Adapt it",
+  "home.manifesto.step3.text": "to your style system, stack, and constraints.",
+  "home.manifesto.step4.accent": "Ship sooner",
+  "home.manifesto.step4.text": "without sacrificing code quality.",
+  "home.manifesto.micro": "Less boilerplate. Less context switching. More building.",
+  "home.manifesto.practiceTitle": "What you get in practice",
+  "home.manifesto.practiceBody":
+    "You get a faster first version, stronger implementation references, and fewer dead starts. Instead of stitching context from ten different sources, you work from one place and move with intent.",
+  "home.manifesto.outcomesAria": "Practical outcomes",
+  "home.manifesto.outcomeA.accent": "Speed with control:",
+  "home.manifesto.outcomeA.text": "start from a real base and keep your own standards.",
+  "home.manifesto.outcomeB.accent": "Shared language:",
+  "home.manifesto.outcomeB.text":
+    "humans and bots can reason from the same references.",
+  "home.manifesto.outcomeC.accent": "Compounding knowledge:",
+  "home.manifesto.outcomeC.text":
+    "every reuse makes the next build easier.",
+  "home.manifesto.future":
+    "Future direction: custom visual systems, custom workflow setups, and software creation from anywhere with your own rules.",
+  "home.roadmap.eyebrow": "Roadmap in progress",
+  "home.roadmap.title": "From foundations to an AI-first web framework",
+  "home.roadmap.lead":
+    "We are building this in public, step by step. The path starts with strong foundations, then documentation quality, then project generation workflows, and finally a lightweight framework to build web software with AI support.",
+  "home.roadmap.dot.foundation": "Foundation",
+  "home.roadmap.dot.docs": "Docs quality",
+  "home.roadmap.dot.builder": "Builder",
+  "home.roadmap.dot.framework": "Framework",
+  "home.roadmap.phase1.title": "Build the foundation",
+  "home.roadmap.phase1.body":
+    "Stabilize the base architecture, core pages, reusable primitives, and visual language.",
+  "home.roadmap.phase2.title": "Improve docs with best practices",
+  "home.roadmap.phase2.body":
+    "Make guidance clearer, practical, and actionable so people can implement faster with less confusion.",
+  "home.roadmap.phase3.title": "Improve the builder for project creation",
+  "home.roadmap.phase3.body":
+    "Reduce setup friction and make project scaffolding more controllable from references.",
+  "home.roadmap.phase4.title": "Create the basic StealThis framework",
+  "home.roadmap.phase4.body":
+    "A simple framework for web projects, inspired by Astro-style workflows and focused on AI-assisted creation.",
+  "home.keywords.eyebrow": "Project language",
+  "home.keywords.title": "The words that define this project",
+  "home.keywords.lead":
+    "These are not marketing terms. They are operating principles for how we build, share, and ship software with less complexity and more ownership.",
+  "home.keywords.aria": "Project keywords and meanings",
+  "home.keywords.control.word": "CONTROL",
+  "home.keywords.control.accent": "Control",
+  "home.keywords.control.text":
+    "means choosing your stack, your style system, and your delivery pace without being locked into rigid defaults.",
+  "home.keywords.reference.word": "REFERENCE",
+  "home.keywords.reference.accent": "Reference",
+  "home.keywords.reference.text":
+    "means learning from concrete implementations, not abstract threads scattered across disconnected sources.",
+  "home.keywords.reuse.word": "REUSE",
+  "home.keywords.reuse.accent": "Reuse",
+  "home.keywords.reuse.text":
+    "is the default. Start from a proven base, adapt it, and spend energy on differentiation instead of repetition.",
+  "home.keywords.collaboration.word": "COLLABORATION",
+  "home.keywords.collaboration.accent": "Collaboration",
+  "home.keywords.collaboration.text":
+    "means humans and bots building from the same context, conventions, and production references.",
+  "home.keywords.practice.word": "PRACTICE",
+  "home.keywords.practice.accent": "Practice",
+  "home.keywords.practice.text":
+    "is where quality emerges: repeatable workflows, tested patterns, and implementation discipline.",
+  "home.keywords.ownership.word": "OWNERSHIP",
+  "home.keywords.ownership.accent": "Ownership",
+  "home.keywords.ownership.text":
+    "means understanding what you run, why it works, and how to evolve it when requirements change.",
+  "home.keywords.clarity.word": "CLARITY",
+  "home.keywords.clarity.accent": "Clarity",
+  "home.keywords.clarity.text":
+    "removes friction: one place for references, one language for decisions, one path from idea to delivery.",
+  "home.keywords.ship.word": "SHIP",
+  "home.keywords.ship.accent": "Ship",
+  "home.keywords.ship.text":
+    "means reaching production sooner without dropping standards for architecture, accessibility, and maintainability.",
+  "home.scramble.eyebrow": "Steal This philosophy",
+  "home.scramble.title": "Words we reveal while we build",
+  "home.scramble.lead":
+    "Every line below is a commitment to a more practical way of building software: grounded references, shared context, and faster execution with control.",
+  "home.scramble.phrases":
+    "STEAL THIS →||BUILD WITH CONTROL||START FROM REFERENCES||HUMANS + BOTS||LESS FRICTION, MORE SHIPPING",
+  "home.scramble.staticAria": "StealThis philosophy lines",
+  "home.scramble.static1": "BUILD WITH CONTROL",
+  "home.scramble.static2": "START FROM REFERENCES",
+  "home.scramble.static3": "LESS FRICTION, MORE SHIPPING",
+  "home.scramble.static4": "HUMANS + BOTS, SAME CONTEXT",
+  "library.title": "Library",
+  "library.subtitle": "Browse all resources",
+  "library.filter.all": "All",
+  "library.filter.category": "Category",
+  "library.filter.difficulty": "Difficulty",
+  "library.filter.tech": "Tech",
+  "library.filter.author": "Author",
+  "library.filter.favorites": "Favorites",
+  "library.search.placeholder": "Search resources...",
+  "library.sort.grouped": "By category",
+  "library.sort.latest": "Latest added",
+  "library.noResults": "No resources match your filters.",
+  "collections.title": "Global Collections",
+  "collections.subtitle": "Jump into popular paths",
+  "collections.explorerSubtitle": "Browse by theme and preview related resources",
+  "collections.all": "All",
+  "collections.cta": "View collection",
+  "collections.viewLab": "View in Lab",
+  "collections.viewResource": "View resource",
+  "collections.empty": "No resources available in this collection yet.",
+  "collections.prev": "Previous",
+  "collections.next": "Next",
+  "collection.saas.title": "SaaS Builders",
+  "collection.saas.desc": "Landing pages, dashboards, and SaaS architecture references.",
+  "collection.motion.title": "Motion Essentials",
+  "collection.motion.desc": "Scroll and reveal animations for modern UI.",
+  "collection.hero.title": "Hero Starters",
+  "collection.hero.desc": "Hero sections, CTA blocks, and landing layouts.",
+  "collection.cards.title": "Card Components",
+  "collection.cards.desc": "Glass, metric, and content cards.",
+  "collection.dashboard.title": "Dashboard UI",
+  "collection.dashboard.desc": "Data-heavy admin and analytics interface patterns.",
+  "collection.remotion.title": "Remotion Pack",
+  "collection.remotion.desc": "React compositions for video.",
+  "resource.copy": "Copy",
+  "resource.copied": "Copied!",
+  "resource.copiedPasteGemini": "Copied! Paste in Gemini.",
+  "resource.openLab": "Open in Lab",
+  "resource.openRemotion": "Open Remotion",
+  "resource.openChatGPT": "Open in ChatGPT",
+  "resource.openClaude": "Open in Claude",
+  "resource.openGemini": "Open in Gemini",
+  "resource.copyMarkdown": "Copy as Markdown",
+  "resource.viewMarkdown": "View as Markdown",
+  "resource.favorite": "Save",
+  "resource.unfavorite": "Saved",
+  "resource.author": "Author",
+  "resource.difficulty.easy": "Easy",
+  "resource.difficulty.med": "Medium",
+  "resource.difficulty.hard": "Hard",
+  "resource.breadcrumb.home": "Home",
+  "resource.breadcrumb.library": "Library",
+  "resource.targets": "Targets",
+  "resource.section.preview": "Preview",
+  "resource.section.code": "Code",
+  "resource.meta.license": "License",
+  "resource.meta.added": "Added",
+  // Phase 1 categories
+  "category.web-animations": "Web Animations",
+  "category.web-pages": "Web Pages",
+  "category.ui-components": "UI Components",
+  "category.patterns": "Patterns",
+  // Phase 2 categories
+  "category.components": "Components",
+  "category.pages": "Pages",
+  "category.prompts": "Prompts",
+  "category.skills": "Skills",
+  "category.mcp-servers": "MCP Servers",
+  "category.architectures": "Architectures",
+  "category.boilerplates": "Boilerplates",
+  "category.remotion": "Remotion",
+  "category.music": "Music",
+  "category.comingSoon": "Coming soon",
+  "favorites.export": "Export Favorites",
+  "favorites.import": "Import Favorites",
+  "changelog.title": "Changelog",
+  "changelog.description":
+    "Release notes for StealThis.dev: new resources, UI updates, SEO improvements, and platform changes.",
+  "changelog.intro":
+    "Notable changes, new resources, and improvements. For full release history see GitHub.",
+  "changelog.seeGitHub": "Releases on GitHub",
+  "showcase.title": "Showcase",
+  "showcase.livePreviews": "live previews",
+  "showcase.filterAria": "Filter by category",
+  "showcase.saved": "Saved",
+  "showcase.noResults": "No components match this filter.",
+  "showcase.backToTop": "Back to top",
+  "showcase.viewCode": "View Code",
+  "lang.label": "Language",
+  "lang.toggle": "Español",
+  "lang.option.en": "English",
+  "lang.option.es": "Spanish",
+  "lang.option.fr": "French",
+  "lang.option.ja": "Japanese",
+} as const;
+
+const es = {
+  "nav.library": "Librería",
+  "nav.docs": "Docs",
+  "nav.lab": "Lab",
+  "nav.build": "Builder",
+  "nav.showcase": "Showcase",
+  "nav.changelog": "Changelog",
+  "hero.eyebrow": "Steal This",
+  "hero.titlePrefix": "Steal this ",
+  "hero.titleSuffix": " — todos gratuitos para copiar.",
+  "hero.rotatingWords":
+    "diseño,páginas,componentes,animaciones,patrones,skills,plantillas,prompts,MCPs",
+  "hero.subtitle.before": "Snippets y demos listos para usar. Servidor ",
+  "hero.subtitle.mcp": "MCP",
+  "hero.subtitle.after": " incluido. Explora, copia, integra.",
+  "hero.cta.browse": "Ver Librería",
+  "hero.cta.showcase": "Showcase",
+  "hero.cta.docs": "Ver Docs",
+  "home.search.placeholder": "Presiona CMD+K para buscar...",
+  "home.search.label": "Buscar en la librería",
+  "home.stats.resources": "Recursos",
+  "home.stats.categories": "Categorías",
+  "home.stats.license": "Licencia",
+  "home.featured.title": "Recursos destacados",
+  "home.featured.lead":
+    "Abre demos ejecutables directamente en Lab. Compara dificultad, revisa etiquetas del stack y elige la referencia correcta antes de construir.",
+  "home.featured.viewAll": "Ver todo",
+  "home.featured.lab": "Lab",
+  "home.categories.title": "Explora por categoría",
+  "home.categories.desc.webAnimations": "Efectos de scroll, parallax, canvas",
+  "home.categories.desc.webPages": "Landings, heroes, páginas de precios",
+  "home.categories.desc.pages": "Layouts y secciones de página completa",
+  "home.categories.desc.uiComponents": "Botones, cards, formularios, modales",
+  "home.categories.desc.components": "Bloques UI reutilizables y snippets",
+  "home.categories.desc.patterns": "Loaders, efectos hover, menús",
+  "home.categories.desc.remotion": "Plantillas de video con React",
+  "home.categories.desc.prompts": "Prompts y flujos de IA",
+  "home.categories.desc.music": "Audio, reproductores, visualizadores",
+  "home.categories.desc.skills": "Skills y flujos de IA",
+  "home.categories.desc.mcpServers": "Servidores y herramientas MCP",
+  "home.categories.desc.architectures": "Arquitecturas y patrones",
+  "home.manifesto.eyebrow": "Construye con control",
+  "home.manifesto.title": "Toma lo que funciona. Publica como quieras.",
+  "home.manifesto.lead":
+    "Para humanos y bots que quieren crear software sin empezar desde cero.",
+  "home.manifesto.body1":
+    "StealThis es una librería orientada a referencias. Revisa cada elemento, entiende cómo funciona y reutilízalo en tu stack. Menos fragmentación, menos complejidad y más control sobre el sistema de estilos y tooling con el que quieres construir.",
+  "home.manifesto.body2":
+    "El objetivo es simple: un lugar colaborativo donde convivan conocimiento, prácticas probadas y referencias listas para producción. Eliges una base, la adaptas y avanzas sin reconstruir lo fundamental cada vez.",
+  "home.manifesto.howToTitle": "Cómo usar este lugar",
+  "home.manifesto.howToAria": "Cómo usar este lugar",
+  "home.manifesto.step1.accent": "Encuentra una referencia",
+  "home.manifesto.step1.text": "que ya resuelva parte de tu problema.",
+  "home.manifesto.step2.accent": "Estúdiala rápido:",
+  "home.manifesto.step2.text":
+    "estructura, comportamiento y detalles de implementación.",
+  "home.manifesto.step3.accent": "Adáptala",
+  "home.manifesto.step3.text":
+    "a tu sistema de estilos, stack y restricciones.",
+  "home.manifesto.step4.accent": "Publica antes",
+  "home.manifesto.step4.text": "sin sacrificar calidad de código.",
+  "home.manifesto.micro":
+    "Menos boilerplate. Menos cambio de contexto. Más construcción.",
+  "home.manifesto.practiceTitle": "Lo que obtienes en la práctica",
+  "home.manifesto.practiceBody":
+    "Obtienes una primera versión más rápida, referencias de implementación más sólidas y menos inicios en falso. En lugar de unir contexto de diez fuentes diferentes, trabajas desde un solo lugar y avanzas con intención.",
+  "home.manifesto.outcomesAria": "Resultados prácticos",
+  "home.manifesto.outcomeA.accent": "Velocidad con control:",
+  "home.manifesto.outcomeA.text":
+    "empieza desde una base real y mantiene tus propios estándares.",
+  "home.manifesto.outcomeB.accent": "Lenguaje compartido:",
+  "home.manifesto.outcomeB.text":
+    "humanos y bots razonan desde las mismas referencias.",
+  "home.manifesto.outcomeC.accent": "Conocimiento acumulativo:",
+  "home.manifesto.outcomeC.text":
+    "cada reutilización hace más fácil la siguiente entrega.",
+  "home.manifesto.future":
+    "Dirección futura: sistemas visuales propios, flujos de trabajo personalizados y creación de software desde cualquier lugar con tus propias reglas.",
+  "home.roadmap.eyebrow": "Roadmap en progreso",
+  "home.roadmap.title": "De las bases a un framework web AI-first",
+  "home.roadmap.lead":
+    "Estamos construyendo esto en público, paso a paso. El camino empieza con bases sólidas, luego calidad de documentación, después flujos de generación de proyectos y finalmente un framework ligero para construir software web con soporte de IA.",
+  "home.roadmap.dot.foundation": "Fundación",
+  "home.roadmap.dot.docs": "Calidad docs",
+  "home.roadmap.dot.builder": "Builder",
+  "home.roadmap.dot.framework": "Framework",
+  "home.roadmap.phase1.title": "Construir la base",
+  "home.roadmap.phase1.body":
+    "Estabilizar arquitectura base, páginas núcleo, primitivas reutilizables y lenguaje visual.",
+  "home.roadmap.phase2.title": "Mejorar docs con buenas prácticas",
+  "home.roadmap.phase2.body":
+    "Hacer la guía más clara, práctica y accionable para implementar más rápido con menos confusión.",
+  "home.roadmap.phase3.title": "Mejorar el builder para crear proyectos",
+  "home.roadmap.phase3.body":
+    "Reducir fricción de setup y hacer el scaffolding más controlable a partir de referencias.",
+  "home.roadmap.phase4.title": "Crear el framework base de StealThis",
+  "home.roadmap.phase4.body":
+    "Un framework simple para proyectos web, inspirado en flujos estilo Astro y enfocado en creación asistida por IA.",
+  "home.keywords.eyebrow": "Lenguaje del proyecto",
+  "home.keywords.title": "Las palabras que definen este proyecto",
+  "home.keywords.lead":
+    "No son términos de marketing. Son principios operativos de cómo construimos, compartimos y publicamos software con menos complejidad y más propiedad.",
+  "home.keywords.aria": "Palabras clave del proyecto y sus significados",
+  "home.keywords.control.word": "CONTROL",
+  "home.keywords.control.accent": "Control",
+  "home.keywords.control.text":
+    "significa elegir tu stack, tu sistema de estilos y tu ritmo de entrega sin quedar bloqueado por defaults rígidos.",
+  "home.keywords.reference.word": "REFERENCIA",
+  "home.keywords.reference.accent": "Referencia",
+  "home.keywords.reference.text":
+    "significa aprender de implementaciones concretas, no de hilos abstractos dispersos en fuentes desconectadas.",
+  "home.keywords.reuse.word": "REUTILIZACIÓN",
+  "home.keywords.reuse.accent": "Reutilización",
+  "home.keywords.reuse.text":
+    "es el default. Empieza desde una base probada, adáptala y enfoca energía en diferenciarte en lugar de repetir.",
+  "home.keywords.collaboration.word": "COLABORACIÓN",
+  "home.keywords.collaboration.accent": "Colaboración",
+  "home.keywords.collaboration.text":
+    "significa humanos y bots construyendo desde el mismo contexto, convenciones y referencias de producción.",
+  "home.keywords.practice.word": "PRÁCTICA",
+  "home.keywords.practice.accent": "Práctica",
+  "home.keywords.practice.text":
+    "es donde aparece la calidad: flujos repetibles, patrones probados y disciplina de implementación.",
+  "home.keywords.ownership.word": "PROPIEDAD",
+  "home.keywords.ownership.accent": "Propiedad",
+  "home.keywords.ownership.text":
+    "significa entender qué ejecutas, por qué funciona y cómo evolucionarlo cuando cambian los requisitos.",
+  "home.keywords.clarity.word": "CLARIDAD",
+  "home.keywords.clarity.accent": "Claridad",
+  "home.keywords.clarity.text":
+    "quita fricción: un lugar para referencias, un lenguaje para decisiones y una ruta de idea a entrega.",
+  "home.keywords.ship.word": "PUBLICAR",
+  "home.keywords.ship.accent": "Publicar",
+  "home.keywords.ship.text":
+    "significa llegar antes a producción sin bajar estándares de arquitectura, accesibilidad y mantenibilidad.",
+  "home.scramble.eyebrow": "Filosofía Steal This",
+  "home.scramble.title": "Palabras que revelamos mientras construimos",
+  "home.scramble.lead":
+    "Cada línea de abajo es un compromiso con una forma más práctica de crear software: referencias sólidas, contexto compartido y ejecución más rápida con control.",
+  "home.scramble.phrases":
+    "STEAL THIS →||CONSTRUYE CON CONTROL||EMPIEZA DESDE REFERENCIAS||HUMANOS + BOTS||MENOS FRICCIÓN, MÁS ENTREGAS",
+  "home.scramble.staticAria": "Líneas de filosofía StealThis",
+  "home.scramble.static1": "CONSTRUYE CON CONTROL",
+  "home.scramble.static2": "EMPIEZA DESDE REFERENCIAS",
+  "home.scramble.static3": "MENOS FRICCIÓN, MÁS ENTREGAS",
+  "home.scramble.static4": "HUMANOS + BOTS, MISMO CONTEXTO",
+  "library.title": "Librería",
+  "library.subtitle": "Explora todos los recursos",
+  "library.filter.all": "Todos",
+  "library.filter.category": "Categoría",
+  "library.filter.difficulty": "Dificultad",
+  "library.filter.tech": "Tech",
+  "library.filter.author": "Autor",
+  "library.filter.favorites": "Favoritos",
+  "library.search.placeholder": "Buscar recursos...",
+  "library.sort.grouped": "Por categoría",
+  "library.sort.latest": "Últimos agregados",
+  "library.noResults": "Ningún recurso coincide con los filtros.",
+  "collections.title": "Colecciones globales",
+  "collections.subtitle": "Empieza con rutas populares",
+  "collections.explorerSubtitle": "Explora por temas y revisa recursos relacionados",
+  "collections.all": "Todos",
+  "collections.cta": "Ver colección",
+  "collections.viewLab": "Ver en Lab",
+  "collections.viewResource": "Ver recurso",
+  "collections.empty": "Todavía no hay recursos en esta colección.",
+  "collections.prev": "Anterior",
+  "collections.next": "Siguiente",
+  "collection.saas.title": "SaaS Builders",
+  "collection.saas.desc": "Landings, dashboards y arquitecturas para productos SaaS.",
+  "collection.motion.title": "Esenciales de movimiento",
+  "collection.motion.desc": "Animaciones de scroll y reveal para UI moderna.",
+  "collection.hero.title": "Héroes base",
+  "collection.hero.desc": "Secciones hero, CTA y layouts.",
+  "collection.cards.title": "Componentes tipo card",
+  "collection.cards.desc": "Cards de vidrio, métricas y contenido.",
+  "collection.dashboard.title": "Dashboard UI",
+  "collection.dashboard.desc": "Patrones de interfaces admin y analíticas con datos.",
+  "collection.remotion.title": "Pack Remotion",
+  "collection.remotion.desc": "Composiciones React para video.",
+  "resource.copy": "Copiar",
+  "resource.copied": "¡Copiado!",
+  "resource.copiedPasteGemini": "¡Copiado! Pega en Gemini.",
+  "resource.openLab": "Abrir en Lab",
+  "resource.openRemotion": "Abrir Remotion",
+  "resource.openChatGPT": "Abrir en ChatGPT",
+  "resource.openClaude": "Abrir en Claude",
+  "resource.openGemini": "Abrir en Gemini",
+  "resource.copyMarkdown": "Copiar como Markdown",
+  "resource.viewMarkdown": "Ver como Markdown",
+  "resource.favorite": "Guardar",
+  "resource.unfavorite": "Guardado",
+  "resource.author": "Autor",
+  "resource.difficulty.easy": "Fácil",
+  "resource.difficulty.med": "Medio",
+  "resource.difficulty.hard": "Difícil",
+  "resource.breadcrumb.home": "Inicio",
+  "resource.breadcrumb.library": "Librería",
+  "resource.targets": "Targets",
+  "resource.section.preview": "Preview",
+  "resource.section.code": "Código",
+  "resource.meta.license": "Licencia",
+  "resource.meta.added": "Agregado",
+  // Phase 1 categories
+  "category.web-animations": "Animaciones Web",
+  "category.web-pages": "Páginas Web",
+  "category.ui-components": "Componentes UI",
+  "category.patterns": "Patrones",
+  // Phase 2 categories
+  "category.components": "Componentes",
+  "category.pages": "Páginas",
+  "category.prompts": "Prompts",
+  "category.skills": "Skills",
+  "category.mcp-servers": "Servidores MCP",
+  "category.architectures": "Arquitecturas",
+  "category.boilerplates": "Boilerplates",
+  "category.remotion": "Remotion",
+  "category.music": "Música",
+  "category.comingSoon": "Próximamente",
+  "favorites.export": "Exportar Favoritos",
+  "favorites.import": "Importar Favoritos",
+  "changelog.title": "Changelog",
+  "changelog.description":
+    "Notas de versión de StealThis.dev: nuevos recursos, mejoras de UI, cambios de SEO y actualizaciones de plataforma.",
+  "changelog.intro":
+    "Cambios destacados, nuevos recursos e mejoras. Para el historial completo ver GitHub.",
+  "changelog.seeGitHub": "Releases en GitHub",
+  "showcase.title": "Showcase",
+  "showcase.livePreviews": "previews en vivo",
+  "showcase.filterAria": "Filtrar por categoría",
+  "showcase.saved": "Guardados",
+  "showcase.noResults": "Ningún componente coincide con este filtro.",
+  "showcase.backToTop": "Volver arriba",
+  "showcase.viewCode": "Ver código",
+  "lang.label": "Idioma",
+  "lang.toggle": "English",
+  "lang.option.en": "Inglés",
+  "lang.option.es": "Español",
+  "lang.option.fr": "Francés",
+  "lang.option.ja": "Japonés",
+} as const;
+
+const fr: Record<keyof typeof en, string> = {
+  ...en,
+  "nav.library": "Bibliothèque",
+  "nav.build": "Builder",
+  "hero.titleSuffix": " — tout est gratuit à copier.",
+  "hero.subtitle.before": "Snippets et démos prêts à l'emploi. Serveur ",
+  "hero.subtitle.after": " inclus. Explorez, copiez, intégrez.",
+  "hero.cta.browse": "Parcourir la bibliothèque",
+  "hero.cta.docs": "Voir la doc",
+  "home.search.placeholder": "Appuyez sur CMD+K pour rechercher...",
+  "home.search.label": "Rechercher dans la bibliothèque",
+  "home.stats.resources": "Ressources",
+  "home.stats.categories": "Catégories",
+  "home.stats.license": "Licence",
+  "home.featured.title": "Ressources en vedette",
+  "home.featured.lead":
+    "Ouvrez des démos exécutables directement dans Lab. Comparez la difficulté, parcourez les tags de stack et choisissez la bonne référence avant de construire.",
+  "home.featured.viewAll": "Voir tout",
+  "home.featured.lab": "Lab",
+  "home.categories.title": "Parcourir par catégorie",
+  "home.categories.desc.webAnimations": "Effets de scroll, parallaxe, canvas",
+  "home.categories.desc.webPages": "Landings, heroes, pages de pricing",
+  "home.categories.desc.pages": "Mises en page et sections pleine page",
+  "home.categories.desc.uiComponents": "Boutons, cartes, formulaires, modales",
+  "home.categories.desc.components": "Blocs UI réutilisables et snippets",
+  "home.categories.desc.patterns": "Loaders, effets hover, menus",
+  "home.categories.desc.remotion": "Templates vidéo propulsés par React",
+  "home.categories.desc.prompts": "Prompts et workflows IA",
+  "home.categories.desc.music": "Audio, lecteurs, visualiseurs",
+  "home.categories.desc.skills": "Skills et workflows IA",
+  "home.categories.desc.mcpServers": "Serveurs et outils MCP",
+  "home.categories.desc.architectures": "Architectures et patterns",
+  "home.manifesto.eyebrow": "Construire avec contrôle",
+  "home.manifesto.title": "Prenez ce qui marche. Livrez ce que vous voulez.",
+  "home.manifesto.lead":
+    "Pour les humains et les bots qui veulent créer du logiciel sans repartir de zéro.",
+  "home.manifesto.body1":
+    "StealThis est une bibliothèque orientée références. Analysez chaque élément, comprenez son fonctionnement et réutilisez-le dans votre stack. Moins de fragmentation, moins de complexité et plus de contrôle sur le design system et les outils avec lesquels vous construisez.",
+  "home.manifesto.body2":
+    "L'objectif est simple : un espace collaboratif où cohabitent connaissances, pratiques éprouvées et références prêtes pour la production. Vous choisissez une base, vous l'adaptez et vous avancez sans reconstruire les fondamentaux à chaque fois.",
+  "home.manifesto.howToTitle": "Comment utiliser cet espace",
+  "home.manifesto.howToAria": "Comment utiliser cet espace",
+  "home.manifesto.step1.accent": "Trouver une référence",
+  "home.manifesto.step1.text":
+    "qui résout déjà une partie de votre problème.",
+  "home.manifesto.step2.accent": "L'étudier vite :",
+  "home.manifesto.step2.text":
+    "structure, comportement et détails d'implémentation.",
+  "home.manifesto.step3.accent": "L'adapter",
+  "home.manifesto.step3.text":
+    "à votre design system, stack et contraintes.",
+  "home.manifesto.step4.accent": "Livrer plus tôt",
+  "home.manifesto.step4.text": "sans sacrifier la qualité du code.",
+  "home.manifesto.micro":
+    "Moins de boilerplate. Moins de changement de contexte. Plus de construction.",
+  "home.manifesto.practiceTitle": "Ce que vous obtenez en pratique",
+  "home.manifesto.practiceBody":
+    "Vous obtenez une première version plus rapide, des références d'implémentation plus solides et moins de faux départs. Au lieu de recoller du contexte depuis dix sources différentes, vous travaillez depuis un seul endroit et avancez avec intention.",
+  "home.manifesto.outcomesAria": "Résultats pratiques",
+  "home.manifesto.outcomeA.accent": "Vitesse avec contrôle :",
+  "home.manifesto.outcomeA.text":
+    "partez d'une base réelle et gardez vos propres standards.",
+  "home.manifesto.outcomeB.accent": "Langage partagé :",
+  "home.manifesto.outcomeB.text":
+    "humains et bots raisonnent à partir des mêmes références.",
+  "home.manifesto.outcomeC.accent": "Connaissance cumulative :",
+  "home.manifesto.outcomeC.text":
+    "chaque réutilisation facilite la prochaine livraison.",
+  "home.manifesto.future":
+    "Direction future : systèmes visuels personnalisés, workflows personnalisés et création logicielle depuis n'importe où avec vos propres règles.",
+  "home.roadmap.eyebrow": "Roadmap en cours",
+  "home.roadmap.title": "Des fondations à un framework web AI-first",
+  "home.roadmap.lead":
+    "Nous construisons ce projet en public, étape par étape. Le chemin commence par des fondations solides, puis la qualité de la documentation, ensuite des workflows de génération de projets, et enfin un framework léger pour créer des logiciels web avec le support de l'IA.",
+  "home.roadmap.dot.foundation": "Fondation",
+  "home.roadmap.dot.docs": "Qualité docs",
+  "home.roadmap.dot.builder": "Builder",
+  "home.roadmap.dot.framework": "Framework",
+  "home.roadmap.phase1.title": "Construire la fondation",
+  "home.roadmap.phase1.body":
+    "Stabiliser l'architecture de base, les pages cœur, les primitives réutilisables et le langage visuel.",
+  "home.roadmap.phase2.title":
+    "Améliorer la doc avec les bonnes pratiques",
+  "home.roadmap.phase2.body":
+    "Rendre les guides plus clairs, pratiques et actionnables pour implémenter plus vite avec moins de confusion.",
+  "home.roadmap.phase3.title":
+    "Améliorer le builder pour créer des projets",
+  "home.roadmap.phase3.body":
+    "Réduire la friction de setup et rendre le scaffolding plus contrôlable à partir de références.",
+  "home.roadmap.phase4.title":
+    "Créer le framework de base de StealThis",
+  "home.roadmap.phase4.body":
+    "Un framework simple pour projets web, inspiré des workflows de type Astro et axé sur la création assistée par IA.",
+  "home.keywords.eyebrow": "Langage du projet",
+  "home.keywords.title": "Les mots qui définissent ce projet",
+  "home.keywords.lead":
+    "Ce ne sont pas des termes marketing. Ce sont des principes opérationnels pour construire, partager et livrer du logiciel avec moins de complexité et plus de maîtrise.",
+  "home.keywords.aria": "Mots-clés du projet et significations",
+  "home.keywords.control.word": "CONTRÔLE",
+  "home.keywords.control.accent": "Contrôle",
+  "home.keywords.control.text":
+    "signifie choisir votre stack, votre design system et votre rythme de livraison sans rester bloqué dans des défauts rigides.",
+  "home.keywords.reference.word": "RÉFÉRENCE",
+  "home.keywords.reference.accent": "Référence",
+  "home.keywords.reference.text":
+    "signifie apprendre à partir d'implémentations concrètes, pas de fils abstraits dispersés sur des sources déconnectées.",
+  "home.keywords.reuse.word": "RÉUTILISATION",
+  "home.keywords.reuse.accent": "Réutilisation",
+  "home.keywords.reuse.text":
+    "est le défaut. Partez d'une base éprouvée, adaptez-la et concentrez votre énergie sur la différenciation plutôt que la répétition.",
+  "home.keywords.collaboration.word": "COLLABORATION",
+  "home.keywords.collaboration.accent": "Collaboration",
+  "home.keywords.collaboration.text":
+    "signifie humains et bots construisant depuis le même contexte, les mêmes conventions et les mêmes références de production.",
+  "home.keywords.practice.word": "PRATIQUE",
+  "home.keywords.practice.accent": "Pratique",
+  "home.keywords.practice.text":
+    "est là où la qualité émerge : workflows répétables, patterns testés et discipline d'implémentation.",
+  "home.keywords.ownership.word": "MAÎTRISE",
+  "home.keywords.ownership.accent": "Maîtrise",
+  "home.keywords.ownership.text":
+    "signifie comprendre ce que vous exécutez, pourquoi cela fonctionne et comment le faire évoluer quand les exigences changent.",
+  "home.keywords.clarity.word": "CLARTÉ",
+  "home.keywords.clarity.accent": "Clarté",
+  "home.keywords.clarity.text":
+    "réduit la friction : un endroit pour les références, un langage pour les décisions, un chemin de l'idée à la livraison.",
+  "home.keywords.ship.word": "LIVRER",
+  "home.keywords.ship.accent": "Livrer",
+  "home.keywords.ship.text":
+    "signifie atteindre la production plus tôt sans baisser les standards d'architecture, d'accessibilité et de maintenabilité.",
+  "home.scramble.eyebrow": "Philosophie Steal This",
+  "home.scramble.title": "Les mots que nous révélons en construisant",
+  "home.scramble.lead":
+    "Chaque ligne ci-dessous est un engagement pour une façon plus pratique de construire du logiciel : références solides, contexte partagé et exécution plus rapide avec contrôle.",
+  "home.scramble.phrases":
+    "STEAL THIS →||CONSTRUIRE AVEC CONTRÔLE||PARTIR DE RÉFÉRENCES||HUMAINS + BOTS||MOINS DE FRICTION, PLUS DE LIVRAISON",
+  "home.scramble.staticAria": "Lignes de philosophie StealThis",
+  "home.scramble.static1": "CONSTRUIRE AVEC CONTRÔLE",
+  "home.scramble.static2": "PARTIR DE RÉFÉRENCES",
+  "home.scramble.static3": "MOINS DE FRICTION, PLUS DE LIVRAISON",
+  "home.scramble.static4": "HUMAINS + BOTS, MÊME CONTEXTE",
+  "library.title": "Bibliothèque",
+  "library.subtitle": "Parcourir toutes les ressources",
+  "library.filter.all": "Tout",
+  "library.filter.category": "Catégorie",
+  "library.filter.difficulty": "Difficulté",
+  "library.filter.author": "Auteur",
+  "library.filter.favorites": "Favoris",
+  "library.search.placeholder": "Rechercher des ressources...",
+  "library.sort.grouped": "Par catégorie",
+  "library.sort.latest": "Ajouts récents",
+  "library.noResults": "Aucune ressource ne correspond à vos filtres.",
+  "collections.title": "Collections globales",
+  "collections.subtitle": "Commencez par les parcours populaires",
+  "collections.explorerSubtitle": "Parcourez par thème et prévisualisez les ressources liées",
+  "collections.all": "Tout",
+  "collections.cta": "Voir la collection",
+  "collections.viewLab": "Voir dans Lab",
+  "collections.viewResource": "Voir la ressource",
+  "collections.empty": "Aucune ressource disponible dans cette collection pour le moment.",
+  "collections.prev": "Précédent",
+  "collections.next": "Suivant",
+  "resource.copy": "Copier",
+  "resource.copied": "Copié !",
+  "resource.openLab": "Ouvrir dans Lab",
+  "resource.openRemotion": "Ouvrir Remotion",
+  "resource.openChatGPT": "Ouvrir dans ChatGPT",
+  "resource.openClaude": "Ouvrir dans Claude",
+  "resource.openGemini": "Ouvrir dans Gemini",
+  "resource.copyMarkdown": "Copier en Markdown",
+  "resource.viewMarkdown": "Voir en Markdown",
+  "resource.favorite": "Enregistrer",
+  "resource.unfavorite": "Enregistré",
+  "resource.author": "Auteur",
+  "resource.difficulty.easy": "Facile",
+  "resource.difficulty.med": "Moyen",
+  "resource.difficulty.hard": "Difficile",
+  "resource.breadcrumb.home": "Accueil",
+  "resource.breadcrumb.library": "Bibliothèque",
+  "resource.section.code": "Code",
+  "resource.meta.license": "Licence",
+  "resource.meta.added": "Ajouté",
+  "category.web-animations": "Animations web",
+  "category.web-pages": "Pages web",
+  "category.ui-components": "Composants UI",
+  "category.patterns": "Patterns",
+  "category.pages": "Pages",
+  "category.mcp-servers": "Serveurs MCP",
+  "category.architectures": "Architectures",
+  "category.boilerplates": "Boilerplates",
+  "category.music": "Musique",
+  "category.comingSoon": "Bientôt",
+  "favorites.export": "Exporter les favoris",
+  "favorites.import": "Importer les favoris",
+  "changelog.description":
+    "Notes de version de StealThis.dev : nouvelles ressources, mises à jour UI, améliorations SEO et changements de plateforme.",
+  "changelog.intro": "Changements importants, nouvelles ressources et améliorations. Voir GitHub pour l'historique complet.",
+  "changelog.seeGitHub": "Versions sur GitHub",
+  "showcase.livePreviews": "aperçus en direct",
+  "showcase.filterAria": "Filtrer par catégorie",
+  "showcase.saved": "Enregistrés",
+  "showcase.noResults": "Aucun composant ne correspond à ce filtre.",
+  "showcase.backToTop": "Retour en haut",
+  "showcase.viewCode": "Voir le code",
+  "lang.label": "Langue",
+  "lang.toggle": "Français",
+  "lang.option.en": "Anglais",
+  "lang.option.es": "Espagnol",
+  "lang.option.fr": "Français",
+  "lang.option.ja": "Japonais",
+};
+
+const ja: Record<keyof typeof en, string> = {
+  ...en,
+  "nav.library": "ライブラリ",
+  "nav.docs": "ドキュメント",
+  "nav.build": "ビルダー",
+  "nav.showcase": "ショーケース",
+  "hero.titleSuffix": " — すべて無料でコピーできます。",
+  "hero.subtitle.before": "すぐ使えるスニペットとデモ。",
+  "hero.subtitle.after": " サーバー付き。探索して、コピーして、統合。",
+  "hero.cta.browse": "ライブラリを見る",
+  "hero.cta.showcase": "ショーケース",
+  "hero.cta.docs": "ドキュメントを見る",
+  "home.search.placeholder": "CMD+K で検索...",
+  "home.search.label": "ライブラリを検索",
+  "home.stats.resources": "リソース",
+  "home.stats.categories": "カテゴリ",
+  "home.stats.license": "ライセンス",
+  "home.featured.title": "注目リソース",
+  "home.featured.lead":
+    "Labでそのまま動くデモを開けます。難易度を比較し、技術タグを確認して、実装前に最適な参考を選べます。",
+  "home.featured.viewAll": "すべて見る",
+  "home.featured.lab": "Lab",
+  "home.categories.title": "カテゴリで探す",
+  "home.categories.desc.webAnimations":
+    "スクロール演出、パララックス、canvas",
+  "home.categories.desc.webPages": "ランディング、ヒーロー、料金ページ",
+  "home.categories.desc.pages": "フルページのレイアウトとセクション",
+  "home.categories.desc.uiComponents":
+    "ボタン、カード、フォーム、モーダル",
+  "home.categories.desc.components":
+    "再利用できるUIブロックとスニペット",
+  "home.categories.desc.patterns": "ローダー、ホバー効果、メニュー",
+  "home.categories.desc.remotion":
+    "Reactベースの動画テンプレート",
+  "home.categories.desc.prompts": "AIプロンプトとワークフロー",
+  "home.categories.desc.music": "音声、プレイヤー、ビジュアライザー",
+  "home.categories.desc.skills": "AIスキルとワークフロー",
+  "home.categories.desc.mcpServers": "MCPサーバーとツール",
+  "home.categories.desc.architectures":
+    "アーキテクチャとパターン",
+  "home.manifesto.eyebrow": "コントロールして作る",
+  "home.manifesto.title":
+    "使えるものを取り入れ、作りたい形で届ける。",
+  "home.manifesto.lead":
+    "ゼロから始めずにソフトウェアを作りたい人間とボットのために。",
+  "home.manifesto.body1":
+    "StealThisはリファレンス中心のライブラリです。各要素を確認し、仕組みを理解し、自分のスタックで再利用できます。分断を減らし、複雑さを抑え、使いたいデザインシステムとツールを自分でコントロールできます。",
+  "home.manifesto.body2":
+    "目標はシンプルです。知識、実績あるプラクティス、本番対応のリファレンスを1か所に集約すること。ベースを選び、調整し、毎回基礎を作り直さず前進できます。",
+  "home.manifesto.howToTitle": "この場所の使い方",
+  "home.manifesto.howToAria": "この場所の使い方",
+  "home.manifesto.step1.accent": "参考を見つける",
+  "home.manifesto.step1.text":
+    "すでに課題の一部を解決しているものを選ぶ。",
+  "home.manifesto.step2.accent": "素早く理解する：",
+  "home.manifesto.step2.text":
+    "構造、挙動、実装の要点を押さえる。",
+  "home.manifesto.step3.accent": "自分向けに適応する",
+  "home.manifesto.step3.text":
+    "デザインシステム、スタック、制約に合わせる。",
+  "home.manifesto.step4.accent": "早く届ける",
+  "home.manifesto.step4.text": "コード品質を落とさずに進める。",
+  "home.manifesto.micro":
+    "ボイラープレートを減らし、文脈切替を減らし、実装に集中。",
+  "home.manifesto.practiceTitle": "実運用で得られること",
+  "home.manifesto.practiceBody":
+    "初期バージョンをより速く出せ、実装の参考精度が上がり、行き詰まりが減ります。複数ソースをつなぎ合わせる代わりに、1か所から意図を持って進めます。",
+  "home.manifesto.outcomesAria": "実践的な成果",
+  "home.manifesto.outcomeA.accent":
+    "コントロール付きの速度：",
+  "home.manifesto.outcomeA.text":
+    "実用的な土台から始めて、自分の基準を維持する。",
+  "home.manifesto.outcomeB.accent": "共通言語：",
+  "home.manifesto.outcomeB.text":
+    "人間とボットが同じリファレンスで判断できる。",
+  "home.manifesto.outcomeC.accent": "知識の蓄積：",
+  "home.manifesto.outcomeC.text":
+    "再利用のたびに次の開発が楽になる。",
+  "home.manifesto.future":
+    "今後の方向性: 独自ビジュアルシステム、独自ワークフロー、そして自分のルールでどこからでもソフトウェアを作れる環境。",
+  "home.roadmap.eyebrow": "ロードマップ進行中",
+  "home.roadmap.title":
+    "基盤からAIファーストなWebフレームワークへ",
+  "home.roadmap.lead":
+    "このプロジェクトは公開で段階的に進めています。まずは強い基盤、次にドキュメント品質、その次にプロジェクト生成ワークフロー、そして最後にAI支援でWebソフトウェアを作るための軽量フレームワークへ進みます。",
+  "home.roadmap.dot.foundation": "基盤",
+  "home.roadmap.dot.docs": "ドキュメント品質",
+  "home.roadmap.dot.builder": "ビルダー",
+  "home.roadmap.dot.framework": "フレームワーク",
+  "home.roadmap.phase1.title": "基盤を固める",
+  "home.roadmap.phase1.body":
+    "基礎アーキテクチャ、主要ページ、再利用プリミティブ、ビジュアル言語を安定させる。",
+  "home.roadmap.phase2.title":
+    "ベストプラクティスでドキュメントを改善",
+  "home.roadmap.phase2.body":
+    "ガイドをより明確・実践的・実行可能にし、混乱を減らして実装速度を上げる。",
+  "home.roadmap.phase3.title":
+    "プロジェクト作成のためにビルダーを改善",
+  "home.roadmap.phase3.body":
+    "セットアップの摩擦を減らし、リファレンス起点でスキャフォールディングをより制御可能にする。",
+  "home.roadmap.phase4.title":
+    "StealThisの基本フレームワークを作る",
+  "home.roadmap.phase4.body":
+    "Astro系ワークフローに着想を得た、AI支援の開発に焦点を当てたシンプルなWeb向けフレームワーク。",
+  "home.keywords.eyebrow": "プロジェクトの言語",
+  "home.keywords.title": "このプロジェクトを定義する言葉",
+  "home.keywords.lead":
+    "これはマーケティング用語ではありません。より少ない複雑さで、より大きな主体性を持ってソフトウェアを作り、共有し、届けるための運用原則です。",
+  "home.keywords.aria": "プロジェクトのキーワードと意味",
+  "home.keywords.control.word": "コントロール",
+  "home.keywords.control.accent": "コントロール",
+  "home.keywords.control.text":
+    "とは、固定的なデフォルトに縛られず、自分のスタック・デザインシステム・開発ペースを選べることです。",
+  "home.keywords.reference.word": "リファレンス",
+  "home.keywords.reference.accent": "リファレンス",
+  "home.keywords.reference.text":
+    "とは、分断された抽象的な情報ではなく、具体的な実装から学ぶことです。",
+  "home.keywords.reuse.word": "リユース",
+  "home.keywords.reuse.accent": "リユース",
+  "home.keywords.reuse.text":
+    "が標準です。実証済みの土台から始め、適応し、繰り返しより差別化に力を使います。",
+  "home.keywords.collaboration.word": "コラボレーション",
+  "home.keywords.collaboration.accent": "コラボレーション",
+  "home.keywords.collaboration.text":
+    "とは、人間とボットが同じ文脈・規約・本番リファレンスで開発することです。",
+  "home.keywords.practice.word": "プラクティス",
+  "home.keywords.practice.accent": "プラクティス",
+  "home.keywords.practice.text":
+    "は品質が生まれる場所です。再現可能なワークフロー、検証済みパターン、実装規律が重要です。",
+  "home.keywords.ownership.word": "オーナーシップ",
+  "home.keywords.ownership.accent": "オーナーシップ",
+  "home.keywords.ownership.text":
+    "とは、何を動かしているのか、なぜ動くのか、要件変更時にどう進化させるかを理解することです。",
+  "home.keywords.clarity.word": "明確さ",
+  "home.keywords.clarity.accent": "明確さ",
+  "home.keywords.clarity.text":
+    "は摩擦を減らします。参考は一か所、判断の言語は一つ、アイデアから実装までの道筋は一本。",
+  "home.keywords.ship.word": "出荷",
+  "home.keywords.ship.accent": "出荷",
+  "home.keywords.ship.text":
+    "とは、アーキテクチャ・アクセシビリティ・保守性の基準を落とさず、より早く本番に届けることです。",
+  "home.scramble.eyebrow": "Steal This の思想",
+  "home.scramble.title": "作りながら浮かび上がる言葉",
+  "home.scramble.lead":
+    "以下の各行は、より実践的なソフトウェア開発へのコミットです。確かなリファレンス、共有コンテキスト、そしてコントロールを保った高速実行。",
+  "home.scramble.phrases":
+    "STEAL THIS →||コントロールして作る||リファレンスから始める||HUMANS + BOTS||摩擦を減らして出荷を増やす",
+  "home.scramble.staticAria": "StealThisの思想ライン",
+  "home.scramble.static1": "コントロールして作る",
+  "home.scramble.static2": "リファレンスから始める",
+  "home.scramble.static3": "摩擦を減らして出荷を増やす",
+  "home.scramble.static4": "人間 + ボット、同じコンテキスト",
+  "library.title": "ライブラリ",
+  "library.subtitle": "すべてのリソースを閲覧",
+  "library.filter.all": "すべて",
+  "library.filter.category": "カテゴリ",
+  "library.filter.difficulty": "難易度",
+  "library.filter.author": "作者",
+  "library.filter.favorites": "お気に入り",
+  "library.search.placeholder": "リソースを検索...",
+  "library.sort.grouped": "カテゴリ別",
+  "library.sort.latest": "新着順",
+  "library.noResults": "フィルターに一致するリソースがありません。",
+  "collections.title": "グローバルコレクション",
+  "collections.subtitle": "人気のルートから始める",
+  "collections.explorerSubtitle": "テーマ別に探索して関連リソースをプレビュー",
+  "collections.all": "すべて",
+  "collections.cta": "コレクションを見る",
+  "collections.viewLab": "Labで見る",
+  "collections.viewResource": "リソースを見る",
+  "collections.empty": "このコレクションにはまだリソースがありません。",
+  "collections.prev": "前へ",
+  "collections.next": "次へ",
+  "resource.copy": "コピー",
+  "resource.copied": "コピーしました",
+  "resource.copiedPasteGemini": "コピーしました。Geminiに貼り付けてください。",
+  "resource.openLab": "Labで開く",
+  "resource.openRemotion": "Remotionを開く",
+  "resource.openChatGPT": "ChatGPTで開く",
+  "resource.openClaude": "Claudeで開く",
+  "resource.openGemini": "Geminiで開く",
+  "resource.copyMarkdown": "Markdownでコピー",
+  "resource.viewMarkdown": "Markdownを表示",
+  "resource.favorite": "保存",
+  "resource.unfavorite": "保存済み",
+  "resource.author": "作者",
+  "resource.difficulty.easy": "簡単",
+  "resource.difficulty.med": "普通",
+  "resource.difficulty.hard": "難しい",
+  "resource.breadcrumb.home": "ホーム",
+  "resource.breadcrumb.library": "ライブラリ",
+  "resource.targets": "ターゲット",
+  "resource.section.preview": "プレビュー",
+  "resource.section.code": "コード",
+  "resource.meta.license": "ライセンス",
+  "resource.meta.added": "追加日",
+  "category.web-animations": "Webアニメーション",
+  "category.web-pages": "Webページ",
+  "category.ui-components": "UIコンポーネント",
+  "category.patterns": "パターン",
+  "category.components": "コンポーネント",
+  "category.pages": "ページ",
+  "category.prompts": "プロンプト",
+  "category.skills": "スキル",
+  "category.mcp-servers": "MCPサーバー",
+  "category.architectures": "アーキテクチャ",
+  "category.boilerplates": "ボイラープレート",
+  "category.remotion": "Remotion",
+  "category.music": "音楽",
+  "category.comingSoon": "近日公開",
+  "favorites.export": "お気に入りをエクスポート",
+  "favorites.import": "お気に入りをインポート",
+  "changelog.title": "変更履歴",
+  "changelog.description":
+    "StealThis.dev のリリースノート: 新規リソース、UI更新、SEO改善、プラットフォーム変更。",
+  "changelog.intro": "主な変更、新しいリソース、改善内容。完全な履歴はGitHubを参照してください。",
+  "changelog.seeGitHub": "GitHubのリリース",
+  "showcase.title": "ショーケース",
+  "showcase.livePreviews": "ライブプレビュー",
+  "showcase.filterAria": "カテゴリで絞り込む",
+  "showcase.saved": "保存済み",
+  "showcase.noResults": "このフィルターに一致するコンポーネントはありません。",
+  "showcase.backToTop": "トップへ戻る",
+  "showcase.viewCode": "コードを見る",
+  "lang.label": "言語",
+  "lang.toggle": "日本語",
+  "lang.option.en": "英語",
+  "lang.option.es": "スペイン語",
+  "lang.option.fr": "フランス語",
+  "lang.option.ja": "日本語",
+};
+
+export const ui = { en, es, fr, ja } satisfies Record<Locale, Record<string, string>>;
+
+type TranslationKey = keyof typeof en;
 
 export function useTranslations(locale: Locale = DEFAULT_LOCALE) {
-  return function t(key: keyof (typeof ui)[typeof DEFAULT_LOCALE]): string {
+  return function t(key: TranslationKey): string {
     return (
       (ui[locale] as Record<string, string>)[key] ??
       (ui[DEFAULT_LOCALE] as Record<string, string>)[key] ??
@@ -202,8 +956,73 @@ export function useTranslations(locale: Locale = DEFAULT_LOCALE) {
   };
 }
 
+export function isLocale(value: string | undefined | null): value is Locale {
+  return value != null && LOCALES.includes(value as Locale);
+}
+
+function normalizePathname(pathname: string): string {
+  if (!pathname) return "/";
+  return pathname.startsWith("/") ? pathname : `/${pathname}`;
+}
+
+export function getLocalePrefix(locale: Locale): string {
+  return locale === DEFAULT_LOCALE ? "" : `/${locale}`;
+}
+
+export function stripLocaleFromPath(pathname: string): {
+  locale: Locale;
+  pathWithoutLocale: string;
+  hasLocalePrefix: boolean;
+} {
+  const normalized = normalizePathname(pathname);
+  const parts = normalized.split("/");
+  const maybeLocale = parts[1];
+
+  if (isLocale(maybeLocale) && maybeLocale !== DEFAULT_LOCALE) {
+    const rest = `/${parts.slice(2).join("/")}`;
+    const pathWithoutLocale = rest === "/" ? "/" : rest.replace(/\/$/, "");
+    return {
+      locale: maybeLocale,
+      pathWithoutLocale,
+      hasLocalePrefix: true,
+    };
+  }
+
+  return {
+    locale: DEFAULT_LOCALE,
+    pathWithoutLocale: normalized,
+    hasLocalePrefix: false,
+  };
+}
+
+export function getLocalizedPath(pathname: string, locale: Locale): string {
+  const normalized = normalizePathname(pathname);
+  const { pathWithoutLocale } = stripLocaleFromPath(normalized);
+
+  if (locale === DEFAULT_LOCALE) return pathWithoutLocale;
+  if (pathWithoutLocale === "/") return `/${locale}/`;
+
+  return `/${locale}${pathWithoutLocale}`;
+}
+
+export function getAlternateLinks(pathname: string, site = "https://stealthis.dev") {
+  const cleanSite = site.replace(/\/$/, "");
+
+  const links = LOCALES.map((locale) => ({
+    hreflang: locale,
+    href: `${cleanSite}${getLocalizedPath(pathname, locale)}`,
+  }));
+
+  links.push({
+    hreflang: "x-default",
+    href: `${cleanSite}${getLocalizedPath(pathname, DEFAULT_LOCALE)}`,
+  });
+
+  return links;
+}
+
 export function getLocaleFromUrl(url: URL): Locale {
   const [, maybeLocale] = url.pathname.split("/");
-  if (LOCALES.includes(maybeLocale as Locale)) return maybeLocale as Locale;
+  if (isLocale(maybeLocale) && maybeLocale !== DEFAULT_LOCALE) return maybeLocale;
   return DEFAULT_LOCALE;
 }

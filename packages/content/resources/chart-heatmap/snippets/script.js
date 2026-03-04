@@ -1,6 +1,7 @@
 // Generate a year of random contribution data
 const COLORS = ['#1e2130','#2a3a5c','#3b5998','#6366f1','#a5b4fc'];
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAY_LABELS = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
 const tooltip = document.getElementById('chartTooltip');
 const svgEl   = document.getElementById('heatmapSvg');
 
@@ -34,14 +35,13 @@ function draw(){
   svgEl.style.height=(H*((document.getElementById('heatmapWrap').clientWidth-32)/W))+'px';
   svgEl.innerHTML='';
 
-  // Day labels
-  ['S','M','T','W','T','F','S'].forEach((lbl,i)=>{
-    if(i%2===0){
-      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-      t.setAttribute('x',LEFT_PAD-6);t.setAttribute('y',TOP_PAD+i*STEP+CELL-1);
-      t.setAttribute('class','hm-label');t.setAttribute('text-anchor','end');
-      t.textContent=lbl;svgEl.appendChild(t);
-    }
+  // Day labels (Mon / Wed / Fri)
+  DAY_LABELS.forEach((lbl,i)=>{
+    if(!lbl)return;
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',LEFT_PAD-6);t.setAttribute('y',TOP_PAD+i*STEP+CELL-1);
+    t.setAttribute('class','hm-label');t.setAttribute('text-anchor','end');
+    t.textContent=lbl;svgEl.appendChild(t);
   });
 
   // Month labels
@@ -80,4 +80,9 @@ function draw(){
   });
 }
 
+const wrap = document.getElementById('heatmapWrap');
+const ro = new ResizeObserver(() => {
+  if (wrap.clientWidth > 0) draw();
+});
+ro.observe(wrap);
 draw();
