@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+// biome-ignore lint/correctness/noUnusedImports: Used in Astro component markup.
+import StyleForgeStudio from "../components/StyleForgeStudio";
+
+const wwwUrl = import.meta.env.DEV ? "http://localhost:4321" : "https://stealthis.dev";
+const description =
+  "StyleForge turns visual references into a downloadable HTML component kit with implementation guidance.";
+const canonicalURL = new URL("/", Astro.site ?? "https://styleforge.stealthis.dev").toString();
+// biome-ignore lint/correctness/noUnusedVariables: Used in Astro JSON-LD script.
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "StyleForge",
+  description,
+  url: canonicalURL,
+  applicationCategory: "DesignApplication",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "StealThis.dev",
+    url: "https://stealthis.dev/",
+  },
+});
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#030712" />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content="StyleForge — StealThis.dev" />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content="https://stealthis.dev/social-card.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="StyleForge — StealThis.dev" />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://stealthis.dev/social-card.webp" />
+  <script type="application/ld+json" set:html={structuredData} />
+  <title>StyleForge — StealThis.dev</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <div class="min-h-screen w-full px-0 py-0">
+    <header class="mx-3 my-3 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-white/10 bg-slate-950/55 px-4 py-3 sm:mx-4">
+      <a href={wwwUrl} class="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors">
+        <span class="text-brand-400 text-lg">✦</span>
+        <span>StealThis.dev</span>
+      </a>
+      <div class="inline-flex items-center gap-2">
+        <span class="rounded-full border border-cyan-300/35 bg-cyan-500/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-cyan-200">
+          StyleForge MVP
+        </span>
+      </div>
+    </header>
+
+    <main class="w-full">
+      <StyleForgeStudio client:only="react" />
+    </main>
+  </div>
+</body>
+</html>

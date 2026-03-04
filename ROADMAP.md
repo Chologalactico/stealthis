@@ -350,6 +350,7 @@ Componentes para mostrar datos visualmente: gráficos, métricas, indicadores.
 | `chart-heatmap` | Calendar heatmap (GitHub-style) | vanilla-js, svg | hard | ✅ |
 | `chart-funnel` | Funnel / conversion chart | vanilla-js, svg | med | ✅ |
 | `chart-treemap` | Treemap proportional blocks | vanilla-js, css | hard | ✅ |
+| `chart-sankey` | Sankey flow diagram (D3.js) | d3, svg | hard | ✅ |
 
 ### Metrics & Indicators
 
@@ -486,7 +487,7 @@ Patrones comunes que combinan múltiples componentes para casos de uso frecuente
 
 ---
 
-## Phase 15 — Widgets, Media & Interactive
+## Phase 15 — Widgets, Media & Interactive ✅ DONE
 
 Componentes para funcionalidades específicas: widgets utilitarios, media players, social y elementos interactivos.
 
@@ -494,51 +495,51 @@ Componentes para funcionalidades específicas: widgets utilitarios, media player
 
 | Slug | Description | Tech | Difficulty | Status |
 |---|---|---|---|---|
-| `digital-clock` | Digital clock display | vanilla-js, css | easy | [ ] |
-| `countdown-timer` | Countdown timer | vanilla-js | easy | [ ] |
-| `stopwatch` | Stopwatch with lap times | vanilla-js | easy | [ ] |
-| `calculator` | Simple calculator | vanilla-js | med | [ ] |
-| `currency-converter` | Currency converter | vanilla-js | med | [ ] |
-| `unit-converter` | Unit converter (length, weight, temp) | vanilla-js | med | [ ] |
-| `word-counter` | Word / character counter | vanilla-js | easy | [ ] |
+| `digital-clock` | Digital clock display | vanilla-js, css | easy | ✅ |
+| `countdown-timer` | Countdown timer | vanilla-js | easy | ✅ |
+| `stopwatch` | Stopwatch with lap times | vanilla-js | easy | ✅ |
+| `calculator` | Simple calculator | vanilla-js | med | ✅ |
+| `currency-converter` | Currency converter | vanilla-js | med | ✅ |
+| `unit-converter` | Unit converter (length, weight, temp) | vanilla-js | med | ✅ |
+| `word-counter` | Word / character counter | vanilla-js | easy | ✅ |
 
 ### Media Players
 
 | Slug | Description | Tech | Difficulty | Status |
 |---|---|---|---|---|
-| `video-player` | Custom video player with controls | vanilla-js, html5 | med | [ ] |
-| `audio-player` | Audio player with playlist | vanilla-js, html5 | med | [ ] |
-| `podcast-player` | Podcast player with speed control | vanilla-js | med | [ ] |
-| `image-comparison` | Before/after image slider | vanilla-js, css | med | [ ] |
-| `zoom-image` | Hover zoom / magnifier lens | vanilla-js | med | [ ] |
+| `video-player` | Custom video player with controls | vanilla-js, html5 | med | ✅ |
+| `audio-player` | Audio player with playlist | vanilla-js, html5 | med | ✅ |
+| `podcast-player` | Podcast player with speed control | vanilla-js | med | ✅ |
+| `image-comparison` | Before/after image slider | vanilla-js, css | med | ✅ |
+| `zoom-image` | Hover zoom / magnifier lens | vanilla-js | med | ✅ |
 
 ### Social & Sharing
 
 | Slug | Description | Tech | Difficulty | Status |
 |---|---|---|---|---|
-| `like-button` | Animated like/heart button | vanilla-js, css | easy | [ ] |
-| `share-button` | Share button with options | vanilla-js | easy | [ ] |
-| `follow-button` | Follow/Subscribe toggle | css | easy | [ ] |
-| `social-feed` | Social media feed card | vanilla-js, css | med | [ ] |
-| `comment-box` | Comment input with avatar | css | easy | [ ] |
+| `like-button` | Animated like/heart button | vanilla-js, css | easy | ✅ |
+| `share-button` | Share button with options | vanilla-js | easy | ✅ |
+| `follow-button` | Follow/Subscribe toggle | css | easy | ✅ |
+| `social-feed` | Social media feed card | vanilla-js, css | med | ✅ |
+| `comment-box` | Comment input with avatar | css | easy | ✅ |
 
 ### Real-time & Live
 
 | Slug | Description | Tech | Difficulty | Status |
 |---|---|---|---|---|
-| `live-clock` | Real-time clock (analog + digital) | vanilla-js | easy | [ ] |
-| `stock-ticker` | Scrolling stock/crypto ticker | vanilla-js | med | [ ] |
-| `live-search` | Real-time search with debounce | vanilla-js | med | [ ] |
-| `typing-indicator` | "User is typing…" animation | css | easy | [ ] |
+| `live-clock` | Real-time clock (analog + digital) | vanilla-js | easy | ✅ |
+| `stock-ticker` | Scrolling stock/crypto ticker | vanilla-js | med | ✅ |
+| `live-search` | Real-time search with debounce | vanilla-js | med | ✅ |
+| `typing-indicator` | "User is typing…" animation | css | easy | ✅ |
 
 ### Interactive & Games
 
 | Slug | Description | Tech | Difficulty | Status |
 |---|---|---|---|---|
-| `quiz-widget` | Quiz/Trivia widget with score | vanilla-js | med | [ ] |
-| `poll-vote` | Poll/Voting widget with results bar | vanilla-js | med | [ ] |
-| `simple-game` | Simple browser game (Snake/Pong) | vanilla-js, canvas | hard | [ ] |
-| `memory-card-game` | Card matching memory game | vanilla-js | med | [ ] |
+| `quiz-widget` | Simple multiple choice quiz | vanilla-js | med | ✅ |
+| `poll-vote` | Voting poll with percentages | vanilla-js | med | ✅ |
+| `simple-game` | Snake game (Canvas) | canvas-api | hard | ✅ |
+| `memory-card-game` | Memory card match game | vanilla-js, css-3d | med | ✅ |
 
 ---
 

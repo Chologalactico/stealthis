@@ -5,6 +5,7 @@ export const SITE_URLS = {
   docs: isDev ? "http://localhost:4322" : "https://docs.stealthis.dev",
   lab: isDev ? "http://localhost:4323" : "https://lab.stealthis.dev",
   build: isDev ? "http://localhost:4324/" : "https://build.stealthis.dev",
+  styleforge: isDev ? "http://localhost:4326/" : "https://styleforge.stealthis.dev",
   remotion: isDev ? "http://localhost:4325" : "https://remotion.stealthis.dev",
   changelog: "https://github.com/Foodhy/stealthis/releases",
 } as const;
