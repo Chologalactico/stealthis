@@ -23,21 +23,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Base Layout & Utilities */
-.h-screen { height: 100vh; }
-.relative { position: relative; }
-.absolute { position: absolute; }
-.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.text-center { text-align: center; }
-.z-10 { z-index: 10; }
-.w-full { width: 100%; }
-.max-w-6xl { max-width: 72rem; }
-.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-
-/* Gradient Blobs */
+/* --- Gradient Blobs --- */
 .bg-blobs {
   position: fixed;
   inset: 0;
@@ -69,7 +55,20 @@ body {
   right: -100px;
 }
 
-/* Hero Section */
+/* --- Hero Section --- */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-content {
+  text-align: center;
+}
+
 .hero-title {
   font-size: clamp(4rem, 15vw, 12rem);
   font-weight: 800;
@@ -90,10 +89,15 @@ body {
   opacity: 0;
 }
 
-/* Sections */
+/* --- Sections --- */
 section {
-  padding: 120px 0;
+  padding: 120px 1.5rem;
   position: relative;
+}
+
+.section-container {
+  max-width: 72rem;
+  margin: 0 auto;
 }
 
 .section-title {
@@ -111,7 +115,188 @@ section {
   line-height: 1.5;
 }
 
-/* Glass Card */
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #fff, #86868b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+/* --- Intro Section --- */
+.intro-section {
+  padding: 120px 1.5rem;
+}
+
+.intro-grid {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+@media (min-width: 768px) {
+  .intro-grid {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+
+.intro-text {
+  flex: 1;
+}
+
+.intro-cta {
+  margin-top: 3rem;
+}
+
+/* --- CSS-only Vision Pro Headset --- */
+.device-container {
+  flex: 1;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+.device-card {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.device-visual {
+  position: relative;
+  width: 320px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headset {
+  position: relative;
+  width: 280px;
+  height: 100px;
+}
+
+.headset-glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2a2a2e 0%, #1a1a1e 40%, #0a0a0e 100%);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.headset-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 55%,
+    transparent 70%
+  );
+}
+
+.headset-lens {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(80, 80, 100, 0.6) 0%,
+    rgba(30, 30, 45, 0.8) 60%,
+    rgba(10, 10, 20, 0.95) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.headset-lens-l { left: 55px; }
+.headset-lens-r { right: 55px; }
+
+.headset-eyesight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 40px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(100, 120, 255, 0.08) 20%,
+    rgba(120, 140, 255, 0.15) 50%,
+    rgba(100, 120, 255, 0.08) 80%,
+    transparent 100%
+  );
+  border-radius: 20px;
+  animation: eyesight-pulse 4s ease-in-out infinite;
+}
+
+@keyframes eyesight-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.headset-band {
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  width: 50px;
+  height: 70px;
+  border-right: 3px solid rgba(200, 200, 210, 0.3);
+  border-radius: 0 30px 30px 0;
+}
+
+.headset-knob {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #444 0%, #222 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.device-glow {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  animation: device-glow-pulse 6s ease-in-out infinite;
+}
+
+@keyframes device-glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* --- Glass Card --- */
 .glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -126,28 +311,10 @@ section {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Device Showcase */
-.device-container {
-  perspective: 1000px;
-}
-
-.device-card {
-  position: relative;
-  width: 100%;
-  height: auto;
-  transform-style: preserve-3d;
-}
-
-.device-image {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.5));
-}
-
-/* Feature Grid */
+/* --- Feature Grid --- */
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   width: 100%;
 }
@@ -165,6 +332,27 @@ section {
   transform: translateY(-10px);
 }
 
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.feature-icon-prod { background: rgba(37, 99, 235, 0.2); }
+.feature-icon-ent { background: rgba(124, 58, 237, 0.2); }
+.feature-icon-photo { background: rgba(20, 184, 166, 0.2); }
+
+.feature-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
 .tag {
   display: inline-block;
   padding: 6px 16px;
@@ -178,7 +366,115 @@ section {
   letter-spacing: 0.1em;
 }
 
-/* Animations */
+.tag-blue { background: #2563eb; }
+.tag-purple { background: #7c3aed; }
+.tag-teal { background: #0d9488; }
+
+/* --- Tech / Spec Section --- */
+.tech-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.tech-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.tech-desc {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 3rem;
+}
+
+.spec-item {
+  text-align: center;
+}
+
+.spec-number {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, #fff, var(--blue-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.spec-label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- CTA Section --- */
+.cta-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.cta-title {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-rings {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ring-1 { width: 300px; height: 300px; }
+.ring-2 { width: 500px; height: 500px; }
+.ring-3 { width: 700px; height: 700px; }
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #fff;
+  color: #000;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-glow {
+  box-shadow: 0 0 30px rgba(0, 113, 227, 0.3);
+}
+
+/* --- Animations --- */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -206,32 +502,39 @@ section {
   background: linear-gradient(to bottom, var(--blue-primary), transparent);
 }
 
-/* Buttons */
-.btn-primary {
-  display: inline-block;
-  padding: 16px 32px;
-  background: #fff;
-  color: #000;
-  border-radius: 30px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 30px;
+    border-radius: 24px;
+  }
 
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-}
+  .feature-box {
+    padding: 24px;
+    border-radius: 20px;
+  }
 
-/* Utilities */
-.mb-12 { margin-bottom: 3rem; }
-.mt-12 { margin-top: 3rem; }
-.text-gradient {
-  background: linear-gradient(90deg, #fff, #86868b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  .device-visual {
+    width: 240px;
+    height: 160px;
+  }
 
+  .headset {
+    width: 210px;
+    height: 75px;
+  }
+
+  .headset-lens {
+    width: 38px;
+    height: 38px;
+  }
+
+  .headset-lens-l { left: 40px; }
+  .headset-lens-r { right: 40px; }
+
+  .headset-band {
+    width: 35px;
+    height: 50px;
+    right: -20px;
+  }
+}

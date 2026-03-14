@@ -12,6 +12,28 @@ StealThis.dev is a Bun-workspace monorepo for an open-source resource library of
 
 The canonical source of resource content lives in `packages/content/resources/<slug>/`.
 
+## Website Locales
+
+`apps/www` currently exposes these localized routes:
+
+- `en` — English
+- `es` — Spanish
+- `fr` — French
+- `ja` — Japanese
+- `ms` — Malay
+- `hi` — Hindi
+- `ko` — Korean
+- `nl` — Dutch
+- `de` — German
+- `pt-br` — Brazilian Portuguese
+- `zh-hk` — Traditional Chinese (Hong Kong)
+- `zh-cn` — Simplified Chinese (China)
+- `it` — Italian
+- `pl` — Polish
+- `uk` — Ukrainian
+
+Browser locale detection also maps `UA` users to `uk`.
+
 ## Monorepo Structure
 
 ```text

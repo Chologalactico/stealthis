@@ -1,45 +1,49 @@
-// Initialize Lenis for smooth scrolling
+// Initialize Lenis for smooth scrolling (driven by GSAP ticker)
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
   smoothWheel: true,
+  autoRaf: false,
 });
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-
-requestAnimationFrame(raf);
 
 // GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero Entrance
-const tl = gsap.timeline({ 
-    defaults: { ease: "power4.out" },
-    onComplete: () => {
-        // Optional: Trigger something after entrance
-    }
+// Single raf loop via GSAP ticker — avoids double-calling lenis.raf
+lenis.on("scroll", ScrollTrigger.update);
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
 });
+gsap.ticker.lagSmoothing(0);
+
+// Hero Entrance
+const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
 tl.to(".hero-title", {
   opacity: 1,
   scale: 1,
   filter: "blur(0px)",
   duration: 2.5,
-  delay: 0.5
+  delay: 0.5,
 })
-.to(".hero-subtitle", {
-  opacity: 1,
-  y: -20,
-  duration: 1.5,
-}, "-=2")
-.to(".scroll-indicator", {
-  opacity: 1,
-  y: 0,
-  duration: 1,
-}, "-=1");
+  .to(
+    ".hero-subtitle",
+    {
+      opacity: 1,
+      y: -20,
+      duration: 1.5,
+    },
+    "-=2",
+  )
+  .to(
+    ".scroll-indicator",
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+    },
+    "-=1",
+  );
 
 // Parallax for Background Blobs
 gsap.to(".blob-1", {
@@ -50,7 +54,7 @@ gsap.to(".blob-1", {
     start: "top top",
     end: "bottom bottom",
     scrub: 1,
-  }
+  },
 });
 
 gsap.to(".blob-2", {
@@ -61,13 +65,14 @@ gsap.to(".blob-2", {
     start: "top top",
     end: "bottom bottom",
     scrub: 1,
-  }
+  },
 });
 
-// Generic Reveal Animation for elements with .reveal class
+// Generic Reveal Animation — elements stay visible once revealed
 const revealElements = gsap.utils.toArray(".reveal");
 revealElements.forEach((el) => {
-  gsap.fromTo(el, 
+  gsap.fromTo(
+    el,
     { opacity: 0, y: 50 },
     {
       opacity: 1,
@@ -77,9 +82,9 @@ revealElements.forEach((el) => {
       scrollTrigger: {
         trigger: el,
         start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    }
+        toggleActions: "play none none none",
+      },
+    },
   );
 });
 
@@ -94,22 +99,20 @@ if (deviceCard) {
       start: "top center",
       end: "bottom center",
       scrub: true,
-    }
+    },
   });
 
   // Mouse tilt effect
   window.addEventListener("mousemove", (e) => {
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = deviceCard.getBoundingClientRect();
-    
-    const x = (clientX - (left + width / 2)) / (width / 2);
-    const y = (clientY - (top + height / 2)) / (height / 2);
-    
+    const rect = deviceCard.getBoundingClientRect();
+    const x = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    const y = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
     gsap.to(deviceCard, {
       rotateY: x * 10,
       rotateX: -y * 10,
       duration: 0.8,
-      ease: "power2.out"
+      ease: "power2.out",
     });
   });
 }
@@ -117,28 +120,83 @@ if (deviceCard) {
 // Staggered reveal for feature boxes
 const featureGrid = document.querySelector(".feature-grid");
 if (featureGrid) {
-    gsap.from(".feature-box", {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        stagger: 0.2,
-        scrollTrigger: {
-            trigger: featureGrid,
-            start: "top 80%",
-        }
-    });
+  gsap.fromTo(".feature-box",
+    { opacity: 0, y: 40, scale: 0.95 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: featureGrid,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    }
+  );
 }
 
-// Hero Title zoom on scroll
-gsap.to(".hero-title", {
-  scale: 1.5,
+// Hero content zoom-out on scroll (targets wrapper to avoid conflict with entrance animation)
+gsap.to(".hero-content", {
+  scale: 1.3,
   opacity: 0,
   filter: "blur(20px)",
   scrollTrigger: {
     trigger: ".hero-section",
     start: "top top",
-    end: "bottom top",
+    end: "80% top",
     scrub: true,
-  }
+  },
 });
 
+// CTA rings expand on scroll
+gsap.utils.toArray(".ring").forEach((ring, i) => {
+  gsap.fromTo(
+    ring,
+    { scale: 0.5, opacity: 0 },
+    {
+      scale: 1,
+      opacity: 1,
+      duration: 1.5,
+      delay: i * 0.15,
+      scrollTrigger: {
+        trigger: ".cta-section",
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    },
+  );
+});
+
+// Spec numbers count-up animation
+const specNumbers = document.querySelectorAll(".spec-number");
+specNumbers.forEach((el) => {
+  const text = el.textContent;
+  const num = parseInt(text, 10);
+
+  if (!isNaN(num) && num > 0) {
+    const suffix = text.replace(String(num), "");
+    el.textContent = "0" + suffix;
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        gsap.to(
+          { val: 0 },
+          {
+            val: num,
+            duration: 2,
+            ease: "power2.out",
+            onUpdate: function () {
+              el.textContent = Math.round(this.targets()[0].val) + suffix;
+            },
+          },
+        );
+      },
+    });
+  }
+});

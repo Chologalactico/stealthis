@@ -29,6 +29,7 @@ const localeFlags: Record<Locale, string> = {
   "zh-cn": "🇨🇳",
   it: "🇮🇹",
   pl: "🇵🇱",
+  uk: "🇺🇦",
 };
 const localeOptionLabels: Record<Locale, string> = {
   en: t("lang.option.en"),
@@ -45,6 +46,7 @@ const localeOptionLabels: Record<Locale, string> = {
   "zh-cn": t("lang.option.zh-cn"),
   it: t("lang.option.it"),
   pl: t("lang.option.pl"),
+  uk: t("lang.option.uk"),
 };
 const localeOptionDisplay: Record<Locale, string> = Object.fromEntries(
   LOCALES.map((optionLocale) => {
@@ -111,6 +113,7 @@ const menuLabels: Record<Locale, { open: string; close: string; title: string }>
   "zh-cn": { open: "打开菜单", close: "关闭菜单", title: "导航" },
   it: { open: "Apri menu", close: "Chiudi menu", title: "Navigazione" },
   pl: { open: "Otwórz menu", close: "Zamknij menu", title: "Nawigacja" },
+  uk: { open: "Відкрити меню", close: "Закрити меню", title: "Навігація" },
 };
 
 const menuOpenLabel = menuLabels[locale].open;

@@ -13,6 +13,7 @@ export const LOCALES = [
   "zh-cn",
   "it",
   "pl",
+  "uk",
 ] as const;
 export type Locale = (typeof LOCALES)[number];
 
@@ -34,6 +35,7 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   "zh-cn": "简体中文 (中国)",
   it: "Italiano",
   pl: "Polski",
+  uk: "Українська",
 };
 
 export const LOCALE_OG_TAG: Record<Locale, string> = {
@@ -51,6 +53,7 @@ export const LOCALE_OG_TAG: Record<Locale, string> = {
   "zh-cn": "zh_CN",
   it: "it_IT",
   pl: "pl_PL",
+  uk: "uk_UA",
 };
 
 const en = {
@@ -304,6 +307,7 @@ const en = {
   "lang.option.zh-cn": "Chinese (China)",
   "lang.option.it": "Italian",
   "lang.option.pl": "Polish",
+  "lang.option.uk": "Ukrainian",
 } as const;
 
 const es = {
@@ -557,6 +561,7 @@ const es = {
   "lang.option.zh-cn": "Chino (China)",
   "lang.option.it": "Italiano",
   "lang.option.pl": "Polaco",
+  "lang.option.uk": "Ucraniano",
 } as const;
 
 const fr: Record<keyof typeof en, string> = {
@@ -775,6 +780,7 @@ const fr: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Chinois (Chine)",
   "lang.option.it": "Italien",
   "lang.option.pl": "Polonais",
+  "lang.option.uk": "Ukrainien",
 };
 
 const ja: Record<keyof typeof en, string> = {
@@ -1002,6 +1008,7 @@ const ja: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "中国語（中国）",
   "lang.option.it": "イタリア語",
   "lang.option.pl": "ポーランド語",
+  "lang.option.uk": "ウクライナ語",
 };
 
 const ms: Record<keyof typeof en, string> = {
@@ -1204,6 +1211,7 @@ const ms: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Cina (China)",
   "lang.option.it": "Itali",
   "lang.option.pl": "Poland",
+  "lang.option.uk": "Ukraine",
 };
 
 const hi: Record<keyof typeof en, string> = {
@@ -1403,6 +1411,7 @@ const hi: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "चीनी (चीन)",
   "lang.option.it": "इतालवी",
   "lang.option.pl": "पोलिश",
+  "lang.option.uk": "यूक्रेनी",
 };
 
 const ko: Record<keyof typeof en, string> = {
@@ -1603,6 +1612,7 @@ const ko: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "중국어(중국)",
   "lang.option.it": "이탈리아어",
   "lang.option.pl": "폴란드어",
+  "lang.option.uk": "우크라이나어",
 };
 
 const nl: Record<keyof typeof en, string> = {
@@ -1805,6 +1815,7 @@ const nl: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Chinees (China)",
   "lang.option.it": "Italiaans",
   "lang.option.pl": "Pools",
+  "lang.option.uk": "Oekraïens",
 };
 
 const de: Record<keyof typeof en, string> = {
@@ -2008,6 +2019,7 @@ const de: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Chinesisch (China)",
   "lang.option.it": "Italienisch",
   "lang.option.pl": "Polnisch",
+  "lang.option.uk": "Ukrainisch",
 };
 
 const ptBr: Record<keyof typeof en, string> = {
@@ -2210,6 +2222,7 @@ const ptBr: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Chinês (China)",
   "lang.option.it": "Italiano",
   "lang.option.pl": "Polonês",
+  "lang.option.uk": "Ucraniano",
 };
 
 const zhCn: Record<keyof typeof en, string> = {
@@ -2447,6 +2460,7 @@ const zhCn: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "简体中文（中国）",
   "lang.option.it": "意大利语",
   "lang.option.pl": "波兰语",
+  "lang.option.uk": "乌克兰语",
 };
 
 const zhHk: Record<keyof typeof en, string> = {
@@ -2617,6 +2631,7 @@ const zhHk: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "簡體中文（中國）",
   "lang.option.it": "義大利文",
   "lang.option.pl": "波蘭文",
+  "lang.option.uk": "烏克蘭文",
 };
 
 const it: Record<keyof typeof en, string> = {
@@ -2866,6 +2881,7 @@ const it: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Cinese (Cina)",
   "lang.option.it": "Italiano",
   "lang.option.pl": "Polacco",
+  "lang.option.uk": "Ucraino",
 };
 
 const pl: Record<keyof typeof en, string> = {
@@ -3116,6 +3132,261 @@ const pl: Record<keyof typeof en, string> = {
   "lang.option.zh-cn": "Chiński (Chiny)",
   "lang.option.it": "Włoski",
   "lang.option.pl": "Polski",
+  "lang.option.uk": "Ukraiński",
+};
+
+const uk: Record<keyof typeof en, string> = {
+  ...en,
+  "nav.library": "Бібліотека",
+  "nav.docs": "Документація",
+  "nav.lab": "Lab",
+  "nav.build": "Builder",
+  "nav.styleforge": "StyleForge",
+  "nav.showcase": "Showcase",
+  "nav.uhd": "UHD",
+  "nav.effects": "Ефекти",
+  "nav.changelog": "Журнал змін",
+  "hero.eyebrow": "Steal This",
+  "hero.titlePrefix": "Steal this ",
+  "hero.titleSuffix": " — усе можна вільно копіювати.",
+  "hero.rotatingWords":
+    "дизайни,сторінки,компоненти,анімації,патерни,навички,шаблони,промпти,MCPs",
+  "hero.subtitle.before": "Готові до використання снипети й демо. ",
+  "hero.subtitle.mcp": "MCP",
+  "hero.subtitle.after": " сервер уже включено. Переглядай, копіюй, інтегруй.",
+  "hero.cta.browse": "Переглянути бібліотеку",
+  "hero.cta.showcase": "Showcase",
+  "hero.cta.docs": "Відкрити Docs",
+  "home.search.placeholder": "Натисни CMD+K для пошуку...",
+  "home.search.label": "Пошук у бібліотеці",
+  "home.stats.resources": "Ресурси",
+  "home.stats.categories": "Категорії",
+  "home.stats.license": "Ліцензія",
+  "home.featured.title": "Рекомендовані ресурси",
+  "home.featured.lead":
+    "Відкривай runnable-демо прямо в Lab. Порівнюй складність, стек і швидко обирай правильний референс перед розробкою.",
+  "home.featured.viewAll": "Дивитися все",
+  "home.featured.lab": "Lab",
+  "home.categories.title": "Перегляд за категоріями",
+  "home.categories.desc.webAnimations": "Скрол-ефекти, паралакс, canvas",
+  "home.categories.desc.webPages": "Лендінги, hero-блоки, pricing-сторінки",
+  "home.categories.desc.pages": "Повноцінні сторінки та секції",
+  "home.categories.desc.uiComponents": "Кнопки, картки, форми, модалки",
+  "home.categories.desc.components": "Повторно використовувані UI-блоки та снипети",
+  "home.categories.desc.patterns": "Лоадери, hover-ефекти, меню",
+  "home.categories.desc.remotion": "Відеошаблони на React",
+  "home.categories.desc.databaseSchemas": "SQL-схеми, ERD-діаграми, seed-дані",
+  "home.categories.desc.prompts": "AI-промпти та воркфлоу",
+  "home.categories.desc.music": "Аудіо, плеєри, візуалізатори",
+  "home.categories.desc.skills": "AI-навички та воркфлоу",
+  "home.categories.desc.mcpServers": "MCP-сервери та інструменти",
+  "home.categories.desc.architectures": "Архітектури та патерни",
+  "home.manifesto.eyebrow": "Будуй з контролем",
+  "home.manifesto.title": "Бери те, що працює. Випускай те, що хочеш.",
+  "home.manifesto.lead":
+    "Для людей і ботів, які хочуть створювати софт, не починаючи щоразу з нуля.",
+  "home.manifesto.body1":
+    "StealThis — це бібліотека референсів насамперед. Дивись на кожен елемент, розумій, як він працює, і перевикористовуй його у своєму стеку.",
+  "home.manifesto.body2":
+    "Мета проста: одне спільне місце, де знання, перевірені практики й production-ready референси живуть разом.",
+  "home.manifesto.howToTitle": "Як цим користуватися",
+  "home.manifesto.howToAria": "Як цим користуватися",
+  "home.manifesto.step1.accent": "Знайди референс",
+  "home.manifesto.step1.text": "який уже розв'язує частину твоєї задачі.",
+  "home.manifesto.step2.accent": "Швидко вивчи його:",
+  "home.manifesto.step2.text": "структуру, поведінку та деталі реалізації.",
+  "home.manifesto.step3.accent": "Адаптуй",
+  "home.manifesto.step3.text": "під свою дизайн-систему, стек і обмеження.",
+  "home.manifesto.step4.accent": "Швидше релізь",
+  "home.manifesto.step4.text": "без втрати якості коду.",
+  "home.manifesto.micro": "Менше boilerplate. Менше перемикань контексту. Більше реальної роботи.",
+  "home.manifesto.practiceTitle": "Що ти отримуєш на практиці",
+  "home.manifesto.practiceBody":
+    "Швидшу першу версію, сильніші референси реалізації та менше хибних стартів.",
+  "home.manifesto.outcomesAria": "Практичні результати",
+  "home.manifesto.outcomeA.accent": "Швидкість з контролем:",
+  "home.manifesto.outcomeA.text": "стартуй з реальної бази й не знижуй власну планку.",
+  "home.manifesto.outcomeB.accent": "Спільна мова:",
+  "home.manifesto.outcomeB.text": "люди й боти мислять від одних і тих самих референсів.",
+  "home.manifesto.outcomeC.accent": "Накопичуване знання:",
+  "home.manifesto.outcomeC.text": "кожне повторне використання спрощує наступну збірку.",
+  "home.manifesto.future":
+    "Подальший напрям: власні візуальні системи, власні workflow-конфігурації та створення софту звідусіль за власними правилами.",
+  "home.roadmap.eyebrow": "Робота над roadmap триває",
+  "home.roadmap.title": "Від фундаменту до AI-first вебфреймворку",
+  "home.roadmap.lead":
+    "Ми будуємо це публічно, крок за кроком. Шлях починається з міцної основи, далі йде якість документації, потім workflows для створення проєктів, а в кінці — легкий фреймворк для розробки вебсофту з підтримкою AI.",
+  "home.roadmap.dot.foundation": "Фундамент",
+  "home.roadmap.dot.docs": "Якість docs",
+  "home.roadmap.dot.builder": "Builder",
+  "home.roadmap.dot.framework": "Фреймворк",
+  "home.roadmap.phase1.title": "Побудувати фундамент",
+  "home.roadmap.phase1.body":
+    "Стабілізувати базову архітектуру, ключові сторінки, повторно використовувані примітиви та візуальну мову.",
+  "home.roadmap.phase2.title": "Покращити docs за найкращими практиками",
+  "home.roadmap.phase2.body":
+    "Зробити гайд зрозумілішим, практичнішим і прикладнішим, щоб люди могли впроваджувати швидше й з меншим рівнем плутанини.",
+  "home.roadmap.phase3.title": "Покращити builder для створення проєктів",
+  "home.roadmap.phase3.body":
+    "Зменшити friction на старті та зробити scaffolding проєктів більш керованим на основі референсів.",
+  "home.roadmap.phase4.title": "Створити базовий фреймворк StealThis",
+  "home.roadmap.phase4.body":
+    "Простий фреймворк для вебпроєктів, натхненний Astro-подібними workflows і сфокусований на AI-assisted creation.",
+  "home.keywords.eyebrow": "Мова проєкту",
+  "home.keywords.title": "Слова, що визначають цей проєкт",
+  "home.keywords.lead":
+    "Це не маркетингові терміни. Це робочі принципи того, як ми будуємо, ділимося й випускаємо софт з меншою складністю та більшою власністю.",
+  "home.keywords.aria": "Ключові слова проєкту та їхні значення",
+  "home.keywords.control.word": "КОНТРОЛЬ",
+  "home.keywords.control.accent": "Контроль",
+  "home.keywords.control.text":
+    "означає вибір свого стеку, своєї дизайн-системи та свого темпу доставки без прив'язки до жорстких дефолтів.",
+  "home.keywords.reference.word": "РЕФЕРЕНС",
+  "home.keywords.reference.accent": "Референс",
+  "home.keywords.reference.text":
+    "означає навчання на конкретних реалізаціях, а не на абстрактних тредах, розкиданих по різних джерелах.",
+  "home.keywords.reuse.word": "ПОВТОРНЕ ВИКОРИСТАННЯ",
+  "home.keywords.reuse.accent": "Повторне використання",
+  "home.keywords.reuse.text":
+    "це базовий підхід. Починай із перевіреної основи, адаптуй її й витрачай енергію на відмінності, а не на повторення.",
+  "home.keywords.collaboration.word": "СПІВПРАЦЯ",
+  "home.keywords.collaboration.accent": "Співпраця",
+  "home.keywords.collaboration.text":
+    "означає, що люди й боти будують з одного контексту, одних правил і тих самих production-референсів.",
+  "home.keywords.practice.word": "ПРАКТИКА",
+  "home.keywords.practice.accent": "Практика",
+  "home.keywords.practice.text":
+    "це місце, де з'являється якість: повторювані workflows, перевірені патерни й дисципліна реалізації.",
+  "home.keywords.ownership.word": "ВЛАСНІСТЬ",
+  "home.keywords.ownership.accent": "Власність",
+  "home.keywords.ownership.text":
+    "означає розуміти, що саме ти запускаєш, чому це працює і як це розвивати, коли змінюються вимоги.",
+  "home.keywords.clarity.word": "ЯСНІСТЬ",
+  "home.keywords.clarity.accent": "Ясність",
+  "home.keywords.clarity.text":
+    "знімає тертя: одне місце для референсів, одна мова для рішень, один шлях від ідеї до доставки.",
+  "home.keywords.ship.word": "РЕЛІЗ",
+  "home.keywords.ship.accent": "Реліз",
+  "home.keywords.ship.text":
+    "означає швидше доходити до production, не опускаючи планку архітектури, доступності й підтримуваності.",
+  "home.scramble.eyebrow": "Філософія Steal This",
+  "home.scramble.title": "Слова, які ми відкриваємо в процесі побудови",
+  "home.scramble.lead":
+    "Кожен рядок нижче — це зобов'язання перед практичнішим способом створення софту: референси на землі, спільний контекст і швидше виконання з контролем.",
+  "home.scramble.phrases":
+    "STEAL THIS →||БУДУЙ З КОНТРОЛЕМ||ПОЧИНАЙ З РЕФЕРЕНСІВ||ЛЮДИ + БОТИ||МЕНШЕ ТЕРТЯ, БІЛЬШЕ РЕЛІЗІВ",
+  "home.scramble.staticAria": "Рядки філософії StealThis",
+  "home.scramble.static1": "БУДУЙ З КОНТРОЛЕМ",
+  "home.scramble.static2": "ПОЧИНАЙ З РЕФЕРЕНСІВ",
+  "home.scramble.static3": "МЕНШЕ ТЕРТЯ, БІЛЬШЕ РЕЛІЗІВ",
+  "home.scramble.static4": "ЛЮДИ + БОТИ, ОДИН КОНТЕКСТ",
+  "library.title": "Бібліотека",
+  "library.subtitle": "Перегляд усіх ресурсів",
+  "library.filter.all": "Усі",
+  "library.filter.category": "Категорія",
+  "library.filter.difficulty": "Складність",
+  "library.filter.tech": "Технології",
+  "library.filter.author": "Автор",
+  "library.filter.favorites": "Збережені",
+  "library.search.placeholder": "Пошук ресурсів...",
+  "library.sort.grouped": "За категоріями",
+  "library.sort.latest": "Останні додані",
+  "library.noResults": "Немає ресурсів, що відповідають фільтрам.",
+  "collections.title": "Глобальні колекції",
+  "collections.subtitle": "Швидкий старт із популярних напрямків",
+  "collections.explorerSubtitle": "Переглядай теми й пов'язані ресурси",
+  "collections.all": "Усі",
+  "collections.cta": "Відкрити колекцію",
+  "collections.viewLab": "Відкрити в Lab",
+  "collections.viewResource": "Відкрити ресурс",
+  "collections.empty": "У цій колекції поки немає ресурсів.",
+  "collections.prev": "Попередня",
+  "collections.next": "Наступна",
+  "collection.saas.title": "SaaS-конструктори",
+  "collection.saas.desc": "Лендінги, дашборди й референси SaaS-архітектур.",
+  "collection.motion.title": "Основи motion",
+  "collection.motion.desc": "Скрол- і reveal-анімації для сучасного UI.",
+  "collection.hero.title": "Hero-стартери",
+  "collection.hero.desc": "Hero-секції, CTA-блоки та лендінг-макети.",
+  "collection.cards.title": "Карткові компоненти",
+  "collection.cards.desc": "Glass, metric і content cards.",
+  "collection.dashboard.title": "Dashboard UI",
+  "collection.dashboard.desc": "Патерни для admin та analytics-інтерфейсів з великою кількістю даних.",
+  "collection.remotion.title": "Remotion Pack",
+  "collection.remotion.desc": "React-композиції для відео.",
+  "collection.effects.title": "Ефекти",
+  "collection.effects.desc": "Click, nav, slide та feedback micro-interactions.",
+  "resource.copy": "Копіювати",
+  "resource.copied": "Скопійовано!",
+  "resource.copiedPasteGemini": "Скопійовано! Встав у Gemini.",
+  "resource.openLab": "Відкрити в Lab",
+  "resource.openRemotion": "Відкрити Remotion",
+  "resource.openChatGPT": "Відкрити в ChatGPT",
+  "resource.openClaude": "Відкрити в Claude",
+  "resource.openGemini": "Відкрити в Gemini",
+  "resource.copyMarkdown": "Копіювати як Markdown",
+  "resource.viewMarkdown": "Подивитися Markdown",
+  "resource.favorite": "Зберегти",
+  "resource.unfavorite": "Збережено",
+  "resource.author": "Автор",
+  "resource.difficulty.easy": "Легка",
+  "resource.difficulty.med": "Середня",
+  "resource.difficulty.hard": "Складна",
+  "resource.breadcrumb.home": "Головна",
+  "resource.breadcrumb.library": "Бібліотека",
+  "resource.targets": "Цілі",
+  "resource.section.preview": "Прев'ю",
+  "resource.section.code": "Код",
+  "resource.meta.license": "Ліцензія",
+  "resource.meta.added": "Додано",
+  "category.web-animations": "Веб-анімації",
+  "category.web-pages": "Веб-сторінки",
+  "category.ui-components": "UI-компоненти",
+  "category.patterns": "Патерни",
+  "category.components": "Компоненти",
+  "category.pages": "Сторінки",
+  "category.prompts": "Промпти",
+  "category.skills": "Навички",
+  "category.mcp-servers": "MCP-сервери",
+  "category.architectures": "Архітектури",
+  "category.boilerplates": "Бойлерплейти",
+  "category.remotion": "Remotion",
+  "category.database-schemas": "Схеми баз даних",
+  "category.ultra-high-definition-pages": "Ultra High Definition сторінки",
+  "category.music": "Музика",
+  "category.comingSoon": "Скоро",
+  "favorites.export": "Експортувати збережені",
+  "favorites.import": "Імпортувати збережені",
+  "changelog.title": "Журнал змін",
+  "changelog.description":
+    "Нотатки до релізів StealThis.dev: нові ресурси, UI-оновлення, SEO-покращення та зміни платформи.",
+  "changelog.intro":
+    "Помітні зміни, нові ресурси й покращення. Повну історію релізів дивись на GitHub.",
+  "changelog.seeGitHub": "Релізи на GitHub",
+  "showcase.title": "Showcase",
+  "showcase.livePreviews": "живі прев'ю",
+  "showcase.filterAria": "Фільтр за категорією",
+  "showcase.saved": "Збережені",
+  "showcase.noResults": "Жоден компонент не відповідає цьому фільтру.",
+  "showcase.backToTop": "Нагору",
+  "showcase.viewCode": "Подивитися код",
+  "lang.label": "Мова",
+  "lang.toggle": "Українська",
+  "lang.option.en": "Англійська",
+  "lang.option.es": "Іспанська",
+  "lang.option.fr": "Французька",
+  "lang.option.ja": "Японська",
+  "lang.option.ms": "Малайська",
+  "lang.option.hi": "Гінді",
+  "lang.option.ko": "Корейська",
+  "lang.option.nl": "Нідерландська",
+  "lang.option.de": "Німецька",
+  "lang.option.pt-br": "Португальська (Бразилія)",
+  "lang.option.zh-hk": "Китайська (Гонконг)",
+  "lang.option.zh-cn": "Китайська (Китай)",
+  "lang.option.it": "Італійська",
+  "lang.option.pl": "Польська",
+  "lang.option.uk": "Українська",
 };
 
 export const ui = {
@@ -3133,6 +3404,7 @@ export const ui = {
   "zh-cn": zhCn,
   it,
   pl,
+  uk,
 } satisfies Record<Locale, Record<string, string>>;
 
 type TranslationKey = keyof typeof en;

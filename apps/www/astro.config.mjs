@@ -32,6 +32,7 @@ export default defineConfig({
       "de-ch",
       "it",
       "pl",
+      "uk",
     ],
     routing: {
       prefixDefaultLocale: false,
