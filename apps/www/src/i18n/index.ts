@@ -326,7 +326,7 @@ const es = {
   "nav.uhd": "UHD",
   "nav.effects": "Efectos",
   "nav.changelog": "Changelog",
-  "nav.loginWithGitHub": "Iniciar sesión con GitHub",
+  "nav.loginWithGitHub": "GitHub",
   "hero.eyebrow": "Steal This",
   "hero.titlePrefix": "Steal this ",
   "hero.titleSuffix": " — todos gratuitos para copiar.",
