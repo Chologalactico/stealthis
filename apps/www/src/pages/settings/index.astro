@@ -1,19 +1,210 @@
 ---
 import Base from "@layouts/Base.astro";
+export const prerender = false;
 
 const title = "Settings";
 ---
 
 <Base title={title}>
   <main class="min-h-[60vh] container-xl py-10">
-    <section class="max-w-2xl">
+    <section class="max-w-3xl">
       <p class="text-xs uppercase tracking-[0.25em] text-slate-500 mb-2">Account</p>
-      <h1 class="text-3xl font-semibold text-white mb-3">{title}</h1>
-      <p class="text-slate-400 mb-8">
-        Basic account settings placeholder. You can extend this page with
-        profile, notification, or workspace preferences later.
-      </p>
+      <h1 class="text-3xl font-semibold text-white mb-8">{title}</h1>
+
+      <div id="settings-unauth" class="hidden rounded-2xl border border-white/10 bg-white/5 p-6">
+        <p class="text-slate-300 mb-4">You need to log in to edit your settings.</p>
+        <a
+          href="/api/auth/github"
+          class="inline-flex items-center justify-center text-sm font-semibold px-4 py-2.5 rounded-xl border border-white/10 bg-white/6 hover:bg-white/10 hover:text-white transition-colors"
+        >
+          Login with GitHub
+        </a>
+      </div>
+
+      <div
+        id="settings-auth"
+        class="rounded-2xl border border-white/10 bg-white/5 p-6"
+      >
+        <div class="flex items-start gap-4 mb-6">
+          <div class="relative shrink-0">
+            <img
+              id="settings-avatar"
+              src=""
+              alt="Profile avatar"
+              class="w-12 h-12 rounded-full object-cover ring-1 ring-white/10 bg-white/5"
+            />
+          </div>
+
+          <div class="min-w-0">
+            <div class="flex items-center gap-3 flex-wrap">
+              <p id="settings-login" class="text-base font-semibold text-white"></p>
+              <p id="settings-email" class="text-slate-400 text-sm truncate"></p>
+            </div>
+            <p class="text-slate-500 text-sm mt-2">Profile settings</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-200 mb-2" for="settings-displayName"
+              >Display Name</label
+            >
+            <input
+              id="settings-displayName"
+              name="displayName"
+              type="text"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus-visible:outline-brand-400 focus-visible:outline-2"
+              autocomplete="name"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-200 mb-2" for="settings-bio">Bio</label>
+            <textarea
+              id="settings-bio"
+              name="bio"
+              rows="4"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus-visible:outline-brand-400 focus-visible:outline-2"
+              placeholder="A short bio about you..."
+            ></textarea>
+            <p class="text-xs text-slate-500 mt-2">
+              Tip: keep it short and clear.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 mt-6">
+          <button
+            id="settings-save"
+            type="button"
+            class="inline-flex items-center justify-center text-sm font-semibold px-4 py-2.5 rounded-xl border border-white/10 bg-white/6 hover:bg-white/10 hover:text-white transition-colors"
+          >
+            Save
+          </button>
+          <p id="settings-save-status" class="text-sm text-slate-400"></p>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-2xl border border-rose-500/20 bg-rose-500/5 p-6">
+        <h2 class="text-base font-semibold text-rose-300 mb-2">Danger Zone</h2>
+        <p class="text-sm text-rose-200/90 mb-4">
+          Delete your account permanently. This cannot be undone. Published skills remain public.
+        </p>
+
+        <button
+          id="settings-delete-account"
+          type="button"
+          class="inline-flex items-center justify-center text-sm font-semibold px-4 py-2.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-200 hover:bg-rose-500/20 transition-colors"
+        >
+          Delete account
+        </button>
+      </div>
     </section>
   </main>
 </Base>
+
+<script>
+  const unauthEl = document.getElementById("settings-unauth");
+  const authEl = document.getElementById("settings-auth");
+
+  const avatarImg = document.getElementById("settings-avatar");
+  const loginEl = document.getElementById("settings-login");
+  const emailEl = document.getElementById("settings-email");
+
+  const displayNameInput = document.getElementById("settings-displayName");
+  const bioInput = document.getElementById("settings-bio");
+
+  const saveBtn = document.getElementById("settings-save");
+  const statusEl = document.getElementById("settings-save-status");
+
+  const deleteBtn = document.getElementById("settings-delete-account");
+
+  const setUnauth = () => {
+    if (unauthEl) unauthEl.classList.remove("hidden");
+    if (authEl) authEl.classList.add("hidden");
+  };
+
+  const setAuth = () => {
+    if (unauthEl) unauthEl.classList.add("hidden");
+    if (authEl) authEl.classList.remove("hidden");
+  };
+
+  async function loadMe() {
+    const res = await fetch("/api/auth/me", { credentials: "include" });
+    if (!res.ok) {
+      setUnauth();
+      return;
+    }
+
+    const data = await res.json();
+    if (!data.authenticated) {
+      setUnauth();
+      return;
+    }
+
+    setAuth();
+    const user = data.user ?? {};
+
+    const login = user.login ? `@${user.login}` : "";
+    const email = user.email ?? "";
+
+    if (avatarImg && user.avatarUrl) avatarImg.src = user.avatarUrl;
+    if (loginEl) loginEl.textContent = login || "User";
+    if (emailEl) emailEl.textContent = email ?? "";
+
+    if (displayNameInput) displayNameInput.value = user.name ?? user.login ?? "";
+    if (bioInput) bioInput.value = user.bio ?? "";
+  }
+
+  async function saveSettings() {
+    if (!saveBtn) return;
+    if (statusEl) statusEl.textContent = "";
+
+    const displayName = displayNameInput ? displayNameInput.value : "";
+    const bio = bioInput ? bioInput.value : "";
+
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Saving...";
+
+    try {
+      const res = await fetch("/api/auth/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ displayName, bio }),
+      });
+
+      if (!res.ok) throw new Error("Failed to save");
+      const result = await res.json();
+      if (result?.ok) {
+        if (statusEl) statusEl.textContent = "Saved.";
+      } else {
+        if (statusEl) statusEl.textContent = "Could not save.";
+      }
+    } catch {
+      if (statusEl) statusEl.textContent = "Could not save.";
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.textContent = "Save";
+    }
+  }
+
+  async function init() {
+    await loadMe();
+    if (saveBtn) saveBtn.addEventListener("click", saveSettings);
+    if (deleteBtn) {
+      deleteBtn.addEventListener("click", () => {
+        const ok = window.confirm(
+          "Delete your account permanently. This cannot be undone. Published skills remain public."
+        );
+        if (!ok) return;
+        window.location.href = "/api/auth/delete";
+      });
+    }
+  }
+
+  if (typeof window !== "undefined") {
+    init();
+  }
+</script>
 

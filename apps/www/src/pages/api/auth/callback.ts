@@ -1,8 +1,7 @@
 import type { APIRoute } from "astro";
 
 export const prerender = false;
-const GITHUB_CLIENT_ID = import.meta.env.GITHUB_CLIENT_ID;
-const GITHUB_CLIENT_SECRET = import.meta.env.GITHUB_CLIENT_SECRET;
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = (import.meta as any).env ?? {};
 
 // Muy simple: en un proyecto real usarías una librería de cookies más robusta
 function createSessionCookie(payload: unknown) {
@@ -74,11 +73,42 @@ export const GET: APIRoute = async ({ request }) => {
     avatar_url?: string;
   };
 
+  // 2.1) Obtener email (opcional). Este endpoint es necesario
+  // cuando GitHub no devuelve email en `/user`.
+  let email: string | null = null;
+  try {
+    const emailsRes = await fetch("https://api.github.com/user/emails", {
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "User-Agent": "stealthis.dev",
+      },
+    });
+
+    if (emailsRes.ok) {
+      const emailsJson = (await emailsRes.json()) as Array<{
+        email: string;
+        primary: boolean;
+        verified: boolean;
+      }>;
+
+      const primaryVerified = emailsJson.find((e) => e.primary && e.verified);
+      const primary = emailsJson.find((e) => e.primary);
+      const fallback = emailsJson[0];
+      email = (primaryVerified ?? primary ?? fallback)?.email ?? null;
+    }
+  } catch {
+    // Si falla la carga de email, igual dejamos login/profile.
+    email = null;
+  }
+
   const session = {
     id: userJson.id,
     login: userJson.login,
     name: userJson.name ?? userJson.login,
     avatarUrl: userJson.avatar_url ?? null,
+    email,
+    bio: "",
   };
 
   const headers = new Headers();
