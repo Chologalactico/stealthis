@@ -11,7 +11,10 @@ export type ResourceCategoryPhase2 =
   | "boilerplates"
   | "remotion"
   | "database-schemas"
-  | "ultra-high-definition-pages";
+  | "ultra-high-definition-pages"
+  | "music"
+  | "3d-models"
+  | "3d-interactions";
 
 export type ResourceCategory = ResourceCategoryPhase1 | ResourceCategoryPhase2;
 
@@ -63,6 +66,15 @@ export interface ResourceAuthor {
   src: string;
 }
 
+export interface CodePenExample {
+  id: string;
+  title: string;
+  penUrl: string;
+  description?: string;
+  height?: number;
+  defaultTab?: "result" | "html,result" | "css,result" | "js,result";
+}
+
 export interface ResourceMeta {
   slug: string;
   title: string;
@@ -78,6 +90,7 @@ export interface ResourceMeta {
   labRoute?: string;
   license: string;
   author?: ResourceAuthor;
+  codepenExamples?: CodePenExample[];
   createdAt: string;
   updatedAt: string;
 }

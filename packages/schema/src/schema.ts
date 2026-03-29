@@ -18,6 +18,9 @@ export const ResourceCategorySchema = z.enum([
   "database-schemas",
   "ultra-high-definition-pages",
   "design-styles",
+  "music",
+  "3d-models",
+  "3d-interactions",
 ]);
 
 export const ResourceTypeSchema = z.enum([
@@ -70,6 +73,15 @@ export const ResourceCollectionSchema = z.enum([
   "charts",
 ]);
 
+export const CodePenExampleSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  penUrl: z.string().url(),
+  description: z.string().optional(),
+  height: z.number().int().positive().default(520),
+  defaultTab: z.enum(["result", "html,result", "css,result", "js,result"]).default("result"),
+});
+
 export const ResourceMetaSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
@@ -90,6 +102,7 @@ export const ResourceMetaSchema = z.object({
       src: z.string(),
     })
     .optional(),
+  codepenExamples: z.array(CodePenExampleSchema).optional(),
   createdAt: z
     .union([z.string(), z.date()])
     .transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v)),

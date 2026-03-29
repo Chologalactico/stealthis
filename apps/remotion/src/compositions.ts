@@ -21,6 +21,26 @@ import { ChartBar } from "./animations/remotion-chart";
 import { AnimatedCounter } from "./animations/remotion-counter";
 import { AnimatedTimeline } from "./animations/remotion-timeline";
 
+import { KineticText } from "./animations/remotion-kinetic-text";
+import { PodcastAudiogram } from "./animations/remotion-podcast-audiogram";
+import { ProductShowcase } from "./animations/remotion-product-showcase";
+import { CodeWalkthrough } from "./animations/remotion-code-walkthrough";
+import { CountdownVideo } from "./animations/remotion-countdown";
+import { SplitScreen } from "./animations/remotion-split-screen";
+import { NewsTicker } from "./animations/remotion-news-ticker";
+import { ProgressRingVideo } from "./animations/remotion-progress-ring";
+
+import { TextReveal } from "./animations/remotion-text-reveal";
+import { SocialProof } from "./animations/remotion-social-proof";
+import { LogoGrid } from "./animations/remotion-logo-grid";
+import { PricingTable } from "./animations/remotion-pricing-table";
+import { NotificationStack } from "./animations/remotion-notification";
+import { MapPins } from "./animations/remotion-map-pins";
+import { PhotoCollage } from "./animations/remotion-photo-collage";
+import { QuoteCard } from "./animations/remotion-quote-card";
+import { StepProcess } from "./animations/remotion-step-process";
+import { GradientWave } from "./animations/remotion-gradient-wave";
+
 export interface RemotionComposition {
   id: string;
   title: string;
@@ -67,6 +87,28 @@ export const remotionCompositions: RemotionComposition[] = [
   { id: "remotion-chart", title: "Bar Chart", component: ChartBar, durationInFrames: 150, fps: FPS, width: W, height: H, resourceSlug: "remotion-chart" },
   { id: "remotion-counter", title: "Number Counter", component: AnimatedCounter, durationInFrames: 120, fps: FPS, width: W, height: H, resourceSlug: "remotion-counter" },
   { id: "remotion-timeline", title: "Timeline", component: AnimatedTimeline, durationInFrames: 240, fps: FPS, width: W, height: H, resourceSlug: "remotion-timeline" },
+
+  // ── Phase 25 — New Video Examples ──────────────────────────────────────
+  { id: "remotion-kinetic-text", title: "Kinetic Typography", component: KineticText, durationInFrames: 150, fps: FPS, width: W, height: H, resourceSlug: "remotion-kinetic-text" },
+  { id: "remotion-podcast-audiogram", title: "Podcast Audiogram", component: PodcastAudiogram, durationInFrames: 300, fps: FPS, width: W, height: H, resourceSlug: "remotion-podcast-audiogram" },
+  { id: "remotion-product-showcase", title: "Product Showcase", component: ProductShowcase, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-product-showcase" },
+  { id: "remotion-code-walkthrough", title: "Code Walkthrough", component: CodeWalkthrough, durationInFrames: 240, fps: FPS, width: W, height: H, resourceSlug: "remotion-code-walkthrough" },
+  { id: "remotion-countdown", title: "Event Countdown", component: CountdownVideo, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-countdown" },
+  { id: "remotion-split-screen", title: "Split Screen", component: SplitScreen, durationInFrames: 180, fps: FPS, width: W, height: H, resourceSlug: "remotion-split-screen" },
+  { id: "remotion-news-ticker", title: "News Ticker", component: NewsTicker, durationInFrames: 450, fps: FPS, width: W, height: H, resourceSlug: "remotion-news-ticker" },
+  { id: "remotion-progress-ring", title: "Progress Ring", component: ProgressRingVideo, durationInFrames: 150, fps: FPS, width: W, height: H, resourceSlug: "remotion-progress-ring" },
+
+  // ── Phase 25b — More Video Examples ────────────────────────────────────
+  { id: "remotion-text-reveal", title: "Text Reveal", component: TextReveal, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-text-reveal" },
+  { id: "remotion-social-proof", title: "Social Proof", component: SocialProof, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-social-proof" },
+  { id: "remotion-logo-grid", title: "Logo Grid", component: LogoGrid, durationInFrames: 180, fps: FPS, width: W, height: H, resourceSlug: "remotion-logo-grid" },
+  { id: "remotion-pricing-table", title: "Pricing Table", component: PricingTable, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-pricing-table" },
+  { id: "remotion-notification", title: "Notification Stack", component: NotificationStack, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-notification" },
+  { id: "remotion-map-pins", title: "Map Pins", component: MapPins, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-map-pins" },
+  { id: "remotion-photo-collage", title: "Photo Collage", component: PhotoCollage, durationInFrames: 180, fps: FPS, width: W, height: H, resourceSlug: "remotion-photo-collage" },
+  { id: "remotion-quote-card", title: "Quote Card", component: QuoteCard, durationInFrames: 180, fps: FPS, width: W, height: H, resourceSlug: "remotion-quote-card" },
+  { id: "remotion-step-process", title: "Step Process", component: StepProcess, durationInFrames: 210, fps: FPS, width: W, height: H, resourceSlug: "remotion-step-process" },
+  { id: "remotion-gradient-wave", title: "Gradient Wave", component: GradientWave, durationInFrames: 300, fps: FPS, width: W, height: H, resourceSlug: "remotion-gradient-wave" },
 ];
 
 // Legacy constants kept for backwards compatibility
