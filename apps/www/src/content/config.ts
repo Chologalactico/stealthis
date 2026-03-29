@@ -9,8 +9,6 @@ const ResourceCategorySchema = z.enum([
   "components",
   "pages",
   "prompts",
-  "skills",
-  "mcp-servers",
   "architectures",
   "boilerplates",
   "remotion",
@@ -20,6 +18,7 @@ const ResourceCategorySchema = z.enum([
   "music",
   "3d-models",
   "3d-interactions",
+  "plugins",
 ]);
 
 const ResourceTypeSchema = z.enum([
@@ -92,14 +91,20 @@ const resources = defineCollection({
         src: z.string(),
       })
       .optional(),
-    codepenExamples: z.array(z.object({
-      id: z.string().min(1),
-      title: z.string().min(1),
-      penUrl: z.string().url(),
-      description: z.string().optional(),
-      height: z.number().int().positive().default(520),
-      defaultTab: z.enum(["result", "html,result", "css,result", "js,result"]).default("result"),
-    })).optional(),
+    codepenExamples: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          title: z.string().min(1),
+          penUrl: z.string().url(),
+          description: z.string().optional(),
+          height: z.number().int().positive().default(520),
+          defaultTab: z
+            .enum(["result", "html,result", "css,result", "js,result"])
+            .default("result"),
+        })
+      )
+      .optional(),
     createdAt: z
       .union([z.string(), z.date()])
       .transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v)),
