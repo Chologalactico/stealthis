@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNA Helix Scroll Story — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Fixed WebGL backdrop -->
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <span class="brand">HELIX<span class="brand-dot">/</span>LAB</span>
+    <span class="nav-meta">GENOME 04 — SCROLL STUDY</span>
+  </header>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span>Scroll to sequence</span>
+    <span class="hint-line" aria-hidden="true"></span>
+  </div>
+
+  <main id="story">
+
+    <section class="panel align-left" data-chapter="01">
+      <div class="panel-inner">
+        <span class="kicker">Chapter 01 — Sequence</span>
+        <h2>Two strands,<br />one signal.</h2>
+        <p>
+          The helix idles in its native state — 3.2 turns of paired bases,
+          pulsing softly. Every sphere you see is a single GPU instance.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel align-right" data-chapter="02">
+      <div class="panel-inner">
+        <span class="kicker">Chapter 02 — Unwind</span>
+        <h2>The twist<br />lets go.</h2>
+        <p>
+          Scroll progress scrubs the twist parameter toward zero while the
+          radius breathes open. The geometry is re-laid-out every frame —
+          nothing here is a baked animation.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel align-left" data-chapter="03">
+      <div class="panel-inner">
+        <span class="kicker">Chapter 03 — Split</span>
+        <h2>Strands<br />separate.</h2>
+        <p>
+          A separation parameter slides the two backbones apart and fades the
+          base-pair rungs. Replication begins where the scrollbar says so.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel align-right" data-chapter="04">
+      <div class="panel-inner">
+        <span class="kicker">Chapter 04 — Recombine</span>
+        <h2>Rebuilt,<br />brighter.</h2>
+        <p>
+          Everything tweens home — tighter twist, fresh hue, rungs restored.
+          Scroll back up and the whole story plays in reverse.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span>Three.js × Lenis × GSAP ScrollTrigger</span>
+    <span>stealthis — web-animations</span>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lenis Zoom Portal — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="nav">
+    <span class="brand">PORTAL<span class="brand-dot">.</span></span>
+    <span class="nav-meta">A LENIS SCROLL STUDY</span>
+  </header>
+
+  <!-- ── Pinned hero: the portal scales to swallow the viewport ── -->
+  <section class="hero" id="hero">
+    <h1 class="hero-title" aria-label="Beyond the frame">
+      <span class="word">Beyond</span>
+      <span class="word">the</span>
+      <span class="word word-italic">frame.</span>
+    </h1>
+    <p class="hero-sub">Keep scrolling — step through</p>
+
+    <div class="portal-wrap">
+      <div class="portal" id="portal">
+        <div class="scene-swirl" aria-hidden="true"></div>
+        <div class="scene-rings" aria-hidden="true"></div>
+        <div class="scene-stars" aria-hidden="true"></div>
+        <span class="portal-frame">EST. 2026 — THE OTHER SIDE</span>
+        <span class="enter-line" id="enterLine">You made it through.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Inside the portal ── -->
+  <section class="inside">
+    <div class="orb orb-a" data-speed="-0.4" aria-hidden="true"></div>
+    <div class="orb orb-b" data-speed="0.55" aria-hidden="true"></div>
+    <div class="orb orb-c" data-speed="-0.7" aria-hidden="true"></div>
+
+    <div class="chapter">
+      <span class="kicker">Inside — 01</span>
+      <h2>Scale is a promise.</h2>
+      <p>
+        The portal doesn't grow to an arbitrary size. It scales by exactly
+        <em>max(vw / w, vh / h)</em>, computed as a function-based tween value,
+        so the frame lands flush with the viewport on every screen.
+      </p>
+    </div>
+
+    <div class="chapter">
+      <span class="kicker">Inside — 02</span>
+      <h2>Scrub, don't play.</h2>
+      <p>
+        Every beat — the scattering headline, the swelling frame, the welcome
+        line — lives on one timeline tied to the scrollbar. Scroll back and the
+        world politely reassembles itself.
+      </p>
+    </div>
+
+    <div class="chapter">
+      <span class="kicker">Inside — 03</span>
+      <h2>Weight comes from Lenis.</h2>
+      <p>
+        Native scroll jumps; Lenis glides. Its inertia is what makes the pinned
+        zoom feel like a camera move instead of a slideshow.
+      </p>
+    </div>
+
+    <footer class="foot">
+      <button class="return" id="returnBtn">↑ Return to the frame</button>
+      <span class="foot-meta">Lenis · GSAP ScrollTrigger · stealthis</span>
+    </footer>
+  </section>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

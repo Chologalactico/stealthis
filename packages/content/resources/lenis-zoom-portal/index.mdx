@@ -1,0 +1,72 @@
+---
+slug: lenis-zoom-portal
+title: Lenis Zoom Portal
+description: A scroll-driven portal transition — a small framed window of swirling color pins to the viewport and scales up until it swallows the screen, the headline scatters out of the way, and the page continues inside the portal with parallax orbs and chapter reveals, all riding on Lenis smooth scrolling.
+category: web-animations
+type: animation
+tags:
+  - lenis
+  - smooth-scroll
+  - gsap
+  - scrolltrigger
+  - pin
+  - scrub
+  - zoom
+  - portal
+  - hero
+  - transition
+tech:
+  - lenis
+  - gsap
+  - scrolltrigger
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/lenis-zoom-portal
+collections:
+  - hero
+  - motion
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Lenis Zoom Portal
+
+The "zoom through the frame" pattern seen on premium product sites, built with **Lenis + GSAP ScrollTrigger** and no images. The hero pins, and as the user scrolls, a small portal window scales up by exactly the factor needed to cover the viewport (`Math.max(vw / w, vh / h)`), so the transition lands perfectly on any screen size or orientation.
+
+## Highlights
+
+- **Exact cover math** — the target scale is a function-based tween value recomputed on refresh, so resizes and rotations never break the landing
+- **Pinned scrub** — the whole sequence is one timeline scrubbed across a pinned 170vh scroll distance
+- **Scatter exit** — headline words stagger up and out as the portal grows
+- **CSS-only portal scene** — a rotating blurred conic swirl, ring overlays and star specks; zero image assets
+- **Life inside** — chapter reveals and parallax orbs continue the story past the threshold
+- **Reduced motion aware** — pinning and scaling are skipped entirely under `prefers-reduced-motion`; content reads top-to-bottom
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Scroll | Lenis (CDN), synced to the GSAP ticker |
+| Animation | GSAP + ScrollTrigger (pin + scrub) |
+| Portal scene | CSS conic gradients, blur, blend modes |
+| Typography | Fraunces + Inter |
+
+## The cover-scale trick
+
+```js
+function coverScale() {
+  const el = document.getElementById("portal");
+  // offsetWidth/Height ignore transforms — safe to read mid-tween
+  return Math.max(innerWidth / el.offsetWidth, innerHeight / el.offsetHeight) * 1.12;
+}
+
+tl.to("#portal", { scale: () => coverScale(), ease: "power2.inOut" }, 0.15);
+// scrollTrigger: { ..., invalidateOnRefresh: true } re-evaluates it on resize
+```

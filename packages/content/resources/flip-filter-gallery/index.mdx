@@ -1,0 +1,72 @@
+---
+slug: flip-filter-gallery
+title: FLIP Filter Gallery
+description: A filterable project gallery where every layout change is animated with the GSAP Flip plugin — cards glide to their new grid positions when a filter is applied, entering items scale in, leaving items fade out, and a grid-to-list toggle re-flows the whole layout in one smooth move.
+category: web-animations
+type: animation
+tags:
+  - gsap
+  - flip
+  - filter
+  - gallery
+  - grid
+  - layout-animation
+  - stagger
+  - cards
+  - portfolio
+tech:
+  - gsap
+  - flip
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/flip-filter-gallery
+collections:
+  - motion
+  - cards
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# FLIP Filter Gallery
+
+The classic "animate the un-animatable" pattern: filtering and re-flowing a CSS grid is a layout change the browser can't transition on its own, so the **GSAP Flip plugin** records the state before the change (`Flip.getState`), lets the DOM snap to the new layout, then animates every card from where it *was* to where it *is*.
+
+## Highlights
+
+- **Filtered re-flow** — surviving cards glide to their new grid slots with a soft stagger
+- **Enter / leave choreography** — `onEnter` scales new cards in, `onLeave` fades removed cards out mid-flight
+- **Grid ↔ list toggle** — the same Flip state trick re-flows the entire layout between two completely different CSS layouts
+- **No layout math** — CSS Grid owns the layout; Flip only measures and interpolates
+- **Live count + empty state** — the header count ticks with each filter
+- **Reduced motion aware** — transitions collapse to instant swaps under `prefers-reduced-motion`
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Animation | GSAP + Flip plugin (CDN) |
+| Layout | CSS Grid (grid + list modes) |
+| Thumbs | Pure CSS gradients — zero images |
+| Typography | Sora + Inter |
+
+## The core pattern
+
+```js
+const state = Flip.getState(cards);
+cards.forEach((card) => card.classList.toggle("is-hidden", !matches(card)));
+Flip.from(state, {
+  duration: 0.65,
+  ease: "power3.inOut",
+  stagger: 0.03,
+  absolute: true,
+  onEnter: (els) => gsap.fromTo(els, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1 }),
+  onLeave: (els) => gsap.to(els, { opacity: 0, scale: 0.8 }),
+});
+```

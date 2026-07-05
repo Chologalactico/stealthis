@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLIP Filter Gallery — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header class="head">
+      <div class="head-text">
+        <span class="kicker">GSAP FLIP — LAYOUT CHOREOGRAPHY</span>
+        <h1>Selected Work</h1>
+        <p class="count" id="count">12 projects</p>
+      </div>
+
+      <div class="controls">
+        <div class="filters" role="tablist" aria-label="Filter projects">
+          <button class="filter is-active" data-cat="all">All</button>
+          <button class="filter" data-cat="motion">Motion</button>
+          <button class="filter" data-cat="3d">3D</button>
+          <button class="filter" data-cat="brand">Brand</button>
+          <button class="filter" data-cat="web">Web</button>
+        </div>
+        <button class="layout-toggle" id="layoutToggle" aria-pressed="false">
+          <span class="lt-label">List view</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="grid" id="grid">
+      <article class="card" data-cat="motion"><div class="thumb t1"><span>01</span></div><div class="meta"><h2>Neon Drift</h2><p class="tagline">Kinetic title sequence</p><span class="chip">Motion</span></div></article>
+      <article class="card" data-cat="3d"><div class="thumb t2"><span>02</span></div><div class="meta"><h2>Orbit Lab</h2><p class="tagline">WebGL product viewer</p><span class="chip">3D</span></div></article>
+      <article class="card" data-cat="web"><div class="thumb t3"><span>03</span></div><div class="meta"><h2>Ledgerline</h2><p class="tagline">Fintech marketing site</p><span class="chip">Web</span></div></article>
+      <article class="card" data-cat="brand"><div class="thumb t4"><span>04</span></div><div class="meta"><h2>Mono Roast</h2><p class="tagline">Coffee identity system</p><span class="chip">Brand</span></div></article>
+      <article class="card" data-cat="motion"><div class="thumb t5"><span>05</span></div><div class="meta"><h2>Pulse Reel</h2><p class="tagline">Festival opener</p><span class="chip">Motion</span></div></article>
+      <article class="card" data-cat="web"><div class="thumb t6"><span>06</span></div><div class="meta"><h2>Northstack</h2><p class="tagline">Developer platform</p><span class="chip">Web</span></div></article>
+      <article class="card" data-cat="3d"><div class="thumb t7"><span>07</span></div><div class="meta"><h2>Glass Terrain</h2><p class="tagline">Generative landscapes</p><span class="chip">3D</span></div></article>
+      <article class="card" data-cat="brand"><div class="thumb t8"><span>08</span></div><div class="meta"><h2>Fieldnote</h2><p class="tagline">Stationery series</p><span class="chip">Brand</span></div></article>
+      <article class="card" data-cat="motion"><div class="thumb t9"><span>09</span></div><div class="meta"><h2>Split Signal</h2><p class="tagline">Lyric video toolkit</p><span class="chip">Motion</span></div></article>
+      <article class="card" data-cat="web"><div class="thumb t10"><span>10</span></div><div class="meta"><h2>Harbor CMS</h2><p class="tagline">Editorial storefront</p><span class="chip">Web</span></div></article>
+      <article class="card" data-cat="3d"><div class="thumb t11"><span>11</span></div><div class="meta"><h2>Chromaform</h2><p class="tagline">Iridescent shader pack</p><span class="chip">3D</span></div></article>
+      <article class="card" data-cat="brand"><div class="thumb t12"><span>12</span></div><div class="meta"><h2>Auric</h2><p class="tagline">Jewelry campaign</p><span class="chip">Brand</span></div></article>
+    </main>
+
+    <p class="empty" id="empty" hidden>Nothing in this category yet.</p>
+
+    <footer class="foot">
+      <span>GSAP Flip · CSS Grid</span>
+      <span>stealthis — web-animations</span>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

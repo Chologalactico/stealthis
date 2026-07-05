@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synthwave Terrain Flyover — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <canvas id="webgl" aria-label="Endless flight over a neon wireframe landscape"></canvas>
+  <div class="horizon-glow" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="hud hud-title">
+    <span class="hud-kicker">NIGHT DRIVE PROTOCOL</span>
+    <h1>OUTRUN <span class="slash">//</span> SECTOR-7</h1>
+  </header>
+
+  <div class="hud hud-readout">
+    <span class="readout-label">VEL</span>
+    <span class="readout-value" id="speedReadout">128</span>
+    <span class="readout-unit">KM/H</span>
+  </div>
+
+  <footer class="hud hud-actions">
+    <button class="boost" id="boostBtn">
+      <span class="boost-ring" aria-hidden="true"></span>
+      BOOST
+    </button>
+    <span class="hud-meta">Three.js procedural terrain · GSAP</span>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

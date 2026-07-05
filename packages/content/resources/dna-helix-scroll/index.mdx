@@ -1,0 +1,66 @@
+---
+slug: dna-helix-scroll
+title: DNA Helix Scroll Story
+description: A scroll-driven Three.js double helix built from instanced spheres and base-pair rungs — it spins, unwinds, splits and recombines as you scroll through four narrative panels, powered by Lenis smooth scrolling and a GSAP ScrollTrigger scrubbed timeline.
+category: web-animations
+type: animation
+tags:
+  - three-js
+  - webgl
+  - dna
+  - helix
+  - scroll-animation
+  - lenis
+  - gsap
+  - scrolltrigger
+  - instanced-mesh
+  - storytelling
+tech:
+  - three
+  - gsap
+  - scrolltrigger
+  - lenis
+  - vanilla-js
+  - css
+difficulty: hard
+targets:
+  - html
+labRoute: /web-animations/dna-helix-scroll
+collections:
+  - motion
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# DNA Helix Scroll Story
+
+A cinematic scroll experience where a **procedural DNA double helix** reacts to the page. The helix is built from two strands of instanced spheres joined by base-pair rungs, and every geometric property — twist, radius, strand separation, hue — lives in a single params object that a scrubbed GSAP timeline tweens as you scroll.
+
+## Highlights
+
+- **Instanced geometry** — 220 spheres + 27 rungs rendered with two `InstancedMesh` draw calls
+- **Scroll choreography** — Sequence → Unwind → Split → Recombine, one scrubbed timeline across four panels
+- **Live re-layout** — strand positions are recomputed every frame from tweened params, so the helix genuinely unwinds instead of just rotating
+- **Per-instance color** — both strands re-tint through the story via `setColorAt` and HSL lerping
+- **Lenis smooth scroll** — synced to the GSAP ticker for buttery scrubbing
+- **Reduced motion aware** — falls back to a static, gently lit helix when `prefers-reduced-motion` is set
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| 3D | Three.js (InstancedMesh, FogExp2, Points) |
+| Scroll | Lenis (CDN) |
+| Animation | GSAP + ScrollTrigger (CDN) |
+| Styling | CSS custom properties, glass panels |
+| Typography | Space Grotesk + Inter |
+
+## How it works
+
+1. `strandPos(i, phase)` maps an index to a point on a helix using the current `params` (twist, radius, separation)
+2. A single `gsap.timeline({ scrollTrigger: { scrub: 1 } })` tweens `params` through four labeled chapters
+3. The render loop rebuilds instance matrices each frame, so scroll position and idle motion compose naturally

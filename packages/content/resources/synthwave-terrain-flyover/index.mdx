@@ -1,0 +1,60 @@
+---
+slug: synthwave-terrain-flyover
+title: Synthwave Terrain Flyover
+description: An endless procedural flight over a neon wireframe landscape — value-noise mountains scroll toward the camera in real time, a striped retro sun hangs on the horizon, the mouse banks the camera, and a GSAP-powered boost button punches the speed and field of view.
+category: web-animations
+type: animation
+tags:
+  - three-js
+  - webgl
+  - procedural
+  - terrain
+  - synthwave
+  - retrowave
+  - wireframe
+  - noise
+  - infinite
+  - gsap
+tech:
+  - three
+  - gsap
+  - canvas
+  - vanilla-js
+  - css
+difficulty: hard
+targets:
+  - html
+labRoute: /web-animations/synthwave-terrain-flyover
+collections:
+  - motion
+  - effects
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Synthwave Terrain Flyover
+
+An infinite retrowave flythrough with **zero assets** — the mountains, the striped sun and the starfield are all generated at runtime. The terrain is a single subdivided plane whose vertices are re-sampled from a scrolling 2-octave value-noise field every frame, so the landscape streams toward the camera forever without any geometry swapping.
+
+## Highlights
+
+- **Streaming procedural terrain** — value noise + fbm sampled with a moving offset; a valley mask keeps a flat "road" under the camera
+- **Two-pass grid look** — a dark fill mesh with `polygonOffset` plus a magenta wireframe mesh share the same geometry
+- **Striped retro sun** — drawn to a `CanvasTexture` with `destination-out` stripes, fog-exempt so it never washes out
+- **Mouse banking** — the camera drifts and rolls toward the pointer for a piloted feel
+- **BOOST** — one GSAP timeline spikes speed, widens the FOV and flashes the grid cyan, then eases everything home
+- **Reduced motion aware** — the flyover parks into a still vista under `prefers-reduced-motion`
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| 3D | Three.js (BufferGeometry, Fog, Points) |
+| Noise | Hand-rolled 2D value noise + fbm |
+| Animation | GSAP (intro, boost timeline) |
+| Sun | 2D Canvas API → CanvasTexture |
+| Typography | Orbitron + Inter |

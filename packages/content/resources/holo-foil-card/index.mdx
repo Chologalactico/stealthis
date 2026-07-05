@@ -1,0 +1,61 @@
+---
+slug: holo-foil-card
+title: Holographic Foil Trading Card
+description: A WebGL trading card with a custom holographic foil shader — iridescent rainbow bands, angle-reactive sparkle glints and edge shine layered over a procedurally drawn card face, with pointer tilt, a GSAP entrance and a click-to-flip back design.
+category: web-animations
+type: animation
+tags:
+  - three-js
+  - webgl
+  - glsl
+  - shader
+  - holographic
+  - foil
+  - trading-card
+  - iridescent
+  - mouse-interaction
+  - gsap
+tech:
+  - three
+  - glsl
+  - gsap
+  - canvas
+  - vanilla-js
+  - css
+difficulty: hard
+targets:
+  - html
+labRoute: /web-animations/holo-foil-card
+collections:
+  - effects
+  - cards
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Holographic Foil Trading Card
+
+A collectible-grade **holo foil card** rendered entirely in the browser. The card face is painted onto a `CanvasTexture` (frame, emblem, title, stats — no image assets), then a custom `ShaderMaterial` layers the holographic treatment on top: diagonal rainbow interference bands whose phase is driven by the card's tilt, a hash-noise sparkle field that glints as the angle changes, and a soft fresnel edge shine.
+
+## Highlights
+
+- **Custom GLSL foil** — rainbow bands + sparkle glints react to `uTilt`, exactly like rotating a real foil card under light
+- **Zero image assets** — the card art (frame, prism emblem, typography, stat bars) is drawn with the 2D canvas API
+- **Pointer tilt** — lerped rotation targets for weighty, physical motion; the foil phase shifts with the tilt
+- **Click to flip** — GSAP flips the card to a procedurally drawn back design
+- **Rounded corners in-shader** — an SDF rounded-rect alpha mask keeps the silhouette crisp at any resolution
+- **Reduced motion aware** — tilt and idle float are disabled under `prefers-reduced-motion`
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| 3D | Three.js (ShaderMaterial, CanvasTexture) |
+| Foil | Custom GLSL fragment shader |
+| Animation | GSAP (entrance, flip) |
+| Card art | 2D Canvas API |
+| Typography | Cinzel + Inter |
