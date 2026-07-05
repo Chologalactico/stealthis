@@ -1,0 +1,157 @@
+:root {
+  --bg: #0a0e21;
+  --ink: #eef1ff;
+  --ink-dim: rgba(238, 241, 255, 0.52);
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint background starfield */
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 78% 12%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 62% 82%, rgba(255, 255, 255, 0.4), transparent 60%),
+    radial-gradient(1px 1px at 28% 68%, rgba(255, 255, 255, 0.3), transparent 60%),
+    radial-gradient(1px 1px at 90% 55%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(120% 90% at 50% 50%, transparent 60%, rgba(2, 4, 12, 0.8) 100%);
+}
+
+/* ---------- Header ---------- */
+.head {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: clamp(1.6rem, 4.5vh, 2.8rem) 1.5rem 0;
+  pointer-events: none;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.42em;
+  color: #e8c56a;
+  margin-bottom: 0.8rem;
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  letter-spacing: 0.02em;
+}
+
+.sub {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--ink-dim);
+}
+
+/* ---------- Chart ---------- */
+.chart {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+#constellation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.link {
+  stroke: rgba(157, 180, 255, 0.16);
+  stroke-width: 1;
+  transition: opacity 0.35s, stroke 0.35s;
+}
+
+.node { cursor: grab; transition: opacity 0.35s; }
+.node:active { cursor: grabbing; }
+
+.node circle { transition: r 0.25s; }
+
+.node .hub-label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 21px;
+  fill: var(--ink);
+  letter-spacing: 0.12em;
+  paint-order: stroke;
+  stroke: rgba(10, 14, 33, 0.85);
+  stroke-width: 4px;
+  pointer-events: none;
+}
+
+.node .sat-label {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  fill: var(--ink-dim);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+/* ---------- Focus states ---------- */
+svg.has-focus .node { opacity: 0.15; }
+svg.has-focus .node.is-active { opacity: 1; }
+svg.has-focus .link { opacity: 0.12; }
+svg.has-focus .link.is-active {
+  opacity: 1;
+  stroke: rgba(232, 197, 106, 0.65);
+}
+.node.is-active .sat-label { opacity: 1; }
+
+/* ---------- Legend ---------- */
+.legend {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  padding: 1rem 1.5rem 1.4rem;
+  pointer-events: none;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  color: var(--ink-dim);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link, .node, .node circle, .node .sat-label { transition: none; }
+}

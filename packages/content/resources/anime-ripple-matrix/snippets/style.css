@@ -1,0 +1,125 @@
+:root {
+  --bg: #0b0e1a;
+  --dot: #2a2f45;
+  --accent: #66e0ff;
+  --ink: #eef2ff;
+  --ink-dim: rgba(238, 242, 255, 0.5);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Header ---------- */
+.head {
+  text-align: center;
+  padding: clamp(1.4rem, 4.5vh, 2.6rem) 1.5rem 0;
+  pointer-events: none;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+.sub {
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--ink-dim);
+}
+
+/* ---------- Matrix ---------- */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.4rem;
+}
+
+.matrix {
+  display: grid;
+  gap: clamp(8px, 1.4vw, 16px);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.dot {
+  width: clamp(8px, 1.1vw, 13px);
+  height: clamp(8px, 1.1vw, 13px);
+  border-radius: 50%;
+  background: var(--dot);
+  will-change: transform;
+}
+
+/* instant flash used for reduced-motion clicks */
+.dot.flash { background: var(--accent); }
+
+/* ---------- Footer ---------- */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 2rem 1.4rem;
+}
+
+.buttons { display: flex; gap: 0.6rem; }
+
+.ctrl {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(238, 242, 255, 0.16);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.ctrl:hover {
+  border-color: var(--accent);
+  background: rgba(102, 224, 255, 0.08);
+}
+
+.meta {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(238, 242, 255, 0.3);
+}
+
+@media (max-width: 520px) {
+  .foot { justify-content: center; }
+  .meta { display: none; }
+}

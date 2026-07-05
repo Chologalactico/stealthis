@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tone.js Step Sequencer — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="deck">
+
+    <header class="head">
+      <div>
+        <span class="kicker">TONE.JS — WEB AUDIO INSTRUMENT</span>
+        <h1>MACHINE-16</h1>
+      </div>
+      <div class="transport">
+        <button class="play" id="playBtn" aria-pressed="false">▶ Play</button>
+        <label class="bpm">
+          <span>BPM <strong id="bpmValue">112</strong></span>
+          <input type="range" id="bpmSlider" min="80" max="160" step="1" value="112" />
+        </label>
+      </div>
+    </header>
+
+    <main class="grid-scroll">
+      <div class="grid" id="grid" aria-label="16-step sequencer grid, four tracks"></div>
+    </main>
+
+    <footer class="foot">
+      <div class="tools">
+        <button class="tool" id="clearBtn">Clear</button>
+        <button class="tool" id="resetBtn">Reset groove</button>
+      </div>
+      <span class="meta">All voices synthesized live — no samples · Tone.js</span>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

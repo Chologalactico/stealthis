@@ -1,0 +1,117 @@
+:root {
+  --bg: #101018;
+  --ink: #f4f2fa;
+  --ink-dim: rgba(244, 242, 250, 0.5);
+  --line: rgba(244, 242, 250, 0.12);
+  --accent: #c084fc;
+  --font-display: "Bungee", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Header ---------- */
+.head {
+  text-align: center;
+  padding: clamp(1.1rem, 3.5vh, 2rem) 1.5rem 0.4rem;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  margin-bottom: 0.55rem;
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Toolbar ---------- */
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.8rem 1rem;
+}
+
+.tool {
+  appearance: none;
+  background: rgba(244, 242, 250, 0.05);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.tool:hover {
+  background: rgba(192, 132, 252, 0.12);
+  border-color: var(--accent);
+}
+
+.tool:active { transform: scale(0.96); }
+
+.tool-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #24103d;
+  font-weight: 600;
+}
+
+.tool-primary:hover { background: #d8b4fe; }
+
+.divider {
+  width: 1px;
+  height: 22px;
+  background: var(--line);
+  margin: 0 0.3rem;
+}
+
+/* ---------- Board ---------- */
+.board {
+  flex: 1;
+  min-height: 0;
+  margin: 0 clamp(0.8rem, 3vw, 2rem) 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* fabric injects a wrapper; make sure it fills the board */
+.board .canvas-container { width: 100% !important; height: 100% !important; }
+
+/* ---------- Footer ---------- */
+.foot {
+  text-align: center;
+  padding: 0.55rem 1.5rem 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}

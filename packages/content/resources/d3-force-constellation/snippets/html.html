@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D3 Force Constellation — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="sky" aria-hidden="true"></div>
+
+  <header class="head">
+    <span class="kicker">D3-FORCE — A PHYSICS-SETTLED STAR CHART</span>
+    <h1>The Craft Constellations</h1>
+    <p class="sub">Hover a star to light its neighborhood. Drag one to reshape the sky.</p>
+  </header>
+
+  <main class="chart">
+    <svg id="constellation" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice"
+         role="img" aria-label="Interactive force-directed constellation of five skill clusters"></svg>
+  </main>
+
+  <footer class="legend" id="legend"></footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

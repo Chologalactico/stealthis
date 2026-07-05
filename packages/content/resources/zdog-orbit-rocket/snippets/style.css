@@ -1,0 +1,90 @@
+:root {
+  --bg: #171233;
+  --ink: #fff6ec;
+  --ink-dim: rgba(255, 246, 236, 0.55);
+  --accent: #ffb454;
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(80% 60% at 50% 42%, #241c4d 0%, var(--bg) 70%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Header ---------- */
+.head {
+  text-align: center;
+  padding: clamp(1.6rem, 5vh, 3rem) 1.5rem 0;
+  pointer-events: none;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.38em;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Stage ---------- */
+.stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#zdog-canvas {
+  width: min(520px, 88vw, 66vh);
+  height: auto;
+  cursor: grab;
+  touch-action: none;
+}
+
+#zdog-canvas:active { cursor: grabbing; }
+
+/* ---------- Footer ---------- */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 2rem;
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+
+.meta {
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 246, 236, 0.3);
+}
+
+@media (max-width: 520px) {
+  .foot { flex-direction: column; gap: 0.4rem; text-align: center; }
+}

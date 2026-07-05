@@ -1,0 +1,56 @@
+---
+slug: fabric-sticker-studio
+title: Fabric.js Sticker Studio
+description: A tiny design tool in the browser — drop stars, bolts, hearts, blobs and editable text onto a gradient sheet, then move, scale and rotate them with Fabric.js's built-in transform handles, duplicate or delete anything, and export the finished sticker sheet as a hi-res PNG.
+category: web-animations
+type: animation
+tags:
+  - fabricjs
+  - canvas
+  - editor
+  - stickers
+  - design-tool
+  - drag
+  - transform
+  - export
+  - interactive
+tech:
+  - fabricjs
+  - canvas
+  - vanilla-js
+  - css
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/fabric-sticker-studio
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Fabric.js Sticker Studio
+
+**Fabric.js** turns a canvas into an object model — every shape is selectable, movable, scalable and rotatable with zero interaction code. This demo builds a playful sticker-sheet editor on top of that: the "sticker" look is just `paintFirst: "stroke"` (fat white outline drawn behind the fill) plus a drop shadow, and text uses `IText` so double-clicking edits it in place.
+
+## Highlights
+
+- **Free transform for free** — selection handles, rotation, multi-select and stacking come from Fabric, not custom code
+- **Five sticker factories** — polygon stars and bolts, path-based hearts and blobs, editable `IText` labels, each stamped in a rotating palette color
+- **Sticker anatomy** — `paintFirst: "stroke"` white border + soft shadow reads as die-cut vinyl on any background
+- **Duplicate / delete** — toolbar buttons plus keyboard Delete (safely ignored while editing text)
+- **Hi-res export** — `canvas.toDataURL({ multiplier: 2 })` downloads the sheet at 2× as a PNG, gradient backdrop included
+- **Keyboard & pointer friendly** — everything works with mouse, touch or keys
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Object canvas | Fabric.js v5 |
+| Shapes | Polygon, Path, IText + Gradient backdrop |
+| Export | toDataURL PNG at 2× |
+| Typography | Bungee + Inter |

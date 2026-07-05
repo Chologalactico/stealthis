@@ -1,0 +1,56 @@
+---
+slug: rough-sketch-stats
+title: Rough.js Sketch Stats
+description: An analytics dashboard that looks drawn in a notebook — bar, line and pie charts rendered by Rough.js with wobbly strokes and hachure fills on a paper background, where hovering any card redraws its chart with fresh jitter so the sketch never looks the same twice.
+category: web-animations
+type: animation
+tags:
+  - roughjs
+  - hand-drawn
+  - sketch
+  - charts
+  - dashboard
+  - canvas
+  - hachure
+  - paper
+  - playful
+tech:
+  - roughjs
+  - canvas
+  - vanilla-js
+  - css
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/rough-sketch-stats
+collections:
+  - charts
+  - dashboard
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Rough.js Sketch Stats
+
+**Rough.js** draws primitives that look hand-sketched — every call produces slightly different wobble. This dashboard leans into that: bar, line and pie charts built from `rc.rectangle`, `rc.curve` and `rc.arc` with hachure fills, hand-drawn CSS card borders (the classic uneven `border-radius` trick), and a handwriting typeface to complete the notebook.
+
+## Highlights
+
+- **Never the same twice** — hovering a card (or hitting "Scribble again") redraws its chart; Rough re-randomizes every stroke and the data gets a little jitter
+- **Three chart types** — hachure-filled bars, a wobbly `curve` line with dot markers, and a pie of closed `arc` wedges with a paper-colored hole to fake a donut
+- **Sketchy chrome without images** — card borders use the uneven four-corner `border-radius` trick, no SVG or PNG frames
+- **Retina-aware canvases** — each chart scales its backing store by `devicePixelRatio` and redraws on resize
+- **Reduced motion aware** — hover-redraw is disabled under `prefers-reduced-motion`; the manual button still works
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Sketch rendering | Rough.js (canvas backend) |
+| Layout | CSS Grid, hand-drawn border trick |
+| Charts | rectangle / curve / arc primitives |
+| Typography | Caveat + Inter |

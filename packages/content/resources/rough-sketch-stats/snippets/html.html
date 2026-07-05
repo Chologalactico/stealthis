@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rough.js Sketch Stats — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header class="head">
+      <div>
+        <span class="kicker">ROUGH.JS — HAND-DRAWN GRAPHICS</span>
+        <h1>Studio notebook, week 27</h1>
+      </div>
+      <button class="ctrl" id="redrawBtn">✎ Scribble again</button>
+    </header>
+
+    <main class="board">
+
+      <section class="card stat">
+        <span class="stat-label">commits shipped</span>
+        <span class="stat-value">148</span>
+        <span class="stat-note">↑ somehow more than last week</span>
+      </section>
+
+      <section class="card stat">
+        <span class="stat-label">cups of coffee</span>
+        <span class="stat-value">23</span>
+        <span class="stat-note">→ perfectly reasonable</span>
+      </section>
+
+      <section class="card chart-card wide" data-chart="bars">
+        <h2>Ship velocity</h2>
+        <canvas></canvas>
+      </section>
+
+      <section class="card chart-card" data-chart="pie">
+        <h2>Where the day goes</h2>
+        <canvas></canvas>
+      </section>
+
+      <section class="card chart-card wide" data-chart="line">
+        <h2>Focus curve</h2>
+        <canvas></canvas>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      <span>Hover a chart to redraw it — Rough never repeats a stroke</span>
+      <span class="meta">rough.js · canvas · stealthis</span>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

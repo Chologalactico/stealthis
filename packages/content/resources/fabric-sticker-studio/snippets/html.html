@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabric.js Sticker Studio — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="head">
+    <span class="kicker">FABRIC.JS — OBJECT CANVAS</span>
+    <h1>Sticker Studio</h1>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Sticker tools">
+    <button class="tool" id="addStar" title="Add star">★ Star</button>
+    <button class="tool" id="addBolt" title="Add bolt">⚡ Bolt</button>
+    <button class="tool" id="addHeart" title="Add heart">♥ Heart</button>
+    <button class="tool" id="addBlob" title="Add blob">● Blob</button>
+    <button class="tool" id="addText" title="Add text">T Text</button>
+    <span class="divider" aria-hidden="true"></span>
+    <button class="tool" id="dupeBtn" title="Duplicate selection">⧉ Duplicate</button>
+    <button class="tool" id="deleteBtn" title="Delete selection">✕ Delete</button>
+    <span class="divider" aria-hidden="true"></span>
+    <button class="tool tool-primary" id="downloadBtn" title="Download PNG">↓ Export PNG</button>
+  </div>
+
+  <main class="board" id="board">
+    <canvas id="c"></canvas>
+  </main>
+
+  <footer class="foot">
+    <span>Drag to move · corners to scale · top handle to rotate · double-click text to edit</span>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

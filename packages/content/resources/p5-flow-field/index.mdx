@@ -1,0 +1,54 @@
+---
+slug: p5-flow-field
+title: p5.js Flow Field Painter
+description: Generative art in the browser — thousands of particles ride a Perlin-noise vector field and paint silky filament trails onto the canvas, with four curated palettes, a reseed control, and a click-to-regenerate interaction that produces a new composition every time.
+category: web-animations
+type: animation
+tags:
+  - p5js
+  - generative-art
+  - creative-coding
+  - perlin-noise
+  - flow-field
+  - particles
+  - canvas
+  - palette
+tech:
+  - p5js
+  - canvas
+  - vanilla-js
+  - css
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/p5-flow-field
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# p5.js Flow Field Painter
+
+The classic of creative coding, tuned for elegance: a **flow field** where each particle samples 3D Perlin noise (`x`, `y`, time) to decide its heading, then drags a low-alpha stroke behind it. Because the canvas is only faintly washed each frame, the trails accumulate into dense, silky filaments — every seed produces a one-of-a-kind composition.
+
+## Highlights
+
+- **3D noise field** — the third noise dimension drifts slowly, so the currents themselves evolve over time
+- **Four curated palettes** — Ember, Reef, Ivory (light!) and Neon, each with its own canvas wash color
+- **Click to regenerate** — a fresh `noiseSeed` and particle drop; the palette button re-paints the same field in new colors
+- **Adaptive density** — particle count scales with viewport area, capped for low-end devices
+- **Reduced motion aware** — under `prefers-reduced-motion` the sketch renders 300 steps instantly and presents a finished still artwork
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Sketch | p5.js (global mode) |
+| Field | `noise()` — Perlin, 3 dimensions |
+| Trails | Low-alpha background wash per frame |
+| Typography | DM Mono + Inter |

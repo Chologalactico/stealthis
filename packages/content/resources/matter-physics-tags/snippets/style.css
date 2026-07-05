@@ -1,0 +1,146 @@
+:root {
+  --bg: #0f1012;
+  --ink: #f2f2ef;
+  --ink-dim: rgba(242, 242, 239, 0.5);
+  --line: rgba(242, 242, 239, 0.12);
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Header ---------- */
+.head {
+  text-align: center;
+  padding: clamp(1.6rem, 5vh, 3rem) 1.5rem 0;
+  position: relative;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  color: #ffb454;
+  margin-bottom: 0.8rem;
+}
+
+.head h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ink-dim);
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.1rem 0 0.4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.ctrl {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.ctrl:hover {
+  border-color: #ffb454;
+  background: rgba(255, 180, 84, 0.08);
+}
+
+/* ---------- Arena ---------- */
+.arena {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  cursor: grab;
+  /* static flex fallback: also what reduced-motion users see */
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.5rem clamp(1rem, 6vw, 4rem);
+  overflow: hidden;
+  touch-action: none;
+}
+
+.arena.is-live { display: block; padding: 0; }
+.arena:active { cursor: grabbing; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(0.95rem, 2.2vw, 1.35rem);
+  letter-spacing: 0.02em;
+  padding: 0.72em 1.35em;
+  border-radius: 999px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.arena.is-live .pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* the arena + MouseConstraint handle grabbing */
+  will-change: transform;
+}
+
+/* tag colorways */
+.p-a { background: #ffb454; color: #221302; }
+.p-b { background: #7c9cff; color: #0a1030; }
+.p-c { background: #f2f2ef; color: #17181a; }
+.p-d { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+
+/* ---------- Footer ---------- */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  position: relative;
+  z-index: 5;
+}

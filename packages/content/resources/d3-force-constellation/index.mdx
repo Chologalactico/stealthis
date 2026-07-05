@@ -1,0 +1,55 @@
+---
+slug: d3-force-constellation
+title: D3 Force Constellation
+description: A living constellation map built on d3-force — five glowing hub stars anchor clusters of satellite nodes, physics keeps every link taut and collision-free, hovering any star illuminates its neighborhood while the rest of the sky dims, and every node can be grabbed and dragged with the simulation reheating around it.
+category: web-animations
+type: animation
+tags:
+  - d3
+  - force-directed
+  - graph
+  - network
+  - constellation
+  - svg
+  - physics
+  - drag
+  - data-viz
+tech:
+  - d3
+  - svg
+  - vanilla-js
+  - css
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/d3-force-constellation
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# D3 Force Constellation
+
+A skill map disguised as a night sky. **d3-force** runs the physics: link forces keep satellites tethered to their hub stars, a many-body charge spreads everything apart, per-cluster anchor forces arrange the five constellations in a pentagon, and a collision force stops overlaps. The render layer is plain SVG — lines, circles and serif labels — styled like a star chart.
+
+## Highlights
+
+- **Five-force layout** — link + charge + x/y cluster anchors + collide, each doing one job
+- **Neighborhood highlight** — hovering a star lifts it and its direct connections while the rest of the chart dims; satellite labels appear only when relevant
+- **Grab any star** — d3-drag pins the node to the pointer and reheats the simulation so the constellation re-settles around it
+- **Resolution independent** — a fixed `viewBox` with `slice` scaling means zero resize JavaScript
+- **Reduced motion aware** — under `prefers-reduced-motion` the simulation is pre-settled with 300 synchronous ticks and rendered as a still chart
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Physics | d3-force (link, manyBody, x/y, collide) |
+| Interaction | d3-drag, pointer events |
+| Rendering | SVG + CSS (glow via SVG filter) |
+| Typography | Cormorant Garamond + Inter |

@@ -1,0 +1,55 @@
+---
+slug: matter-physics-tags
+title: Physics Tag Playground
+description: A skill-tag wall with real 2D physics — pill-shaped DOM elements drop into the viewport as Matter.js bodies, can be grabbed and thrown with the pointer, and react to a gravity flip and a shake impulse, with the DOM kept in sync with the physics world every frame.
+category: web-animations
+type: animation
+tags:
+  - matter-js
+  - physics
+  - gravity
+  - draggable
+  - tags
+  - pills
+  - interactive
+  - dom-sync
+  - playground
+tech:
+  - matter-js
+  - vanilla-js
+  - css
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/matter-physics-tags
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Physics Tag Playground
+
+The falling-tags footer effect seen on award-winning portfolios, done properly: every pill is a **real DOM element** driven by a **Matter.js rigid body**. The engine owns position and rotation; a `requestAnimationFrame` loop copies each body's transform onto its element, so the pills stay crisp, selectable-looking text — not canvas sprites.
+
+## Highlights
+
+- **DOM ↔ physics sync** — bodies are sized from each pill's measured `offsetWidth/Height`, with chamfered corners matching the CSS border-radius
+- **Grab and throw** — a `MouseConstraint` lets the pointer pick up any pill and fling it with momentum
+- **Gravity flip** — one click inverts `engine.gravity.y` and the whole pile tumbles to the ceiling
+- **Shake** — random impulses scatter the pile without ever losing a pill (the arena is walled on all four sides)
+- **Resize-safe** — walls are rebuilt and stray bodies are clamped back in when the viewport changes
+- **Reduced motion aware** — under `prefers-reduced-motion` the pills stay as a calm, static flex layout
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Physics | Matter.js (Engine, Bodies, MouseConstraint) |
+| Rendering | Plain DOM + CSS transforms |
+| Sync | requestAnimationFrame loop |
+| Typography | Archivo + Inter |

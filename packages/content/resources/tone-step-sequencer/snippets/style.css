@@ -1,0 +1,203 @@
+:root {
+  --bg: #0c0c12;
+  --panel: #14141d;
+  --ink: #f1f0f5;
+  --ink-dim: rgba(241, 240, 245, 0.5);
+  --line: rgba(241, 240, 245, 0.1);
+  --amber: #ffb454;
+  --cyan: #66e0ff;
+  --font-mono: "Chivo Mono", ui-monospace, monospace;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(255, 180, 84, 0.06), transparent 70%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  padding: 1.2rem;
+}
+
+.deck {
+  width: min(880px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Header / transport ---------- */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.4em;
+  color: var(--amber);
+  margin-bottom: 0.5rem;
+}
+
+.head h1 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  letter-spacing: 0.12em;
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.play {
+  appearance: none;
+  border: 1px solid var(--amber);
+  background: rgba(255, 180, 84, 0.1);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  padding: 0.7rem 1.6rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.play:hover {
+  background: rgba(255, 180, 84, 0.22);
+  box-shadow: 0 0 24px rgba(255, 180, 84, 0.25);
+}
+
+.play[aria-pressed="true"] {
+  background: var(--amber);
+  color: #221302;
+}
+
+.bpm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+}
+
+.bpm strong { color: var(--cyan); }
+
+.bpm input {
+  width: 160px;
+  accent-color: var(--cyan);
+}
+
+/* ---------- Grid ---------- */
+.grid-scroll { overflow-x: auto; padding-bottom: 0.4rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 74px repeat(16, minmax(30px, 1fr));
+  gap: 6px;
+  min-width: 640px;
+}
+
+.track-label {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.cell {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: rgba(241, 240, 245, 0.04);
+  border-radius: 7px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, transform 0.12s;
+}
+
+/* bar groupings of four */
+.cell.bar-start { margin-left: 6px; }
+
+.cell:hover { border-color: rgba(241, 240, 245, 0.35); }
+
+.cell.on {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 10px rgba(255, 180, 84, 0.4);
+}
+
+.cell.playing {
+  border-color: var(--cyan);
+  box-shadow: inset 0 0 0 1px var(--cyan);
+}
+
+.cell.on.playing {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  transform: scale(1.12);
+  box-shadow: 0 0 16px rgba(102, 224, 255, 0.55);
+}
+
+/* ---------- Footer ---------- */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+
+.tools { display: flex; gap: 0.6rem; }
+
+.tool {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tool:hover { color: var(--ink); border-color: rgba(241, 240, 245, 0.35); }
+
+.meta {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(241, 240, 245, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell { transition: none; }
+  .cell.on.playing { transform: none; }
+}

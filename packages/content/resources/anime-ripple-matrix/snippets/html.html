@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anime.js Ripple Matrix — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="head">
+    <span class="kicker">ANIME.JS — GRID STAGGER</span>
+    <h1>Ripple Matrix</h1>
+    <p class="sub">Click any dot. The wave starts exactly there.</p>
+  </header>
+
+  <main class="stage">
+    <div class="matrix" id="matrix" aria-label="Interactive dot matrix. Click to trigger a ripple."></div>
+  </main>
+
+  <footer class="foot">
+    <div class="buttons">
+      <button class="ctrl" id="pulseBtn">Pulse center</button>
+      <button class="ctrl" id="waveBtn">Sweep wave</button>
+    </div>
+    <span class="meta">anime.js v3 · stealthis</span>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

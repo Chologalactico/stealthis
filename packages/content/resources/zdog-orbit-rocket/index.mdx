@@ -1,0 +1,55 @@
+---
+slug: zdog-orbit-rocket
+title: Zdog Orbit Rocket
+description: A hand-crafted pseudo-3D space scene built with Zdog's round flat-shaded engine — a finned rocket circles a coral planet with a tilted ring, a moon runs a counter-orbit, the exhaust flame flickers, and the whole illustration can be grabbed and spun in any direction.
+category: web-animations
+type: animation
+tags:
+  - zdog
+  - pseudo-3d
+  - illustration
+  - rocket
+  - space
+  - canvas
+  - drag-rotate
+  - flat-design
+  - toy
+tech:
+  - zdog
+  - canvas
+  - vanilla-js
+  - css
+difficulty: med
+targets:
+  - html
+labRoute: /web-animations/zdog-orbit-rocket
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-04
+updatedAt: 2026-07-04
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Zdog Orbit Rocket
+
+**Zdog** renders 3D models with round, flat-shaded strokes — the signature "designer toy" look. This scene composes an entire solar diorama from primitives: the planet is a single fat-stroked point, the ring is an `Ellipse`, the rocket is a `Cylinder` + `Cone` + three path-drawn fins, and every orbit is just an `Anchor` rotating its children.
+
+## Highlights
+
+- **Grab and spin** — `dragRotate: true` gives free-orbit control of the whole illustration; auto-rotation pauses while dragging
+- **Nested orbits** — the rocket rides one rotating anchor, the moon counter-rotates on another; the rocket stays tangent to its path for free because children inherit anchor rotation
+- **Flickering exhaust** — the flame cone's scale is modulated by a sine every frame
+- **Pure primitives** — no models, no textures; ~20 shapes describe the entire scene
+- **Reduced motion aware** — orbits freeze under `prefers-reduced-motion`, but drag-to-rotate keeps working with on-demand re-renders
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Engine | Zdog (canvas renderer) |
+| Scene | Anchor / Shape / Ellipse / Cylinder / Cone primitives |
+| Animation | requestAnimationFrame |
+| Typography | Baloo 2 + Inter |

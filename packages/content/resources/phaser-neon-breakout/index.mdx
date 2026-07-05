@@ -1,0 +1,56 @@
+---
+slug: phaser-neon-breakout
+title: Phaser Neon Breakout
+description: A complete playable breakout arcade game built with Phaser 3 and zero image assets — every texture is generated at runtime from Graphics objects, arcade physics handles the ball and paddle-angle control, bricks award score and speed the ball up, and lives, win and game-over states round out the loop.
+category: web-animations
+type: animation
+tags:
+  - phaser
+  - game
+  - arcade
+  - breakout
+  - physics
+  - neon
+  - canvas
+  - interactive
+  - playable
+tech:
+  - phaser
+  - canvas
+  - vanilla-js
+  - css
+difficulty: hard
+targets:
+  - html
+labRoute: /web-animations/phaser-neon-breakout
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Phaser Neon Breakout
+
+A full game loop in one file: **Phaser 3** arcade physics, a 5×10 neon brick wall, pointer and keyboard control, score, lives, win and game-over states. The interesting trick is asset generation — there are no sprites to load. Each texture (paddle, ball, five brick colors) is drawn once into a `Graphics` object and baked with `generateTexture`, so the game boots instantly with nothing to download.
+
+## Highlights
+
+- **Zero-asset pipeline** — `Graphics.fillRoundedRect` → `generateTexture` replaces the entire sprite sheet
+- **Angle control** — the ball's exit angle depends on where it strikes the paddle, the classic skill mechanic
+- **Escalating pace** — every brick nudges ball speed up toward a cap, so clears get tense
+- **Open floor** — world bounds collide on three sides only; the bottom is a life lost
+- **Full loop** — launch → play → lose lives → game over → click to restart, plus a win state
+- **Reduced motion aware** — camera shake is skipped under `prefers-reduced-motion`
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Engine | Phaser 3 (Arcade physics, Scale.FIT) |
+| Textures | Graphics → generateTexture at boot |
+| Input | Pointer + cursor keys |
+| Typography | Press Start 2P (HUD) + Inter |

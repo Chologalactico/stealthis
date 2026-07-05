@@ -1,0 +1,55 @@
+---
+slug: anime-ripple-matrix
+title: Anime.js Ripple Matrix
+description: An interactive dot matrix powered by anime.js grid staggering — click any cell and a ripple of scale and color radiates outward from that exact point, sweep a wave across the whole board, and watch idle pulses fire on their own when nobody is touching it.
+category: web-animations
+type: animation
+tags:
+  - animejs
+  - stagger
+  - grid
+  - ripple
+  - wave
+  - dots
+  - matrix
+  - interactive
+  - micro-interaction
+tech:
+  - animejs
+  - vanilla-js
+  - css
+difficulty: easy
+targets:
+  - html
+labRoute: /web-animations/anime-ripple-matrix
+collections:
+  - effects
+  - motion
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Anime.js Ripple Matrix
+
+The signature move of **anime.js**: `anime.stagger(ms, { grid: [cols, rows], from: index })` computes per-target delays by distance inside a grid, so a single tween declaration becomes a physically believable ripple. This demo wires that to real input — every click starts the ripple from the exact dot you touched.
+
+## Highlights
+
+- **Grid-aware staggering** — one `anime()` call, 308 dots, delays derived from grid distance
+- **Click-anywhere origin** — the ripple emanates from the clicked dot, not a fixed center
+- **Two propagation modes** — radial ripple (scale + color keyframes) and axis wave (left-to-right sweep with vertical bounce)
+- **Idle autopilot** — after a few seconds without input, random pulses keep the board alive; interaction resets the timer
+- **Interrupt-safe** — `anime.remove()` clears in-flight tweens before each new burst so ripples never stack into chaos
+- **Reduced motion aware** — clicks produce an instant color flash with no movement under `prefers-reduced-motion`
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Animation | anime.js v3 (grid stagger, keyframes) |
+| Board | CSS Grid, dots generated at runtime |
+| Typography | Space Grotesk + Inter |

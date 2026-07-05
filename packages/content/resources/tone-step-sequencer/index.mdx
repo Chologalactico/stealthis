@@ -1,0 +1,58 @@
+---
+slug: tone-step-sequencer
+title: Tone.js Step Sequencer
+description: A four-track drum machine that runs entirely in the browser — kick, snare, hat and bass are synthesized live by Tone.js (no samples), a sixteen-step grid drives the Transport with sample-accurate scheduling, and the playhead, tempo slider and pattern controls make it a playable instrument.
+category: web-animations
+type: animation
+tags:
+  - tonejs
+  - web-audio
+  - sequencer
+  - drum-machine
+  - synth
+  - music
+  - transport
+  - interactive
+  - instrument
+tech:
+  - tonejs
+  - web-audio
+  - vanilla-js
+  - css
+difficulty: hard
+targets:
+  - html
+labRoute: /web-animations/tone-step-sequencer
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Tone.js Step Sequencer
+
+A playable 16-step drum machine with **zero audio files**: every voice is synthesized at trigger time. The kick is a `MembraneSynth` pitch-dropping into the sub range, the snare and hat are shaped `NoiseSynth` hits (the hat through a highpass filter), and the bass is an `FMSynth` alternating two notes for groove.
+
+Scheduling is the important part: the loop runs on `Tone.Transport.scheduleRepeat` in **audio-clock time**, so hits are sample-accurate regardless of frame rate, and UI updates ride `Tone.Draw` so the playhead paints in sync with what you hear.
+
+## Highlights
+
+- **Synthesized kit** — membrane kick, filtered-noise snare/hat, FM bass; tweakable, weightless, sample-free
+- **Sample-accurate loop** — `scheduleRepeat("16n")` with the audio clock, never `setInterval`
+- **Synced playhead** — visual updates scheduled through `Tone.Draw` at the exact hit time
+- **Live tempo** — BPM slider writes straight to `Transport.bpm` while playing
+- **Pattern tools** — comes loaded with a groove; clear it or restore it anytime
+- **Autoplay-policy safe** — the AudioContext starts inside the Play click (`Tone.start()`)
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Audio | Tone.js (Transport, MembraneSynth, NoiseSynth, FMSynth, Filter) |
+| Grid | DOM buttons generated at runtime |
+| Sync | Tone.Draw for visual scheduling |
+| Typography | Chivo Mono + Inter |
