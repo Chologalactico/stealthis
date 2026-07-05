@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inbox Split View — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="app" id="app">
+
+    <!-- ── Message list pane ── -->
+    <aside class="pane-list">
+      <header class="list-head">
+        <div class="list-title">
+          <h1>Inbox</h1>
+          <span class="badge" id="unreadBadge">0</span>
+        </div>
+        <input class="search" id="search" type="search" placeholder="Search messages…" aria-label="Search messages" />
+      </header>
+      <nav class="messages" id="messageList" aria-label="Messages"></nav>
+      <p class="empty" id="listEmpty" hidden>Inbox zero. Beautiful.</p>
+      <footer class="keys" aria-hidden="true">
+        <span><kbd>j</kbd><kbd>k</kbd> navigate</span>
+        <span><kbd>e</kbd> archive</span>
+        <span><kbd>u</kbd> unread</span>
+      </footer>
+    </aside>
+
+    <!-- ── Reading pane ── -->
+    <section class="pane-detail" id="detailPane" aria-live="polite">
+      <div class="detail-empty" id="detailEmpty">
+        <span class="detail-empty-icon" aria-hidden="true">✉</span>
+        <p>Select a message to read it</p>
+      </div>
+      <article class="detail" id="detail" hidden>
+        <header class="detail-head">
+          <button class="back" id="backBtn" type="button" aria-label="Back to list">←</button>
+          <div class="detail-meta">
+            <h2 id="detailSubject"></h2>
+            <div class="detail-from">
+              <span class="avatar" id="detailAvatar"></span>
+              <span id="detailFrom"></span>
+              <span class="detail-time" id="detailTime"></span>
+            </div>
+          </div>
+          <div class="detail-actions">
+            <button class="action" id="unreadBtn" type="button" title="Mark unread (u)">◐</button>
+            <button class="action" id="archiveBtn" type="button" title="Archive (e)">🗄</button>
+          </div>
+        </header>
+        <div class="detail-body" id="detailBody"></div>
+      </article>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

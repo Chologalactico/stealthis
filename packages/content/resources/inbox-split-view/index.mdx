@@ -1,0 +1,54 @@
+---
+slug: inbox-split-view
+title: Inbox Split View
+description: The master-detail layout behind every mail and support app — a message list pane with unread indicators, tags and search beside a reading pane, full keyboard navigation with j/k and arrows, archive and mark-unread actions, and a responsive collapse to a single pane with a back button on small screens.
+category: ui-components
+type: component
+tags:
+  - inbox
+  - split-view
+  - master-detail
+  - email
+  - messages
+  - keyboard-navigation
+  - app-layout
+  - list-detail
+  - responsive
+tech:
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/inbox-split-view
+collections:
+  - saas
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Inbox Split View
+
+The list-plus-reading-pane pattern, done with the details that make it feel like a real app: opening a message marks it read and updates the unread badge, the selected row tracks keyboard focus, and on narrow screens the same DOM collapses into a push navigation with a back button — no duplicate markup.
+
+## Features
+
+- **Keyboard first** — `j`/`k` or arrow keys move the selection, `Enter` opens on mobile, `e` archives, `u` toggles unread; keys are ignored while typing in search
+- **Unread logic** — bold rows with a dot, a live badge count in the header, and mark-read on open
+- **Search filter** — matches sender, subject and preview text as you type
+- **Archive flow** — removes the message, advances the selection sensibly, and shows an empty state when the list drains
+- **Avatar initials** — deterministic color per sender, no image assets
+- **Responsive collapse** — under 760px the panes become a drill-in navigation with a back button
+
+## Keyboard map
+
+| Key | Action |
+|-----|--------|
+| `j` / `↓` | Next message |
+| `k` / `↑` | Previous message |
+| `e` | Archive selected |
+| `u` | Toggle read / unread |

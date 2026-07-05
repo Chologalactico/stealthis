@@ -1,0 +1,53 @@
+---
+slug: role-permission-matrix
+title: Role Permission Matrix
+description: The roles-and-permissions screen every multi-user app eventually needs — a grouped matrix of permissions by role with real checkboxes, per-role and per-row bulk toggles, a locked Owner column, dirty-state tracking against a baseline with a floating save bar, and a change summary on save.
+category: ui-components
+type: component
+tags:
+  - permissions
+  - roles
+  - rbac
+  - access-control
+  - admin
+  - matrix
+  - settings
+  - saas
+  - table
+tech:
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/role-permission-matrix
+collections:
+  - saas
+  - dashboard
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Role Permission Matrix
+
+RBAC configuration lives or dies on scanability. This matrix keeps permissions **grouped by area** (Content, Members, Billing, Settings), puts roles in sticky columns, and makes bulk edits cheap: click a role's header toggle to grant or clear the whole column, or a row's quick-toggle to flip that permission across all editable roles at once.
+
+## Features
+
+- **Grouped rows** — area headers break the permission list into scannable chunks
+- **Bulk toggles** — per-role column toggle ("grant all to Editor") and per-permission row toggle ("everyone can view invoices")
+- **Locked Owner** — the Owner column is always fully granted and visibly non-editable, the way real RBAC systems guard the root role
+- **Dirty diffing** — the working matrix is compared to a baseline; the save bar appears only with real changes and shows an exact count
+- **Change summary** — saving reports how many grants were added and removed
+- **Accessible** — a real `<table>` with row/column headers, real checkboxes, and full keyboard operability
+
+## State shape
+
+```js
+matrix["posts.delete"]["editor"] = false;
+// diff vs baseline drives the save bar; Save commits, Discard reverts
+```

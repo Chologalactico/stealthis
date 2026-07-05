@@ -1,0 +1,56 @@
+---
+slug: billing-usage-meter
+title: Billing Usage Meter
+description: A SaaS plan-and-usage card for dashboards and billing pages — current plan summary with a billing-cycle progress ring, per-resource quota bars that shift from green to amber to red as limits approach, compact number formatting, an at-limit warning row, and an upgrade call to action.
+category: ui-components
+type: component
+tags:
+  - billing
+  - usage
+  - quota
+  - saas
+  - plan
+  - progress
+  - meter
+  - dashboard
+  - subscription
+tech:
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/billing-usage-meter
+collections:
+  - saas
+  - dashboard
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Billing Usage Meter
+
+The card every SaaS settings page needs: **what plan am I on, how much have I used, and when do I hit the wall**. Fully data-driven — swap the `USAGE` array and the component re-renders bars, labels, thresholds and warnings.
+
+## Features
+
+- **Plan header** — plan name, price, seat count and renewal date with an SVG billing-cycle progress ring
+- **Threshold-aware bars** — each quota bar turns from teal to amber (≥70%) to red (≥90%), with an "approaching limit" pill on hot resources
+- **Compact formatting** — `Intl.NumberFormat` renders 8,420,000 as "8.4M" so wide numbers never break the layout
+- **Animated fill** — bars sweep to their value on load (skipped under `prefers-reduced-motion`)
+- **Upgrade path** — the CTA row surfaces only the resources that are nearly exhausted, giving the upsell a reason
+- **Zero dependencies** — plain CSS + a small render function; drop the markup into any dashboard column
+
+## Usage
+
+```js
+const USAGE = [
+  { id: "api", label: "API requests", used: 8420000, limit: 10000000 },
+  { id: "storage", label: "Storage", used: 74.2, limit: 100, unit: "GB" },
+];
+renderUsage(USAGE); // re-render any time the numbers change
+```

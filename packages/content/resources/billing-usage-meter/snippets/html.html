@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing Usage Meter — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <main class="page">
+
+    <section class="card" aria-label="Plan and usage">
+
+      <!-- Plan header -->
+      <header class="plan">
+        <div class="plan-info">
+          <div class="plan-row">
+            <h1>Scale</h1>
+            <span class="plan-badge">Current plan</span>
+          </div>
+          <p class="plan-price"><strong>$79</strong>/month · 10 seats included</p>
+        </div>
+
+        <div class="cycle" role="img" aria-label="21 of 30 days used in this billing cycle">
+          <svg viewBox="0 0 44 44" class="cycle-ring" aria-hidden="true">
+            <circle class="ring-track" cx="22" cy="22" r="19"></circle>
+            <circle class="ring-fill" id="cycleRing" cx="22" cy="22" r="19"></circle>
+          </svg>
+          <div class="cycle-text">
+            <span class="cycle-days" id="cycleDays">9</span>
+            <span class="cycle-label">days left</span>
+          </div>
+        </div>
+      </header>
+
+      <p class="renews">Renews on <strong>Aug 1, 2026</strong> · <a href="#" class="link">View invoices</a></p>
+
+      <!-- Usage bars (rendered by script.js) -->
+      <div class="meters" id="meters"></div>
+
+      <!-- Upgrade CTA -->
+      <footer class="cta" id="ctaRow" hidden>
+        <div class="cta-text">
+          <strong id="ctaTitle">You're close to your limits</strong>
+          <span id="ctaDetail"></span>
+        </div>
+        <button class="btn-upgrade" type="button">Upgrade to Growth →</button>
+      </footer>
+
+    </section>
+
+    <p class="demo-note">Data-driven: edit the <code>USAGE</code> array in script.js and the card re-renders.</p>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

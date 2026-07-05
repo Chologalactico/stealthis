@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Role Permission Matrix — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <main class="panel">
+
+    <header class="head">
+      <div>
+        <h1>Roles &amp; permissions</h1>
+        <p class="sub">What each role can do across the workspace. Owner is always fully granted.</p>
+      </div>
+    </header>
+
+    <div class="table-wrap">
+      <table class="matrix" id="matrixTable" aria-label="Permission matrix by role"></table>
+    </div>
+
+    <div class="savebar" id="saveBar" hidden>
+      <span id="dirtyCount">0 unsaved changes</span>
+      <div class="savebar-actions">
+        <button class="btn-ghost" id="discardBtn" type="button">Discard</button>
+        <button class="btn-primary" id="saveBtn" type="button">Save changes</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

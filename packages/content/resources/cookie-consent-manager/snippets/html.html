@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Consent Manager — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Demo page content ── -->
+  <main class="page">
+    <span class="kicker">DEMO SITE</span>
+    <h1>A perfectly ordinary page</h1>
+    <p class="lede">
+      The consent banner below is the real component. Make a choice, then use the
+      floating cookie button to change it — the integration monitor reacts live.
+    </p>
+
+    <section class="monitor" aria-label="Integration monitor">
+      <h2>Integration monitor</h2>
+      <p class="monitor-sub">Scripts subscribed to the <code>consentchange</code> event</p>
+      <ul id="monitorList">
+        <li data-cat="necessary"><span class="light"></span> Session &amp; security <em>always on</em></li>
+        <li data-cat="analytics"><span class="light"></span> Analytics (page views, funnels)</li>
+        <li data-cat="marketing"><span class="light"></span> Marketing pixel (ads attribution)</li>
+        <li data-cat="personalization"><span class="light"></span> Personalization (saved preferences)</li>
+      </ul>
+      <button class="reset" id="resetBtn" type="button">Reset stored consent (re-show banner)</button>
+    </section>
+  </main>
+
+  <!-- ── Consent banner ── -->
+  <div class="consent-banner" id="banner" role="region" aria-label="Cookie consent" hidden>
+    <div class="banner-text">
+      <strong>We use cookies</strong>
+      <p>Essential ones keep the site working; optional ones help us improve it. You choose.</p>
+    </div>
+    <div class="banner-actions">
+      <button class="btn-ghost" id="customizeBtn" type="button">Customize</button>
+      <button class="btn-ghost" id="rejectBtn" type="button">Necessary only</button>
+      <button class="btn-primary" id="acceptBtn" type="button">Accept all</button>
+    </div>
+  </div>
+
+  <!-- ── Preferences dialog ── -->
+  <dialog class="prefs" id="prefsDialog" aria-labelledby="prefsTitle">
+    <form method="dialog">
+      <header class="prefs-head">
+        <h2 id="prefsTitle">Cookie preferences</h2>
+        <button class="close" value="cancel" aria-label="Close">✕</button>
+      </header>
+
+      <div class="prefs-list">
+        <label class="pref">
+          <div class="pref-text">
+            <strong>Strictly necessary</strong>
+            <span>Login sessions, security, load balancing. The site can't run without these.</span>
+          </div>
+          <span class="switch is-locked"><input type="checkbox" checked disabled /><span class="knob"></span></span>
+        </label>
+
+        <label class="pref">
+          <div class="pref-text">
+            <strong>Analytics</strong>
+            <span>Anonymous usage stats that tell us which pages help and which confuse.</span>
+          </div>
+          <span class="switch"><input type="checkbox" id="prefAnalytics" /><span class="knob"></span></span>
+        </label>
+
+        <label class="pref">
+          <div class="pref-text">
+            <strong>Marketing</strong>
+            <span>Attribution pixels so ad partners know a campaign actually worked.</span>
+          </div>
+          <span class="switch"><input type="checkbox" id="prefMarketing" /><span class="knob"></span></span>
+        </label>
+
+        <label class="pref">
+          <div class="pref-text">
+            <strong>Personalization</strong>
+            <span>Remembers your language, theme and layout choices between visits.</span>
+          </div>
+          <span class="switch"><input type="checkbox" id="prefPersonalization" /><span class="knob"></span></span>
+        </label>
+      </div>
+
+      <footer class="prefs-foot">
+        <button class="btn-ghost" value="cancel" type="submit">Cancel</button>
+        <button class="btn-primary" id="savePrefsBtn" value="save" type="submit">Save preferences</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- ── Reopen button ── -->
+  <button class="cookie-fab" id="cookieFab" type="button" aria-label="Cookie preferences" hidden>🍪</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

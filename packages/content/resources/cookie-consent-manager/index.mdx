@@ -1,0 +1,54 @@
+---
+slug: cookie-consent-manager
+title: Cookie Consent Manager
+description: A GDPR-style consent flow ready to drop into any site — a non-blocking banner with accept, reject and customize actions, a preferences dialog with per-category toggles and a locked necessary category, localStorage persistence with versioning, a consentchange event for integrations, and a floating reopen button.
+category: ui-components
+type: component
+tags:
+  - cookies
+  - consent
+  - gdpr
+  - privacy
+  - banner
+  - modal
+  - preferences
+  - compliance
+  - localstorage
+tech:
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/cookie-consent-manager
+collections:
+  - saas
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Cookie Consent Manager
+
+Consent UIs get bolted on last and it shows. This one is built as a small self-contained module: state lives in one versioned `localStorage` key, every save dispatches a `consentchange` CustomEvent so analytics and marketing scripts can subscribe, and the demo page includes a live integration monitor that lights up as you change categories.
+
+## Features
+
+- **Three-path banner** — Accept all / Necessary only / Customize, with equal visual weight (dark-pattern-free)
+- **Preferences dialog** — a native `<dialog>` with per-category toggles and descriptions; the necessary category is visibly locked on
+- **Versioned persistence** — the storage key carries a version, so bumping it legally re-prompts every visitor
+- **Event-driven integrations** — `window.addEventListener("consentchange", …)` is the only API scripts need
+- **Reopen affordance** — after a choice, a floating button lets visitors change their mind anytime (a GDPR requirement)
+- **Accessible** — focus moves into the dialog, `Escape` closes it, toggles are real checkboxes with labels
+
+## Integration
+
+```js
+window.addEventListener("consentchange", (e) => {
+  if (e.detail.analytics) loadAnalytics();
+  if (e.detail.marketing) loadPixel();
+});
+```

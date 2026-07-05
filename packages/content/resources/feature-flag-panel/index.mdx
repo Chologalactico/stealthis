@@ -1,0 +1,61 @@
+---
+slug: feature-flag-panel
+title: Feature Flag Panel
+description: An internal-tools panel for managing feature flags across environments — dev, staging and production tabs, per-flag toggles with percentage rollout sliders, tag chips and search, dirty-state tracking with a floating save bar, and a pause-all kill switch, all driven by a plain state object.
+category: ui-components
+type: component
+tags:
+  - feature-flags
+  - admin
+  - internal-tools
+  - toggle
+  - rollout
+  - environments
+  - devtools
+  - saas
+  - dashboard
+tech:
+  - css
+  - vanilla-js
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/feature-flag-panel
+collections:
+  - saas
+  - dashboard
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Feature Flag Panel
+
+The screen every platform team ends up building. Flags live in one plain array; each flag holds independent `{ enabled, rollout }` state per environment. The UI diffs the working copy against a baseline, so the **save bar only appears when something actually changed**, shows an exact change count, and Discard restores the baseline.
+
+## Features
+
+- **Environment tabs** — dev / staging / production, each with its own toggle + rollout state and an "enabled count" badge
+- **Percentage rollout** — a slider appears for enabled flags; 100% reads as "everyone", anything less shows the cohort size
+- **Dirty-state save bar** — slides up only when the working copy differs from the baseline; Save commits, Discard reverts
+- **Search + tag filter** — narrow long flag lists by name, key or tag chip
+- **Kill switch** — "Pause all" disables every flag in the current environment in one click (still requires Save, so it's reversible)
+- **Production guard** — enabling a flag in prod asks for confirmation inline, no modal needed
+
+## The state shape
+
+```js
+{
+  key: "new-checkout",
+  name: "New checkout flow",
+  tags: ["payments"],
+  env: {
+    dev:     { enabled: true,  rollout: 100 },
+    staging: { enabled: true,  rollout: 50 },
+    prod:    { enabled: false, rollout: 0 },
+  },
+}
+```
