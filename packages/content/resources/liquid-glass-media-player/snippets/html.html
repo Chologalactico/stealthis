@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass Media Player — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- SVG displacement filter: the "lensing" part of Liquid Glass -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="glass-distortion" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="11" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="2" result="soft" />
+        <feDisplacementMap in="SourceGraphic" in2="soft" scale="60" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="scene" id="scene" style="--hue: 265">
+
+    <div class="blobs" aria-hidden="true">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <span class="blob b3"></span>
+    </div>
+
+    <header class="scene-head">
+      <span class="kicker">LIQUID GLASS — MEDIA WIDGET</span>
+      <h1>Now Playing</h1>
+    </header>
+
+    <!-- ── Liquid Glass player card ── -->
+    <section class="player lg" id="player" aria-label="Music player">
+      <span class="lg-effect" aria-hidden="true"></span>
+      <span class="lg-tint" aria-hidden="true"></span>
+      <span class="lg-shine" aria-hidden="true"></span>
+
+      <div class="lg-content">
+
+        <div class="track-row">
+          <div class="art" id="art" aria-hidden="true"><span class="art-note">♪</span></div>
+          <div class="track-meta">
+            <strong class="track-title" id="trackTitle"></strong>
+            <span class="track-artist" id="trackArtist"></span>
+          </div>
+        </div>
+
+        <div class="scrub-row">
+          <div class="scrubber" id="scrubber" role="slider" tabindex="0"
+               aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="scrub-track">
+              <div class="scrub-fill" id="scrubFill"></div>
+              <div class="scrub-knob" id="scrubKnob"></div>
+            </div>
+          </div>
+          <div class="times">
+            <span id="timeNow">0:00</span>
+            <span id="timeLeft">-0:00</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="ctl lg-btn" id="prevBtn" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 5.5v13L8.5 12 19 5.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="ctl lg-btn ctl-play" id="playBtn" aria-label="Play" aria-pressed="false">
+            <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5L8 5.5Z" fill="currentColor"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13M16 5.5v13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
+          <button class="ctl lg-btn" id="nextBtn" aria-label="Next track">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5.5v13L15.5 12 5 5.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <p class="hint">Move the pointer across the card — the glass catches the light.</p>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+---
+slug: liquid-glass-media-player
+title: Liquid Glass Media Player
+description: A lock-screen-style music player card in Apple's Liquid Glass material — layered backdrop blur with SVG edge refraction, a specular highlight that follows the pointer across the glass, gel-press control buttons, an accessible custom scrubber with keyboard support, and per-track ambient color that re-tints the whole scene.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - media-player
+  - music
+  - glassmorphism
+  - backdrop-filter
+  - svg-filter
+  - widget
+  - lock-screen
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: hard
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-media-player
+collections:
+  - effects
+  - cards
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Media Player
+
+The iOS 26 lock-screen player as a web component. Beyond the four-layer glass sandwich (effect → tint → shine → content), this one adds the two details that make Liquid Glass feel *alive*:
+
+- the **specular highlight moves** — a radial hotspot on the shine layer tracks the pointer, so the glass appears to catch light as your hand passes over it
+- the **material reacts to content** — each track carries a hue, and switching tracks re-tints the ambient blobs behind the glass, which the blur and displacement then pick up
+
+## Features
+
+- **Pointer-tracked specular shine** — CSS custom properties (`--shine-x/y`) drive a radial-gradient hotspot on the glass
+- **Gel buttons** — prev / play / next are small glass discs that squish on press with a springy return
+- **Accessible custom scrubber** — `role="slider"` with pointer dragging *and* arrow-key seeking, plus live time labels
+- **Playback simulation** — play advances progress in real time against each track's duration; ending auto-advances
+- **Procedural artwork** — album art is a layered CSS gradient keyed to the track hue; no images anywhere
+- **Reduced motion aware** — ambient drift and press springs are disabled under `prefers-reduced-motion`
+
+## The living-glass details
+
+```css
+.lg-shine {
+  background: radial-gradient(
+    240px circle at var(--shine-x) var(--shine-y),
+    rgba(255, 255, 255, 0.18), transparent 60%
+  );
+}
+```
+
+```js
+card.addEventListener("pointermove", (e) => {
+  card.style.setProperty("--shine-x", `${e.offsetX}px`);
+  card.style.setProperty("--shine-y", `${e.offsetY}px`);
+});
+```

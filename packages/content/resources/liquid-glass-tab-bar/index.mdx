@@ -1,0 +1,67 @@
+---
+slug: liquid-glass-tab-bar
+title: Liquid Glass Tab Bar
+description: An iOS 26-style floating tab bar built from Apple's Liquid Glass recipe on the web — layered backdrop blur and saturation, SVG turbulence displacement for edge refraction, inset specular highlights, a jelly selection pill that squashes and stretches between tabs, and the signature minimize-on-scroll behavior.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - tab-bar
+  - glassmorphism
+  - navigation
+  - backdrop-filter
+  - svg-filter
+  - mobile
+  - spring
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: hard
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-tab-bar
+collections:
+  - mobile-nav
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Tab Bar
+
+Apple's **Liquid Glass** material (WWDC 2025) recreated as a floating tab bar. The glass is a four-layer sandwich, which is the technique behind every convincing web port of the material:
+
+1. **Effect layer** — `backdrop-filter: blur() saturate()` plus an SVG `feTurbulence → feDisplacementMap` filter that bends the backdrop at the edges (the "lensing")
+2. **Tint layer** — a whisper of white to lift the material off dark content
+3. **Shine layer** — two inset box-shadows faking the specular highlight that runs along the top-left edge
+4. **Content layer** — icons and labels, kept crisp above the distortion
+
+## Features
+
+- **Jelly selection pill** — the active-tab indicator springs to its new position with a squash-and-stretch keyframe, exactly like iOS 26's morphing tab selection
+- **Minimize on scroll** — scrolling content down shrinks the bar into a compact pill; scrolling up restores it
+- **Live refraction demo** — vibrant drifting blobs and content cards behind the bar make the blur, saturation and displacement visible
+- **Per-tab theming** — each tab shifts the page hue variable, showing how glass adapts to what's beneath it
+- **Graceful degradation** — Safari and Firefox skip the SVG displacement but keep blur, tint and shine; the bar still reads as glass
+- **Reduced motion aware** — spring, squash and ambient drift are disabled under `prefers-reduced-motion`
+
+## The material, in short
+
+```css
+.lg-effect {
+  backdrop-filter: blur(4px) saturate(160%);
+  filter: url(#glass-distortion); /* feTurbulence + feDisplacementMap */
+}
+.lg-shine {
+  box-shadow:
+    inset 2px 2px 1px 0 rgba(255, 255, 255, 0.35),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.12);
+}
+```
