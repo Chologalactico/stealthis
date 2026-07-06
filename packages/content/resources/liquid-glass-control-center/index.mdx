@@ -1,0 +1,61 @@
+---
+slug: liquid-glass-control-center
+title: Liquid Glass Control Center
+description: An iOS-style Control Center panel in Apple's Liquid Glass material — a connectivity cluster of round glass toggles, draggable vertical sliders for brightness and volume, a focus switch and a utility row, every tile built from the layered blur-tint-shine glass recipe with SVG edge refraction.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - control-center
+  - toggles
+  - sliders
+  - glassmorphism
+  - backdrop-filter
+  - mobile
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-control-center
+collections:
+  - mobile-nav
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Control Center
+
+The Control Center grid, rebuilt as web components on the Liquid Glass material. Each tile is an independent glass sandwich (effect → tint → shine → content), so tiles can be rearranged or dropped into any layout without coupling.
+
+## Features
+
+- **Connectivity cluster** — airplane, Wi-Fi, Bluetooth and cellular as round toggles inside one shared tile; active state fills the disc with the accent color
+- **Vertical drag sliders** — brightness and volume tiles fill from the bottom under pointer drag (with pointer capture), exactly like the iOS gesture, and report their value
+- **Focus toggle & utility row** — a wide focus switch plus flashlight, timer, calculator and camera buttons with pressed states
+- **Composable tiles** — every tile carries its own glass layers; the grid is plain CSS Grid
+- **Reduced motion aware** — ambient background drift and press springs are disabled under `prefers-reduced-motion`
+
+## Vertical slider gesture
+
+```js
+tile.addEventListener("pointerdown", (e) => {
+  tile.setPointerCapture(e.pointerId);
+  const rect = tile.getBoundingClientRect();
+  const set = (ev) => {
+    const ratio = 1 - (ev.clientY - rect.top) / rect.height;
+    fill.style.height = `${Math.min(Math.max(ratio, 0), 1) * 100}%`;
+  };
+  set(e);
+  tile.onpointermove = (ev) => tile.hasPointerCapture(ev.pointerId) && set(ev);
+});
+```

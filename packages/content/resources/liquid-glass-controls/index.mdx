@@ -1,0 +1,55 @@
+---
+slug: liquid-glass-controls
+title: Liquid Glass Form Controls
+description: A matched kit of four form controls in Apple's Liquid Glass material — a gel-knob switch, a segmented control with a jelly sliding thumb, a horizontal slider with a glass lens knob, and a stepper with press squish and value pop, all keyboard-accessible and reporting to a live state readout.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - controls
+  - switch
+  - segmented-control
+  - slider
+  - stepper
+  - form
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-controls
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Form Controls
+
+The four controls every settings screen needs, sharing one material so they read as a family. Each control is an isolated block — copy just the one you need. Every state change writes to a live JSON readout, showing exactly what your app would receive.
+
+## The kit
+
+- **Switch** — a glass track with a gel knob that stretches horizontally mid-travel (the iOS "pill squish") before settling
+- **Segmented control** — three segments with a jelly thumb that squash-and-stretches between them, arrow-key navigable with proper `radiogroup` semantics
+- **Slider** — pointer-capture drag with a lens-like glass knob that grows while grabbed, plus arrow-key stepping
+- **Stepper** — minus/plus with press squish, hold-to-repeat, and a value that pops on each change
+
+## Accessibility
+
+Every control is operable by keyboard and announces through ARIA: the switch is a real `role="switch"`, segments form a `radiogroup`, the slider implements `role="slider"` with value text, and the stepper buttons disable at their bounds.
+
+## Live state
+
+```json
+{ "wifi": true, "view": "Monthly", "brightness": 62, "guests": 2 }
+```

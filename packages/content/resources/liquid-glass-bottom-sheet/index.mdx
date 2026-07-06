@@ -1,0 +1,60 @@
+---
+slug: liquid-glass-bottom-sheet
+title: Liquid Glass Bottom Sheet
+description: An iOS-style modal sheet in Liquid Glass with real detents — drag the grabber between peek, half and full stops with velocity-aware snapping, a backdrop that dims progressively with sheet height, flick-down to close, and a scrollable content area that unlocks only at the full detent.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - bottom-sheet
+  - modal
+  - detents
+  - gesture
+  - drag
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: hard
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-bottom-sheet
+collections:
+  - mobile-nav
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Bottom Sheet
+
+UIKit's sheet detents (`.medium()`, `.large()`), rebuilt with pointer events. The sheet's position is one `translateY` percentage; three detent stops define where it can rest. On release, the sheet snaps to the nearest detent — unless you flicked, in which case velocity picks the next stop in that direction, which is what makes the gesture feel native.
+
+## Features
+
+- **Three detents** — peek (28%), half (58%) and full (94%) visible height, tuned via one array
+- **Velocity-aware snapping** — release velocity above a threshold advances to the next detent in the flick direction instead of the nearest
+- **Progressive backdrop** — the dim scales with how much sheet is showing, computed per frame during the drag
+- **Flick-down to close** — dragging below the peek detent (or flicking down from it) dismisses the sheet
+- **Scroll handoff** — the content area only scrolls at the full detent, so drag gestures never fight the scroll
+- **Reduced motion aware** — snapping becomes instant positioning under `prefers-reduced-motion`
+
+## Detent snapping
+
+```js
+const DETENTS = [0.28, 0.58, 0.94]; // visible fraction of the sheet
+
+function snapTo(release, velocity) {
+  if (Math.abs(velocity) > 0.5) {
+    return stepInDirection(current, Math.sign(-velocity)); // flick advances
+  }
+  return nearest(DETENTS, release); // slow release settles
+}
+```

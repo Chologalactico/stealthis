@@ -1,0 +1,59 @@
+---
+slug: liquid-glass-dynamic-island
+title: Liquid Glass Dynamic Island
+description: A Dynamic Island that morphs between live activities in Liquid Glass — an idle capsule that springs into a compact music chip with animated EQ bars, expands to a full player card on tap, runs a countdown timer activity with a progress ring, and shape-shifts between all states with one overshoot spring.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - dynamic-island
+  - live-activity
+  - morph
+  - spring
+  - glassmorphism
+  - status
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: hard
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-dynamic-island
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Dynamic Island
+
+The Island is a state machine wearing a spring. Each state (idle, music chip, music expanded, timer) is just a CSS class that sets `width`/`height`/`border-radius`; a single overshoot cubic-bezier on those properties produces the characteristic gooey morph, and content panels crossfade with a slight scale so the interior feels attached to the shell.
+
+## Features
+
+- **Four morph states** — idle capsule → compact music chip → expanded player card → timer chip, all one element
+- **Live activity content** — the music state runs animated EQ bars and track info; the timer state runs a real countdown with an SVG progress ring
+- **Tap to expand** — the compact music chip opens into a full card with controls; tapping the header collapses it back
+- **Overshoot spring** — one `cubic-bezier(0.34, 1.4, 0.4, 1)` transition on the shell does all the gooey work
+- **Demo triggers** — buttons start/stop each activity the way apps would post Live Activities
+- **Reduced motion aware** — morphs become instant resizes and the EQ bars hold a static pose
+
+## The morph
+
+```css
+.island {
+  transition:
+    width 0.55s cubic-bezier(0.34, 1.4, 0.4, 1),
+    height 0.55s cubic-bezier(0.34, 1.4, 0.4, 1),
+    border-radius 0.55s cubic-bezier(0.34, 1.4, 0.4, 1);
+}
+.island.state-music-chip { width: 260px; height: 40px; }
+.island.state-music-full { width: 340px; height: 150px; border-radius: 34px; }
+```

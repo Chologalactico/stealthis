@@ -1,0 +1,53 @@
+---
+slug: liquid-glass-spotlight-search
+title: Liquid Glass Spotlight Search
+description: A Spotlight-style search overlay in Liquid Glass — summoned with ⌘K or a click, a frosted panel drops in over a dimmed backdrop, results filter live across grouped sections as you type, arrow keys and Enter drive the selection, and the highlighted row glows like the material it sits on.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - macos
+  - spotlight
+  - search
+  - command-palette
+  - overlay
+  - keyboard-navigation
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-spotlight-search
+collections:
+  - effects
+  - saas
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Spotlight Search
+
+Spotlight's essence: one field, everything reachable, zero mouse required. Results live in a flat array tagged with a section (Apps, Actions, Files); typing filters by name and keywords, matches are regrouped under their section headers, and a keyboard cursor walks the flattened list.
+
+## Features
+
+- **⌘K / Ctrl-K summon** — opens with focus already in the field; `Escape` dismisses; clicking the backdrop dismisses
+- **Grouped live filtering** — matches regroup under Apps / Actions / Files headers as you type, with match count
+- **Full keyboard drive** — arrows wrap around the list, `Enter` launches the highlighted result, hover and keyboard share one selection state
+- **Keyword matching** — items match on hidden keywords too (searching "mail" finds "Compose message")
+- **Result toast** — launching shows what would have opened, so the demo closes the loop
+- **Reduced motion aware** — the drop-in spring becomes a simple fade
+
+## Search data shape
+
+```js
+{ section: "Actions", icon: "✉", name: "Compose message", hint: "Mail", keywords: "email write new" }
+```

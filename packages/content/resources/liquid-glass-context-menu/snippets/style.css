@@ -1,0 +1,252 @@
+:root {
+  --ink: #f5f6fb;
+  --ink-dim: rgba(245, 246, 251, 0.6);
+  --font: "Inter", system-ui, sans-serif;
+  --spring: cubic-bezier(0.3, 1.4, 0.4, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  background: #07080d;
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- Ambient ---------- */
+.blobs { position: absolute; inset: 0; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(75px); opacity: 0.5; }
+.b1 { width: 56vmax; height: 56vmax; top: -18vmax; left: -12vmax; background: hsl(var(--hue) 85% 50%); animation: drift 24s ease-in-out infinite alternate; }
+.b2 { width: 44vmax; height: 44vmax; bottom: -16vmax; right: -10vmax; background: hsl(calc(var(--hue) + 80) 85% 56%); animation: drift 28s ease-in-out infinite alternate-reverse; }
+.b3 { width: 26vmax; height: 26vmax; top: 44%; left: 40%; background: hsl(calc(var(--hue) - 60) 80% 58%); animation: drift 32s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(7vmax, 5vmax) scale(1.1); } }
+
+/* ---------- Chat chrome ---------- */
+.chat-head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 1.4rem;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0d1117;
+  background: linear-gradient(145deg, #7dd3fc, #6366f1);
+}
+
+.chat-meta strong { display: block; font-size: 0.9rem; }
+.chat-meta em { font-style: normal; font-size: 0.7rem; color: #4ade80; }
+
+.hint {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 0.7rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- Thread ---------- */
+.thread {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.5rem clamp(1rem, 5vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 620px;
+  width: 100%;
+  margin: 0 auto;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* focus staging: blur the thread, not the lifted bubble */
+.scene.menu-open .thread { filter: blur(5px); opacity: 0.55; }
+
+.msg { display: flex; }
+.msg.me { justify-content: flex-end; }
+
+.bubble {
+  position: relative;
+  max-width: 76%;
+  padding: 0.7rem 1rem;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.35s var(--spring), box-shadow 0.3s;
+  touch-action: pan-y;
+}
+
+.msg.them .bubble {
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom-left-radius: 6px;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.16);
+}
+
+.msg.me .bubble {
+  background: hsl(var(--hue) 85% 55%);
+  color: #071022;
+  border-bottom-right-radius: 6px;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.bubble.lifted {
+  transform: scale(1.04);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+  z-index: 30;
+}
+
+/* reaction badge pinned to a bubble */
+.badge {
+  position: absolute;
+  top: -12px;
+  right: -6px;
+  font-size: 0.8rem;
+  background: rgba(20, 22, 32, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.15rem 0.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.msg.them .badge { right: auto; left: -6px; }
+
+/* ---------- Liquid Glass material ---------- */
+.lg { position: relative; border-radius: 18px; box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5); }
+
+.lg-effect, .lg-tint, .lg-shine { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+
+.lg-effect {
+  z-index: 0;
+  backdrop-filter: blur(9px) saturate(165%);
+  -webkit-backdrop-filter: blur(9px) saturate(165%);
+  filter: url(#glass-distortion);
+  isolation: isolate;
+}
+
+.lg-tint { z-index: 1; background: rgba(255, 255, 255, 0.08); }
+
+.lg-shine {
+  z-index: 2;
+  box-shadow:
+    inset 2px 2px 1px 0 rgba(255, 255, 255, 0.28),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.lg-content { position: relative; z-index: 3; }
+
+/* ---------- Menu layer ---------- */
+.menu-layer { position: fixed; inset: 0; z-index: 40; }
+
+.reactions {
+  position: absolute;
+  border-radius: 999px;
+  animation: pop-in 0.35s var(--spring);
+  transform-origin: bottom center;
+}
+
+.reactions-row { display: flex; gap: 0.15rem; padding: 0.3rem 0.45rem; }
+
+.react {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-size: 1.15rem;
+  padding: 0.3rem 0.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.25s var(--spring), background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.react:hover { transform: scale(1.3) translateY(-2px); background: rgba(255, 255, 255, 0.12); }
+
+.menu {
+  position: absolute;
+  width: 230px;
+  animation: pop-in 0.35s var(--spring);
+  transform-origin: top center;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.7); }
+}
+
+.menu-list { padding: 0.35rem; display: flex; flex-direction: column; }
+
+.item {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 0.86rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.62rem 0.8rem;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.item:hover { background: rgba(255, 255, 255, 0.14); }
+
+.item-icon { opacity: 0.7; font-size: 0.9rem; }
+
+.item.is-destructive {
+  color: #fb7185;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 11px 11px;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  z-index: 50;
+}
+
+.toast-text { display: block; padding: 0.6rem 1.2rem; font-size: 0.8rem; white-space: nowrap; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; }
+  .reactions, .menu { animation: pop-in 0.12s ease; }
+  .bubble { transition: none; }
+  .react { transition: none; }
+}

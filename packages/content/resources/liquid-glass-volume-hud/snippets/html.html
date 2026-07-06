@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass Volume HUD — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="glass-distortion" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="41" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="2" result="soft" />
+        <feDisplacementMap in="SourceGraphic" in2="soft" scale="60" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="scene" style="--hue: 260">
+    <div class="blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+
+    <main class="page">
+      <span class="kicker">LIQUID GLASS — TRANSIENT HUD</span>
+      <h1>Volume HUD</h1>
+      <p class="sub">
+        Use the rocker on the right or <kbd>↑</kbd><kbd>↓</kbd>.
+        Press <kbd>B</kbd> to switch to brightness.
+      </p>
+      <button class="mode-toggle" id="modeToggle" type="button">Mode: <strong id="modeName">Volume</strong></button>
+    </main>
+
+    <!-- hardware rocker -->
+    <div class="rocker" aria-label="Volume buttons">
+      <button class="rock" id="rockUp" aria-label="Volume up">+</button>
+      <button class="rock" id="rockDown" aria-label="Volume down">−</button>
+    </div>
+
+    <!-- ── The HUD ── -->
+    <div class="hud lg" id="hud" data-state="hidden" role="status" aria-live="polite">
+      <span class="lg-effect"></span><span class="lg-tint"></span><span class="lg-shine"></span>
+      <div class="lg-content hud-inner">
+        <div class="hud-bar">
+          <div class="hud-fill" id="hudFill"></div>
+        </div>
+        <span class="hud-icon" id="hudIcon" aria-hidden="true">🔊</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

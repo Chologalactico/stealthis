@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass Form Controls — stealthis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <filter id="glass-distortion" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="17" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="2" result="soft" />
+        <feDisplacementMap in="SourceGraphic" in2="soft" scale="60" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="scene" style="--hue: 300">
+    <div class="blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+
+    <header class="scene-head">
+      <span class="kicker">LIQUID GLASS — FORM CONTROLS</span>
+      <h1>The kit</h1>
+    </header>
+
+    <main class="kit">
+
+      <!-- Switch -->
+      <section class="row lg">
+        <span class="lg-effect"></span><span class="lg-tint"></span><span class="lg-shine"></span>
+        <div class="lg-content row-inner">
+          <div class="row-text"><strong>Wi-Fi</strong><span>Gel-knob switch</span></div>
+          <button class="gswitch" id="wifiSwitch" role="switch" aria-checked="true" aria-label="Wi-Fi">
+            <span class="gswitch-knob"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Segmented control -->
+      <section class="row lg">
+        <span class="lg-effect"></span><span class="lg-tint"></span><span class="lg-shine"></span>
+        <div class="lg-content row-inner row-stack">
+          <div class="row-text"><strong>View</strong><span>Jelly segmented control</span></div>
+          <div class="segmented" id="segmented" role="radiogroup" aria-label="View">
+            <span class="seg-thumb" id="segThumb" aria-hidden="true"></span>
+            <button class="seg" role="radio" aria-checked="false" data-value="Daily">Daily</button>
+            <button class="seg is-active" role="radio" aria-checked="true" data-value="Monthly">Monthly</button>
+            <button class="seg" role="radio" aria-checked="false" data-value="Yearly">Yearly</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slider -->
+      <section class="row lg">
+        <span class="lg-effect"></span><span class="lg-tint"></span><span class="lg-shine"></span>
+        <div class="lg-content row-inner row-stack">
+          <div class="row-text"><strong>Brightness</strong><span>Lens-knob slider</span></div>
+          <div class="gslider" id="brightness" role="slider" tabindex="0"
+               aria-label="Brightness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62">
+            <div class="gslider-track">
+              <div class="gslider-fill"></div>
+              <div class="gslider-knob"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stepper -->
+      <section class="row lg">
+        <span class="lg-effect"></span><span class="lg-tint"></span><span class="lg-shine"></span>
+        <div class="lg-content row-inner">
+          <div class="row-text"><strong>Guests</strong><span>Hold-to-repeat stepper</span></div>
+          <div class="stepper" id="guests" aria-label="Guests">
+            <button class="step-btn" data-dir="-1" aria-label="Fewer guests">−</button>
+            <span class="step-value" id="guestValue" aria-live="polite">2</span>
+            <button class="step-btn" data-dir="1" aria-label="More guests">+</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <pre class="readout lg" aria-label="Live state"><span class="lg-effect"></span><span class="lg-tint"></span><span class="lg-shine"></span><code class="lg-content" id="readout"></code></pre>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

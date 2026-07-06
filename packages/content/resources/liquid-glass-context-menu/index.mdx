@@ -1,0 +1,58 @@
+---
+slug: liquid-glass-context-menu
+title: Liquid Glass Context Menu
+description: The iMessage long-press interaction in Liquid Glass — press and hold a chat bubble and it lifts while the rest of the thread blurs away, a glass reaction bar and context menu spring in beside it, reactions pin a badge to the bubble, and the destructive action reads in red, with right-click as a desktop shortcut.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - context-menu
+  - long-press
+  - reactions
+  - chat
+  - gesture
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: hard
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-context-menu
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Context Menu
+
+The interaction has three synchronized parts, and getting all three right is what makes it feel native: the **pressed bubble lifts** (scale + shadow) while everything else blurs and dims, a **reaction bar** pops in above it, and the **menu** springs in below — flipping above automatically when the bubble sits low in the viewport.
+
+## Features
+
+- **Press-and-hold** — a 380ms hold timer with movement cancellation opens the menu; right-click (`contextmenu`) is the desktop shortcut
+- **Focus staging** — the thread gets `filter: blur()` + dim while the target bubble scales up out of the fog
+- **Reaction bar** — five emoji in a glass capsule; picking one pins a reaction badge onto the bubble (tap the same one to remove it)
+- **Smart placement** — the menu measures the bubble's position and opens below or above, staying inside the viewport
+- **Destructive styling** — Delete sits apart and reads in red, matching the platform convention
+- **Reduced motion aware** — springs become fades; the blur stage-dim still communicates focus
+
+## The hold gesture
+
+```js
+bubble.addEventListener("pointerdown", (e) => {
+  holdTimer = setTimeout(() => openMenu(bubble), 380);
+});
+bubble.addEventListener("pointermove", (e) => {
+  if (Math.hypot(e.clientX - startX, e.clientY - startY) > 8) clearTimeout(holdTimer);
+});
+bubble.addEventListener("pointerup", () => clearTimeout(holdTimer));
+```

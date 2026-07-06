@@ -1,0 +1,58 @@
+---
+slug: liquid-glass-notification-stack
+title: Liquid Glass Notification Stack
+description: iOS-style lock-screen notifications in Liquid Glass — a collapsed stack where cards peek out from behind the front one, a tap that springs the pile open into a full list, horizontal swipe-to-dismiss with a rubber-band threshold on every card, clear-all, and an empty state with demo restore.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - notifications
+  - stack
+  - swipe
+  - gesture
+  - lock-screen
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: hard
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-notification-stack
+collections:
+  - effects
+  - cards
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Notification Stack
+
+The lock-screen notification pile, with its two signature gestures. Collapsed, cards sit behind the front one with decreasing scale and a few pixels of peek; tapping springs the pile into a spaced list. Expanded, every card is a horizontal drag target: past 38% of its width it slides out and the list closes the gap, under it rubber-bands back.
+
+## Features
+
+- **Collapsed ↔ expanded stack** — pure CSS transforms driven by one state class; the spring is a single overshoot cubic-bezier
+- **Swipe to dismiss** — pointer-capture drag with live opacity feedback, a distance threshold, and exit velocity in the dismiss animation
+- **Group header** — notification count, "Show less" and "Clear all" appear only when expanded
+- **Per-app icons** — procedural gradient app badges, no images
+- **Empty state** — a quiet "No notifications" card with a demo restore button
+- **Reduced motion aware** — springs collapse to instant state changes; dismissal still works
+
+## The dismiss gesture
+
+```js
+card.addEventListener("pointermove", (e) => {
+  dx = e.clientX - startX;
+  card.style.transform = `translateX(${dx}px)`;
+  card.style.opacity = String(1 - Math.abs(dx) / (card.offsetWidth * 0.9));
+});
+// on pointerup: |dx| > width * 0.38 ? slideOutAndRemove() : springBack()
+```

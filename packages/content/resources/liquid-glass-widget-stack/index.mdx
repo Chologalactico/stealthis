@@ -1,0 +1,56 @@
+---
+slug: liquid-glass-widget-stack
+title: Liquid Glass Widget Stack
+description: An iOS home-screen widget stack in Liquid Glass — weather, calendar and battery widgets riding one glass shell, flipped by vertical swipe with a spring, auto-rotating on a timer that pauses while you interact, with page dots and per-widget accent tinting.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - widgets
+  - widget-stack
+  - swipe
+  - carousel
+  - home-screen
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-widget-stack
+collections:
+  - cards
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Widget Stack
+
+The home-screen Smart Stack: several widgets share one footprint and rotate through it. The shell (one Liquid Glass sandwich) never moves — only the widget faces do, flipping vertically with a spring. Incoming faces rise from below at 92% scale; outgoing ones lift away and fade, which sells the "pile of cards" illusion in two transforms.
+
+## Features
+
+- **Three demo widgets** — weather (temp, condition, hi/lo), calendar (date + next events with color bars), battery (SVG ring per device)
+- **Vertical swipe** — pointer-capture drag with a distance threshold flips forward or back; wraps at the ends
+- **Smart-Stack auto-rotate** — advances every 5 seconds, pauses on hover and after any interaction, resumes on leave
+- **Page dots** — tappable indicators on the right edge, exactly where iOS puts them
+- **Per-widget accent** — each face tints the shell's hue variable so the glass picks up its subject
+- **Reduced motion aware** — auto-rotate is off and flips are instant crossfades under `prefers-reduced-motion`
+
+## The flip
+
+```css
+.face { transition: transform 0.5s cubic-bezier(0.32, 1.25, 0.4, 1), opacity 0.35s; }
+.face.is-active { transform: translateY(0) scale(1); opacity: 1; }
+.face.is-below  { transform: translateY(34%) scale(0.92); opacity: 0; }
+.face.is-above  { transform: translateY(-34%) scale(0.92); opacity: 0; }
+```

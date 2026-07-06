@@ -1,0 +1,152 @@
+:root {
+  --ink: #f5f6fb;
+  --ink-dim: rgba(245, 246, 251, 0.6);
+  --font: "Inter", system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  background: #07080d;
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.5rem 1.5rem 2.4rem;
+  overflow: hidden;
+}
+
+/* ---------- Ambient ---------- */
+.blobs { position: absolute; inset: 0; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(75px); opacity: 0.55; }
+.b1 { width: 56vmax; height: 56vmax; top: -18vmax; left: -12vmax; background: hsl(var(--hue) 85% 52%); animation: drift 24s ease-in-out infinite alternate; }
+.b2 { width: 44vmax; height: 44vmax; bottom: -16vmax; right: -10vmax; background: hsl(calc(var(--hue) + 80) 85% 58%); animation: drift 28s ease-in-out infinite alternate-reverse; }
+.b3 { width: 26vmax; height: 26vmax; top: 40%; left: 40%; background: hsl(calc(var(--hue) - 60) 80% 60%); animation: drift 32s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(7vmax, 5vmax) scale(1.1); } }
+
+.scene-head {
+  position: absolute;
+  top: clamp(2rem, 12vh, 6rem);
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.kicker { display: block; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--ink-dim); margin-bottom: 0.7rem; }
+.scene-head h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; }
+.sub { margin-top: 0.5rem; font-size: 0.82rem; color: var(--ink-dim); }
+
+/* ---------- Liquid Glass material ---------- */
+.lg { position: relative; border-radius: 26px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45); }
+
+.lg-effect, .lg-tint, .lg-shine { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+
+.lg-effect {
+  z-index: 0;
+  backdrop-filter: blur(5px) saturate(165%);
+  -webkit-backdrop-filter: blur(5px) saturate(165%);
+  filter: url(#glass-distortion);
+  isolation: isolate;
+}
+
+.lg-tint { z-index: 1; background: rgba(255, 255, 255, 0.06); }
+
+.lg-shine {
+  z-index: 2;
+  box-shadow:
+    inset 2px 2px 1px 0 rgba(255, 255, 255, 0.3),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.09);
+}
+
+.lg-content { position: relative; z-index: 3; }
+
+/* ---------- Dock ---------- */
+.dock { border-radius: 24px; }
+
+.dock-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+  padding: 0.55rem 0.75rem;
+  height: 78px;
+}
+
+.app {
+  appearance: none;
+  border: 0;
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: 50% 100%;
+  will-change: transform;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.4), 0 4px 12px rgba(0, 0, 0, 0.35);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app .dot {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.app.is-running .dot { opacity: 1; }
+
+.app.bounce { animation: launch 0.7s cubic-bezier(0.28, 0.84, 0.42, 1); }
+
+@keyframes launch {
+  0% { translate: 0 0; }
+  30% { translate: 0 -26px; }
+  50% { translate: 0 0; }
+  70% { translate: 0 -12px; }
+  100% { translate: 0 0; }
+}
+
+/* ---------- Tooltip ---------- */
+.tooltip {
+  position: absolute;
+  border-radius: 999px;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tooltip .lg-content {
+  display: block;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; }
+  .app.bounce { animation: none; }
+  .app { transform: none !important; }
+  .app:hover { outline: 2px solid rgba(255, 255, 255, 0.6); outline-offset: 2px; }
+}

@@ -1,0 +1,59 @@
+---
+slug: liquid-glass-dock
+title: Liquid Glass Dock
+description: A macOS Tahoe-style dock on the Liquid Glass shelf — smooth fisheye magnification that follows the cursor with distance-based falloff, app icons that bounce on launch and keep a running indicator dot, hover tooltips with app names, and the full layered glass material underneath.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - macos
+  - dock
+  - magnification
+  - fisheye
+  - glassmorphism
+  - backdrop-filter
+  - navigation
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-dock
+collections:
+  - effects
+  - mobile-nav
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Dock
+
+The macOS dock's fisheye is a distance function, not magic: every icon's scale is computed from how far it sits from the cursor, with a cosine falloff so neighbors swell smoothly and the rest of the row stays put. Icons scale from their **bottom edge** (`transform-origin: bottom`) so the shelf line never breaks.
+
+## Features
+
+- **Cosine-falloff magnification** — `scale = 1 + boost · cos(distance)` clamped to a range, recomputed per `pointermove`; leaves settle everything back to 1
+- **Launch bounce** — clicking an icon plays the classic double-bounce keyframe and pins a running dot under it; clicking again "quits"
+- **Hover tooltips** — app names float above the magnified icon in a mini glass capsule
+- **Procedural icons** — every app tile is a CSS gradient + glyph, no images
+- **Reduced motion aware** — magnification and bounce collapse to simple highlight states under `prefers-reduced-motion`
+
+## The fisheye math
+
+```js
+const RANGE = 130, BOOST = 0.65;
+icons.forEach((icon) => {
+  const dist = Math.abs(iconCenterX(icon) - cursorX);
+  const scale = dist > RANGE
+    ? 1
+    : 1 + BOOST * Math.cos((dist / RANGE) * (Math.PI / 2)) ** 2;
+  icon.style.transform = `scale(${scale})`;
+});
+```

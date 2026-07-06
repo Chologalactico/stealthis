@@ -1,0 +1,57 @@
+---
+slug: liquid-glass-volume-hud
+title: Liquid Glass Volume HUD
+description: The iOS hardware-button volume overlay in Liquid Glass — press the on-screen rocker or arrow keys and a glass capsule swells in beside the buttons, its fill tracks the level with an icon that steps through mute, low and high, it slims down after a moment of stillness and fades away entirely, with a brightness mode a keypress away.
+category: ui-components
+type: component
+tags:
+  - liquid-glass
+  - apple
+  - ios
+  - volume
+  - hud
+  - overlay
+  - brightness
+  - feedback
+  - glassmorphism
+tech:
+  - css
+  - vanilla-js
+  - svg
+difficulty: med
+targets:
+  - html
+labRoute: /ui-components/liquid-glass-volume-hud
+collections:
+  - effects
+license: MIT
+createdAt: 2026-07-05
+updatedAt: 2026-07-05
+author:
+  name: Stealthis
+  src: https://github.com/Foodhy/stealthis
+---
+
+# Liquid Glass Volume HUD
+
+Transient feedback done the iOS way: the HUD has **three sizes and two clocks**. While you're adjusting it stays expanded; one second of stillness slims it to a sliver; another second and it's gone. Every new press resets both timers, so the overlay always feels attentive but never lingers.
+
+## Features
+
+- **Three-state lifecycle** — expanded (adjusting) → slim (1s idle) → hidden (2s idle), driven by two reset-on-input timers
+- **Hardware rocker** — on-screen +/− buttons with press squish, plus `↑`/`↓` arrow keys; hold-to-repeat on both
+- **Level-aware icon** — 🔇 at zero, then 🔈 → 🔉 → 🔊 as the level climbs; the fill snaps in 6% steps like real volume ticks
+- **Brightness mode** — press `B` (or the toggle) to switch the same HUD to a brightness sun with its own remembered level
+- **Direction nudge** — the capsule micro-translates in the press direction, a detail straight from the platform
+- **Reduced motion aware** — size morphs become opacity-only transitions
+
+## The two clocks
+
+```js
+function poke() {
+  hud.dataset.state = "expanded";
+  clearTimeout(slimTimer);  clearTimeout(hideTimer);
+  slimTimer = setTimeout(() => (hud.dataset.state = "slim"), 1000);
+  hideTimer = setTimeout(() => (hud.dataset.state = "hidden"), 2200);
+}
+```
